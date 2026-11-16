@@ -1,5 +1,10 @@
 # Cambios
 
+## 2026-11-16 · Tanda 2 de fichas
+
+- Fichas para las posiciones 41 a 80 (FSB, Lockheed, OpenAI, PCC, TSMC, Fed, NSA, CJNG, ByteDance y otras 31).
+- Novedades verificadas: Kevin Warsh preside la Fed desde el 22 de mayo; Joshua Rudd dirige la NSA desde el 10 de marzo; EE.UU. señala a 'El 03' como jefe del CJNG; PCC y Comando Vermelho designados terroristas por EE.UU. el 28 de mayo; Chen Zhi (Prince Group) extraditado a China; TikTok USDS en EE.UU.; Nitin Nabin preside el BJP; Greg Abel y John Furner al frente de Berkshire y Walmart.
+
 ## 2026-11-16 · Tanda 1 de fichas
 - Fichas completas (resumen, quién manda, dinero, cronología y fuentes) para las 40 organizaciones de mayor poder en red.
 - Irán: la Guardia Revolucionaria pasa a autonomía 1 y la Oficina del Líder Supremo a subordinada, según reportes de Reuters sobre el reparto de poder tras la muerte de Ali Jamenei.

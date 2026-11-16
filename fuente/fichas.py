@@ -341,3 +341,343 @@ FICHAS = {
  crono=[("1988", "Fundación."), ("2009-06", "Compra de Barclays Global Investors."), ("2020-03", "Contrato con la Reserva Federal.")],
  fuentes=[("BlackRock (Wikipedia)", W + "BlackRock"), ("Aladdin (BlackRock) (Wikipedia)", W + "Aladdin_(BlackRock)")]),
 }
+
+# ---- Tanda 2 (posiciones 41 a 80) ----
+FICHAS.update({
+"fsb": dict(
+ res=["Servicio Federal de Seguridad de Rusia, heredero del KGB: contrainteligencia, seguridad interior, guardia de fronteras y operaciones sensibles en el espacio postsoviético.",
+      "Pieza central del aparato de Putin y principal vigilante de las élites rusas."],
+ manda=["Aleksandr Bórtnikov, director desde 2008; Serguéi Koroliov, primer subdirector.",
+        "En septiembre de 2026 se informó de una reorganización en preparación que podría alcanzar a la conducción."],
+ dinero="Presupuesto reservado dentro del gasto de seguridad del Estado ruso.",
+ crono=[("1995-04", "Creación del FSB sobre la base del antiguo KGB."), ("2008-05", "Bórtnikov asume como director."),
+        ("2026-09", "Informes sobre una reestructuración interna y salida del jefe de seguridad económica.")],
+ fuentes=[("Federal Security Service (Wikipedia)", W + "Federal_Security_Service"),
+          ("Meduza: el FSB prepara cambios de conducción (2026-09-14)", "https://meduza.io/en/news/2026/09/14/russia-s-dominant-security-agency-the-fsb-is-reportedly-preparing-for-a-leadership-shake-up-and-major-overhaul-as-early-as-october")]),
+
+"lockheed": dict(
+ res=["El mayor contratista de defensa del mundo: fabrica el F-35, misiles y sistemas espaciales para EE.UU. y sus aliados.",
+      "Su producción condiciona la capacidad aérea de buena parte de la OTAN, Israel, Japón y Corea del Sur."],
+ manda=["Jim Taiclet, presidente y director ejecutivo."],
+ dinero="La mayor parte de sus ingresos proviene de contratos del gobierno de EE.UU.",
+ crono=[("1995-03", "Fusión de Lockheed y Martin Marietta."), ("2006-12", "Primer vuelo del F-35.")],
+ fuentes=[("Lockheed Martin (Wikipedia)", W + "Lockheed_Martin"), ("F-35 (Wikipedia)", W + "Lockheed_Martin_F-35_Lightning_II")]),
+
+"mastercard": dict(
+ res=["Segunda red de pagos con tarjeta del mundo; junto con Visa domina el cobro electrónico fuera de China.",
+      "Suspendió sus operaciones en Rusia en 2022."],
+ manda=["Michael Miebach, director ejecutivo."],
+ dinero="Cobra comisiones por cada transacción procesada en su red.",
+ crono=[("1966", "Origen como Interbank Card Association."), ("2006-05", "Salida a bolsa."), ("2022-03", "Suspensión en Rusia.")],
+ fuentes=[("Mastercard (Wikipedia)", W + "Mastercard")]),
+
+"openai": dict(
+ res=["Creadora de ChatGPT y uno de los laboratorios de inteligencia artificial más influyentes del mundo.",
+      "Completó en 2025 su conversión a sociedad con fines de lucro, abriendo el camino a una salida a bolsa."],
+ manda=["Sam Altman, director ejecutivo; Sarah Friar, directora financiera.", "Microsoft es accionista relevante; la fundación sin fines de lucro conserva una participación."],
+ dinero="Compromisos de inversión en centros de datos por cifras del orden del billón de dólares.",
+ crono=[("2015-12", "Fundación como entidad sin fines de lucro."), ("2022-11", "Lanzamiento de ChatGPT."),
+        ("2023-11", "Despido y regreso de Altman en cinco días."), ("2025-10", "Reestructuración aprobada; se convierte en sociedad de beneficio público.")],
+ fuentes=[("OpenAI (Wikipedia)", W + "OpenAI"),
+          ("Reuters vía Ynet: OpenAI prepara salida a bolsa", "https://www.ynetnews.com/business/article/rjnvbnx1bl")]),
+
+"pcc": dict(
+ res=["Primeiro Comando da Capital, la mayor facción criminal de Brasil: nacida en las cárceles de São Paulo, controla rutas de cocaína hacia Europa y presencia en los 27 estados.",
+      "EE.UU. la designó organización terrorista el 28 de mayo de 2026."],
+ manda=["Estructura de 'sintonías' con conducción histórica desde prisión."],
+ dinero="Narcotráfico internacional y lavado en empresas formales, incluidas fintechs y combustibles.",
+ crono=[("1993-08", "Fundación en el penal de Taubaté."), ("2006-05", "Ola de ataques en São Paulo."),
+        ("2025-08", "Operación contra su estructura financiera."), ("2026-05-28", "Designación como organización terrorista por EE.UU.")],
+ fuentes=[("Primeiro Comando da Capital (Wikipedia)", W + "Primeiro_Comando_da_Capital"),
+          ("O Povo / AFP: CV y PCC designados terroristas (2026-05-28)", "https://www.opovo.com.br/noticias/mundo/2026/05/28/amp/comando-vermelho-e-pcc-as-faccoes-criminosas-mais-poderosas-do-brasil.html")]),
+
+"tsmc": dict(
+ res=["Fabrica la mayoría de los chips más avanzados del mundo, incluidos los de Apple y Nvidia: es el cuello de botella de la inteligencia artificial.",
+      "Su ubicación en Taiwán la vuelve una pieza central del conflicto entre EE.UU. y China."],
+ manda=["C. C. Wei, presidente y director ejecutivo."],
+ dinero="Inversiones de decenas de miles de millones de dólares en plantas en Arizona, Japón y Alemania.",
+ crono=[("1987-02", "Fundación por Morris Chang."), ("2020-05", "Anuncio de la planta de Arizona.")],
+ fuentes=[("TSMC (Wikipedia)", W + "TSMC")]),
+
+"ffaa_rusia": dict(
+ res=["Fuerzas armadas con el mayor arsenal nuclear del mundo, en guerra en Ucrania desde 2022.",
+      "El gasto bélico consume una parte creciente del presupuesto ruso."],
+ manda=["Andréi Belousov, ministro de Defensa desde mayo de 2024; Valeri Guerásimov, jefe del Estado Mayor."],
+ dinero="Según Belousov, el gasto directo en la guerra superó en 2025 el 5% del PBI.",
+ crono=[("2022-02-24", "Invasión a gran escala de Ucrania."), ("2024-05-14", "Belousov reemplaza a Shoigú."), ("2026-10", "Tregua local en Jersón del 27 de octubre al 1 de noviembre.")],
+ fuentes=[("Russian Armed Forces (Wikipedia)", W + "Russian_Armed_Forces"),
+          ("Euromaidan Press: el costo de la guerra según Belousov", "https://euromaidanpress.com/?p=381438")]),
+
+"glencore": dict(
+ res=["Una de las mayores comercializadoras y mineras del mundo: cobre, cobalto, carbón, zinc y petróleo.",
+      "En 2022 se declaró culpable de sobornos en siete países ante EE.UU., Reino Unido y Brasil."],
+ manda=["Gary Nagle, director ejecutivo."],
+ dinero="Pagó más de 1.500 millones de dólares en resoluciones por corrupción y manipulación de mercados en 2022.",
+ crono=[("1974", "Fundación como Marc Rich + Co AG."), ("2011-05", "Salida a bolsa en Londres."), ("2022-05", "Declaración de culpabilidad por sobornos.")],
+ fuentes=[("Glencore (Wikipedia)", W + "Glencore")]),
+
+"goldman": dict(
+ res=["Banco de inversión líder en fusiones, emisiones y operaciones de mercado; cantera histórica de secretarios del Tesoro de EE.UU."],
+ manda=["David Solomon, presidente y director ejecutivo."],
+ dinero="Activos por más de 1,5 billones de dólares.",
+ crono=[("1869", "Fundación en Nueva York."), ("2008-09", "Conversión en banco holding durante la crisis."), ("2020-10", "Acuerdo por el escándalo 1MDB.")],
+ fuentes=[("Goldman Sachs (Wikipedia)", W + "Goldman_Sachs"), ("1MDB scandal (Wikipedia)", W + "1Malaysia_Development_Berhad_scandal")]),
+
+"palantir": dict(
+ res=["Software de análisis de datos para inteligencia, defensa y policía; contratista clave del Pentágono y de servicios aliados.",
+      "Fue financiada al inicio por In-Q-Tel, el brazo de inversión de la CIA."],
+ manda=["Alex Karp, director ejecutivo; Peter Thiel, cofundador y presidente del directorio."],
+ dinero="Ingresos crecientes por contratos gubernamentales y comerciales de inteligencia artificial.",
+ crono=[("2003", "Fundación."), ("2020-09", "Salida a bolsa."), ("2024-11", "Ingreso al índice S&P 500.")],
+ fuentes=[("Palantir Technologies (Wikipedia)", W + "Palantir_Technologies"), ("In-Q-Tel (Wikipedia)", W + "In-Q-Tel")]),
+
+"harvard": dict(
+ res=["La universidad más rica del mundo y cantera de élites políticas y económicas.",
+      "Desde 2025 enfrenta al gobierno de Trump, que le cortó más de 2.600 millones de dólares en fondos de investigación; un juez federal declaró ilegal el corte en septiembre de 2025."],
+ manda=["Alan Garber, presidente; la Corporación de Harvard extendió su mandato por tiempo indefinido en diciembre de 2025."],
+ dinero="Fondo patrimonial superior a 50.000 millones de dólares.",
+ crono=[("1636", "Fundación."), ("2025-04", "Congelamiento de fondos federales."), ("2025-09-03", "Fallo judicial contra el corte de fondos."),
+        ("2026-02", "Trump eleva a 1.000 millones de dólares su exigencia de acuerdo.")],
+ fuentes=[("Harvard University (Wikipedia)", W + "Harvard_University"),
+          ("Harvard Magazine: continuidad de Garber", "https://www.harvardmagazine.com/university-news/harvard-garber-presidency-courts-research-funding"),
+          ("Daily Signal: Trump pide 1.000 millones (2026-02-05)", "https://www.dailysignal.com/2026/02/05/why-trump-is-frustrated-with-harvard-university-negotiations/")]),
+
+"bjp": dict(
+ res=["Partido gobernante de la India desde 2014, brazo político del movimiento nacionalista hindú que encabeza la RSS.",
+      "Se presenta como el partido con más afiliados del mundo."],
+ manda=["Narendra Modi, primer ministro, y Amit Shah, ministro del Interior, son el centro del poder.",
+        "Nitin Nabin asumió como presidente nacional del partido el 20 de enero de 2026, sucediendo a J. P. Nadda."],
+ dinero="Principal receptor de financiamiento político empresario en la India.",
+ crono=[("1925-09", "Fundación de la RSS."), ("1980-04", "Fundación del BJP."), ("2014-05", "Modi llega al gobierno."), ("2026-01-20", "Nitin Nabin, presidente del partido.")],
+ fuentes=[("Bharatiya Janata Party (Wikipedia)", W + "Bharatiya_Janata_Party"), ("Rashtriya Swayamsevak Sangh (Wikipedia)", W + "Rashtriya_Swayamsevak_Sangh"),
+          ("All India Radio: Nabin asume (2026-01-20)", "https://newsonair.gov.in/bjp-appoints-nitin-nabin-as-new-national-party-president-pm-shows-confidence-in-his-leadership/")]),
+
+"cjng": dict(
+ res=["Cártel Jalisco Nueva Generación: una de las organizaciones criminales más violentas y extendidas del mundo, con presencia en México, EE.UU. y decenas de países.",
+      "Designado organización terrorista por EE.UU. en 2025."],
+ manda=["Su fundador, Nemesio Oseguera, 'El Mencho', murió en un operativo militar en Tapalpa el 22 de febrero de 2026.",
+        "EE.UU. señala desde julio de 2026 a su hijastro Juan Carlos Valencia González, 'El 03', como nuevo líder; analistas sostienen que el poder está repartido entre mandos regionales."],
+ dinero="Fentanilo, metanfetamina, cocaína, extorsión, robo de combustible y lavado.",
+ crono=[("2009", "Surgimiento tras la ruptura del cártel del Milenio."), ("2025-02", "Designación como organización terrorista por EE.UU."),
+        ("2026-02-22", "Muerte de 'El Mencho' en Tapalpa."), ("2026-07", "EE.UU. identifica a 'El 03' como líder y ofrece 5 millones de dólares.")],
+ fuentes=[("Jalisco New Generation Cartel (Wikipedia)", W + "Jalisco_New_Generation_Cartel"),
+          ("El Financiero: EE.UU. señala a 'El 03' (2026-07-08)", "https://elfinanciero.com.mx/nacional/2026/07/08/cjng-tiene-nuevo-lider-el-03-toma-mando-tras-muerte-del-mencho-segun-eu/"),
+          ("InSight Crime: el poder en el CJNG se comparte", "https://insightcrime.org/es/news/ee-uu-senalo-heredero-mencho-poder-cjng-comparte/")]),
+
+"fifa": dict(
+ res=["Gobierna el fútbol mundial y su torneo más rentable; decide sedes con peso diplomático, como el Mundial 2034 en Arabia Saudita.",
+      "Organizó el Mundial 2026 en EE.UU., México y Canadá."],
+ manda=["Gianni Infantino, presidente desde 2016."],
+ dinero="Ingresos de varios miles de millones de dólares por ciclo mundialista.",
+ crono=[("1904-05", "Fundación en París."), ("2015-05", "Escándalo de corrupción y detenciones en Zúrich."), ("2026-06", "Mundial en Norteamérica.")],
+ fuentes=[("FIFA (Wikipedia)", W + "FIFA"), ("2015 FIFA corruption case (Wikipedia)", W + "2015_FIFA_corruption_case")]),
+
+"prince": dict(
+ res=["Conglomerado camboyano que EE.UU. y el Reino Unido sancionaron en octubre de 2025 acusándolo de operar centros de estafa con trabajadores víctimas de trata.",
+      "EE.UU. promovió el decomiso de 127.271 bitcoins vinculados al grupo."],
+ manda=["Su fundador, Chen Zhi, fue detenido en Camboya y extraditado a China el 7 de enero de 2026; Camboya le revocó la ciudadanía.",
+        "El grupo niega las acusaciones."],
+ dinero="Según la acusación de EE.UU., fraude con criptomonedas y lavado a escala de miles de millones de dólares.",
+ crono=[("2015", "Fundación del grupo."), ("2025-10", "Acusación en EE.UU. y sanciones de EE.UU. y Reino Unido."),
+        ("2026-01-07", "Extradición de Chen Zhi a China.")],
+ fuentes=[("Prince Group (Wikipedia)", W + "Prince_Group"),
+          ("Dawn / AFP: Camboya extradita a Chen Zhi (2026-01-09)", "https://www.dawn.com/news/1965921")]),
+
+"boeing": dict(
+ res=["Uno de los dos fabricantes de grandes aviones comerciales del mundo y gran contratista de defensa y espacio de EE.UU."],
+ manda=["Kelly Ortberg, presidente y director ejecutivo desde agosto de 2024."],
+ dinero="Las ventas de aviones son una herramienta de la diplomacia comercial de Washington.",
+ crono=[("1916-07", "Fundación."), ("2019-03", "Inmovilización mundial del 737 MAX."), ("2024-08-08", "Ortberg asume como director ejecutivo."),
+        ("2026-10", "La FAA certifica el 737 MAX 10.")],
+ fuentes=[("Boeing (Wikipedia)", W + "Boeing"), ("Leeham News", "https://leehamnews.com/tag/ortberg-first-anniversary/")]),
+
+"deloitte": dict(
+ res=["La mayor red de servicios profesionales del mundo: auditoría, consultoría y asesoría a gobiernos y grandes empresas."],
+ manda=["Red de firmas miembro coordinadas por Deloitte Touche Tohmatsu Limited, con sede en Londres."],
+ dinero="Ingresos globales superiores a 60.000 millones de dólares.",
+ crono=[("1845", "Fundación por William Welch Deloitte en Londres."), ("1989", "Fusión que da origen a la red actual.")],
+ fuentes=[("Deloitte (Wikipedia)", W + "Deloitte")]),
+
+"mit": dict(
+ res=["Instituto de investigación tecnológica de primer nivel mundial, ligado históricamente al complejo militar e industrial de EE.UU."],
+ manda=["Sally Kornbluth, presidenta."],
+ dinero="Fondo patrimonial de varias decenas de miles de millones de dólares y grandes contratos federales de investigación.",
+ crono=[("1861-04", "Fundación."), ("1951", "Creación del Lincoln Laboratory para defensa.")],
+ fuentes=[("Massachusetts Institute of Technology (Wikipedia)", W + "Massachusetts_Institute_of_Technology"), ("MIT Lincoln Laboratory (Wikipedia)", W + "MIT_Lincoln_Laboratory")]),
+
+"rtx": dict(
+ res=["Gigante de defensa y aeroespacial: misiles Patriot y Tomahawk, motores Pratt & Whitney y aviónica Collins."],
+ manda=["Chris Calio, director ejecutivo."],
+ dinero="Su segmento de defensa creció con la demanda de misiles por las guerras de Ucrania y Medio Oriente.",
+ crono=[("2020-04", "Fusión de Raytheon y United Technologies."), ("2023-07", "Nombre actual, RTX.")],
+ fuentes=[("RTX Corporation (Wikipedia)", W + "RTX_Corporation")]),
+
+"siemens": dict(
+ res=["Conglomerado industrial alemán: automatización, redes eléctricas, ferrocarriles y software industrial."],
+ manda=["Roland Busch, director ejecutivo."],
+ dinero="En 2008 pagó unos 1.600 millones de dólares en EE.UU. y Alemania por un caso de sobornos.",
+ crono=[("1847-10", "Fundación en Berlín."), ("2008-12", "Acuerdo por sobornos.")],
+ fuentes=[("Siemens (Wikipedia)", W + "Siemens")]),
+
+"stanford": dict(
+ res=["Universidad en el corazón de Silicon Valley: origen de fundadores, capital de riesgo y tecnología de las grandes plataformas."],
+ manda=["Jonathan Levin, presidente desde agosto de 2024."],
+ dinero="Fondo patrimonial superior a 35.000 millones de dólares.",
+ crono=[("1885-11", "Fundación."), ("1998-09", "Google nace de un proyecto de doctorado en Stanford.")],
+ fuentes=[("Stanford University (Wikipedia)", W + "Stanford_University")]),
+
+"ndrangheta": dict(
+ res=["Mafia calabresa considerada una de las organizaciones criminales más poderosas del mundo por su control de buena parte de la cocaína que entra a Europa.",
+      "Opera en sociedad con facciones brasileñas y redes sudamericanas a través de puertos de carga."],
+ manda=["Estructura federada de familias ('ndrine') con sede histórica en Calabria."],
+ dinero="Reinvierte ganancias del narcotráfico en empresas legales en Italia, Alemania y otros países.",
+ crono=[("2007-08", "Masacre de Duisburgo."), ("2021-01", "Maxi juicio Rinascita Scott."),
+        ("2026-09-17", "Operación EREDITÀ de Italia y Brasil con apoyo de Europol.")],
+ fuentes=[("'Ndrangheta (Wikipedia)", W + "%27Ndrangheta"),
+          ("Europol vía IEU Monitoring: operación EREDITÀ (2026-09-17)", "https://ieu-monitoring.com/?p=1250004")]),
+
+"cv": dict(
+ res=["Comando Vermelho, la facción criminal más antigua de Brasil: controla barrios enteros de Río de Janeiro y se expandió al norte del país.",
+      "EE.UU. la designó organización terrorista el 28 de mayo de 2026, junto con el PCC."],
+ manda=["Conducción colegiada con jefes históricos presos."],
+ dinero="Narcotráfico, control territorial y cobros a servicios; la policía de Río atribuyó a su núcleo financiero un movimiento de unos 6.000 millones de reales en un año.",
+ crono=[("1979", "Surgimiento en el penal de Ilha Grande."), ("2025-10", "Operativo en Río con más de cien muertos."),
+        ("2026-05-28", "Designación como organización terrorista por EE.UU.")],
+ fuentes=[("Comando Vermelho (Wikipedia)", W + "Comando_Vermelho"),
+          ("SBT News: operativo contra el brazo financiero del CV (2026-05-29)", "https://sbtnews.sbt.com.br/noticia/policia/operacao-no-rio-mira-nucleo-financeiro-do-cv-14-sao-presos")]),
+
+"coi": dict(
+ res=["Dueño de los Juegos Olímpicos: decide sedes, sanciones a países y reglas del deporte de alto rendimiento."],
+ manda=["Kirsty Coventry, presidenta desde junio de 2025, primera mujer en el cargo."],
+ dinero="Ingresos por derechos de televisión y patrocinios de varios miles de millones de dólares por ciclo.",
+ crono=[("1894-06", "Fundación en París."), ("2025-06", "Coventry asume la presidencia.")],
+ fuentes=[("International Olympic Committee (Wikipedia)", W + "International_Olympic_Committee")]),
+
+"berkshire": dict(
+ res=["Conglomerado inversor con seguros, ferrocarriles, energía y grandes participaciones en Apple, bancos y petroleras."],
+ manda=["Greg Abel, director ejecutivo desde el 1 de enero de 2026; Warren Buffett sigue como presidente del directorio."],
+ dinero="Una de las mayores reservas de efectivo de cualquier empresa del mundo.",
+ crono=[("1965", "Buffett toma el control."), ("2026-01-01", "Abel sucede a Buffett como director ejecutivo.")],
+ fuentes=[("Berkshire Hathaway (Wikipedia)", W + "Berkshire_Hathaway"),
+          ("Fortune: cambios de directores ejecutivos (2026-01-09)", "https://fortune.com/2026/01/09/fortune-500-power-moves-2025-review-jan-9-2026/")]),
+
+"cargill": dict(
+ res=["La mayor empresa privada de EE.UU. y una de las grandes comercializadoras de granos del mundo (grupo ABCD)."],
+ manda=["Brian Sikes, director ejecutivo; las familias Cargill y MacMillan son dueñas de la mayoría."],
+ dinero="Ingresos superiores a 150.000 millones de dólares sin cotizar en bolsa.",
+ crono=[("1865", "Fundación en Iowa.")],
+ fuentes=[("Cargill (Wikipedia)", W + "Cargill"), ("ABCD Grain Traders (Wikipedia)", W + "ABCD_Grain_Traders")]),
+
+"walton": dict(
+ res=["Familia controladora de Walmart, el mayor empleador privado del mundo y la mayor cadena minorista."],
+ manda=["Greg Penner, yerno de Rob Walton, preside Walmart; John Furner es director ejecutivo desde el 1 de febrero de 2026."],
+ dinero="Una de las mayores fortunas familiares del mundo.",
+ crono=[("1962-07", "Sam Walton abre el primer Walmart."), ("2026-02-01", "Furner sucede a Doug McMillon.")],
+ fuentes=[("Walton family (Wikipedia)", W + "Walton_family"),
+          ("Retail Insight Network: Furner, director ejecutivo de Walmart", "https://www.retail-insight-network.com/?p=117567")]),
+
+"fed": dict(
+ res=["Banco central de EE.UU.: fija la tasa de referencia mundial y provee dólares al sistema financiero global mediante líneas de canje con otros bancos centrales."],
+ manda=["Kevin Warsh, presidente desde el 22 de mayo de 2026, elegido por Trump; Jerome Powell permanece como miembro de la Junta."],
+ dinero="Su balance supera los 6 billones de dólares.",
+ crono=[("1913-12", "Ley de la Reserva Federal."), ("2008-11", "Comienza la expansión cuantitativa."),
+        ("2026-05-22", "Warsh jura como presidente.")],
+ fuentes=[("Federal Reserve (Wikipedia)", W + "Federal_Reserve"),
+          ("Deseret News: jura de Warsh (2026-05-22)", "https://www.deseret.com/politics/2026/05/22/president-trump-clarence-thomas-federal-reserve-kevin-walsh-interest-rates/")]),
+
+"reuters": dict(
+ res=["Agencia de noticias y proveedor de datos financieros y legales: sus despachos alimentan a miles de medios del mundo."],
+ manda=["La familia Thomson controla la empresa a través de Woodbridge."],
+ dinero="Ingresos principalmente por servicios legales, fiscales y de información profesional.",
+ crono=[("1851", "Paul Julius Reuter funda la agencia en Londres."), ("2008-04", "Thomson compra Reuters.")],
+ fuentes=[("Thomson Reuters (Wikipedia)", W + "Thomson_Reuters"), ("Reuters (Wikipedia)", W + "Reuters")]),
+
+"sud": dict(
+ res=["Iglesia mormona con más de 17 millones de miembros declarados y una red misionera global.",
+      "Su fondo de inversión, Ensign Peak, administra una de las mayores carteras de inversión religiosa del mundo."],
+ manda=["La Primera Presidencia y el Quórum de los Doce Apóstoles."],
+ dinero="En 2023 la SEC multó a la iglesia y a Ensign Peak por ocultar inversiones en sociedades pantalla.",
+ crono=[("1830-04", "Fundación por Joseph Smith."), ("2023-02", "Multa de la SEC.")],
+ fuentes=[("The Church of Jesus Christ of Latter-day Saints (Wikipedia)", W + "The_Church_of_Jesus_Christ_of_Latter-day_Saints"),
+          ("Ensign Peak Advisors (Wikipedia)", W + "Ensign_Peak_Advisors")]),
+
+"nsa": dict(
+ res=["Agencia de inteligencia de señales de EE.UU.: intercepta comunicaciones en todo el mundo y comparte información con la alianza Cinco Ojos.",
+      "Su director también conduce el Comando Cibernético, que participó en operaciones contra instalaciones nucleares iraníes y en la caída de Maduro."],
+ manda=["Gen. Joshua Rudd, director y jefe del Comando Cibernético, confirmado por el Senado el 10 de marzo de 2026 tras casi un año de vacancia."],
+ dinero="Presupuesto reservado dentro del programa de inteligencia nacional.",
+ crono=[("1952-11", "Creación."), ("2013-06", "Revelaciones de Snowden."), ("2025-04", "Trump destituye al director Timothy Haugh."),
+        ("2026-03-10", "Confirmación de Rudd.")],
+ fuentes=[("National Security Agency (Wikipedia)", W + "National_Security_Agency"),
+          ("SecurityWeek: confirmación de Rudd", "https://www.securityweek.com/senate-confirms-joshua-rudd-to-lead-nsa-and-us-cyber-command/"),
+          ("Nextgov: el Comando Cibernético en 2025", "https://www.nextgov.com/cybersecurity/2026/04/cyber-command-carried-out-over-8000-missions-2025-director-says/413035/")]),
+
+"alibaba": dict(
+ res=["Gigante chino de comercio electrónico, nube y pagos (a través de Ant Group)."],
+ manda=["Eddie Wu, director ejecutivo; Joe Tsai, presidente del directorio."],
+ dinero="Su nube es una de las principales de Asia en inteligencia artificial.",
+ crono=[("1999-04", "Fundación por Jack Ma."), ("2020-11", "Suspensión de la salida a bolsa de Ant Group."), ("2023-03", "Reorganización en seis unidades.")],
+ fuentes=[("Alibaba Group (Wikipedia)", W + "Alibaba_Group"), ("Ant Group (Wikipedia)", W + "Ant_Group")]),
+
+"mps_china": dict(
+ res=["Ministerio de Seguridad Pública: policía nacional china, vigilancia masiva y control del orden interno.",
+      "Ejecutó en 2026 la extradición desde Camboya del jefe del Prince Group."],
+ manda=["Wang Xiaohong, ministro; subordinado a la Comisión Central de Asuntos Políticos y Legales del Partido."],
+ dinero="Parte del gasto de seguridad interna, que supera al de defensa.",
+ crono=[("1949-10", "Creación."), ("2022-06", "Wang Xiaohong, ministro."), ("2026-01-07", "Repatriación de Chen Zhi desde Nom Pen.")],
+ fuentes=[("Ministry of Public Security (China) (Wikipedia)", W + "Ministry_of_Public_Security_(China)"),
+          ("KuCoin / BlockBeats: repatriación de Chen Zhi", "https://www.kucoin.com/news/flash/chinese-national-chen-zhi-head-of-prince-group-extradited-from-cambodia")]),
+
+"tencent": dict(
+ res=["Dueña de WeChat, la aplicación que concentra mensajería, pagos y servicios para más de mil millones de usuarios en China, y la mayor empresa de videojuegos del mundo."],
+ manda=["Ma Huateng (Pony Ma), cofundador, presidente y director ejecutivo."],
+ dinero="Participaciones en cientos de empresas tecnológicas de China y el exterior.",
+ crono=[("1998-11", "Fundación en Shenzhen."), ("2011-01", "Lanzamiento de WeChat.")],
+ fuentes=[("Tencent (Wikipedia)", W + "Tencent"), ("WeChat (Wikipedia)", W + "WeChat")]),
+
+"gates": dict(
+ res=["Una de las mayores fundaciones del mundo; uno de los principales donantes de la OMS y de programas de vacunación como Gavi.",
+      "Anunció en 2025 que gastará su patrimonio y cerrará en 2045."],
+ manda=["Bill Gates preside el directorio; Mark Suzman es director ejecutivo."],
+ dinero="Dotación de más de 70.000 millones de dólares.",
+ crono=[("2000-01", "Fundación."), ("2000", "Creación de Gavi con su apoyo."), ("2025-05", "Anuncio de cierre en 2045.")],
+ fuentes=[("Gates Foundation (Wikipedia)", W + "Gates_Foundation"), ("Gavi (Wikipedia)", W + "Gavi,_the_Vaccine_Alliance")]),
+
+"bayer": dict(
+ res=["Grupo químico y farmacéutico alemán; con la compra de Monsanto pasó a ser uno de los dos mayores proveedores de semillas y agroquímicos del mundo."],
+ manda=["Bill Anderson, director ejecutivo."],
+ dinero="Arrastra miles de millones de dólares en litigios por el glifosato en EE.UU.",
+ crono=[("1863", "Fundación."), ("2018-06", "Compra de Monsanto.")],
+ fuentes=[("Bayer (Wikipedia)", W + "Bayer"), ("Monsanto (Wikipedia)", W + "Monsanto")]),
+
+"gendyn": dict(
+ res=["Contratista de defensa: submarinos nucleares, tanques Abrams, munición y aviones Gulfstream."],
+ manda=["Phebe Novakovic, presidenta y directora ejecutiva."],
+ dinero="Principal constructor de los submarinos nucleares de la Armada de EE.UU.",
+ crono=[("1952", "Fundación."), ("1999", "Compra de Gulfstream.")],
+ fuentes=[("General Dynamics (Wikipedia)", W + "General_Dynamics")]),
+
+"msc": dict(
+ res=["La mayor naviera de contenedores del mundo, de capital privado de la familia Aponte; también opera puertos y cruceros."],
+ manda=["Familia Aponte; Soren Toft, director ejecutivo."],
+ dinero="Flota de más de 800 buques; control de terminales en varios continentes.",
+ crono=[("1970", "Fundación por Gianluigi Aponte."), ("2022-01", "Supera a Maersk como mayor naviera.")],
+ fuentes=[("Mediterranean Shipping Company (Wikipedia)", W + "Mediterranean_Shipping_Company")]),
+
+"mckinsey": dict(
+ res=["La consultora estratégica más influyente: asesora a gobiernos y grandes empresas y forma a buena parte de la dirigencia corporativa."],
+ manda=["Bob Sternfels, socio director global."],
+ dinero="En 2021 pagó más de 570 millones de dólares a estados de EE.UU. por su asesoramiento a fabricantes de opioides.",
+ crono=[("1926", "Fundación en Chicago."), ("2021-02", "Acuerdo por la crisis de los opioides.")],
+ fuentes=[("McKinsey & Company (Wikipedia)", W + "McKinsey_%26_Company")]),
+
+"bytedance": dict(
+ res=["Dueña de TikTok y Douyin: el algoritmo de recomendación más influyente fuera de las plataformas estadounidenses.",
+      "En enero de 2026 cerró la creación de TikTok USDS, una sociedad conjunta en EE.UU. donde conserva el 19,9%; Oracle, Silver Lake y MGX tienen el 15% cada uno."],
+ manda=["Liang Rubo, director ejecutivo; el fundador Zhang Yiming conserva una participación relevante."],
+ dinero="Uno de los mayores ingresos publicitarios del mundo.",
+ crono=[("2012-03", "Fundación."), ("2017-11", "Compra de Musical.ly."), ("2024-04", "Ley de EE.UU. que obliga a vender TikTok."),
+        ("2026-01-22", "Cierre de la sociedad conjunta TikTok USDS.")],
+ fuentes=[("ByteDance (Wikipedia)", W + "ByteDance"),
+          ("ABC News: TikTok cierra el acuerdo en EE.UU. (2026-01-23)", "https://abc7news.com/post/tiktok-finalizes-deal-keep-operating-us/18451438/")]),
+})
