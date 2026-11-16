@@ -1,5 +1,11 @@
 # Cambios
 
+## 2026-11-16 · Relaciones, India y hoja de puntuación
+
+- Fuerzas Armadas de la India (293 actores) y 33 relaciones nuevas de propiedad, financiamiento y abastecimiento (296 en total).
+- Recalibración de personas y gobiernos que acumulaban poder propio y de red: Netanyahu, Erdoğan, Prabowo, Lula, Kagame, Palacio Real de Marruecos y Partido Comunista de Vietnam.
+- Hoja de puntuación sincronizada con el sitio; las columnas de justificación y fuentes se completan desde las fichas.
+
 ## 2026-11-16 · Del Estado formal al poder real (292 actores)
 
 - Se quitan 31 gobiernos de países que no son centros del orden mundial. Quedan la Casa Blanca, el Kremlin, el PCCh y el Consejo de Estado, la India, Irán, la Comisión Europea y el Palacio Real de Marruecos.

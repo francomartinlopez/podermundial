@@ -71,7 +71,7 @@ for o in orgs:
 
 out = os.path.join(RAIZ, "data")
 open(os.path.join(out, "meta.js"), "w").write(js("META", meta, "Metadatos: corte, ejes, anclas, bloques, tipos y escalas."))
-open(os.path.join(out, "organizaciones.js"), "w").write(js("ORGS", orgs, "Las 200 organizaciones con puntajes y métricas, ordenadas por poder en red."))
+open(os.path.join(out, "organizaciones.js"), "w").write(js("ORGS", orgs, "Las organizaciones con puntajes y métricas, ordenadas por poder en red."))
 open(os.path.join(out, "relaciones.js"), "w").write(js("RELACIONES", rel, "Vínculos entre organizaciones: tipo, intensidad (1 a 3) y explicación."))
 for k in FICHAS: assert k in ids, k
 fichas = {k: {"res": v["res"], "manda": v["manda"], "dinero": v["dinero"], "crono": v["crono"], "fuentes": v["fuentes"], "rev": CORTE} for k, v in FICHAS.items()}

@@ -11,3 +11,4 @@ Responsable editorial: Franco Martín López. Proyecto hermano de Monitor de Esp
 - Resguardos: fuente obligatoria para calificar a una organización de fachada o protectorado o vincularla con delitos o grupos armados; nada especulativo sobre personas vivas.
 - Estética: fondo negro, rojo de marca #E10600 para rellenos y #FF3B30 para texto; euroasiático #9E1B32. Tipografías: Big Shoulders Display, Archivo, Newsreader, JetBrains Mono. Símbolo: Núcleo (img/logo.svg); versión reducida en img/favicon.svg.
 - Actualización trimestral: subir `CORTE` y `PROXIMA` en `scripts/generar_datos.py`, registrar en CHANGELOG y etiquetar el commit.
+- La hoja de puntuación se regenera con `python3 scripts/exportar_hoja.py salida.xlsx` y se importa; la columna «Datos que justifican» toma el resumen de cada ficha.

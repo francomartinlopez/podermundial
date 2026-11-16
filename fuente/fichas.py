@@ -2405,3 +2405,10 @@ FICHAS.update({
  crono=[("2003", "Sistani impone elecciones tras la invasión de EE.UU."), ("2014-06", "Fatwa contra el Estado Islámico."), ("2019-11", "Respaldo a las protestas que provocan la caída del gobierno.")],
  fuentes=[("Ali al-Sistani (Wikipedia)", W + "Ali_al-Sistani"), ("Hawza of Najaf (Wikipedia)", W + "Hawza_of_Najaf")]),
 })
+
+FICHAS["ffaa_india"] = dict(
+ res=["Fuerzas armadas de la India, potencia nuclear con el segundo mayor número de efectivos del mundo, enfrentada a Pakistán y a China en sus fronteras."],
+ manda=["Jefe del Estado Mayor de Defensa, bajo el gobierno de Narendra Modi."],
+ dinero="Uno de los mayores importadores de armas del mundo: Rusia, Francia, EE.UU. e Israel.",
+ crono=[("1974-05", "Primera prueba nuclear."), ("1999", "Guerra de Kargil."), ("2020-06", "Choque de Galwan con China."), ("2025-05", "Operación Sindoor contra Pakistán.")],
+ fuentes=[("Indian Armed Forces (Wikipedia)", W + "Indian_Armed_Forces")])
