@@ -39,7 +39,7 @@ button, select { font: inherit; color: inherit; }
 .skip:focus { left: 8px; top: 8px; }
 
 /* Cabecera */
-.site-head { position: sticky; top: 0; z-index: 20; background: #000; border-bottom: 1px solid var(--line); }
+.site-head { position: relative; z-index: 20; background: #000; border-bottom: 1px solid var(--line); }
 .site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; }
 .brand { display: flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; }
 .brand:hover { color: var(--text); }
@@ -196,7 +196,7 @@ td.mono { white-space: nowrap; }
 .site-foot { border-top: 1px solid var(--line); margin-top: 24px; }
 .site-foot .wrap { padding-top: 26px; padding-bottom: 34px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font: 400 13px/1.6 var(--f-mono); color: var(--muted); }
 .site-foot a { color: var(--muted); }
-@media (max-width: 760px) { .site-head { position: static; } }
+
 .mlist { margin: 0; padding-left: 20px; font: 400 18px/1.55 var(--f-read); color: var(--soft); display: flex; flex-direction: column; gap: 6px; }
 .crono { border-left: 2px solid var(--line); padding-left: 18px; display: flex; flex-direction: column; gap: 14px; }
 .crono span { font-size: 13px; color: var(--red-text); }
