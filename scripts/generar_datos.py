@@ -10,6 +10,7 @@ from paises import PAISES, BLOQ, POS, GRADO, ASP
 from coords import C
 from fichas import FICHAS
 from locales import MANDA
+from poder_duro import PESOS, EXT, AUTONOMIA_REAL
 
 CORTE = "2026-11-16"
 PROXIMA = "2027-02-16"
@@ -20,31 +21,43 @@ def js(nombre, valor, comentario):
 
 fac = {1: 1, 2: .75, 3: .5, 4: .25}
 ids = {o[0] for o in ORGS}
+for k in EXT: assert k in ids, k
 masters = {o[0]: [d for d in o[8].split(",") if d] for o in ORGS}
-pe = {o[0]: sum(map(int, o[6])) * fac[o[5]] for o in ORGS}
+ejes = [e[0] for e in EJES]
+peso = {k: PESOS.get(k, 1) for k in ejes}
+CAPMAX = 3 * len(ejes)
+norma = CAPMAX / sum(3 * w for w in peso.values())
+SC = {}
+for o in ORGS:
+    sc = dict(zip(ORDEN_ENTRADA, map(int, o[6]))); sc["ext"] = EXT.get(o[0], (0,))[0]; SC[o[0]] = sc
+cap = {i: round(sum(SC[i][k] * peso[k] for k in ejes) * norma, 2) for i in ids}
+# autonomía real: armas, secretos, acción fuera de la ley y contactos dan margen propio frente al jefe formal
+dur = {i: min(1, (SC[i]["coe"] + SC[i]["adq"] + SC[i]["ext"] + SC[i]["red"]) / 12) for i in ids}
+aut = {o[0]: o[5] for o in ORGS}
+freal = {i: fac[aut[i]] + (1 - fac[aut[i]]) * dur[i] * AUTONOMIA_REAL for i in ids}
+pe = {i: cap[i] * freal[i] for i in ids}
 memo = {}
 def red(i, pila=()):
     if i in memo: return memo[i]
     if i in pila: raise SystemExit(f"Ciclo de dependencias en {i}")
-    v = pe[i] + 0.5 * sum(red(j, pila + (i,)) / len(masters[j]) for j in ids if i in masters[j])
+    v = pe[i] + 0.5 * sum(red(j, pila + (i,)) * (1 - AUTONOMIA_REAL * dur[j]) / len(masters[j]) for j in ids if i in masters[j])
     memo[i] = v; return v
 
-ejes = [e[0] for e in EJES]
 orgs = []
 for o in ORGS:
-    sc = dict(zip(ORDEN_ENTRADA, map(int, o[6])))
-    cap = sum(sc.values()); f = FORMAL[o[0]]
+    sc = SC[o[0]]; f = FORMAL[o[0]]
     orgs.append({"id": o[0], "n": o[1], "area": o[2], "tipo": AREA_TIPO[o[2]], "bloque": o[4], "aut": o[5],
-                 "sc": [sc[k] for k in ejes], "cap": cap, "pe": round(pe[o[0]], 2), "red": round(red(o[0]), 2),
+                 "sc": [sc[k] for k in ejes], "cap": cap[o[0]], "fr": round(freal[o[0]], 3), "pe": round(pe[o[0]], 2), "red": round(red(o[0]), 2),
                  "formal": f, "brecha": round((3 - f) / 3, 4), "oculto": round(pe[o[0]] * (3 - f) / 3, 2),
-                 "fase": FASE[o[0]], "cert": o[7], "sede": o[3], "ll": C[o[3]], "dep": masters[o[0]]})
+                 "fase": FASE[o[0]], "cert": o[7], "sede": o[3], "ll": C[o[3]], "dep": masters[o[0]],
+                 **({"ext": list(EXT[o[0]][1:])} if o[0] in EXT else {})})
 orgs.sort(key=lambda x: (-x["red"], -x["pe"], x["n"]))
 
 fam = []
 for e in EJES:
     if not fam or fam[-1]["n"] != e[2]: fam.append({"n": e[2], "ejes": []})
     fam[-1]["ejes"].append(e[0])
-meta = {"corte": CORTE, "proxima": PROXIMA, "skeleton": False,
+meta = {"corte": CORTE, "proxima": PROXIMA, "skeleton": False, "pesos": peso, "capmax": CAPMAX, "autreal": AUTONOMIA_REAL,
         "ejes": [{"k": e[0], "n": e[1], "fam": e[2], "x": e[3], "a": list(ANCLAS[e[0]])} for e in EJES], "familias": fam,
         "bloques": {"T": {"n": "Transoceánico", "c": "#2F6BFF"}, "E": {"n": "Euroasiático", "c": "#9E1B32"},
                     "I": {"n": "Independiente", "c": "#BDBDBD"}, "P": {"n": "Pendular", "c": "#F2A93B"},

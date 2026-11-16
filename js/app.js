@@ -198,7 +198,7 @@
       <section class="block two">
         <div><div class="sec-title"><h2>Poder en red</h2><a href="#organizaciones">Ver los ${ORGS.length}</a></div>${rankRows(red, "red", red[0].red)}</div>
         <div><div class="sec-title"><h2>Poder oculto</h2><a href="#organizaciones-oculto">Ver el índice</a></div>${rankRows(oc, "oculto", oc[0].oculto, "#E10600")}</div>
-        <p class="note scale-note"><b>Cómo leer los números.</b> Son puntos, no dinero ni porcentajes, y sirven para comparar. Cada actor recibe de 0 a 3 en ${M.ejes.length} ejes: la suma es su capacidad (máximo ${M.ejes.length * 3}). El poder efectivo la ajusta por autonomía: entero si decide solo, tres cuartos si es aliado con criterio propio, la mitad si es subordinado y un cuarto si es fachada. El <b>poder en red</b> suma, además, la mitad del poder de quienes dependen de él, en cadena; por eso los centros superan los ${M.ejes.length * 3} puntos. El <b>poder oculto</b> es la parte del poder efectivo que escapa a la ley, las elecciones, los tribunales y la auditoría. <a href="#marco">Ver el método</a>.</p>
+        <p class="note scale-note"><b>Cómo leer los números.</b> Son puntos, no dinero ni porcentajes, y sirven para comparar. Cada actor recibe de 0 a 3 en ${M.ejes.length} ejes; la coerción, la obtención de secretos y la acción fuera de la ley valen doble, y los contactos una vez y media. La suma ponderada es su capacidad (máximo ${M.capmax}). El poder efectivo la ajusta por autonomía, pero quien tiene armas, secretos y contactos conserva poder propio aunque dependa formalmente de otro. El <b>poder en red</b> suma, además, la parte del poder de quienes dependen de él que de verdad controla; por eso los centros superan los ${M.capmax} puntos. El <b>poder oculto</b> es la parte del poder efectivo que escapa a la ley, las elecciones, los tribunales y la auditoría. <a href="#marco">Ver el método</a>.</p>
       </section>
       <section class="block cards">
         <a class="card" href="#quien-manda"><span class="kick">Esquema</span><b>Quién manda</b><span>La jerarquía real: quién decide solo, quién obedece y quién aparenta.</span></a>
@@ -266,13 +266,14 @@
     app.innerHTML = `<div class="wrap">
       <div class="org-head"><div class="crumb"><a href="#organizaciones">Organizaciones</a> / ${esc(o.area)}</div>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px">${icon(o, 44)}<h1>${esc(o.n)}</h1></div>
-        <div class="pills"><span style="border-color:${bcol(o.bloque)}">${esc(BL[o.bloque].n)}</span><span>Autonomía ${o.aut} · ${esc(M.autonomia[o.aut])}</span><span>Fase: ${esc(M.fases[o.fase]).toLowerCase()}</span><span>Certeza: ${esc(M.certeza[o.cert]).toLowerCase()}</span><span>${esc(o.tipo)}</span><span>Sede: ${esc(o.sede)}</span><span style="border-color:transparent;color:#9A8F8C">Puesto ${rank} de ${ORGS.length}</span></div></div>
-      <div class="nums" style="margin-top:22px"><div><small>Capacidad</small><b>${o.cap}<span class="muted" style="font-size:15px"> /51</span></b></div><div><small>Poder efectivo</small><b>${num(o.pe)}</b></div><div><small>Poder en red</small><b>${num(o.red)}</b></div><div><small>Brecha</small><b>${pct(o.brecha)}</b></div><div class="o"><small>Poder oculto</small><b>${num(o.oculto)}</b></div></div>
+        <div class="pills"><span style="border-color:${bcol(o.bloque)}">${esc(BL[o.bloque].n)}</span><span>Autonomía ${o.aut} · ${esc(M.autonomia[o.aut])} · factor real ${num(o.fr, 2)}</span><span>Fase: ${esc(M.fases[o.fase]).toLowerCase()}</span><span>Certeza: ${esc(M.certeza[o.cert]).toLowerCase()}</span><span>${esc(o.tipo)}</span><span>Sede: ${esc(o.sede)}</span><span style="border-color:transparent;color:#9A8F8C">Puesto ${rank} de ${ORGS.length}</span></div></div>
+      <div class="nums" style="margin-top:22px"><div><small>Capacidad</small><b>${num(o.cap)}<span class="muted" style="font-size:15px"> /${M.capmax}</span></b></div><div><small>Poder efectivo</small><b>${num(o.pe)}</b></div><div><small>Poder en red</small><b>${num(o.red)}</b></div><div><small>Brecha</small><b>${pct(o.brecha)}</b></div><div class="o"><small>Poder oculto</small><b>${num(o.oculto)}</b></div></div>
       <div class="org-body"><div class="org-main">
         <div><h2>Poder formal y poder real</h2>
           <div class="note" style="display:flex;justify-content:space-between;margin:0"><span>Reconocido y sujeto a control</span><span style="color:#FF3B30">Fuera de control público</span></div>
           <div class="gapbar" role="img" aria-label="Brecha de ${pct(o.brecha)}"><i style="width:${(1 - o.brecha) * 100}%"></i><i style="width:${o.brecha * 100}%"></i></div>
           <p class="read" style="font-size:17px">Poder formal ${o.formal} de 3: ${pct(1 - o.brecha)} de su poder está reconocido públicamente y sujeto a control; el resto escapa a ese control.</p></div>
+        ${o.ext ? `<div><h2>Acción fuera de la ley</h2><p class="read" style="font-size:17px;margin:0">${o.sc[M.ejes.findIndex(e => e.k === "ext")]} de 3. ${esc(o.ext[0])} <a href="${esc(o.ext[1])}" rel="noopener" target="_blank">Fuente</a>.</p></div>` : ""}
         
         ${F ? `<div><h2>Resumen</h2>${F.res.map(p => `<p class="read" style="margin:0 0 14px">${esc(p)}</p>`).join("")}</div>
         <div><h2>Quién manda adentro</h2><ul class="mlist">${F.manda.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
@@ -395,22 +396,23 @@
           <li><b>Realismo ofensivo</b> (John Mearsheimer). Un orden multipolar con un imperio transoceánico, una alianza euroasiática, potencias independientes y un terreno disputado.</li>
         </ul>
         <h2>Cómo se mide</h2>
-        <p>Cada organización recibe de 0 a 3 en ${M.ejes.length} ejes agrupados en seis familias. El 3 se reserva a quienes están entre los pocos primeros del mundo en ese eje. Los pesos son fijos e iguales.</p>
+        <p>Cada organización recibe de 0 a 3 en ${M.ejes.length} ejes agrupados en seis familias. El 3 se reserva a quienes están entre los pocos primeros del mundo en ese eje. El sitio mide el poder real y no la jerarquía oficial, así que el poder duro pesa más: la coerción violenta, la obtención de información y la acción fuera de la ley valen doble, y los contactos una vez y media. Los pesos son fijos.</p>
       </div>
       <div class="tbl-wrap"><table><thead><tr><th>Familia</th><th>Eje</th><th>3 · Dominante</th><th>2 · Alto</th><th>1 · Relevante</th></tr></thead><tbody>${M.ejes.map(e => `<tr><td class="muted">${esc(e.fam)}</td><td><b>${esc(e.n)}</b><br><span class="muted">${esc(e.x)}</span></td>${e.a.map(a => `<td>${esc(a)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
       <div class="prose" style="padding:40px 0 64px">
         <h2>Fórmulas</h2>
         <ul>
-          <li><b>Capacidad:</b> suma de los ${M.ejes.length} ejes, de 0 a 51.</li>
-          <li><b>Poder efectivo:</b> capacidad por el factor de autonomía (1 decide solo: 1; 2 aliado con criterio propio: 0,75; 3 subordinado: 0,5; 4 fachada: 0,25).</li>
-          <li><b>Poder en red:</b> poder efectivo más la mitad del poder en red de quienes dependen de ella, en cadena.</li>
+          <li><b>Capacidad:</b> suma ponderada de los ${M.ejes.length} ejes, llevada a una escala de 0 a ${M.capmax}. Pesos: coerción, adquisición de información y acción fuera de la ley, 2; contactos, 1,5; el resto, 1.</li>
+          <li><b>Autonomía real:</b> el factor formal (1 decide solo: 1; 2 aliado con criterio propio: 0,75; 3 subordinado: 0,5; 4 fachada: 0,25) sube hacia 1 según su poder duro: coerción, información, acción fuera de la ley y contactos. Una agencia de inteligencia que depende de un gobierno conserva así buena parte de su poder, porque puede resistirlo.</li>
+          <li><b>Poder efectivo:</b> capacidad por el factor de autonomía real.</li>
+          <li><b>Poder en red:</b> poder efectivo más la mitad del poder en red de quienes dependen de él, descontada la parte que esos dependientes pueden sustraerle por su propio poder duro; en cadena.</li>
           <li><b>Poder formal:</b> de 0 a 3, cuánto de su poder está reconocido públicamente y sujeto a control: ley, elecciones, tribunales, auditoría, transparencia.</li>
           <li><b>Brecha:</b> la parte de su poder que escapa a ese control. <b>Poder oculto:</b> poder efectivo por brecha.</li>
         </ul>
         <h2>Resguardos</h2>
         <ul>
           <li>Cada organización lleva un nivel de certeza: documentado, estimado o especulativo.</li>
-          <li>Toda afirmación que califique a una organización de fachada o protectorado, o la vincule con delitos o con grupos armados, lleva fuente.</li>
+          <li>Toda afirmación que califique a una organización de fachada o protectorado, o la vincule con delitos o con grupos armados, lleva fuente. El eje «acción fuera de la ley» solo se puntúa con un hecho documentado, y en personas vivas solo con lo establecido por un tribunal o un organismo oficial.</li>
           <li>Nada especulativo se publica sobre personas vivas.</li>
           <li>El sitio se actualiza cada tres meses. Corte actual: ${fecha(M.corte)}. Próxima revisión: ${fecha(M.proxima)}.</li>
         </ul>

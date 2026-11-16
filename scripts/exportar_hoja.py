@@ -20,16 +20,24 @@ ejes = [x["n"] for x in M["ejes"]]
 head = ["Organización", "Área", "Bloque", "Autonomía", "Capacidad", "Poder efectivo", "Poder en red", "Poder formal", "Brecha", "Poder oculto",
         "Fase de Quigley", "Tipo", "Certeza", "Sede", "Depende de"] + ejes + ["Datos que justifican", "Fuentes", "ID"]
 ws.append(head)
+from openpyxl.utils import get_column_letter as L_
+keys = [x["k"] for x in M["ejes"]]
+COL = {k: L_(16 + n) for n, k in enumerate(keys)}; U = COL[keys[-1]]
+PES = ",".join(str(M["pesos"][k]) for k in keys)
+NORMA = round(M["capmax"] / sum(3 * M["pesos"][k] for k in keys), 6)
 for i, o in enumerate(O, start=2):
     f = FICHAS.get(o["id"], {})
     just = " ".join(f.get("res", []))
     src = "\n".join(u for _, u in f.get("fuentes", []))
-    ws.append([o["n"], o["area"], BL[o["bloque"]], o["aut"], f"=SUM(P{i}:AF{i})", f"=E{i}*CHOOSE(D{i},1,0.75,0.5,0.25)", o["red"], o["formal"],
+    fa = f"CHOOSE(D{i},1,0.75,0.5,0.25)"
+    if o.get("ext"): just = (just + " Acción fuera de la ley: " + o["ext"][0]).strip(); src = (src + "\n" + o["ext"][1]).strip()
+    ws.append([o["n"], o["area"], BL[o["bloque"]], o["aut"], f"=SUMPRODUCT(P{i}:{U}{i},{{{PES}}})*{NORMA}",
+               f"=E{i}*({fa}+(1-{fa})*MIN(1,({COL['coe']}{i}+{COL['adq']}{i}+{COL['ext']}{i}+{COL['red']}{i})/12)*{M['autreal']})", o["red"], o["formal"],
                f"=(3-H{i})/3", f"=F{i}*I{i}", FA[o["fase"]], o["tipo"], CE[o["cert"]], o["sede"],
                ", ".join(name[d] for d in o["dep"]) or None] + o["sc"] + [just or None, src or None, o["id"]])
 for c in ws[1]: c.font = Font(bold=True)
 ws.freeze_panes = "B2"
-for col in ("F", "G", "J"):
+for col in ("E", "F", "G", "J"):
     for c in ws[col][1:]: c.number_format = "0.0"
 for c in ws["I"][1:]: c.number_format = "0%"
 r = wb.create_sheet("Relaciones"); r.append(["Origen", "Destino", "Tipo", "Intensidad", "Descripción", "Fuente"])
@@ -42,6 +50,6 @@ for k, v in sorted(P.items(), key=lambda kv: kv[1]["n"]):
     p.append([v["n"], BLOQ[v["b"]], POS[v["p"]], GRADO[v["z"]] or None, ", ".join(ASP[a] for a in v["asp"]) or None, v["x"] or None, k])
 for c in p[1]: c.font = Font(bold=True)
 p.freeze_panes = "A2"
-for s, w in ((ws, {"A": 42, "B": 24, "N": 26, "O": 30, "AG": 80, "AH": 50}), (r, {"A": 40, "B": 40, "C": 16, "E": 90, "F": 50}), (p, {"A": 28, "F": 70})):
+for s, w in ((ws, {"A": 42, "B": 24, "N": 26, "O": 30, L_(16 + len(keys)): 80, L_(17 + len(keys)): 50}), (r, {"A": 40, "B": 40, "C": 16, "E": 90, "F": 50}), (p, {"A": 28, "F": 70})):
     for col, wd in w.items(): s.column_dimensions[col].width = wd
 wb.save(sys.argv[1] if len(sys.argv) > 1 else "hoja_poder.xlsx"); print(len(O), len(REL), len(P))

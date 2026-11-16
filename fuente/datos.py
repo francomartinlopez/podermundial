@@ -927,3 +927,9 @@ FORMAL.update({n[0]: n[9] for n in _LOC})
 FASE.update({n[0]: n[10] for n in _LOC})
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _REL_LOC if (r[0], r[1]) not in _ya]
+
+# Poder duro: eje 18 «Acción fuera de la ley» y revisión de autonomía (ver fuente/poder_duro.py)
+from poder_duro import EJE as _EJE, ANCLA as _ANCLA, AUT as _AUT_REAL
+EJES.insert([e[0] for e in EJES].index("ter") + 1, _EJE)
+ANCLAS[_EJE[0]] = _ANCLA
+ORGS = [o[:5] + (_AUT_REAL.get(o[0], o[5]),) + o[6:] for o in ORGS]

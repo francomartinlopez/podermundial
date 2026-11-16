@@ -1,5 +1,12 @@
 # Cambios
 
+## 2026-11-16 · Poder real antes que jerarquía formal
+
+- Pesos fijos nuevos: coerción violenta, adquisición de información y el nuevo eje «Acción fuera de la ley» valen doble; contactos, una vez y media. La capacidad va de 0 a 54.
+- Eje 18, «Acción fuera de la ley»: operaciones encubiertas, asesinatos, sabotaje, chantaje, soborno sistemático o crimen. Puntuado en 88 actores, cada uno con un hecho documentado y su fuente.
+- Autonomía real: quien tiene armas, secretos y contactos conserva poder propio aunque dependa formalmente de otro, y su jefe formal hereda menos de él.
+- Revisión de casos: Shin Bet, MSS, ISI, SpaceX, Meta, X, Reliance y LVMH pasan de subordinados a aliados con criterio propio.
+
 ## 2026-11-16 · Un actor que define en cada país (403 actores)
 
 - 110 actores nuevos, con ficha y fuentes, para los 136 países que no tenían ninguno: partidos de gobierno, jefes de regímenes personalistas, monarquías, juntas militares, gremios empresarios, empresas, servicios de inteligencia y organismos como la Autoridad del Canal de Panamá o la Junta de Supervisión Fiscal de Puerto Rico.

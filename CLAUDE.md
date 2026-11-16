@@ -5,8 +5,9 @@ Responsable editorial: Franco Martín López. Proyecto hermano de Monitor de Esp
 
 ## Reglas
 - La fuente de los datos es `fuente/*.py` (copia de la hoja de puntuación). Nunca editar `data/*.js` a mano: correr `python3 scripts/generar_datos.py` y luego `node scripts/validate.js`.
-- Escala de 0 a 3 por eje, con anclas en `fuente/datos.py` (ANCLAS). El 3 solo para dominio a escala mundial.
-- Pesos fijos e iguales: el sitio no ofrece controles para cambiarlos.
+- Escala de 0 a 3 por eje (18 ejes), con anclas en `fuente/datos.py` (ANCLAS). El 3 solo para dominio a escala mundial.
+- Se mide el poder real, no la jerarquía oficial. Pesos fijos en `fuente/poder_duro.py`: coerción, adquisición de información y acción fuera de la ley valen 2; contactos 1,5; el resto 1. Autonomía real: el poder duro sube el factor de autonomía y reduce lo que hereda el jefe formal. El sitio no ofrece controles para cambiar pesos.
+- El eje «acción fuera de la ley» solo se puntúa con un hecho documentado y fuente; en personas vivas, solo lo establecido por un tribunal u organismo oficial.
 - El sitio no enlaza al libro Cryptocracy.
 - Resguardos: fuente obligatoria para calificar a una organización de fachada o protectorado o vincularla con delitos o grupos armados; nada especulativo sobre personas vivas.
 - Estética: fondo negro, rojo de marca #E10600 para rellenos y #FF3B30 para texto; euroasiático #9E1B32. Tipografías: Big Shoulders Display, Archivo, Newsreader, JetBrains Mono. Símbolo: Núcleo (img/logo.svg); versión reducida en img/favicon.svg.
