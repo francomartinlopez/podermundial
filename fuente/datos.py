@@ -669,3 +669,208 @@ RELACIONES += [
  ("gob_canada", "casablanca", "Ambigua", "Socio histórico enfrentado por aranceles y las amenazas de anexión de Trump.", 2),
  ("gob_canada", "otan", "Alianza", "Miembro fundador.", 2),
 ]
+
+# ---------- Revisión del 2026-11-16: menos Estados formales, más actores con poder real ----------
+# Se quitan los gobiernos de países que no son centros del orden mundial y se reemplazan
+# por quienes ejercen el poder: personas, partidos, sindicatos, organismos internos, ejércitos y empresas.
+AREA_TIPO.update({"Persona": "Persona", "Sindicato": "Influencia", "Organismo de gobierno": "Estado", "Federación empresaria": "Influencia"})
+
+_QUITAR = ("pm_israel downing turquia gob_indonesia planalto gob_australia gob_canada gob_corea gob_sudafrica eliseo "
+           "gob_nigeria moncloa chigi gob_etiopia gob_chile gob_ruanda gob_bangladesh gob_colombia casarosada gob_irak "
+           "gob_polonia ucrania kanzleramt kantei gob_kenia gob_filipinas gob_hungria gob_ecuador gob_siria miraflores taiwan").split()
+
+# id, nombre, área, sede, bloque, autonomía, puntajes, certeza, depende de, poder formal, fase
+_REAL = [
+ # Personas
+ ("musk", "Elon Musk", "Persona", "Starbase, EE.UU.", "T", 1, "01113022131001113", "D", "", 0, "E"),
+ ("thiel", "Peter Thiel", "Persona", "San Francisco, EE.UU.", "T", 1, "01022012132002102", "D", "", 0, "E"),
+ ("ellison", "Larry y David Ellison", "Persona", "Austin, EE.UU.", "T", 1, "02122032233102003", "D", "", 0, "E"),
+ ("bezos", "Jeff Bezos", "Persona", "Miami, EE.UU.", "T", 1, "01112021131101013", "D", "", 0, "C"),
+ ("zuckerberg", "Mark Zuckerberg", "Persona", "Menlo Park, EE.UU.", "T", 1, "01112011131001103", "D", "", 0, "C"),
+ ("m_ambani", "Mukesh Ambani", "Persona", "Bombay, India", "I", 1, "01011011131001003", "D", "", 0, "E"),
+ ("arnault", "Bernard Arnault", "Persona", "París, Francia", "T", 1, "01012010131000003", "D", "", 0, "C"),
+ ("milei", "Javier Milei", "Persona", "Buenos Aires, Argentina", "T", 2, "11112120021021211", "D", "", 2, "C"),
+ ("erdogan", "Recep Tayyip Erdoğan", "Persona", "Ankara, Turquía", "P", 1, "12212221031222221", "D", "", 1, "E"),
+ ("netanyahu", "Benjamín Netanyahu", "Persona", "Jerusalén, Israel", "T", 2, "01122211032112111", "D", "", 2, "D"),
+ ("lula", "Luiz Inácio Lula da Silva", "Persona", "Brasilia, Brasil", "I", 1, "21212110021121211", "D", "", 2, "C"),
+ ("prabowo", "Prabowo Subianto", "Persona", "Yakarta, Indonesia", "P", 1, "11211120021121211", "D", "", 2, "E"),
+ ("zelenski", "Volodímir Zelenski", "Persona", "Kiev, Ucrania", "T", 2, "00112210021021110", "D", "", 2, "C"),
+ ("sharaa", "Ahmed al-Sharaa", "Persona", "Damasco, Siria", "P", 2, "10211110020021110", "D", "", 1, "E"),
+ ("delcy", "Delcy Rodríguez", "Persona", "Caracas, Venezuela", "T", 3, "21201120010021110", "D", "casablanca", 1, "D"),
+ ("kagame", "Paul Kagame", "Persona", "Kigali, Ruanda", "P", 1, "10111210021011110", "D", "", 1, "E"),
+ # Sindicatos
+ ("cgt_arg", "CGT (Confederación General del Trabajo, Argentina)", "Sindicato", "Buenos Aires, Argentina", "P", 1, "01211010120000111", "D", "", 2, "D"),
+ ("cosatu", "COSATU (Sudáfrica)", "Sindicato", "Johannesburgo, Sudáfrica", "P", 2, "01211010020000110", "D", "", 2, "D"),
+ ("aflcio", "AFL-CIO", "Sindicato", "Washington, EE.UU.", "T", 2, "01311010120000101", "D", "", 2, "D"),
+ ("igmetall", "IG Metall", "Sindicato", "Fráncfort, Alemania", "T", 2, "01321010120000201", "D", "", 2, "C"),
+ ("cut_br", "CUT (Central Única dos Trabalhadores, Brasil)", "Sindicato", "São Paulo, Brasil", "I", 2, "01311010020000110", "D", "", 2, "C"),
+ # Organismos internos
+ ("tesoro_eeuu", "Tesoro de EE.UU. (con la OFAC)", "Organismo de gobierno", "Washington, EE.UU.", "T", 3, "01131011033003303", "D", "casablanca", 2, "C"),
+ ("bis", "Oficina de Industria y Seguridad (controles de exportación de EE.UU.)", "Organismo de gobierno", "Washington, EE.UU.", "T", 3, "00020010022002300", "D", "casablanca", 2, "E"),
+ ("ccdi", "Comisión Central de Inspección Disciplinaria del PCCh", "Organismo de gobierno", "Pekín, China", "E", 3, "00121110032003300", "D", "pcch", 1, "C"),
+ ("consejo_seg_rusia", "Consejo de Seguridad de Rusia", "Organismo de gobierno", "Moscú, Rusia", "E", 3, "00020110032002200", "D", "kremlin", 1, "C"),
+ ("city_londres", "City de Londres (City of London Corporation)", "Organismo de gobierno", "Londres, Reino Unido", "T", 2, "02021011132011202", "D", "", 1, "C"),
+ # Inteligencia
+ ("shinbet", "Shin Bet (seguridad interior de Israel)", "Servicio de inteligencia", "Tel Aviv, Israel", "T", 3, "00120111022012100", "D", "netanyahu", 0, "D"),
+ ("bnd", "BND (inteligencia exterior de Alemania)", "Servicio de inteligencia", "Berlín, Alemania", "T", 2, "00120001022002000", "D", "", 1, "C"),
+ ("nis_corea", "NIS (inteligencia de Corea del Sur)", "Servicio de inteligencia", "Seúl, Corea del Sur", "T", 2, "00120011022002000", "D", "", 1, "C"),
+ ("gur", "GUR (inteligencia militar de Ucrania)", "Servicio de inteligencia", "Kiev, Ucrania", "T", 3, "00120212022002010", "D", "zelenski", 0, "E"),
+ # Partidos
+ ("ldp", "Partido Liberal Democrático de Japón", "Partido político", "Tokio, Japón", "T", 2, "01211010021021201", "D", "", 2, "C"),
+ ("anc", "ANC (Congreso Nacional Africano)", "Partido político", "Johannesburgo, Sudáfrica", "P", 1, "01212010020020200", "D", "", 2, "D"),
+ ("bnp", "BNP (Partido Nacionalista de Bangladés)", "Partido político", "Daca, Bangladés", "P", 1, "01211010020020200", "D", "", 2, "C"),
+ ("tisza", "Tisza (partido de Péter Magyar)", "Partido político", "Budapest, Hungría", "T", 2, "00101010020010100", "D", "", 2, "E"),
+ ("prosperidad", "Partido de la Prosperidad (Etiopía)", "Partido político", "Adís Abeba, Etiopía", "P", 1, "11211110020021200", "D", "", 1, "C"),
+ ("fpr", "Frente Patriótico Ruandés", "Partido político", "Kigali, Ruanda", "P", 3, "01111110120011101", "D", "kagame", 1, "E"),
+ ("psuv", "PSUV (Partido Socialista Unido de Venezuela)", "Partido político", "Caracas, Venezuela", "T", 2, "00201110010012100", "D", "", 1, "D"),
+ ("fpa", "Frente Parlamentaria Agropecuaria (bancada ruralista de Brasil)", "Partido político", "Brasilia, Brasil", "I", 1, "10111010020000200", "D", "", 2, "C"),
+ ("marco_coord", "Marco de Coordinación (alianza chiita de Irak)", "Partido político", "Bagdad, Irak", "P", 1, "20101110120021201", "D", "", 1, "C"),
+ # Empresas y grupos familiares
+ ("softbank", "SoftBank (Masayoshi Son)", "Empresa financiera", "Tokio, Japón", "T", 1, "01121012132001003", "D", "", 2, "E"),
+ ("brookfield", "Brookfield", "Empresa financiera", "Toronto, Canadá", "T", 2, "13120001122100013", "D", "", 2, "C"),
+ ("techint", "Techint (familia Rocca)", "Empresa industrial", "Buenos Aires, Argentina", "T", 2, "12120001121200011", "D", "", 1, "C"),
+ ("inditex", "Inditex (familia Ortega)", "Empresa industrial", "Arteixo, España", "T", 2, "02212011121201022", "D", "", 2, "C"),
+ ("santander", "Banco Santander (familia Botín)", "Empresa financiera", "Madrid, España", "T", 2, "01221011222002003", "D", "", 2, "C"),
+ ("exor", "Exor (familia Agnelli-Elkann)", "Familia y oficina patrimonial", "Ámsterdam, Países Bajos", "T", 2, "02112011121100012", "D", "", 1, "C"),
+ ("eni", "ENI", "Recursos primarios", "Roma, Italia", "T", 2, "22120001121200012", "D", "", 2, "C"),
+ ("hyundai", "Grupo Hyundai Motor", "Empresa industrial", "Seúl, Corea del Sur", "T", 2, "02221002121200022", "D", "", 2, "C"),
+ ("foxconn", "Foxconn (Hon Hai)", "Empresa tecnológica", "Nuevo Taipéi, Taiwán", "T", 2, "02220002121300012", "D", "", 2, "C"),
+ ("baykar", "Baykar (familia Bayraktar)", "Empresa de armamento", "Estambul, Turquía", "P", 2, "01121102121201011", "D", "", 1, "E"),
+ ("nnpc", "NNPC (petrolera estatal de Nigeria)", "Recursos primarios", "Abuya, Nigeria", "P", 2, "22110000110200111", "D", "", 1, "C"),
+ ("aval", "Grupo Aval (familia Sarmiento)", "Empresa financiera", "Bogotá, Colombia", "T", 2, "01111010121001002", "D", "", 2, "C"),
+ ("luksic", "Grupo Luksic", "Familia y oficina patrimonial", "Santiago, Chile", "T", 2, "22110010121100012", "D", "", 1, "C"),
+ ("hancock", "Hancock Prospecting (Gina Rinehart)", "Recursos primarios", "Perth, Australia", "T", 2, "21011010120100012", "D", "", 0, "C"),
+ ("porsche_se", "Porsche SE (familias Porsche y Piëch)", "Familia y oficina patrimonial", "Stuttgart, Alemania", "T", 2, "02221002121200022", "D", "", 2, "C"),
+ ("bollore", "Grupo Bolloré", "Familia y oficina patrimonial", "París, Francia", "T", 2, "01112020121001022", "D", "", 1, "E"),
+ ("dassault", "Grupo Dassault", "Empresa de armamento", "París, Francia", "T", 2, "01121112121200012", "D", "", 2, "C"),
+ ("safaricom", "Safaricom (M-Pesa)", "Empresa tecnológica", "Nairobi, Kenia", "T", 2, "01011011111002101", "D", "", 2, "C"),
+ ("noboa_grupo", "Grupo Noboa", "Familia y oficina patrimonial", "Guayaquil, Ecuador", "T", 2, "11100000120100011", "D", "", 1, "C"),
+ ("danantara", "Danantara (fondo soberano de Indonesia)", "Empresa financiera", "Yakarta, Indonesia", "P", 3, "12110000121100002", "D", "prabowo", 1, "E"),
+ ("keidanren", "Keidanren (federación empresaria de Japón)", "Federación empresaria", "Tokio, Japón", "T", 2, "00121010031000201", "D", "", 2, "C"),
+ # Fuerzas armadas
+ ("ffaa_reinounido", "Fuerzas Armadas del Reino Unido", "Ejército", "Londres, Reino Unido", "T", 2, "02221302022102021", "D", "", 2, "C"),
+ ("ffaa_francia", "Fuerzas Armadas de Francia", "Ejército", "París, Francia", "T", 2, "02221302022102021", "D", "", 2, "C"),
+ ("bundeswehr", "Bundeswehr (Fuerzas Armadas de Alemania)", "Ejército", "Berlín, Alemania", "T", 2, "02220201021001011", "D", "", 3, "E"),
+ ("jsdf", "Fuerzas de Autodefensa de Japón", "Ejército", "Tokio, Japón", "T", 2, "02220201022101011", "D", "", 2, "E"),
+ ("ffaa_taiwan", "Fuerzas Armadas de Taiwán", "Ejército", "Taipéi, Taiwán", "T", 2, "01210201021011010", "D", "", 2, "C"),
+ ("ffaa_filipinas", "Fuerzas Armadas de Filipinas", "Ejército", "Manila, Filipinas", "T", 2, "01210100010011010", "D", "", 2, "C"),
+ ("ffaa_corea", "Fuerzas Armadas de Corea del Sur", "Ejército", "Seúl, Corea del Sur", "T", 2, "02220202022102011", "D", "", 2, "C"),
+ ("adf", "Fuerzas de Defensa de Australia", "Ejército", "Canberra, Australia", "T", 2, "01120201022001021", "D", "", 3, "E"),
+ ("ffaa_polonia", "Fuerzas Armadas de Polonia", "Ejército", "Varsovia, Polonia", "T", 2, "01210200021001011", "D", "", 2, "E"),
+ ("ffmm_colombia", "Fuerzas Militares de Colombia", "Ejército", "Bogotá, Colombia", "T", 2, "01210200021012010", "D", "", 2, "C"),
+ ("fanb", "FANB (Fuerza Armada de Venezuela)", "Ejército", "Caracas, Venezuela", "T", 3, "11200110110021110", "D", "delcy", 1, "D"),
+ ("tni", "TNI (Fuerzas Armadas de Indonesia)", "Ejército", "Yakarta, Indonesia", "P", 3, "11210210120021110", "D", "prabowo", 1, "E"),
+ # Religión
+ ("hawza_najaf", "Hawza de Nayaf (gran ayatolá Sistani)", "Organización religiosa", "Nayaf, Irak", "X", 1, "01222010120000201", "D", "", 1, "D"),
+]
+assert all(len(n[6]) == 17 for n in _REAL) and len(_REAL) == 73
+
+_MAPA = {"pm_israel": "netanyahu", "turquia": "erdogan", "planalto": "lula", "gob_indonesia": "prabowo", "ucrania": "zelenski",
+         "gob_siria": "sharaa", "miraflores": "delcy", "gob_ruanda": "kagame", "casarosada": "milei", "gob_bangladesh": "bnp",
+         "gob_hungria": "tisza", "gob_etiopia": "prosperidad", "kantei": "jsdf", "kanzleramt": "bundeswehr", "eliseo": "ffaa_francia",
+         "downing": "ffaa_reinounido", "taiwan": "ffaa_taiwan", "gob_filipinas": "ffaa_filipinas", "gob_corea": "ffaa_corea",
+         "gob_australia": "adf", "gob_polonia": "ffaa_polonia", "gob_colombia": "ffmm_colombia", "gob_irak": "marco_coord",
+         "gob_nigeria": "nnpc", "chigi": "eni"}
+_SIN_PAR = {("telegram", "eliseo"), ("totalenergies", "eliseo"), ("gob_nigeria", "isis"), ("casablanca", "gob_nigeria"),
+            ("dangote", "gob_nigeria"), ("casablanca", "gob_sudafrica"), ("gob_sudafrica", "brics"), ("chigi", "casablanca"),
+            ("casablanca", "kanzleramt"), ("pt_br", "planalto")}
+_TEXTO = {("gob_colombia", "casablanca"): "Principal socio militar de EE.UU. en Sudamérica; cooperación antinarcóticos desde el Plan Colombia.",
+          ("gob_irak", "pmf"): "La alianza chiita que designa al primer ministro tiene sus propias milicias dentro de las Fuerzas de Movilización Popular.",
+          ("turquia", "otan"): "Erdoğan conduce el segundo ejército de la OTAN con política exterior propia.",
+          ("gob_polonia", "otan"): "Las fuerzas armadas del país de la OTAN que más gasta en defensa en proporción a su PBI.",
+          ("gob_australia", "casablanca"): "Pacto AUKUS para submarinos nucleares con EE.UU. y Reino Unido.",
+          ("casablanca", "gob_irak"): "Washington vetó a Nuri al-Maliki y respaldó en 2026 a Ali al-Zaidi, candidato de consenso de la alianza."}
+
+def _remap(i): return _MAPA.get(i, i)
+_nuevas_rel = []
+for r in RELACIONES:
+    a, b = r[0], r[1]
+    if (a, b) in _SIN_PAR: continue
+    if (a in _QUITAR and a not in _MAPA) or (b in _QUITAR and b not in _MAPA): continue
+    x = _TEXTO.get((a, b), r[3])
+    _nuevas_rel.append((_remap(a), _remap(b), r[2], x, r[4]))
+RELACIONES = _nuevas_rel
+
+ORGS = [o for o in ORGS if o[0] not in _QUITAR]
+_DEP = {"fdi": "netanyahu", "mossad": "netanyahu", "ffaa_ucrania": "zelenski", "mi6": "", "gchq": "", "dgse": "", "mit_tr": "erdogan",
+        "petrobras": "lula", "pdvsa": "delcy", "codelco": "", "m23": "kagame", "spacex": "musk", "meta": "zuckerberg",
+        "reliance": "m_ambani", "lvmh": "arnault"}
+_AUT = {"codelco": 2, "spacex": 3, "meta": 3, "reliance": 3, "lvmh": 3}
+ORGS = [(o[:5] + (_AUT.get(o[0], o[5]),) + o[6:8] + (_DEP[o[0]],)) if o[0] in _DEP else o for o in ORGS]
+ORGS += [n[:9] for n in _REAL]
+FORMAL.update({n[0]: n[9] for n in _REAL})
+FASE.update({n[0]: n[10] for n in _REAL})
+
+RELACIONES += [
+ ("musk", "casablanca", "Ambigua", "Dirigió el recorte del Estado (DOGE) en 2025 y luego rompió con Trump; SpaceX es contratista clave del Pentágono y la NASA.", 2),
+ ("musk", "tesoro_eeuu", "Ambigua", "Sus empresas dependen de contratos y regulaciones federales.", 1),
+ ("thiel", "palantir", "Propiedad", "Cofundador y presidente del directorio de Palantir.", 3),
+ ("thiel", "casablanca", "Alianza", "Financió la carrera política del vicepresidente J. D. Vance.", 2),
+ ("ellison", "bytedance", "Contrato", "Oracle es socio de seguridad y accionista del 15 % de TikTok USDS en EE.UU.", 2),
+ ("ellison", "casablanca", "Alianza", "Cercanía con Trump; el gobierno aprobó la fusión de Paramount con Warner Bros. Discovery.", 2),
+ ("ellison", "openai", "Contrato", "Oracle construye centros de datos para OpenAI en el proyecto Stargate.", 2),
+ ("bezos", "amazon", "Propiedad", "Fundador, presidente ejecutivo y mayor accionista individual.", 3),
+ ("zuckerberg", "casablanca", "Ambigua", "Acercamiento a Trump desde 2025 tras años de enfrentamiento.", 1),
+ ("softbank", "openai", "Financiamiento", "Más de 60.000 millones de dólares comprometidos por cerca del 13 % de OpenAI.", 3),
+ ("m_ambani", "lider_iran", "Ambigua", "", 1),
+ ("arnault", "casablanca", "Alianza", "Relación personal con Trump; inversiones de LVMH en EE.UU.", 1),
+ ("milei", "casablanca", "Alianza", "Alineamiento con Trump; canje de 20.000 millones de dólares del Tesoro de EE.UU. en 2025.", 3),
+ ("tesoro_eeuu", "milei", "Financiamiento", "Canje de monedas de 20.000 millones de dólares con el Banco Central argentino en octubre de 2025.", 3),
+ ("cgt_arg", "milei", "Enfrentamiento", "Paros generales y movilizaciones contra la reforma laboral.", 2),
+ ("techint", "milei", "Ambigua", "Paolo Rocca, el empresario más poderoso de la Argentina, con relación cambiante con el gobierno.", 1),
+ ("erdogan", "baykar", "Alianza", "Selçuk Bayraktar, accionista de Baykar, es yerno de Erdoğan.", 3),
+ ("erdogan", "sharaa", "Alianza", "Turquía es el principal sostén militar del nuevo gobierno sirio.", 3),
+ ("netanyahu", "casablanca", "Alianza", "Coordinación estrecha con Trump en la guerra contra Irán.", 3),
+ ("shinbet", "hamas", "Enfrentamiento", "Inteligencia y operaciones contra Hamás en Gaza y Cisjordania.", 3),
+ ("lula", "pt_br", "Alianza", "Líder histórico del PT.", 3),
+ ("lula", "cut_br", "Alianza", "Lula surgió del sindicalismo metalúrgico que dio origen a la CUT.", 2),
+ ("fpa", "lula", "Ambigua", "La bancada agropecuaria, la más grande del Congreso, condiciona al gobierno.", 2),
+ ("delcy", "fanb", "Gobierna", "La Fuerza Armada juró lealtad a Rodríguez; en marzo de 2026 ella reemplazó al ministro de Defensa Padrino López.", 3),
+ ("psuv", "delcy", "Ambigua", "Diosdado Cabello, vicepresidente del partido y ministro del Interior, es el otro polo de poder del chavismo.", 2),
+ ("zelenski", "gur", "Gobierna", "El exjefe del GUR, Kirilo Budánov, dirige la Oficina del Presidente desde enero de 2026.", 3),
+ ("prabowo", "danantara", "Gobierna", "Fondo soberano creado en 2025 bajo control presidencial.", 3),
+ ("prabowo", "tni", "Gobierna", "Exgeneral; amplió el papel de los militares en el gobierno civil.", 3),
+ ("kagame", "fpr", "Gobierna", "Lidera el partido que gobierna Ruanda desde 1994.", 3),
+ ("anc", "cosatu", "Alianza", "Alianza tripartita con el Partido Comunista.", 2),
+ ("ldp", "keidanren", "Alianza", "La federación empresaria es el principal apoyo del partido gobernante.", 2),
+ ("ldp", "jsdf", "Gobierna", "El gobierno del LDP impulsa la expansión militar.", 2),
+ ("igmetall", "porsche_se", "Ambigua", "Cogestión: el sindicato tiene la mitad de los asientos del consejo de vigilancia de Volkswagen.", 2),
+ ("aflcio", "dem", "Alianza", "Principal aliado sindical del Partido Demócrata.", 2),
+ ("bis", "huawei", "Enfrentamiento", "Lista negra de exportaciones desde 2019.", 3),
+ ("bis", "smic", "Enfrentamiento", "Restricciones a la venta de equipos para chips avanzados.", 3),
+ ("bis", "nvidia", "Ambigua", "Autoriza o prohíbe las ventas de chips de inteligencia artificial a China.", 3),
+ ("tesoro_eeuu", "rosneft", "Enfrentamiento", "Sanciones de octubre de 2025.", 3),
+ ("tesoro_eeuu", "prince", "Enfrentamiento", "Sanciones de octubre de 2025 a 146 personas y empresas del grupo.", 3),
+ ("ccdi", "epl", "Enfrentamiento", "Purgas anticorrupción en la cúpula militar desde 2023.", 2),
+ ("consejo_seg_rusia", "ffaa_rusia", "Gobierna", "Coordina la política de seguridad; Serguéi Shoigú es su secretario.", 2),
+ ("city_londres", "jpmorgan", "Ambigua", "Sede europea de la banca de inversión estadounidense.", 1),
+ ("brookfield", "blackrock", "Ambigua", "Competidores y socios en infraestructura global.", 1),
+ ("exor", "ffaa_francia", "Ambigua", "", 1),
+ ("bollore", "ffaa_francia", "Ambigua", "", 1),
+ ("dassault", "ffaa_francia", "Abastecimiento", "Fabrica el Rafale, avión de combate de la aviación francesa con capacidad nuclear.", 3),
+ ("dassault", "gob_india", "Contrato", "India compró aviones Rafale para su fuerza aérea y su marina.", 2),
+ ("eni", "sonatrach", "Contrato", "Socia histórica en gas argelino.", 2),
+ ("inditex", "santander", "Ambigua", "", 1),
+ ("hyundai", "ffaa_corea", "Abastecimiento", "Hyundai Rotem fabrica los tanques K2.", 2),
+ ("foxconn", "apple", "Contrato", "Ensambla la mayoría de los iPhone.", 3),
+ ("nnpc", "dangote", "Propiedad", "NNPC es accionista minoritaria de la refinería Dangote.", 2),
+ ("ffmm_colombia", "eln", "Enfrentamiento", "Combates en el Catatumbo y la frontera.", 2),
+ ("aval", "ffmm_colombia", "Ambigua", "", 1),
+ ("luksic", "codelco", "Ambigua", "", 1),
+ ("hancock", "bhp", "Ambigua", "", 1),
+ ("safaricom", "gob_india", "Ambigua", "", 1),
+ ("noboa_grupo", "los_lobos", "Ambigua", "", 1),
+ ("marco_coord", "pmf", "Alianza", "Las principales facciones de la alianza tienen milicias propias.", 3),
+ ("hawza_najaf", "marco_coord", "Ambigua", "El gran ayatolá Sistani avala o veta de hecho a los gobiernos de Bagdad.", 2),
+ ("hawza_najaf", "pmf", "Alianza", "Su fatwa de 2014 dio origen a la movilización contra el Estado Islámico.", 2),
+ ("ffaa_reinounido", "otan", "Alianza", "Potencia nuclear de la OTAN.", 3),
+ ("ffaa_francia", "otan", "Alianza", "Potencia nuclear de la OTAN.", 3),
+ ("bundeswehr", "otan", "Alianza", "Rearme alemán con fondos especiales desde 2022 y 2025.", 2),
+ ("pentagono", "bundeswehr", "Alianza", "Tropas y bases de EE.UU. en Alemania, como Ramstein.", 2),
+ ("bnd", "cia", "Alianza", "Cooperación histórica en inteligencia.", 2),
+ ("nis_corea", "ptk", "Enfrentamiento", "Inteligencia y contrainteligencia frente a Corea del Norte.", 2),
+ ("tisza", "otan", "Alianza", "Magyar prometió reconstruir la relación con la OTAN.", 1),
+ ("prosperidad", "ffaa_egipto", "Enfrentamiento", "Disputa por la Gran Represa del Renacimiento.", 1),
+ ("bnp", "gob_india", "Enfrentamiento", "India alberga a Sheikh Hasina, condenada en Bangladés.", 1),
+]
+RELACIONES = [r for r in RELACIONES if r[3]]  # se descartan los vínculos sin explicación documentada

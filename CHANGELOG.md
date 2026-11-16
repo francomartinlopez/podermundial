@@ -1,5 +1,12 @@
 # Cambios
 
+## 2026-11-16 · Del Estado formal al poder real (292 actores)
+
+- Se quitan 31 gobiernos de países que no son centros del orden mundial. Quedan la Casa Blanca, el Kremlin, el PCCh y el Consejo de Estado, la India, Irán, la Comisión Europea y el Palacio Real de Marruecos.
+- Se suman 73 actores con poder real: 16 personas (Musk, Thiel, los Ellison, Bezos, Zuckerberg, Ambani, Arnault, Milei, Erdoğan, Netanyahu, Lula, Prabowo, Zelenski, al-Sharaa, Delcy Rodríguez, Kagame), 5 sindicatos, 5 organismos internos (Tesoro de EE.UU. y OFAC, controles de exportación, Comisión de Disciplina del PCCh, Consejo de Seguridad de Rusia, City de Londres), 4 servicios de inteligencia, 9 partidos, 21 empresas y grupos familiares, 12 fuerzas armadas y la Hawza de Nayaf.
+- Nuevo tipo «Persona», con forma de estrella en los gráficos.
+- Las relaciones y dependencias de los gobiernos quitados pasan a sus sucesores reales (por ejemplo, las FDI y el Mossad dependen de Netanyahu; SpaceX y X, de Musk).
+
 ## 2026-11-16 · Ampliación a 250 organizaciones
 
 - 50 organizaciones nuevas para cubrir América Latina, África, Europa del Sur y del Este, el Sudeste Asiático, Oceanía y Canadá: gobiernos (Argentina, Colombia, Venezuela, Chile, Ecuador, Nigeria, Sudáfrica, Etiopía, Kenia, Ruanda, Marruecos, Italia, España, Polonia, Hungría, Indonesia, Filipinas, Corea del Sur, Australia, Bangladés, Siria, Irak, Canadá), partidos (Cuba, Vietnam), ejércitos (Sudán, Tailandia, Myanmar), empresas (PDVSA, Codelco, OCP, Sonatrach, Dangote, Shell, TotalEnergies, LVMH, Rheinmetall, BHP, Reliance, Adani, Kazatomprom, Temasek, Petronas) y grupos armados (ELN, Clan del Golfo, Los Lobos, M23, Ejército Nacional Libio, Al Shabaab, Alianza de Estados del Sahel).

@@ -28,6 +28,7 @@
       case "Supranacional": return `<path d="M${x - r * .55} ${y - r}H${x + r * .55}L${x + r * 1.1} ${y}L${x + r * .55} ${y + r}H${x - r * .55}L${x - r * 1.1} ${y}Z" ${f} ${extra}/>`;
       case "Influencia": return `<path d="M${x} ${y - r * 1.15}L${x + r * 1.1} ${y + r * .85}H${x - r * 1.1}Z" ${f} ${extra}/>`;
       case "Sombra": return `<circle cx="${x}" cy="${y}" r="${Math.max(r - 1.2, 2)}" fill="none" stroke="${fill}" stroke-width="2.4" ${extra}/>`;
+      case "Persona": { const R = r * 1.25, q = R * .45, p = []; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, d = i % 2 ? q : R; p.push(`${(x + d * Math.cos(a)).toFixed(2)} ${(y + d * Math.sin(a)).toFixed(2)}`); } return `<path d="M${p.join("L")}Z" ${f} ${extra}/>`; }
       default: return `<circle cx="${x}" cy="${y}" r="${r}" ${f} ${extra}/>`;
     }
   }

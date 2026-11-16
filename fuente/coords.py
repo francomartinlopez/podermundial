@@ -38,4 +38,7 @@ C = {
 "Canberra, Australia":(149.13,-35.28),"Melbourne, Australia":(144.96,-37.81),"Bombay, India":(72.88,19.08),"Ahmedabad, India":(72.57,23.02),
 "Astaná, Kazajistán":(71.45,51.17),"Kuala Lumpur, Malasia":(101.69,3.14),"Daca, Bangladés":(90.41,23.81),"Damasco, Siria":(36.29,33.51),
 "Ottawa, Canadá":(-75.7,45.42),
+"Miami, EE.UU.":(-80.19,25.76),"Austin, EE.UU.":(-97.74,30.27),"Johannesburgo, Sudáfrica":(28.05,-26.2),"Arteixo, España":(-8.51,43.3),
+"Ámsterdam, Países Bajos":(4.9,52.37),"Nuevo Taipéi, Taiwán":(121.46,25.01),"Estambul, Turquía":(28.98,41.01),"Perth, Australia":(115.86,-31.95),
+"Stuttgart, Alemania":(9.18,48.78),"Nayaf, Irak":(44.34,32.0),
 }
