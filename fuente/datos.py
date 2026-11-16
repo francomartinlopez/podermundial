@@ -919,3 +919,11 @@ _MAS = [
 ]
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _MAS if (r[0], r[1]) not in _ya]
+
+# Actores locales: al menos un actor que define en cada país (ver fuente/locales.py)
+from locales import LOCALES as _LOC, RELACIONES as _REL_LOC
+ORGS += [n[:9] for n in _LOC]
+FORMAL.update({n[0]: n[9] for n in _LOC})
+FASE.update({n[0]: n[10] for n in _LOC})
+_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+RELACIONES += [r for r in _REL_LOC if (r[0], r[1]) not in _ya]

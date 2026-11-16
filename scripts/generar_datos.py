@@ -9,6 +9,7 @@ from datos import ORGS, EJES, ORDEN_ENTRADA, AREA_TIPO, BLOQUES, AUTONOMIA, CERT
 from paises import PAISES, BLOQ, POS, GRADO, ASP
 from coords import C
 from fichas import FICHAS
+from locales import MANDA
 
 CORTE = "2026-11-16"
 PROXIMA = "2027-02-16"
@@ -72,6 +73,11 @@ nombres = json.load(open(os.path.join(RAIZ, "data", "nombres_mapa.json"))) if os
 for m in nombres:
     if m not in paises:
         paises[m] = {"n": m, "b": "D" if m in TERRITORIOS_D else "T", "p": "S" if m in TERRITORIOS_D else "G", "z": "", "asp": [], "x": "Territorio dependiente.", "terr": True}
+
+for m, (i, nota) in MANDA.items():
+    assert m in paises, m
+    assert i in ids, (m, i)
+    paises[m]["m"] = [i, nota]
 
 # controles
 for r in rel: assert r["a"] in ids and r["b"] in ids, r

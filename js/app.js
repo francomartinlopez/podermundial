@@ -58,7 +58,17 @@
   const SPHERE = gpath({ type: "Sphere" }), GRAT = gpath(d3.geoGraticule().step([20, 20])());
   const CPATH = FEAT.map(f => ({ name: f.properties.name, d: gpath(f) }));
   // país de cada sede
-  ORGS.forEach(o => { o.pais = null; if (!o.ll) return; const hit = FEAT.find(F => d3.geoContains(F, o.ll)); o.pais = hit ? hit.properties.name : null; });
+  // primero por el nombre del país en la sede (más fiable en costas e islas); si no, por coordenadas
+  const norm = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+  const ALIAS = { "ee.uu.": "Estados Unidos" };
+  const porNombre = {}; Object.entries(PA).forEach(([k, p]) => { if (!p.terr || !porNombre[norm(p.n)]) porNombre[norm(p.n)] = k; });
+  ORGS.forEach(o => {
+    o.pais = null;
+    const suf = (o.sede || "").replace(/\s*\(.*\)\s*$/, "").split(",").pop();
+    const k = porNombre[norm(ALIAS[norm(suf)] || suf)];
+    if (k) { o.pais = k; return; }
+    if (!o.ll) return; const hit = FEAT.find(F => d3.geoContains(F, o.ll)); o.pais = hit ? hit.properties.name : null;
+  });
   const POSOP = { C: 1, A: .9, G: .7, R: .7, U: 1, P: .45, IT: .32, IE: .38, S: 0 };
   const ZONA = { T: "#E10600", X: "#A3150C", P: "#5E1410" };
   function fillFor(name, layer) {
@@ -73,7 +83,7 @@
     return p.b === "D" ? "#232323" : bcol(p.b);
   }
   const FULL = [0, 0, MW, MH];
-  function fitBox([[x0, y0], [x1, y1]], minW = 200) {
+  function fitBox([[x0, y0], [x1, y1]], minW = 150) {
     let w = Math.max(x1 - x0, minW) * 1.6, h = Math.max(y1 - y0, minW * MH / MW) * 1.6;
     if (w / h > MW / MH) h = w * MH / MW; else w = h * MW / MH;
     if (w > MW) { w = MW; h = MH; }
@@ -106,11 +116,13 @@
   }
   function countryPanel(name) {
     const p = PA[name]; if (!p) return "";
-    const orgs = ORGS.filter(o => o.pais === name);
+    const orgs = ORGS.filter(o => o.pais === name || (p.m && p.m[0] === o.id && !p.m[1])).sort((a, b) => b.red - a.red);
+    const def = p.m ? byId[p.m[0]] : orgs[0];
+    const quien = def ? `<div class="define"><div class="lbl">Quién define aquí</div><a href="#o-${def.id}">${icon(def, 22)}<span><b>${esc(corto(def.n))}</b><small>${esc(def.area)} · poder en red ${num(def.red)}</small></span></a>${p.m && p.m[1] ? `<p class="side-x">${esc(p.m[1])}</p>` : ""}</div>` : "";
     return `<div class="lbl">${esc(BL[p.b].n)}</div><h3>${esc(p.n)}</h3>
       <p class="side-x"><b>Posición:</b> ${esc(M.posiciones[p.p])}${p.z ? `<br><b>Zona liberada:</b> ${esc(M.grados[p.z])} · ${esc(p.asp.map(a => M.aspectos[a]).join(", "))}` : ""}</p>
-      ${p.x ? `<p class="side-x">${esc(p.x)}</p>` : ""}
-      ${orgs.length ? `<div class="lbl" style="margin-top:6px">Organizaciones con sede aquí (${orgs.length})</div><div>${orgs.map(o => `<a class="rk" style="grid-template-columns:18px minmax(0,1fr) 46px" href="#o-${o.id}">${icon(o)}<span class="nm">${esc(corto(o.n))}</span><span class="v">${num(o.red)}</span></a>`).join("")}</div>` : ""}`;
+      ${p.x ? `<p class="side-x">${esc(p.x)}</p>` : ""}${quien}
+      ${(o2 => o2.length ? `<div class="lbl" style="margin-top:6px">${def ? "Otros actores" : "Actores"} con sede aquí (${o2.length})</div><div>${o2.map(o => `<a class="rk" style="grid-template-columns:18px minmax(0,1fr) 46px" href="#o-${o.id}">${icon(o)}<span class="nm">${esc(corto(o.n))}</span><span class="v">${num(o.red)}</span></a>`).join("")}</div>` : "")(orgs.filter(o => o !== def))}`;
   }
   function orgPanel(o) {
     return `<div class="lbl">${esc(o.area)} · ${esc(BL[o.bloque].n)}</div><h3>${esc(o.n)}</h3>
@@ -181,7 +193,7 @@
     const red = sortBy("red").slice(0, 10), oc = sortBy("oculto").slice(0, 10);
     app.innerHTML = `<div class="wrap">
       <div class="hero"><div style="display:flex;flex-direction:column;gap:18px"><div class="kick">El mundo real, sin máscaras</div><h1>El mapa del<br>poder global</h1></div>
-      <p class="read">Quién tiene el poder real en el mundo y quién solo lo aparenta. ${ORGS.length} organizaciones medidas en ${M.ejes.length} ejes, su jerarquía y cuánto de su poder escapa al control público.</p></div>
+      <p class="read">Quién tiene el poder real en el mundo y quién solo lo aparenta. ${ORGS.length} organizaciones y personas medidas en ${M.ejes.length} ejes, su jerarquía y cuánto de su poder escapa al control público.</p></div>
       <section class="block" id="mapa-inicio"></section>
       <section class="block two">
         <div><div class="sec-title"><h2>Poder en red</h2><a href="#organizaciones">Ver los ${ORGS.length}</a></div>${rankRows(red, "red", red[0].red)}</div>

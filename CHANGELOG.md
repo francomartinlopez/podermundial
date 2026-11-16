@@ -1,5 +1,14 @@
 # Cambios
 
+## 2026-11-16 · Un actor que define en cada país (403 actores)
+
+- 110 actores nuevos, con ficha y fuentes, para los 136 países que no tenían ninguno: partidos de gobierno, jefes de regímenes personalistas, monarquías, juntas militares, gremios empresarios, empresas, servicios de inteligencia y organismos como la Autoridad del Canal de Panamá o la Junta de Supervisión Fiscal de Puerto Rico.
+- Donde el que define es un actor extranjero ya presente en el mapa (Kosovo y la OTAN, Micronesia y el Pentágono, Hong Kong y el PCCh, Guyana y ExxonMobil, entre otros), el país apunta a ese actor con una nota.
+- El panel de cada país muestra ahora «Quién define aquí».
+- El país de cada actor se toma de su sede y no solo de las coordenadas, lo que corrige capitales costeras e islas.
+- 22 relaciones nuevas. Fuente: `fuente/locales.py`.
+- Nueva imagen para compartir con la cifra actualizada.
+
 ## 2026-11-16 · Navegación y lectura
 
 - Portada: título más chico y sin desplazamiento suave, para que la página no quede trabada a mitad de camino al volver arriba.

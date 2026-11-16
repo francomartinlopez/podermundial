@@ -42,3 +42,6 @@ C = {
 "Ámsterdam, Países Bajos":(4.9,52.37),"Nuevo Taipéi, Taiwán":(121.46,25.01),"Estambul, Turquía":(28.98,41.01),"Perth, Australia":(115.86,-31.95),
 "Stuttgart, Alemania":(9.18,48.78),"Nayaf, Irak":(44.34,32.0),
 }
+
+from locales import COORDS as _CL
+C.update(_CL)

@@ -2412,3 +2412,6 @@ FICHAS["ffaa_india"] = dict(
  dinero="Uno de los mayores importadores de armas del mundo: Rusia, Francia, EE.UU. e Israel.",
  crono=[("1974-05", "Primera prueba nuclear."), ("1999", "Guerra de Kargil."), ("2020-06", "Choque de Galwan con China."), ("2025-05", "Operación Sindoor contra Pakistán.")],
  fuentes=[("Indian Armed Forces (Wikipedia)", W + "Indian_Armed_Forces")])
+
+from locales import FICHAS as _FL
+FICHAS.update(_FL)
