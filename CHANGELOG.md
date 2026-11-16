@@ -1,5 +1,10 @@
 # Cambios
 
+## 2026-11-16 · Tanda 4 de fichas
+
+- Fichas para las posiciones 121 a 160 (FMI, Banco Mundial, Corte Suprema de EE.UU., partidos Demócrata y Republicano, MI6, GCHQ, ASML, COSCO, PIF y otras 30).
+- Novedades verificadas: la Corte Suprema anuló los aranceles IEEPA (20 de febrero) y falló Trump contra Slaughter (29 de junio); conteo de AP de las legislativas del 3 de noviembre al 16 de noviembre; copresidencia interina de Fink y Hoffmann en el WEF; venta de los puertos de CK Hutchison trabada.
+
 ## 2026-11-16 · Tanda 3 de fichas
 
 - Fichas para las posiciones 81 a 120 (BCE, OTAN, Mossad, Hezbolá, hutíes, Tren de Aragua, FAR de Sudán, Japón, DHS, Departamento de Justicia y otras 30).

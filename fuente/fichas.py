@@ -987,3 +987,297 @@ FICHAS.update({
  crono=[("1694", "Fundación."), ("1997-05", "Independencia operativa.")],
  fuentes=[("Bank of England (Wikipedia)", W + "Bank_of_England")]),
 })
+
+# ---- Tanda 4 (posiciones 121 a 160) ----
+FICHAS.update({
+"cfr": dict(
+ res=["El principal centro de pensamiento de política exterior de EE.UU.; edita Foreign Affairs y reúne a exfuncionarios, banqueros y periodistas."],
+ manda=["Michael Froman, presidente; directorio de figuras del gobierno y las finanzas."],
+ dinero="Financiado por cuotas de miembros corporativos y donaciones.",
+ crono=[("1921", "Fundación en Nueva York."), ("1922-09", "Primer número de Foreign Affairs.")],
+ fuentes=[("Council on Foreign Relations (Wikipedia)", W + "Council_on_Foreign_Relations")]),
+
+"wef": dict(
+ res=["Organiza la reunión anual de Davos, punto de encuentro de jefes de Estado, banqueros y directores ejecutivos.",
+      "Atraviesa una transición tras la salida de su fundador Klaus Schwab en abril de 2025 y de su presidente Børge Brende a comienzos de 2026."],
+ manda=["Larry Fink (BlackRock) y André Hoffmann (Roche), copresidentes interinos; el directorio corteja a Christine Lagarde para presidirlo."],
+ dinero="Cuotas de unas mil empresas socias.",
+ crono=[("1971", "Fundación por Klaus Schwab."), ("2025-04", "Renuncia de Schwab."), ("2025-08", "Fink y Hoffmann, copresidentes interinos.")],
+ fuentes=[("World Economic Forum (Wikipedia)", W + "World_Economic_Forum"),
+          ("ESG News: Fink y Hoffmann, copresidentes interinos", "https://esgnews.com/?p=37918"),
+          ("Swissinfo / Bloomberg: el WEF corteja a Lagarde", "https://www.swissinfo.ch/eng/lagarde-is-still-being-pursued-by-the-wef-for-its-top-job/91923016")]),
+
+"gchq": dict(
+ res=["Agencia británica de inteligencia de señales y ciberseguridad, socia principal de la NSA en la alianza Cinco Ojos."],
+ manda=["Anne Keast-Butler, directora, primera mujer en el cargo."],
+ dinero="Presupuesto dentro de la cuenta única de inteligencia británica.",
+ crono=[("1919", "Origen como escuela de códigos."), ("1946", "Acuerdo UKUSA con EE.UU."), ("2013-06", "Revelaciones de Snowden sobre el programa Tempora.")],
+ fuentes=[("GCHQ (Wikipedia)", W + "GCHQ"), ("UKUSA Agreement (Wikipedia)", W + "UKUSA_Agreement")]),
+
+"hanwha": dict(
+ res=["Principal fabricante de armamento de Corea del Sur: obuses K9, motores de aviación y sistemas espaciales; gran proveedor del rearme de Polonia y otros países de la OTAN."],
+ manda=["Grupo Hanwha, controlado por la familia Kim."],
+ dinero="Exportaciones de defensa en fuerte crecimiento desde 2022.",
+ crono=[("1952", "Fundación del grupo Hanwha."), ("2022-08", "Contratos marco con Polonia.")],
+ fuentes=[("Hanwha Aerospace (Wikipedia)", W + "Hanwha_Aerospace"), ("K9 Thunder (Wikipedia)", W + "K9_Thunder")]),
+
+"heritage": dict(
+ res=["Centro de pensamiento conservador de EE.UU.; coordinó el Proyecto 2025, programa de gobierno y de personal para la segunda presidencia de Trump."],
+ manda=["Kevin Roberts, presidente."],
+ dinero="Donaciones privadas e institucionales.",
+ crono=[("1973", "Fundación."), ("1981", "Mandate for Leadership para el gobierno de Reagan."), ("2023-04", "Lanzamiento del Proyecto 2025.")],
+ fuentes=[("Heritage Foundation (Wikipedia)", W + "Heritage_Foundation"), ("Project 2025 (Wikipedia)", W + "Project_2025")]),
+
+"mss": dict(
+ res=["Ministerio de Seguridad del Estado: inteligencia exterior y contrainteligencia de China, señalado por gobiernos occidentales por espionaje industrial y operaciones cibernéticas."],
+ manda=["Chen Yixin, ministro."],
+ dinero="Presupuesto reservado.",
+ crono=[("1983-07", "Creación."), ("2023-08", "Comienza a publicar en redes sociales.")],
+ fuentes=[("Ministry of State Security (China) (Wikipedia)", W + "Ministry_of_State_Security_(China)")]),
+
+"osf": dict(
+ res=["Red filantrópica de George Soros que financia organizaciones de derechos humanos, justicia y medios en más de cien países; blanco frecuente de gobiernos nacionalistas."],
+ manda=["Alexander Soros, presidente del directorio."],
+ dinero="Dotación de varios miles de millones de dólares.",
+ crono=[("1984", "Primera fundación en Hungría."), ("2018", "Traslado de su oficina de Budapest a Berlín."), ("2023-06", "Alexander Soros asume la conducción.")],
+ fuentes=[("Open Society Foundations (Wikipedia)", W + "Open_Society_Foundations")]),
+
+"pboc": dict(
+ res=["Banco central de China: maneja el yuan, las mayores reservas internacionales del mundo y el sistema de pagos interbancarios CIPS."],
+ manda=["Pan Gongsheng, gobernador; subordinado al Consejo de Estado y al Partido."],
+ dinero="Reservas internacionales superiores a 3 billones de dólares.",
+ crono=[("1948-12", "Fundación."), ("2015-10", "Lanzamiento del sistema CIPS."), ("2023-07", "Pan Gongsheng, gobernador.")],
+ fuentes=[("People's Bank of China (Wikipedia)", W + "People%27s_Bank_of_China")]),
+
+"cas": dict(
+ res=["Mayor organismo de investigación científica del mundo por número de investigadores; pilar del desarrollo tecnológico y militar chino."],
+ manda=["Depende del Consejo de Estado."],
+ dinero="Presupuesto estatal y empresas derivadas, como en su origen Lenovo.",
+ crono=[("1949-11", "Fundación.")],
+ fuentes=[("Chinese Academy of Sciences (Wikipedia)", W + "Chinese_Academy_of_Sciences")]),
+
+"norinco": dict(
+ res=["Conglomerado estatal de armamento terrestre de China: blindados, artillería, munición y armas livianas exportadas a decenas de países."],
+ manda=["Empresa estatal bajo la comisión de activos del Estado."],
+ dinero="Sancionada por EE.UU. por ventas a Irán y otros países.",
+ crono=[("1980", "Fundación.")],
+ fuentes=[("Norinco (Wikipedia)", W + "Norinco")]),
+
+"petrobras": dict(
+ res=["Petrolera de control estatal de Brasil, líder mundial en extracción en aguas profundas (presal)."],
+ manda=["Magda Chambriard, presidenta; el gobierno federal tiene la mayoría de los votos."],
+ dinero="Una de las mayores pagadoras de dividendos de América Latina.",
+ crono=[("1953-10", "Fundación."), ("2006", "Descubrimiento del presal."), ("2014-03", "Operación Lava Jato.")],
+ fuentes=[("Petrobras (Wikipedia)", W + "Petrobras"), ("Operation Car Wash (Wikipedia)", W + "Operation_Car_Wash")]),
+
+"rosneft": dict(
+ res=["La mayor petrolera de Rusia y fuente clave de ingresos del Kremlin; EE.UU. la sancionó junto con Lukoil en octubre de 2025."],
+ manda=["Ígor Sechin, director ejecutivo, del círculo íntimo de Putin."],
+ dinero="Exportaciones reorientadas hacia India y China.",
+ crono=[("1993", "Creación."), ("2004", "Compra de los activos principales de Yukos."), ("2025-10", "Sanciones de EE.UU.")],
+ fuentes=[("Rosneft (Wikipedia)", W + "Rosneft")]),
+
+"sinopec": dict(
+ res=["Refinadora y petroquímica estatal de China, una de las mayores empresas del mundo por ingresos."],
+ manda=["Empresa estatal bajo la comisión de activos del Estado."],
+ dinero="Ingresos superiores a 400.000 millones de dólares.",
+ crono=[("2000", "Salida a bolsa en Hong Kong, Nueva York y Londres.")],
+ fuentes=[("Sinopec (Wikipedia)", W + "Sinopec")]),
+
+"yamaguchi": dict(
+ res=["El mayor sindicato yakuza de Japón, en declive por la presión legal; en 2025 dio por terminada su guerra interna con el Kobe Yamaguchi-gumi."],
+ manda=["Kenichi Shinoda (Tsukasa Shinobu), jefe."],
+ dinero="Extorsión, construcción, juego y préstamos.",
+ crono=[("1915", "Fundación en Kobe."), ("2015-08", "Escisión del Kobe Yamaguchi-gumi."), ("2025-04", "Fin declarado del conflicto interno.")],
+ fuentes=[("Yamaguchi-gumi (Wikipedia)", W + "Yamaguchi-gumi")]),
+
+"boj": dict(
+ res=["Banco central de Japón y mayor tenedor de bonos de su propio gobierno; sus decisiones mueven el flujo mundial de capitales (carry trade del yen)."],
+ manda=["Kazuo Ueda, gobernador."],
+ dinero="Dueño de alrededor de la mitad de la deuda pública japonesa.",
+ crono=[("1882-10", "Fundación."), ("2024-03", "Fin de las tasas negativas.")],
+ fuentes=[("Bank of Japan (Wikipedia)", W + "Bank_of_Japan")]),
+
+"brookings": dict(
+ res=["Centro de pensamiento de Washington, referencia del establishment demócrata en economía y política exterior."],
+ manda=["Cecilia Rouse, presidenta."],
+ dinero="Dotación y donaciones de fundaciones, empresas y gobiernos.",
+ crono=[("1916", "Fundación como Institute for Government Research.")],
+ fuentes=[("Brookings Institution (Wikipedia)", W + "Brookings_Institution")]),
+
+"icann": dict(
+ res=["Administra el sistema de nombres de dominio y la asignación de direcciones de Internet; desde 2016 sin supervisión del gobierno de EE.UU."],
+ manda=["Kurt Lindqvist, director ejecutivo; modelo de múltiples partes interesadas."],
+ dinero="Ingresos por tasas de registro de dominios.",
+ crono=[("1998-09", "Fundación."), ("2016-10", "Fin del contrato con el Departamento de Comercio.")],
+ fuentes=[("ICANN (Wikipedia)", W + "ICANN")]),
+
+"iso": dict(
+ res=["Fija normas técnicas que rigen la producción, la calidad y la seguridad en casi toda la economía mundial (ISO 9001, ISO 27001 y otras)."],
+ manda=["Federación de organismos nacionales de normalización de 170 países."],
+ dinero="Venta de normas y cuotas de sus miembros.",
+ crono=[("1947-02", "Fundación en Ginebra."), ("1987", "Primera ISO 9000.")],
+ fuentes=[("International Organization for Standardization (Wikipedia)", W + "International_Organization_for_Standardization")]),
+
+"mi6": dict(
+ res=["Servicio de inteligencia exterior británico, socio estrecho de la CIA y actor central en el apoyo occidental a Ucrania."],
+ manda=["Blaise Metreweli, jefa ('C') desde octubre de 2025, primera mujer en el cargo."],
+ dinero="Presupuesto dentro de la cuenta única de inteligencia.",
+ crono=[("1909", "Creación del Secret Service Bureau."), ("1994", "Ley de servicios de inteligencia."), ("2025-10", "Metreweli asume.")],
+ fuentes=[("Secret Intelligence Service (Wikipedia)", W + "Secret_Intelligence_Service")]),
+
+"dem": dict(
+ res=["Uno de los dos partidos que se alternan en el gobierno de EE.UU.; oposición al gobierno de Trump.",
+      "En las elecciones legislativas del 3 de noviembre de 2026, el conteo de AP al 16 de noviembre le asignaba 256 bancas en la Cámara de Representantes y 55 en el Senado (incluidos 2 independientes que votan con el bloque); quedaban bancas sin adjudicar en el conteo."],
+ manda=["Conducción repartida entre el Comité Nacional Demócrata, presidido por Ken Martin, y los jefes de bloque en el Congreso."],
+ dinero="Recaudación de pequeños donantes vía ActBlue y grandes comités de acción política.",
+ crono=[("1828", "Fundación."), ("2024-11", "Derrota presidencial."), ("2026-11-03", "Elecciones legislativas de medio término.")],
+ fuentes=[("Democratic Party (United States) (Wikipedia)", W + "Democratic_Party_(United_States)"),
+          ("Associated Press: resultados electorales", "https://apnews.com/hub/election-2026")]),
+
+"gop": dict(
+ res=["Partido de gobierno de EE.UU. desde 2025, transformado por el movimiento de Donald Trump.",
+      "En las elecciones legislativas del 3 de noviembre de 2026, el conteo de AP al 16 de noviembre le asignaba 169 bancas en la Cámara de Representantes y 44 en el Senado; quedaban bancas sin adjudicar en el conteo."],
+ manda=["Donald Trump es el líder de hecho; Joe Gruters preside el Comité Nacional Republicano."],
+ dinero="Grandes donantes, comités de acción política y la estructura de campaña de Trump.",
+ crono=[("1854", "Fundación."), ("2024-11", "Victoria de Trump."), ("2026-11-03", "Elecciones legislativas de medio término.")],
+ fuentes=[("Republican Party (United States) (Wikipedia)", W + "Republican_Party_(United_States)"),
+          ("Associated Press: resultados electorales", "https://apnews.com/hub/election-2026")]),
+
+"statestreet": dict(
+ res=["Uno de los mayores custodios de valores del mundo y tercer gestor de fondos indexados detrás de BlackRock y Vanguard."],
+ manda=["Ron O'Hanley, presidente y director ejecutivo."],
+ dinero="Custodia decenas de billones de dólares en activos.",
+ crono=[("1792", "Origen en Boston."), ("1993", "Lanzamiento del primer fondo cotizado de EE.UU. (SPY).")],
+ fuentes=[("State Street Corporation (Wikipedia)", W + "State_Street_Corporation")]),
+
+"asml": dict(
+ res=["Única fabricante en el mundo de las máquinas de litografía ultravioleta extrema para los chips más avanzados; sus exportaciones a China están restringidas por presión de EE.UU."],
+ manda=["Christophe Fouquet, director ejecutivo."],
+ dinero="Cada máquina EUV cuesta varios cientos de millones de euros.",
+ crono=[("1984", "Fundación como empresa conjunta de Philips y ASM."), ("2019", "Primeras restricciones a ventas EUV a China.")],
+ fuentes=[("ASML Holding (Wikipedia)", W + "ASML_Holding")]),
+
+"bm": dict(
+ res=["Principal banco multilateral de desarrollo; su presidente lo designa por tradición EE.UU."],
+ manda=["Ajay Banga, presidente."],
+ dinero="Préstamos y donaciones por decenas de miles de millones de dólares al año.",
+ crono=[("1944-07", "Conferencia de Bretton Woods."), ("2023-06", "Banga asume.")],
+ fuentes=[("World Bank (Wikipedia)", W + "World_Bank")]),
+
+"icbc": dict(
+ res=["El mayor banco del mundo por activos, de control estatal chino; financia infraestructura y empresas chinas en el exterior."],
+ manda=["Directorio designado por el Estado y el Partido."],
+ dinero="Activos superiores a 6 billones de dólares.",
+ crono=[("1984-01", "Fundación."), ("2006-10", "Salida a bolsa, entonces la mayor de la historia.")],
+ fuentes=[("Industrial and Commercial Bank of China (Wikipedia)", W + "Industrial_and_Commercial_Bank_of_China")]),
+
+"rostec": dict(
+ res=["Conglomerado estatal ruso que agrupa la mayor parte de la industria de defensa: aviones, helicópteros, blindados y electrónica."],
+ manda=["Serguéi Chémezov, director general, antiguo colega de Putin en el KGB."],
+ dinero="Producción militar en máximos por la guerra de Ucrania.",
+ crono=[("2007-11", "Creación.")],
+ fuentes=[("Rostec (Wikipedia)", W + "Rostec")]),
+
+"tsinghua": dict(
+ res=["Universidad de élite de Pekín, formadora de buena parte de la dirigencia del Partido, incluido Xi Jinping, y de la industria tecnológica china."],
+ manda=["Secretario del Partido y presidente de la universidad."],
+ dinero="Financiamiento estatal y empresas derivadas.",
+ crono=[("1911", "Fundación.")],
+ fuentes=[("Tsinghua University (Wikipedia)", W + "Tsinghua_University")]),
+
+"aipac": dict(
+ res=["El principal grupo de presión proisraelí de EE.UU.; desde 2022 gasta directamente en primarias del Congreso a través de su comité de acción política."],
+ manda=["Directorio de donantes; Elliot Brandt, director ejecutivo."],
+ dinero="Decenas de millones de dólares en las campañas de 2024.",
+ crono=[("1963", "Fundación."), ("2021-12", "Creación de su comité de acción política.")],
+ fuentes=[("AIPAC (Wikipedia)", W + "American_Israel_Public_Affairs_Committee")]),
+
+"cosco": dict(
+ res=["Naviera estatal china, una de las cuatro mayores del mundo, con terminales en Grecia (Pireo), España, Perú (Chancay) y otros países.",
+      "Beijing condicionó la venta de los puertos de CK Hutchison a BlackRock y MSC a que COSCO tuviera una participación; la operación seguía empantanada en 2026."],
+ manda=["Empresa estatal bajo la comisión de activos del Estado."],
+ dinero="EE.UU. la incluyó en 2021 en su lista de empresas militares chinas.",
+ crono=[("2016-02", "Fusión de COSCO y China Shipping."), ("2016-08", "Control del puerto del Pireo."), ("2024-11", "Inauguración de Chancay.")],
+ fuentes=[("COSCO Shipping (Wikipedia)", W + "COSCO_Shipping"),
+          ("Bloomberg Law: el acuerdo de puertos de Hutchison sigue trabado (2026-03)", "https://news.bloomberglaw.com/international-trade/ck-hutchison-looks-to-trump-xi-summit-as-ports-deal-drags-on")]),
+
+"scotus": dict(
+ res=["Corte Suprema de EE.UU., con mayoría conservadora de 6 a 3.",
+      "En 2026 anuló los aranceles de Trump basados en la ley de emergencias (IEEPA) y, en Trump contra Slaughter, amplió el poder del presidente para destituir a miembros de agencias independientes."],
+ manda=["John Roberts, presidente de la Corte."],
+ dinero="Sin poder de bolsa, pero define la validez de leyes y decretos.",
+ crono=[("1789", "Creación."), ("2022-06", "Fallo Dobbs."), ("2026-02-20", "Anulación de los aranceles IEEPA."), ("2026-06-29", "Fallo Trump contra Slaughter.")],
+ fuentes=[("Supreme Court of the United States (Wikipedia)", W + "Supreme_Court_of_the_United_States"),
+          ("PolitiFact: la Corte anula los aranceles (2026-02-20)", "https://www.politifact.com/article/2026/feb/20/supreme-court-strikes-down-tariffs-Trump/")]),
+
+"dpworld": dict(
+ res=["Operadora portuaria y logística de Dubái con terminales en más de 70 países, incluido el puerto de Posorja en Ecuador y Callao en Perú."],
+ manda=["Propiedad del emirato de Dubái a través de Dubai World."],
+ dinero="Inversión en zonas francas y corredores logísticos en África y Asia.",
+ crono=[("2005", "Fusión que crea DP World."), ("2006", "Polémica en EE.UU. por la compra de P&O.")],
+ fuentes=[("DP World (Wikipedia)", W + "DP_World")]),
+
+"fmi": dict(
+ res=["Prestamista de última instancia para países en crisis; impone condiciones de política económica a cambio de su financiamiento (Argentina es su mayor deudor)."],
+ manda=["Kristalina Georgieva, directora gerente; EE.UU. tiene poder de veto en decisiones clave."],
+ dinero="Recursos prestables cercanos a 1 billón de dólares.",
+ crono=[("1944-07", "Bretton Woods."), ("2018-06", "Mayor acuerdo de su historia con Argentina."), ("2026-09", "Isabel Schnabel designada consejera financiera.")],
+ fuentes=[("International Monetary Fund (Wikipedia)", W + "International_Monetary_Fund")]),
+
+"nbim": dict(
+ res=["El mayor fondo soberano del mundo; posee alrededor del 1,5% de todas las acciones cotizadas del planeta."],
+ manda=["Nicolai Tangen, director ejecutivo; responde al Banco de Noruega y al Parlamento."],
+ dinero="Valor cercano a 2 billones de dólares, alimentado por la renta petrolera.",
+ crono=[("1990", "Creación del fondo petrolero."), ("1998", "Creación de NBIM.")],
+ fuentes=[("Government Pension Fund of Norway (Wikipedia)", W + "Government_Pension_Fund_of_Norway")]),
+
+"globo": dict(
+ res=["El mayor grupo de medios de América Latina: TV Globo, diarios, radio y streaming en Brasil."],
+ manda=["Familia Marinho."],
+ dinero="Domina la audiencia y la publicidad televisiva brasileña.",
+ crono=[("1925", "Fundación del diario O Globo."), ("1965-04", "Lanzamiento de TV Globo.")],
+ fuentes=[("Grupo Globo (Wikipedia)", W + "Grupo_Globo")]),
+
+"pif": dict(
+ res=["Fondo soberano saudí, motor del plan Visión 2030: NEOM, LIV Golf, participaciones en Uber, Nintendo y videojuegos."],
+ manda=["Mohammed bin Salmán preside el fondo; Yasir Al-Rumayyan es gobernador."],
+ dinero="Activos cercanos a 1 billón de dólares.",
+ crono=[("1971", "Creación."), ("2015", "Pasa a depender de Mohammed bin Salmán."), ("2017-10", "Anuncio de NEOM.")],
+ fuentes=[("Public Investment Fund (Wikipedia)", W + "Public_Investment_Fund")]),
+
+"cac": dict(
+ res=["Regulador y censor de Internet en China: controla contenidos, algoritmos, datos y la aprobación de modelos de inteligencia artificial."],
+ manda=["Depende de la Comisión Central de Asuntos del Ciberespacio que preside Xi Jinping."],
+ dinero="Organismo administrativo.",
+ crono=[("2014", "Creación."), ("2021-07", "Investigación a Didi tras su salida a bolsa en Nueva York.")],
+ fuentes=[("Cyberspace Administration of China (Wikipedia)", W + "Cyberspace_Administration_of_China")]),
+
+"pmf": dict(
+ res=["Coalición de milicias iraquíes, en su mayoría chiitas y varias alineadas con Irán, integrada formalmente al Estado tras la guerra contra el Estado Islámico."],
+ manda=["Falih al-Fayyadh, presidente de la comisión; facciones como Kataib Hezbolá tienen mando propio."],
+ dinero="Presupuesto estatal iraquí y negocios propios.",
+ crono=[("2014-06", "Fatwa de Sistani y movilización contra el Estado Islámico."), ("2016-11", "Ley que las incorpora al Estado."), ("2020-01", "Muerte de Abu Mahdi al-Muhandis junto a Soleimani.")],
+ fuentes=[("Popular Mobilization Forces (Wikipedia)", W + "Popular_Mobilization_Forces")]),
+
+"chatham": dict(
+ res=["Instituto de asuntos internacionales de Londres, creador de la 'regla de Chatham House' para conversaciones reservadas."],
+ manda=["Bronwen Maddox, directora."],
+ dinero="Socios corporativos, gobiernos y fundaciones.",
+ crono=[("1920", "Fundación."), ("1927", "Formulación de la regla de Chatham House.")],
+ fuentes=[("Chatham House (Wikipedia)", W + "Chatham_House")]),
+
+"dgse": dict(
+ res=["Servicio de inteligencia exterior de Francia, con capacidad de acción clandestina en África, Medio Oriente y Europa."],
+ manda=["Nicolas Lerner, director general."],
+ dinero="Presupuesto reservado.",
+ crono=[("1982-04", "Creación."), ("1985-07", "Hundimiento del Rainbow Warrior.")],
+ fuentes=[("DGSE (Wikipedia)", W + "Directorate-General_for_External_Security")]),
+
+"cmport": dict(
+ res=["Operadora portuaria estatal china con participaciones en terminales de decenas de países, del Sri Lanka (Hambantota) a Brasil (Paranaguá) y Yibuti."],
+ manda=["Grupo China Merchants, empresa estatal."],
+ dinero="Inversiones vinculadas a la Iniciativa de la Franja y la Ruta.",
+ crono=[("1872", "Origen de China Merchants."), ("2017-07", "Concesión de 99 años en Hambantota.")],
+ fuentes=[("China Merchants Port (Wikipedia)", W + "China_Merchants_Port"), ("Hambantota International Port (Wikipedia)", W + "Hambantota_International_Port")]),
+})
