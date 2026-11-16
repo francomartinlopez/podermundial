@@ -1,5 +1,16 @@
 # Cambios
 
+## 2026-11-16 · Navegación y lectura
+
+- Portada: título más chico y sin desplazamiento suave, para que la página no quede trabada a mitad de camino al volver arriba.
+- Mapas: al tocar un país, un actor o un punto de fricción el mapa se acerca; botones para acercar, alejar y volver a la vista completa.
+- Gris del terreno disputado un poco más claro.
+- Nota bajo los rankings de la portada que explica qué miden los puntos.
+- Puntos de fricción con explicación propia; el 2 pasa a llamarse «Islas del Pacífico Sur» y se suma el 7, mar de China Meridional y estrecho de Malaca.
+- Países: filtro por posición (centro, pendular, protectorado, etc.); el filtro de bloque ya no ofrece bloques que no tienen países.
+- Quién manda: buscador de actores, filtros por cantidad, bloque y tipo, nombres visibles y una vista de lista por nivel.
+- Marco: textos a todo el ancho.
+
 ## 2026-11-16 · Nueva imagen para compartir
 
 - Imagen de vista previa rediseñada: mapa mundial con la red de actores y el título a la izquierda (`img/og-mapa.png`). Nombre de archivo nuevo para que WhatsApp y X no sigan mostrando la anterior.

@@ -63,29 +63,44 @@
   const ZONA = { T: "#E10600", X: "#A3150C", P: "#5E1410" };
   function fillFor(name, layer) {
     const p = PA[name]; if (!p) return "#101010";
-    if (layer === "zonas") return p.z ? ZONA[p.z] : "#161616";
-    if (layer === "organizaciones") return p.b === "D" ? "#121212" : bcol(p.b) + "40";
+    if (layer === "zonas") return p.z ? ZONA[p.z] : "#232323";
+    if (layer === "organizaciones") return p.b === "D" ? "#1D1D1D" : bcol(p.b) + "40";
     if (layer === "posicion") {
       if (p.p === "R") return `url(#hatch-${p.b})`;
-      if (p.b === "D") { const c = p.p === "IT" ? BL.T.c : p.p === "IE" ? BL.E.c : p.p === "P" ? BL.P.c : null; if (!c) return "#161616"; return c + Math.round(POSOP[p.p] * 255).toString(16).padStart(2, "0"); }
+      if (p.b === "D") { const c = p.p === "IT" ? BL.T.c : p.p === "IE" ? BL.E.c : p.p === "P" ? BL.P.c : null; if (!c) return "#232323"; return c + Math.round(POSOP[p.p] * 255).toString(16).padStart(2, "0"); }
       return bcol(p.b) + Math.round((POSOP[p.p] || 1) * 255).toString(16).padStart(2, "0");
     }
-    return p.b === "D" ? "#161616" : bcol(p.b);
+    return p.b === "D" ? "#232323" : bcol(p.b);
   }
-  function mapSVG(layer, sel) {
+  const FULL = [0, 0, MW, MH];
+  function fitBox([[x0, y0], [x1, y1]], minW = 200) {
+    let w = Math.max(x1 - x0, minW) * 1.6, h = Math.max(y1 - y0, minW * MH / MW) * 1.6;
+    if (w / h > MW / MH) h = w * MH / MW; else w = h * MW / MH;
+    if (w > MW) { w = MW; h = MH; }
+    const x = Math.max(0, Math.min(MW - w, (x0 + x1) / 2 - w / 2)), y = Math.max(0, Math.min(MH - h, (y0 + y1) / 2 - h / 2));
+    return [x, y, w, h];
+  }
+  function selBox(sel) {
+    if (!sel) return FULL;
+    if (sel.k === "c") { const F = FEAT.find(f => f.properties.name === sel.v); return F ? fitBox(gpath.bounds(F)) : FULL; }
+    const ll = sel.k === "o" ? byId[sel.v].ll : M.friccion.find(f => f.n === +sel.v).ll;
+    const [x, y] = proj(ll); return fitBox([[x - 70, y - 40], [x + 70, y + 40]]);
+  }
+  function mapSVG(layer, sel, z = 1, vb = FULL) {
+    const zs = 1 / Math.pow(z, .75);
     const defs = `<defs>${["T", "E", "I", "D"].map(b => `<pattern id="hatch-${b}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#141414"/><rect width="3" height="6" fill="${b === "D" ? "#5A5150" : bcol(b)}"/></pattern>`).join("")}</defs>`;
     const cs = CPATH.map(c => `<path class="m-c${sel && sel.k === "c" && sel.v === c.name ? " sel" : ""}" data-c="${esc(c.name)}" d="${c.d}" fill="${fillFor(c.name, layer)}"/>`).join("");
     let extra = "";
-    if (layer === "bloques" || layer === "posicion") extra = `<g class="m-fr">${M.friccion.map(f => { const [x, y] = proj(f.ll); return `<g data-fr="${f.n}"><circle cx="${x}" cy="${y}" r="9"/><text x="${x}" y="${y}">${f.n}</text></g>`; }).join("")}</g>`;
-    if (layer === "organizaciones") extra = ORGS.filter(o => o.ll).slice().sort((a, b) => b.pe - a.pe).map(o => { const [x, y] = proj(o.ll); const r = 2 + Math.sqrt(o.pe) * .9; return shape(o.tipo, x, y, r, bcol(o.bloque), `class="m-o${sel && sel.k === "o" && sel.v === o.id ? " sel" : ""}" data-o="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}"`); }).join("");
-    return `<svg viewBox="0 0 ${MW} ${MH}" role="img" aria-label="Mapa mundial: ${esc(LAYERS[layer])}">${defs}<path class="m-sphere" d="${SPHERE}"/><path class="m-grat" d="${GRAT}"/>${cs}${extra}</svg>`;
+    if (layer === "bloques" || layer === "posicion") extra = `<g class="m-fr">${M.friccion.map(f => { const [x, y] = proj(f.ll); return `<g data-fr="${f.n}" tabindex="0" role="button" aria-label="Punto de fricción ${f.n}: ${esc(f.x)}"><circle cx="${x}" cy="${y}" r="${9 * zs}"/><text x="${x}" y="${y}" style="font-size:${10 * zs}px">${f.n}</text></g>`; }).join("")}</g>`;
+    if (layer === "organizaciones") extra = ORGS.filter(o => o.ll).slice().sort((a, b) => b.pe - a.pe).map(o => { const [x, y] = proj(o.ll); const r = (2 + Math.sqrt(o.pe) * .9) * zs; return shape(o.tipo, x, y, r, bcol(o.bloque), `class="m-o${sel && sel.k === "o" && sel.v === o.id ? " sel" : ""}" data-o="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}"`); }).join("");
+    return `<svg viewBox="${vb.join(" ")}" role="img" aria-label="Mapa mundial: ${esc(LAYERS[layer])}">${defs}<path class="m-sphere" d="${SPHERE}"/><path class="m-grat" d="${GRAT}"/>${cs}${extra}</svg>`;
   }
   const LAYERS = { bloques: "Bloques", posicion: "Posición", zonas: "Zonas liberadas", organizaciones: "Organizaciones" };
   function legendFor(layer) {
     const sq = (c, t, extra = "") => `<div><span class="sq" style="background:${c};${extra}"></span>${t}</div>`;
-    if (layer === "zonas") return sq(ZONA.T, "Total") + sq(ZONA.X, "Extendida") + sq(ZONA.P, "Parcial") + sq("#161616", "Sin zona liberada", "border:1px solid #2A1414");
+    if (layer === "zonas") return sq(ZONA.T, "Total") + sq(ZONA.X, "Extendida") + sq(ZONA.P, "Parcial") + sq("#232323", "Sin zona liberada", "border:1px solid #2A1414");
     if (layer === "organizaciones") return M.tipos.map(t => `<div><svg width="16" height="16" aria-hidden="true">${shape(t, 8, 8, 6.4, "#EDE6E3")}</svg>${t}</div>`).join("") + `<p class="note">Color: bloque de la organización. Tamaño: poder efectivo.</p>`;
-    const base = sq(BL.T.c, "Imperio transoceánico") + sq(BL.E.c, "Alianza euroasiática") + sq(BL.I.c, "Independientes") + sq("#161616", "Terreno disputado", "border:1px solid #2A1414");
+    const base = sq(BL.T.c, "Imperio transoceánico") + sq(BL.E.c, "Alianza euroasiática") + sq(BL.I.c, "Independientes") + sq("#232323", "Terreno disputado", "border:1px solid #2A1414");
     if (layer === "posicion") return base + sq("repeating-linear-gradient(45deg,#2F6BFF 0 3px,#141414 3px 6px)", "Protectorado") + `<p class="note">Intensidad: centro y aliados, plenos; integrados, medios. En el terreno disputado, el tinte indica hacia qué bloque se inclina.</p>`;
     return base + `<div><span class="sq" style="border:1.6px solid #FF3B30;border-radius:50%"></span>Punto de fricción</div>`;
   }
@@ -103,27 +118,53 @@
       <p class="side-x"><b>Sede:</b> ${esc(o.sede)}<br><b>Autonomía:</b> ${o.aut} · ${esc(M.autonomia[o.aut])}</p>
       <a class="btn" href="#o-${o.id}">Abrir la ficha</a>`;
   }
-  function frPanel(n) { const f = M.friccion.find(x => x.n === +n); return `<div class="lbl">Punto de fricción ${f.n}</div><h3>${esc(f.x)}</h3><p class="side-x">Uno de los seis frentes donde chocan los bloques, según el marco del sitio.</p>`; }
+  function frPanel(n) { const f = M.friccion.find(x => x.n === +n); return `<div class="lbl">Punto de fricción ${f.n} de ${M.friccion.length}</div><h3>${esc(f.x)}</h3><p class="side-x">${esc(f.d)}</p><p class="note">Los puntos de fricción son los frentes donde chocan los bloques.</p>`; }
   function mountMap(el, opts = {}) {
     let layer = opts.layer || "bloques", sel = null;
     const layers = opts.layers || Object.keys(LAYERS);
     el.innerHTML = `<div class="panel"><div class="panel-bar"><div class="chips" role="group" aria-label="Capas del mapa">${layers.map(k => `<button type="button" class="chip" data-l="${k}">${LAYERS[k]}</button>`).join("")}</div><span class="note" style="margin:0">Tocá un país o una organización</span></div>
-      <div class="split"><div class="stage map"></div><aside></aside></div></div>`;
-    const stage = el.querySelector(".stage"), side = el.querySelector("aside");
-    const draw = () => {
+      <div class="split"><div class="stage map"><div class="map-svg"></div><div class="map-ctl"><button type="button" data-z="in" aria-label="Acercar">+</button><button type="button" data-z="out" aria-label="Alejar">−</button><button type="button" data-z="all" class="all">Vista completa</button></div></div><aside></aside></div></div>`;
+    const holder = el.querySelector(".map-svg"), side = el.querySelector("aside");
+    const stage = holder;
+    let vb = FULL.slice(), goal = FULL.slice(), anim = 0;
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const zoomTo = t => {
+      goal = t.slice(); cancelAnimationFrame(anim);
+      const from = vb.slice(), t0 = performance.now(), svg = holder.querySelector("svg");
+      const step = now => { const p = still ? 1 : Math.min(1, (now - t0) / 480), e = 1 - Math.pow(1 - p, 3);
+        vb = from.map((v, i) => v + (t[i] - v) * e); if (svg) svg.setAttribute("viewBox", vb.join(" ")); if (p < 1) anim = requestAnimationFrame(step); };
+      anim = requestAnimationFrame(step);
+    };
+    const pick = s => { sel = s; const t = selBox(s); draw(t); zoomTo(t); };
+    const zoomBy = f => { const [x, y, w, h] = goal, nw = Math.min(MW, Math.max(MW / 12, w * f)), nh = nw * MH / MW;
+      const t = [Math.max(0, Math.min(MW - nw, x + w / 2 - nw / 2)), Math.max(0, Math.min(MH - nh, y + h / 2 - nh / 2)), nw, nh]; draw(t); zoomTo(t); };
+    el.querySelector('[data-z="in"]').onclick = () => zoomBy(1 / 1.7);
+    el.querySelector('[data-z="out"]').onclick = () => zoomBy(1.7);
+    el.querySelector('[data-z="all"]').onclick = () => { draw(FULL); zoomTo(FULL); };
+    // arrastre con mouse cuando está acercado (en pantallas táctiles no, para no trabar el scroll)
+    let drag = null;
+    holder.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse" || goal[2] >= MW) return; drag = { x: e.clientX, y: e.clientY, v: goal.slice(), moved: false }; });
+    addEventListener("pointermove", e => { if (!drag) return; const k = drag.v[2] / holder.clientWidth, dx = (e.clientX - drag.x) * k, dy = (e.clientY - drag.y) * k;
+      if (Math.abs(dx) + Math.abs(dy) > 2) drag.moved = true; if (!drag.moved) return;
+      const [x, y, w, h] = drag.v; goal = vb = [Math.max(0, Math.min(MW - w, x - dx)), Math.max(0, Math.min(MH - h, y - dy)), w, h];
+      const svg = holder.querySelector("svg"); if (svg) svg.setAttribute("viewBox", vb.join(" ")); });
+    addEventListener("pointerup", () => { if (drag && drag.moved) holder.addEventListener("click", e => e.stopPropagation(), { capture: true, once: true }); drag = null; });
+    const draw = (t = goal) => {
+      el.querySelector(".map-ctl .all").classList.toggle("on", t[2] < MW);
       el.querySelectorAll("[data-l]").forEach(b => { b.classList.toggle("on", b.dataset.l === layer); b.setAttribute("aria-pressed", b.dataset.l === layer); });
-      stage.innerHTML = mapSVG(layer, sel);
+      holder.innerHTML = mapSVG(layer, sel, MW / t[2], vb);
       side.innerHTML = !sel ? `<div class="lbl">Cómo leerlo</div><div class="legend">${legendFor(layer)}</div>`
         : sel.k === "c" ? countryPanel(sel.v) : sel.k === "o" ? orgPanel(byId[sel.v]) : frPanel(sel.v);
       if (sel) side.insertAdjacentHTML("beforeend", `<button type="button" class="chip" data-clear style="align-self:flex-start">Volver a la leyenda</button>`);
-      const clear = side.querySelector("[data-clear]"); if (clear) clear.onclick = () => { sel = null; draw(); };
-      stage.querySelectorAll(".m-c").forEach(p => p.addEventListener("click", () => { sel = { k: "c", v: p.dataset.c }; draw(); }));
-      activate(stage, ".m-o", g => { sel = { k: "o", v: g.dataset.o }; draw(); });
-      stage.querySelectorAll("[data-fr]").forEach(g => g.addEventListener("click", () => { sel = { k: "f", v: g.dataset.fr }; draw(); }));
+      const clear = side.querySelector("[data-clear]"); if (clear) clear.onclick = () => { sel = null; draw(FULL); zoomTo(FULL); };
+      stage.querySelectorAll(".m-c").forEach(p => p.addEventListener("click", () => pick({ k: "c", v: p.dataset.c })));
+      activate(stage, ".m-o", g => pick({ k: "o", v: g.dataset.o }));
+      activate(stage, "[data-fr]", g => pick({ k: "f", v: g.dataset.fr }));
       bindTip(stage, ".m-c", p => { const c = PA[p.dataset.c]; return c ? `<b>${esc(c.n)}</b><span>${esc(BL[c.b].n)} · ${esc(M.posiciones[c.p])}${c.z ? " · zona liberada " + esc(M.grados[c.z]).toLowerCase() : ""}</span>` : esc(p.dataset.c); });
       bindTip(stage, ".m-o", g => { const o = byId[g.dataset.o]; return `<b>${esc(o.n)}</b><span>${esc(o.area)} · poder en red ${num(o.red)}</span>`; });
     };
     el.querySelectorAll("[data-l]").forEach(b => b.addEventListener("click", () => { layer = b.dataset.l; if (sel && sel.k === "o" && layer !== "organizaciones") sel = null; draw(); }));
+    side.addEventListener("click", e => { const a = e.target.closest("[data-pick]"); if (!a) return; e.preventDefault(); if (layer !== "organizaciones") layer = "organizaciones"; pick({ k: "o", v: a.dataset.pick }); });
     draw();
   }
 
@@ -145,6 +186,7 @@
       <section class="block two">
         <div><div class="sec-title"><h2>Poder en red</h2><a href="#organizaciones">Ver los ${ORGS.length}</a></div>${rankRows(red, "red", red[0].red)}</div>
         <div><div class="sec-title"><h2>Poder oculto</h2><a href="#organizaciones-oculto">Ver el índice</a></div>${rankRows(oc, "oculto", oc[0].oculto, "#E10600")}</div>
+        <p class="note scale-note"><b>Cómo leer los números.</b> Son puntos, no dinero ni porcentajes, y sirven para comparar. Cada actor recibe de 0 a 3 en ${M.ejes.length} ejes: la suma es su capacidad (máximo ${M.ejes.length * 3}). El poder efectivo la ajusta por autonomía: entero si decide solo, tres cuartos si es aliado con criterio propio, la mitad si es subordinado y un cuarto si es fachada. El <b>poder en red</b> suma, además, la mitad del poder de quienes dependen de él, en cadena; por eso los centros superan los ${M.ejes.length * 3} puntos. El <b>poder oculto</b> es la parte del poder efectivo que escapa a la ley, las elecciones, los tribunales y la auditoría. <a href="#marco">Ver el método</a>.</p>
       </section>
       <section class="block cards">
         <a class="card" href="#quien-manda"><span class="kick">Esquema</span><b>Quién manda</b><span>La jerarquía real: quién decide solo, quién obedece y quién aparenta.</span></a>
@@ -161,13 +203,14 @@
       <p class="read">El orden mundial como bloques con centros, aliados, protectorados con fachada de independencia y zonas que ningún Estado controla del todo.</p></div>
       <section class="block" id="mapa-paises"></section>
       <section class="block"><div class="sec-title"><h2>Clasificación</h2><span class="note" style="margin:0">${rows.length} países y territorios</span></div>
-      <div class="filters"><label>Bloque<select id="fB"><option value="">Todos</option>${Object.entries(BL).map(([k, b]) => `<option value="${k}">${esc(b.n)}</option>`).join("")}</select></label>
+      <div class="filters"><label>Bloque<select id="fB"><option value="">Todos</option>${["T", "E", "I", "D"].map(k => `<option value="${k}">${esc(BL[k].n)}</option>`).join("")}</select></label>
+      <label>Posición<select id="fP"><option value="">Todas</option>${Object.entries(M.posiciones).filter(([k]) => rows.some(([, p]) => p.p === k)).map(([k, n]) => `<option value="${k}">${esc(n)}</option>`).join("")}</select></label>
       <label>Zona liberada<select id="fZ"><option value="">Todas</option><option value="si">Con zona liberada</option></select></label></div>
       <div class="tbl-wrap"><table><thead><tr><th>País</th><th>Bloque</th><th>Posición</th><th>Zona liberada</th><th>Nota</th></tr></thead><tbody id="tb"></tbody></table></div></section></div>`;
     mountMap(document.getElementById("mapa-paises"), { layer: "posicion" });
-    const tb = document.getElementById("tb"), fB = document.getElementById("fB"), fZ = document.getElementById("fZ");
-    const fill = () => { tb.innerHTML = rows.filter(([, p]) => (!fB.value || p.b === fB.value) && (!fZ.value || p.z)).map(([, p]) => `<tr><td>${esc(p.n)}</td><td><span class="sq" style="background:${p.b === "D" ? "#161616" : bcol(p.b)};border:1px solid #2A1414;vertical-align:-2px"></span> ${esc(BL[p.b].n)}</td><td>${esc(M.posiciones[p.p])}</td><td>${p.z ? esc(M.grados[p.z]) + " · " + esc(p.asp.map(a => M.aspectos[a]).join(", ")) : "—"}</td><td class="muted">${esc(p.x)}</td></tr>`).join(""); };
-    fB.onchange = fZ.onchange = fill; fill();
+    const tb = document.getElementById("tb"), fB = document.getElementById("fB"), fZ = document.getElementById("fZ"), fP = document.getElementById("fP");
+    const fill = () => { tb.innerHTML = rows.filter(([, p]) => (!fB.value || p.b === fB.value) && (!fP.value || p.p === fP.value) && (!fZ.value || p.z)).map(([, p]) => `<tr><td>${esc(p.n)}</td><td><span class="sq" style="background:${p.b === "D" ? "#232323" : bcol(p.b)};border:1px solid #2A1414;vertical-align:-2px"></span> ${esc(BL[p.b].n)}</td><td>${esc(M.posiciones[p.p])}</td><td>${p.z ? esc(M.grados[p.z]) + " · " + esc(p.asp.map(a => M.aspectos[a]).join(", ")) : "—"}</td><td class="muted">${esc(p.x)}</td></tr>`).join(""); };
+    fB.onchange = fZ.onchange = fP.onchange = fill; fill();
   };
 
   V.organizaciones = (arg) => {
@@ -237,53 +280,92 @@
   };
 
   V.quien = () => {
-    let mode = "pe", cur = null, showRel = true;
+    let mode = "pe", cur = null, showRel = true, view = "grafico", topN = 60, fB = "", fT = "";
+    const norm = t => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
     app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Esquema</div><h1>Quién manda</h1></div>
-      <p class="read">La fila indica la autonomía; el tamaño, el poder; el color, el bloque; la forma, el tipo de organización. Las líneas grises marcan de quién depende cada una.</p></div>
-      <div class="chips" style="margin-bottom:14px"><button type="button" class="chip" data-m="pe">Poder efectivo</button><button type="button" class="chip" data-m="oculto">Poder oculto</button><span class="chip-sep" aria-hidden="true"></span><button type="button" class="chip" data-r>Relaciones</button></div>
-      <section class="block"><div class="panel"><div class="split"><div class="stage"><div class="qm-scroll"><svg id="qm" role="img" aria-label="Gráfico de jerarquía entre organizaciones"></svg></div><p class="note" style="padding:0 14px 12px">En el teléfono el gráfico se desliza de costado.</p></div><aside id="qside"></aside></div></div></section></div>`;
-    const VW = 1200, top = 24, PER = 30, SUBH = 62;
-    const rows = [1, 2, 3, 4].map(a => ORGS.filter(o => o.aut === a));
-    const yBase = {}; let acc = top;
-    [1, 2, 3, 4].forEach(a => { const n = rows[a - 1].length; yBase[a] = acc; acc += n ? 40 + Math.ceil(n / PER) * SUBH : 44; });
-    const VH = acc + 10;
-    const pos = {};
-    rows.forEach((list, ri) => {
-      const a = ri + 1; if (!list.length) return;
-      const sorted = list.slice().sort((x, y) => BORDER.indexOf(x.bloque) - BORDER.indexOf(y.bloque) || y.pe - x.pe);
-      const nsub = Math.ceil(sorted.length / PER), per = Math.ceil(sorted.length / nsub);
-      sorted.forEach((o, i) => { const s = Math.floor(i / per), k = i % per, cnt = Math.min(per, sorted.length - s * per);
-        const x = 60 + (cnt === 1 ? (VW - 120) / 2 : k * (VW - 120) / (cnt - 1));
-        const y = yBase[a] + 40 + s * SUBH + SUBH / 2 - 6 + ((k % 2) ? 7 : -7);
-        pos[o.id] = [x, y]; });
-    });
-    const svg = document.getElementById("qm"), side = document.getElementById("qside");
-    svg.setAttribute("viewBox", `0 0 ${VW} ${VH}`);
+      <p class="read">La fila indica la autonomía; el tamaño, el poder; el color, el bloque; la forma, el tipo. Buscá un actor o filtrá para ver menos a la vez.</p></div>
+      <div class="qm-tools">
+        <label class="qm-search">Buscar<input id="qS" type="search" list="qL" placeholder="Nombre de un actor" autocomplete="off"><datalist id="qL">${ORGS.slice().sort((a, b) => corto(a.n).localeCompare(corto(b.n), "es")).map(o => `<option value="${esc(corto(o.n))}"></option>`).join("")}</datalist></label>
+        <label>Mostrar<select id="qN"><option value="30">Los 30 con más poder</option><option value="60" selected>Los 60 con más poder</option><option value="120">Los 120 con más poder</option><option value="0">Todos (${ORGS.length})</option></select></label>
+        <label>Bloque<select id="qB"><option value="">Todos</option>${["T", "E", "I", "P", "X"].map(k => `<option value="${k}">${esc(BL[k].n)}</option>`).join("")}</select></label>
+        <label>Tipo<select id="qT"><option value="">Todos</option>${M.tipos.map(t => `<option>${t}</option>`).join("")}</select></label>
+      </div>
+      <div class="chips" style="margin-bottom:14px"><button type="button" class="chip" data-v="grafico">Gráfico</button><button type="button" class="chip" data-v="lista">Lista por nivel</button><span class="chip-sep" aria-hidden="true"></span><button type="button" class="chip" data-m="pe">Poder efectivo</button><button type="button" class="chip" data-m="oculto">Poder oculto</button><span class="chip-sep" aria-hidden="true"></span><button type="button" class="chip" data-r>Relaciones</button></div>
+      <section class="block"><div class="panel"><div class="split"><div class="stage" id="qstage"></div><aside id="qside"></aside></div></div></section></div>`;
+    const stage = document.getElementById("qstage"), side = document.getElementById("qside");
+    const linked = id => new Set([id, ...byId[id].dep, ...dependents(id).map(d => d.id), ...relsOf(id).map(r => r.a === id ? r.b : r.a)]);
+    const visible = () => {
+      let l = sortBy(mode).filter(o => (!fB || o.bloque === fB) && (!fT || o.tipo === fT));
+      if (topN) l = l.slice(0, topN);
+      const set = new Set(l.map(o => o.id));
+      if (cur) linked(cur).forEach(i => set.add(i));
+      return ORGS.filter(o => set.has(o.id));
+    };
+    const near = id => !cur || linked(cur).has(id);
     const rad = o => 3 + Math.sqrt(Math.max(o[mode], 0)) * (mode === "pe" ? 1.9 : 2.2);
-    const near = id => !cur || id === cur || byId[cur].dep.includes(id) || byId[id].dep.includes(cur) || REL.some(r => (r.a === cur && r.b === id) || (r.b === cur && r.a === id));
-    const draw = () => {
-      app.querySelectorAll("[data-m]").forEach(b => { b.classList.toggle("on", b.dataset.m === mode); b.setAttribute("aria-pressed", b.dataset.m === mode); });
-      const rb = app.querySelector("[data-r]"); rb.classList.toggle("on", showRel); rb.setAttribute("aria-pressed", showRel);
-      const lv = [1, 2, 3, 4].map(a => `<g class="qm-row">${a > 1 ? `<line x1="16" x2="${VW - 16}" y1="${yBase[a] - 4}" y2="${yBase[a] - 4}"/>` : ""}<text class="qm-lv" x="16" y="${yBase[a] + 14}">${a} · ${esc(M.autonomia[a]).toUpperCase()} (${rows[a - 1].length})</text></g>`).join("");
-      const deps = ORGS.flatMap(o => o.dep.filter(d => pos[d]).map(d => { const [x1, y1] = pos[o.id], [x2, y2] = pos[d], on = !cur || cur === o.id || cur === d;
-        return `<path class="qm-dep" d="M${x1},${y1} C${x1},${(y1 + y2) / 2} ${x2},${(y1 + y2) / 2} ${x2},${y2}" opacity="${on ? (cur ? .9 : .35) : .05}"/>`; })).join("");
-      const rels = showRel ? REL.filter(r => cur ? (r.a === cur || r.b === cur) : r.i === 3).map(r => { const [x1, y1] = pos[r.a], [x2, y2] = pos[r.b], mx = (x1 + x2) / 2, my = Math.min(y1, y2) - 30 - Math.abs(x1 - x2) * .1;
+    function graph(vis) {
+      const VW = 1200, top = 24, labelAll = vis.length <= 130, PER = labelAll ? 14 : 30, SUBH = labelAll ? 84 : 62;
+      const rows = [1, 2, 3, 4].map(a => vis.filter(o => o.aut === a));
+      const yBase = {}; let acc = top;
+      [1, 2, 3, 4].forEach(a => { const n = rows[a - 1].length; yBase[a] = acc; acc += n ? 40 + Math.ceil(n / PER) * SUBH : 0; });
+      const VH = acc + 10, pos = {}, below = {};
+      rows.forEach((list, ri) => {
+        const a = ri + 1; if (!list.length) return;
+        const sorted = list.slice().sort((x, y) => BORDER.indexOf(x.bloque) - BORDER.indexOf(y.bloque) || y[mode] - x[mode]);
+        const nsub = Math.ceil(sorted.length / PER), per = Math.ceil(sorted.length / nsub);
+        sorted.forEach((o, i) => { const s = Math.floor(i / per), k = i % per, cnt = Math.min(per, sorted.length - s * per);
+          const x = 70 + (cnt === 1 ? (VW - 140) / 2 : k * (VW - 140) / (cnt - 1));
+          const y = yBase[a] + 40 + s * SUBH + SUBH / 2 - 4 + (labelAll ? 0 : ((k % 2) ? 7 : -7));
+          pos[o.id] = [x, y]; below[o.id] = k % 2 === 0; });
+      });
+      const lv = [1, 2, 3, 4].filter(a => rows[a - 1].length).map((a, i) => `<g class="qm-row">${i ? `<line x1="16" x2="${VW - 16}" y1="${yBase[a] - 4}" y2="${yBase[a] - 4}"/>` : ""}<text class="qm-lv" x="16" y="${yBase[a] + 14}">${a} · ${esc(M.autonomia[a]).toUpperCase()} (${rows[a - 1].length})</text></g>`).join("");
+      const deps = vis.flatMap(o => o.dep.filter(d => pos[d]).map(d => { const [x1, y1] = pos[o.id], [x2, y2] = pos[d], on = !cur || cur === o.id || cur === d;
+        return `<path class="qm-dep" d="M${x1},${y1} C${x1},${(y1 + y2) / 2} ${x2},${(y1 + y2) / 2} ${x2},${y2}" opacity="${on ? (cur ? .9 : .3) : .04}"/>`; })).join("");
+      const rels = showRel ? REL.filter(r => pos[r.a] && pos[r.b] && (cur ? (r.a === cur || r.b === cur) : r.i === 3)).map(r => { const [x1, y1] = pos[r.a], [x2, y2] = pos[r.b], mx = (x1 + x2) / 2, my = Math.min(y1, y2) - 30 - Math.abs(x1 - x2) * .1;
         const st = r.t === "Enfrentamiento" ? 'stroke="#FF3B30" stroke-dasharray="6 4"' : (r.t === "Ambigua" ? 'stroke="#F2A93B" stroke-dasharray="4 3"' : (r.t === "Puerta giratoria" || r.t === "Acceso a datos") ? 'stroke="#9A8F8C" stroke-dasharray="2 4"' : 'stroke="#EDE6E3"');
-        return `<path class="qm-rel" d="M${x1},${y1} Q${mx},${my} ${x2},${y2}" ${st} opacity="${cur ? .9 : .4}"/>`; }).join("") : "";
-      const ordered = ORGS.slice().sort((a, b) => rad(b) - rad(a));
-      const nodes = ordered.map(o => { const [x, y] = pos[o.id], r = rad(o), dim = !near(o.id), lab = cur ? near(o.id) : r > 13.5;
-        return `<g class="qm-n" data-id="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}" opacity="${dim ? .15 : 1}">${shape(o.tipo, x, y, r, bcol(o.bloque), `fill-opacity="${o.tipo === "Sombra" ? 1 : .9}"`)}${cur === o.id ? `<circle cx="${x}" cy="${y}" r="${r + 6}" fill="none" stroke="#FF3B30" stroke-width="2"/>` : ""}${lab ? `<text x="${x}" y="${y + r + 13}">${esc(corto(o.n).slice(0, 26))}</text>` : ""}</g>`; }).join("");
-      svg.innerHTML = lv + deps + rels + nodes;
-      side.innerHTML = cur ? orgPanel(byId[cur]) + `<div class="box" style="padding:12px"><span class="lbl">Por familia</span>${radar(byId[cur])}</div>` + `<div class="side-x"><b>Depende de:</b> ${byId[cur].dep.map(d => esc(corto(byId[d].n))).join(", ") || "nadie en el mapa"}<br><b>Dependen de ella:</b> ${dependents(cur).map(d => esc(corto(d.n))).join(", ") || "ninguna"}</div><button type="button" class="chip" data-clear style="align-self:flex-start">Ver todo</button>`
+        return `<path class="qm-rel" d="M${x1},${y1} Q${mx},${my} ${x2},${y2}" ${st} opacity="${cur ? .9 : .3}"/>`; }).join("") : "";
+      const nodes = vis.slice().sort((a, b) => rad(b) - rad(a)).map(o => { const [x, y] = pos[o.id], r = Math.min(rad(o), 30), dim = !near(o.id), lab = cur ? near(o.id) : (labelAll || r > 13.5);
+        const ty = below[o.id] || !labelAll ? y + r + 13 : y - r - 6, nm = corto(o.n), t = nm.length > 22 ? nm.slice(0, 21) + "…" : nm;
+        return `<g class="qm-n" data-id="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}" opacity="${dim ? .12 : 1}"><circle cx="${x}" cy="${y}" r="${Math.max(r, 12)}" fill="transparent"/>${shape(o.tipo, x, y, r, bcol(o.bloque), `fill-opacity="${o.tipo === "Sombra" ? 1 : .9}"`)}${cur === o.id ? `<circle cx="${x}" cy="${y}" r="${r + 6}" fill="none" stroke="#FF3B30" stroke-width="2"/>` : ""}${lab ? `<text x="${x}" y="${ty}"${cur === o.id ? ' class="cur"' : ""}>${esc(t)}</text>` : ""}</g>`; }).join("");
+      stage.innerHTML = `<div class="qm-scroll"><svg id="qm" viewBox="0 0 ${VW} ${VH}" role="img" aria-label="Gráfico de jerarquía entre organizaciones">${lv + deps + rels + nodes}</svg></div><p class="note" style="padding:0 14px 12px">${vis.length} actores a la vista. En el teléfono el gráfico se desliza de costado.</p>`;
+      return pos;
+    }
+    function list(vis) {
+      stage.innerHTML = `<div class="qm-list">${[1, 2, 3, 4].map(a => { const l = vis.filter(o => o.aut === a).sort((x, y) => y[mode] - x[mode]); if (!l.length) return "";
+        return `<div><div class="lbl" style="padding:0 0 8px;border-bottom:1px solid var(--line)">${a} · ${esc(M.autonomia[a])} (${l.length})</div>${l.map(o => `<button type="button" class="qm-it${cur === o.id ? " on" : ""}" data-id="${o.id}" style="opacity:${near(o.id) ? 1 : .3}">${icon(o)}<span>${esc(corto(o.n))}<small>${o.dep.length ? "depende de " + esc(o.dep.map(d => corto(byId[d].n)).join(", ")) : esc(o.area)}</small></span><b>${num(o[mode])}</b></button>`).join("")}</div>`; }).join("")}</div><p class="note" style="padding:0 16px 14px">${vis.length} actores a la vista, ordenados por ${mode === "pe" ? "poder efectivo" : "poder oculto"}.</p>`;
+    }
+    const draw = (focus = false) => {
+      app.querySelectorAll("[data-m]").forEach(b => { b.classList.toggle("on", b.dataset.m === mode); b.setAttribute("aria-pressed", b.dataset.m === mode); });
+      app.querySelectorAll("[data-v]").forEach(b => { b.classList.toggle("on", b.dataset.v === view); b.setAttribute("aria-pressed", b.dataset.v === view); });
+      const rb = app.querySelector("[data-r]"); rb.classList.toggle("on", showRel); rb.setAttribute("aria-pressed", showRel); rb.hidden = view !== "grafico";
+      const vis = visible();
+      const pos = view === "grafico" ? graph(vis) : (list(vis), null);
+      side.innerHTML = cur ? orgPanel(byId[cur]) + `<div class="box" style="padding:12px"><span class="lbl">Por familia</span>${radar(byId[cur])}</div>` + `<div class="side-x"><b>Depende de:</b> ${byId[cur].dep.map(d => `<a href="#" data-go="${d}">${esc(corto(byId[d].n))}</a>`).join(", ") || "nadie en el mapa"}<br><b>Dependen de él:</b> ${dependents(cur).map(d => `<a href="#" data-go="${d.id}">${esc(corto(d.n))}</a>`).join(", ") || "ninguno"}</div><button type="button" class="chip" data-clear style="align-self:flex-start">Ver todo</button>`
         : `<div class="lbl">Cómo leerlo</div>${[1, 2, 3, 4].map(a => `<p class="side-x"><b>${a} · ${esc(M.autonomia[a])}.</b> ${["Sin superior en lo estratégico.", "Decide su estrategia dentro de un bloque o jurisdicción que puede limitarla.", "Ejecuta lo que decide otro.", "Aparenta una independencia que no tiene."][a - 1]}</p>`).join("")}
           <div class="legend">${["T", "E", "I", "P", "X"].map(k => `<div><span class="sq" style="background:${BL[k].c}"></span>${esc(BL[k].n)}</div>`).join("")}</div>
           <div class="legend">${M.tipos.map(t => `<div><svg width="16" height="16" aria-hidden="true">${shape(t, 8, 8, 6.4, "#EDE6E3")}</svg>${t}</div>`).join("")}</div>
-          <p class="note">Sin selección se muestran solo las relaciones fuertes. Tocá un punto para ver todas las suyas.</p>`;
-      const clr = side.querySelector("[data-clear]"); if (clr) clr.onclick = () => { cur = null; draw(); };
-      activate(svg, ".qm-n", g => { cur = cur === g.dataset.id ? null : g.dataset.id; draw(); });
-      bindTip(svg, ".qm-n", g => { const o = byId[g.dataset.id]; return `<b>${esc(o.n)}</b><span>${esc(o.area)} · ${esc(BL[o.bloque].n)}</span><span>Efectivo ${num(o.pe)} · en red ${num(o.red)} · oculto ${num(o.oculto)}</span>`; });
+          <p class="note">Las líneas grises marcan de quién depende cada uno. Sin selección se muestran solo las relaciones fuertes; tocá un actor para ver todas las suyas y a quiénes está ligado.</p>`;
+      const clr = side.querySelector("[data-clear]"); if (clr) clr.onclick = () => { cur = null; document.getElementById("qS").value = ""; draw(); };
+      side.querySelectorAll("[data-go]").forEach(a => a.onclick = e => { e.preventDefault(); select(a.dataset.go, true); });
+      activate(stage, "[data-id]", g => { cur = cur === g.dataset.id ? null : g.dataset.id; draw(true); });
+      bindTip(stage, ".qm-n", g => { const o = byId[g.dataset.id]; return `<b>${esc(o.n)}</b><span>${esc(o.area)} · ${esc(BL[o.bloque].n)}</span><span>Efectivo ${num(o.pe)} · en red ${num(o.red)} · oculto ${num(o.oculto)}</span>`; });
+      if (focus && cur) {
+        if (pos && pos[cur]) { const sc = stage.querySelector(".qm-scroll"), svg = sc.querySelector("svg"); sc.scrollLeft = pos[cur][0] / 1200 * svg.clientWidth - sc.clientWidth / 2; }
+        if (innerWidth < 980) side.scrollIntoView({ block: "start" });
+      }
     };
+    const select = (id, focus) => { cur = id; document.getElementById("qS").value = corto(byId[id].n); draw(focus); };
+    const qS = document.getElementById("qS");
+    const find = () => { const q = norm(qS.value.trim()); if (!q) return null;
+      return ORGS.find(o => norm(corto(o.n)) === q) || ORGS.find(o => norm(o.n).startsWith(q)) || sortBy("red").find(o => norm(o.n).includes(q)); };
+    qS.addEventListener("change", () => { const o = find(); if (o) select(o.id, true); });
+    qS.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); const o = find(); if (o) select(o.id, true); } });
+    qS.addEventListener("search", () => { if (!qS.value) { cur = null; draw(); } });
+    document.getElementById("qN").onchange = e => { topN = +e.target.value; draw(); };
+    document.getElementById("qB").onchange = e => { fB = e.target.value; draw(); };
+    document.getElementById("qT").onchange = e => { fT = e.target.value; draw(); };
     app.querySelectorAll("[data-m]").forEach(b => b.onclick = () => { mode = b.dataset.m; draw(); });
+    app.querySelectorAll("[data-v]").forEach(b => b.onclick = () => { view = b.dataset.v; draw(); });
     app.querySelector("[data-r]").onclick = () => { showRel = !showRel; draw(); };
     draw();
   };
@@ -339,8 +421,9 @@
     const titles = { inicio: "", "quien-manda": "Quién manda", organizaciones: "Organizaciones", paises: "Países", marco: "Marco" };
     const t = h.startsWith("o-") && byId[h.slice(2)] ? corto(byId[h.slice(2)].n) : titles[navKey];
     document.title = (t ? t + " · " : "") + "El mapa del poder global";
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   document.getElementById("stamp").innerHTML = `Corte <b>${fecha(M.corte)}</b><br>Próxima revisión ${fecha(M.proxima)}`;
   document.getElementById("foot-date").textContent = `Corte del ${fecha(M.corte)} · próxima revisión el ${fecha(M.proxima)}`;
   window.addEventListener("hashchange", route);
