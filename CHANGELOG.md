@@ -1,5 +1,11 @@
 # Cambios
 
+## 2026-11-16 · Ampliación a 250 organizaciones
+
+- 50 organizaciones nuevas para cubrir América Latina, África, Europa del Sur y del Este, el Sudeste Asiático, Oceanía y Canadá: gobiernos (Argentina, Colombia, Venezuela, Chile, Ecuador, Nigeria, Sudáfrica, Etiopía, Kenia, Ruanda, Marruecos, Italia, España, Polonia, Hungría, Indonesia, Filipinas, Corea del Sur, Australia, Bangladés, Siria, Irak, Canadá), partidos (Cuba, Vietnam), ejércitos (Sudán, Tailandia, Myanmar), empresas (PDVSA, Codelco, OCP, Sonatrach, Dangote, Shell, TotalEnergies, LVMH, Rheinmetall, BHP, Reliance, Adani, Kazatomprom, Temasek, Petronas) y grupos armados (ELN, Clan del Golfo, Los Lobos, M23, Ejército Nacional Libio, Al Shabaab, Alianza de Estados del Sahel).
+- 68 relaciones nuevas. Todas las organizaciones nuevas tienen ficha.
+- Países: Hungría pasa a integrado al bloque transoceánico tras la victoria de Magyar; notas de Siria y Colombia actualizadas.
+
 ## 2026-11-16 · Tanda 5 de fichas: las 200 completas
 
 - Fichas para las posiciones 161 a 200 (Hamás, Hermandad Musulmana, CPI, Consejo de Seguridad, STF, SWIFT, Euroclear, BRICS, OPEP+ y otras 31). Todas las organizaciones tienen ficha.

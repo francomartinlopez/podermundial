@@ -1577,3 +1577,373 @@ FICHAS.update({
           ("UN News: destitución de Khan (2026-07-24)", "https://www.globalsecurity.org/military/library/news/2026/07/mil-260724-unnews04.htm"),
           ("Irish Times: sanciones a la presidenta de la CPI (2026-08-18)", "https://www.irishtimes.com/world/americas/2026/08/18/us-sanctions-international-criminal-court-president-and-israel-prosecutor/")]),
 })
+
+# ---- Ampliación: 50 organizaciones nuevas ----
+FICHAS.update({
+"casarosada": dict(
+ res=["Gobierno de Javier Milei, alineado con EE.UU. e Israel y sostenido por un programa de ajuste fiscal con apoyo del FMI y del Tesoro estadounidense."],
+ manda=["Javier Milei, presidente desde diciembre de 2023; Karina Milei, secretaria general de la Presidencia."],
+ dinero="Mayor deudor del FMI; canje de monedas de 20.000 millones de dólares con el Tesoro de EE.UU. en 2025.",
+ crono=[("2023-12-10", "Milei asume."), ("2025-04", "Nuevo acuerdo con el FMI."), ("2025-10", "Victoria oficialista en las legislativas y canje con el Tesoro de EE.UU.")],
+ fuentes=[("Presidency of Javier Milei (Wikipedia)", W + "Presidency_of_Javier_Milei")]),
+
+"gob_colombia": dict(
+ res=["Gobierno de Colombia, principal socio militar de EE.UU. en Sudamérica y país con el mayor conflicto armado interno de la región."],
+ manda=["Abelardo de la Espriella, presidente desde el 7 de agosto de 2026; ganó la segunda vuelta del 21 de junio a Iván Cepeda por un margen estrecho."],
+ dinero="Exportaciones de petróleo, carbón y café; la economía ilícita de la cocaína pesa en regiones enteras.",
+ crono=[("2016-11", "Acuerdo de paz con las FARC."), ("2022-08-07", "Petro asume."), ("2026-06-21", "De la Espriella gana la segunda vuelta."), ("2026-08-07", "Asunción.")],
+ fuentes=[("President of Colombia (Wikipedia)", W + "President_of_Colombia"),
+          ("El País (Cali): De la Espriella, presidente electo", "https://www.elpais.com.co/colombia/abelardo-de-la-espriella-es-declarado-oficialmente-presidente-electo-de-colombia-2439.html")]),
+
+"miraflores": dict(
+ res=["Gobierno interino de Venezuela tras la captura de Nicolás Maduro por EE.UU. el 3 de enero de 2026; opera bajo tutela de Washington, que fija la hoja de ruta de la transición.",
+      "No hay fecha de elecciones: EE.UU. espera que la presidencia se declare vacante en 2027 para convocarlas."],
+ manda=["Delcy Rodríguez, presidenta encargada; Jorge Rodríguez y Diosdado Cabello conservan peso en el chavismo."],
+ dinero="Renta petrolera de PDVSA, abierta a inversores extranjeros con la reforma de la ley de hidrocarburos.",
+ crono=[("2026-01-03", "Captura de Maduro por fuerzas de EE.UU."), ("2026-02-11", "Declaración conjunta con el secretario de Energía de EE.UU."), ("2026-10", "EE.UU. presenta su hoja de ruta para la transición.")],
+ fuentes=[("2026 United States intervention in Venezuela (Wikipedia)", W + "2026_United_States_intervention_in_Venezuela"),
+          ("Emol: la hoja de ruta de EE.UU. para Venezuela (2026-10-27)", "https://www.emol.com/noticias/Internacional/2026/10/27/1215321/venezuela-transicion-eeuu-pasos-elecciones.html"),
+          ("Teletica / DW: sin fecha de elecciones (2026-09-02)", "https://www.teletica.com/deutsche-welle/delcy-rodriguez-dice-que-habra-elecciones-cuando-venezuela-este-preparada_416563")]),
+
+"pdvsa": dict(
+ res=["Petrolera estatal venezolana, dueña de las mayores reservas probadas de crudo del mundo, con producción muy por debajo de su capacidad."],
+ manda=["Depende del gobierno interino; su apertura al capital extranjero avanza bajo supervisión de EE.UU."],
+ dinero="Exportaciones reorientadas hacia EE.UU. tras la caída de Maduro.",
+ crono=[("1976-01", "Nacionalización del petróleo."), ("2003", "Despidos masivos tras el paro petrolero."), ("2019-01", "Sanciones de EE.UU."), ("2026", "Reforma de la ley de hidrocarburos.")],
+ fuentes=[("PDVSA (Wikipedia)", W + "PDVSA"),
+          ("Mezha: Delcy Rodríguez y las concesiones a EE.UU.", "https://mezha.net/eng/bukvy/6cfd033e_delcy_rodriguez_leads/")]),
+
+"pcc_cuba": dict(
+ res=["Partido único de Cuba, en su peor crisis desde 1959: sin petróleo venezolano y bajo un bloqueo petrolero de hecho de EE.UU. desde enero de 2026.",
+      "En junio de 2026 aprobó reformas para abrir la economía al capital privado."],
+ manda=["Miguel Díaz-Canel, primer secretario y presidente; Raúl Castro conserva influencia; el conglomerado militar GAESA controla buena parte de la economía."],
+ dinero="Turismo, remesas y empresas militares; colapso energético por falta de combustible.",
+ crono=[("1965-10", "Fundación del partido actual."), ("2021-04", "Díaz-Canel, primer secretario."), ("2026-01", "Corte del petróleo venezolano y presión de EE.UU."), ("2026-06", "Reformas económicas de apertura.")],
+ fuentes=[("Communist Party of Cuba (Wikipedia)", W + "Communist_Party_of_Cuba"), ("2026 Cuban crisis (Wikipedia)", W + "2026_Cuban_crisis"),
+          ("El Observador: reformas de apertura (2026-06-21)", "https://www.elobservador.com.uy/estados-unidos/america-latina/cuba-aprueba-reformas-urgentes-abrir-su-economia-al-capital-privado-medio-la-presion-estados-unidos-n6048160")]),
+
+"gob_chile": dict(
+ res=["Gobierno del mayor productor de cobre del mundo y segundo de litio, insumos centrales de la transición energética."],
+ manda=["José Antonio Kast, presidente desde marzo de 2026."],
+ dinero="Codelco y la minería privada aportan la mayor parte de las exportaciones.",
+ crono=[("2025-12", "Kast gana la segunda vuelta."), ("2026-03-11", "Asunción.")],
+ fuentes=[("President of Chile (Wikipedia)", W + "President_of_Chile")]),
+
+"codelco": dict(
+ res=["La mayor productora de cobre del mundo, de propiedad estatal chilena; socia del litio del salar de Atacama con SQM."],
+ manda=["Directorio designado por el Estado chileno."],
+ dinero="Transfiere al fisco chileno la totalidad de sus utilidades.",
+ crono=[("1976", "Creación tras la nacionalización del cobre de 1971."), ("2024-05", "Acuerdo con SQM por el litio.")],
+ fuentes=[("Codelco (Wikipedia)", W + "Codelco")]),
+
+"gob_ecuador": dict(
+ res=["Gobierno de Ecuador, convertido en uno de los principales puertos de salida de cocaína hacia Europa y EE.UU., en guerra declarada contra las bandas."],
+ manda=["Daniel Noboa, presidente desde 2023, reelecto en 2025."],
+ dinero="Economía dolarizada; exportaciones de petróleo, banano y camarón.",
+ crono=[("2024-01", "Declaración de conflicto armado interno."), ("2025-04", "Reelección de Noboa."), ("2025-11", "Rechazo en referéndum a las bases militares extranjeras.")],
+ fuentes=[("Daniel Noboa (Wikipedia)", W + "Daniel_Noboa"), ("Ecuadorian security crisis (Wikipedia)", W + "Ecuadorian_security_crisis")]),
+
+"eln": dict(
+ res=["La última guerrilla histórica de Colombia, con presencia a ambos lados de la frontera con Venezuela y control de economías ilegales."],
+ manda=["Comando Central; Antonio García, primer comandante."],
+ dinero="Narcotráfico, extorsión, secuestro y minería ilegal.",
+ crono=[("1964", "Fundación."), ("2019-01", "Atentado contra la escuela de policía de Bogotá."), ("2025-01", "Ofensiva en el Catatumbo.")],
+ fuentes=[("National Liberation Army (Colombia) (Wikipedia)", W + "National_Liberation_Army_(Colombia)")]),
+
+"clan_golfo": dict(
+ res=["Ejército Gaitanista de Colombia o Clan del Golfo: la mayor organización narcotraficante de Colombia, con control de rutas hacia el Caribe y Centroamérica."],
+ manda=["Estructura de mando de origen paramilitar; su jefe histórico, 'Otoniel', fue extraditado a EE.UU. en 2022."],
+ dinero="Cocaína, minería ilegal, tráfico de migrantes por el Darién y extorsión.",
+ crono=[("2006", "Surgimiento tras la desmovilización paramilitar."), ("2021-10", "Captura de 'Otoniel'."), ("2022-05", "Extradición a EE.UU.")],
+ fuentes=[("Clan del Golfo (Wikipedia)", W + "Clan_del_Golfo")]),
+
+"los_lobos": dict(
+ res=["La mayor banda de Ecuador, socia del CJNG mexicano en el tráfico de cocaína y la minería ilegal; EE.UU. la designó organización terrorista en 2025."],
+ manda=["Conducción en parte desde las cárceles ecuatorianas."],
+ dinero="Narcotráfico, minería ilegal de oro y extorsión.",
+ crono=[("2024-06", "Sanciones del Tesoro de EE.UU. por sus vínculos con el CJNG."), ("2025-09", "Designación como organización terrorista por EE.UU.")],
+ fuentes=[("Los Lobos (Ecuador) (Wikipedia)", W + "Los_Lobos_(Ecuador)")]),
+
+"gob_nigeria": dict(
+ res=["Gobierno del país más poblado de África y primer productor de petróleo del continente, con insurgencias yihadistas en el noreste y bandidaje en el noroeste."],
+ manda=["Bola Tinubu, presidente desde 2023."],
+ dinero="Renta petrolera; liberó el tipo de cambio y eliminó el subsidio a los combustibles en 2023.",
+ crono=[("2023-05-29", "Tinubu asume."), ("2025-11", "Trump amenaza con intervenir por la violencia contra cristianos.")],
+ fuentes=[("Bola Tinubu (Wikipedia)", W + "Bola_Tinubu")]),
+
+"dangote": dict(
+ res=["El mayor conglomerado industrial de África occidental: cemento, fertilizantes, azúcar y la mayor refinería de África, en Lagos."],
+ manda=["Aliko Dangote, fundador y presidente."],
+ dinero="Aliko Dangote es la persona más rica de África según las listas de fortunas.",
+ crono=[("1981", "Fundación."), ("2024-01", "Inicio de operaciones de la refinería Dangote.")],
+ fuentes=[("Dangote Group (Wikipedia)", W + "Dangote_Group"), ("Dangote Refinery (Wikipedia)", W + "Dangote_Refinery")]),
+
+"gob_sudafrica": dict(
+ res=["Gobierno de la economía más industrializada de África, miembro de los BRICS, enfrentado con Washington desde 2025."],
+ manda=["Cyril Ramaphosa, presidente, al frente de un gobierno de unidad nacional entre el ANC y la Alianza Democrática desde 2024."],
+ dinero="Minería de platino, oro y carbón; sistema financiero más desarrollado del continente.",
+ crono=[("1994-04", "Fin del apartheid."), ("2024-06", "Gobierno de unidad nacional."), ("2025-11", "Cumbre del G20 en Johannesburgo sin participación de EE.UU.")],
+ fuentes=[("Government of National Unity (South Africa) (Wikipedia)", W + "Government_of_National_Unity_(South_Africa)")]),
+
+"gob_etiopia": dict(
+ res=["Gobierno del segundo país más poblado de África, sede de la Unión Africana, con conflictos armados en Amhara y Oromía."],
+ manda=["Abiy Ahmed, primer ministro desde 2018."],
+ dinero="La Gran Represa del Renacimiento, inaugurada en 2025, la vuelve potencia hidroeléctrica regional.",
+ crono=[("2018-04", "Abiy asume."), ("2020-11", "Guerra de Tigray."), ("2025-09", "Inauguración de la Gran Represa del Renacimiento.")],
+ fuentes=[("Abiy Ahmed (Wikipedia)", W + "Abiy_Ahmed"), ("Grand Ethiopian Renaissance Dam (Wikipedia)", W + "Grand_Ethiopian_Renaissance_Dam")]),
+
+"gob_kenia": dict(
+ res=["Gobierno de la principal economía de África oriental y aliado de EE.UU.; encabezó la misión de seguridad multinacional en Haití."],
+ manda=["William Ruto, presidente desde 2022."],
+ dinero="Centro financiero y logístico regional (puerto de Mombasa).",
+ crono=[("2022-09", "Ruto asume."), ("2024-06", "Protestas contra el aumento de impuestos; despliegue en Haití."), ("2024-06", "EE.UU. lo designa aliado principal no miembro de la OTAN.")],
+ fuentes=[("William Ruto (Wikipedia)", W + "William_Ruto")]),
+
+"gob_ruanda": dict(
+ res=["Gobierno pequeño con gran proyección militar en la región de los Grandes Lagos; expertos de la ONU lo acusan de respaldar al M23 en el este del Congo."],
+ manda=["Paul Kagame, presidente y figura dominante desde 1994."],
+ dinero="Organiza la exportación de minerales de la región y recibe ayuda occidental; Ruanda niega lucrar con minerales congoleños.",
+ crono=[("1994", "Genocidio y toma del poder por el FPR."), ("2025-12", "Acuerdo de paz con el Congo firmado en Washington.")],
+ fuentes=[("Paul Kagame (Wikipedia)", W + "Paul_Kagame"), ("Arab News: acuerdo de Washington y alto el fuego", "https://www.arabnews.com/world/angola-proposes-new-dr-congo-ceasefire-2632820")]),
+
+"m23": dict(
+ res=["Rebelión que controla Goma, Bukavu y buena parte de Kivu Norte y Kivu Sur, en el este del Congo, rico en coltán y oro.",
+      "Firmó con el gobierno congoleño un marco de paz en Doha en noviembre de 2025 y una hoja de ruta en agosto de 2026, pero los combates siguen."],
+ manda=["Corneille Nangaa, coordinador de la Alianza Fleuve Congo (AFC); Sultani Makenga, jefe militar."],
+ dinero="Impuestos sobre minas de coltán como Rubaya y el comercio regional.",
+ crono=[("2012", "Primera rebelión del M23."), ("2025-01", "Toma de Goma."), ("2025-11", "Marco de paz de Doha."), ("2026-08", "Hoja de ruta para las negociaciones.")],
+ fuentes=[("March 23 Movement (Wikipedia)", W + "March_23_Movement"),
+          ("Anadolu: hoja de ruta Congo-M23 (2026-08-23)", "https://www.aa.com.tr/en/africa/dr-congo-m23-rebel-group-agree-on-roadmap-for-comprehensive-peace-talks/4034875")]),
+
+"saf": dict(
+ res=["Ejército sudanés, en guerra con las Fuerzas de Apoyo Rápido desde abril de 2023; controla el centro, el norte y el este del país, incluida Jartum desde 2025."],
+ manda=["General Abdel Fattah al-Burhan, jefe del Consejo de Soberanía; Kamil Idris, primer ministro desde 2025."],
+ dinero="Oro, puertos del mar Rojo y empresas militares; apoyo de Egipto, Turquía y otros.",
+ crono=[("2019-04", "Caída de Omar al-Bashir."), ("2021-10", "Golpe militar."), ("2023-04-15", "Comienzo de la guerra con las FAR."), ("2025-03", "Recuperación de Jartum.")],
+ fuentes=[("Sudanese Armed Forces (Wikipedia)", W + "Sudanese_Armed_Forces"), ("Sudanese civil war (2023–present) (Wikipedia)", W + "Sudanese_civil_war_(2023%E2%80%93present)")]),
+
+"majzen": dict(
+ res=["El poder real de Marruecos: la monarquía y su entorno controlan la política exterior, la seguridad, la religión y grandes empresas a través del holding Al Mada.",
+      "Logró apoyo internacional creciente a su soberanía sobre el Sáhara Occidental."],
+ manda=["Rey Mohammed VI."],
+ dinero="Al Mada y el control estatal de OCP.",
+ crono=[("1999-07", "Mohammed VI asume."), ("2011-07", "Reforma constitucional."), ("2020-12", "Reconocimiento de EE.UU. sobre el Sáhara y normalización con Israel.")],
+ fuentes=[("Makhzen (Wikipedia)", W + "Makhzen"), ("Al Mada (Wikipedia)", W + "Al_Mada")]),
+
+"ocp": dict(
+ res=["Administra las mayores reservas de fosfato del mundo, insumo básico de los fertilizantes: una palanca sobre la alimentación mundial."],
+ manda=["Empresa de control estatal marroquí; Mostafa Terrab, presidente y director ejecutivo."],
+ dinero="Uno de los principales exportadores de fertilizantes fosfatados.",
+ crono=[("1920", "Fundación de la Oficina Jerifiana de Fosfatos.")],
+ fuentes=[("OCP Group (Wikipedia)", W + "OCP_Group")]),
+
+"sonatrach": dict(
+ res=["Petrolera y gasífera estatal de Argelia, la mayor empresa de África; principal proveedora de gas de Italia por gasoducto."],
+ manda=["Empresa del Estado argelino."],
+ dinero="Sostiene la mayor parte de los ingresos fiscales de Argelia.",
+ crono=[("1963-12", "Fundación."), ("1971-02", "Nacionalización de los hidrocarburos.")],
+ fuentes=[("Sonatrach (Wikipedia)", W + "Sonatrach")]),
+
+"lna": dict(
+ res=["Fuerza armada que controla el este y el sur de Libia, con sus campos petroleros; respaldada por Rusia, Emiratos y Egipto según paneles de la ONU."],
+ manda=["Mariscal Khalifa Haftar; su hijo Saddam Haftar, subcomandante general desde 2025."],
+ dinero="Control de la mayor parte de la producción petrolera libia y del contrabando.",
+ crono=[("2014-05", "Operación Dignidad."), ("2019-04", "Ofensiva fallida sobre Trípoli."), ("2020-10", "Alto el fuego nacional.")],
+ fuentes=[("Libyan National Army (Wikipedia)", W + "Libyan_National_Army"), ("Khalifa Haftar (Wikipedia)", W + "Khalifa_Haftar")]),
+
+"alshabaab": dict(
+ res=["Rama de Al Qaeda en Somalia: controla zonas rurales del centro y el sur, cobra impuestos y ataca Mogadiscio y países vecinos."],
+ manda=["Ahmed Diriye (Abu Ubaidah), emir."],
+ dinero="Impuestos y extorsión a comercios, transporte y puertos; ingresos estimados en cientos de millones de dólares anuales por la ONU.",
+ crono=[("2006", "Surgimiento."), ("2012-02", "Adhesión a Al Qaeda."), ("2013-09", "Ataque al centro comercial Westgate en Nairobi.")],
+ fuentes=[("al-Shabaab (militant group) (Wikipedia)", W + "Al-Shabaab_(militant_group)")]),
+
+"aes": dict(
+ res=["Confederación de las juntas militares de Malí, Burkina Faso y Níger, que expulsaron a Francia, salieron de la CEDEAO y se apoyan en Rusia."],
+ manda=["Assimi Goïta (Malí), Ibrahim Traoré (Burkina Faso) y Abdourahamane Tiani (Níger)."],
+ dinero="Oro y uranio; renegociación de contratos mineros con empresas occidentales.",
+ crono=[("2023-09", "Pacto de defensa mutua."), ("2024-07", "Confederación."), ("2025-01", "Salida de la CEDEAO.")],
+ fuentes=[("Alliance of Sahel States (Wikipedia)", W + "Alliance_of_Sahel_States")]),
+
+"chigi": dict(
+ res=["Gobierno de la tercera economía de la eurozona; Meloni actúa como puente entre Trump y la Unión Europea."],
+ manda=["Giorgia Meloni, presidenta del Consejo de Ministros desde 2022."],
+ dinero="Una de las mayores deudas públicas de Europa; grandes empresas estatales como ENI y Leonardo.",
+ crono=[("2022-10-22", "Meloni asume.")],
+ fuentes=[("Giorgia Meloni (Wikipedia)", W + "Giorgia_Meloni")]),
+
+"moncloa": dict(
+ res=["Gobierno de España, en funciones electorales: Pedro Sánchez disolvió las Cortes y convocó elecciones generales para el 29 de noviembre de 2026."],
+ manda=["Pedro Sánchez, presidente del Gobierno desde 2018."],
+ dinero="La gran economía de la UE que más creció en 2024 y 2025.",
+ crono=[("2018-06", "Sánchez llega por moción de censura."), ("2023-11", "Reelección parlamentaria."), ("2026-10-05", "Convocatoria de elecciones anticipadas.")],
+ fuentes=[("Pedro Sánchez (Wikipedia)", W + "Pedro_S%C3%A1nchez"),
+          ("La Moncloa: convocatoria de elecciones (2026-10-05)", "https://www.lamoncloa.gob.es/presidente/actividades/Paginas/2026/051026-sanchez-convocatoria-elecciones.aspx")]),
+
+"gob_polonia": dict(
+ res=["Gobierno del país de la OTAN que más gasta en defensa en proporción a su PBI, frontera oriental de la alianza frente a Rusia y Bielorrusia."],
+ manda=["Donald Tusk, primer ministro; Karol Nawrocki, presidente desde agosto de 2025, de la oposición conservadora."],
+ dinero="Compras masivas de armamento a EE.UU. y Corea del Sur.",
+ crono=[("2023-12", "Tusk asume."), ("2025-08", "Nawrocki asume la presidencia.")],
+ fuentes=[("Donald Tusk (Wikipedia)", W + "Donald_Tusk")]),
+
+"gob_hungria": dict(
+ res=["Gobierno de Hungría tras el fin de los 16 años de Viktor Orbán: Péter Magyar ganó las elecciones del 12 de abril de 2026 con mayoría de dos tercios y prometió reconstruir los lazos con la UE y la OTAN."],
+ manda=["Péter Magyar, primer ministro, del partido Tisza."],
+ dinero="Recuperación de fondos europeos congelados en la era Orbán.",
+ crono=[("2010-05", "Orbán vuelve al poder."), ("2026-04-12", "Victoria de Magyar y reconocimiento de la derrota por Orbán.")],
+ fuentes=[("Péter Magyar (Wikipedia)", W + "P%C3%A9ter_Magyar"),
+          ("CBS News: Orbán reconoce la derrota (2026-04-12)", "https://www.cbsnews.com/news/hungary-general-election-viktor-orban-peter-magyar-results/")]),
+
+"shell": dict(
+ res=["Una de las mayores petroleras privadas del mundo y la mayor comercializadora de gas natural licuado."],
+ manda=["Wael Sawan, director ejecutivo."],
+ dinero="Ganancias de decenas de miles de millones de dólares anuales.",
+ crono=[("1907", "Fusión de Royal Dutch y Shell Transport."), ("2022-01", "Traslado de la sede a Londres."), ("2021-05", "Fallo judicial neerlandés que le ordenó reducir emisiones, revocado en 2024.")],
+ fuentes=[("Shell plc (Wikipedia)", W + "Shell_plc")]),
+
+"totalenergies": dict(
+ res=["Petrolera y gasífera francesa con fuerte presencia en África, Medio Oriente y gas natural licuado."],
+ manda=["Patrick Pouyanné, presidente y director ejecutivo."],
+ dinero="Ganancias de decenas de miles de millones de dólares anuales.",
+ crono=[("1924", "Fundación de la Compagnie française des pétroles."), ("2021-05", "Cambio de nombre a TotalEnergies.")],
+ fuentes=[("TotalEnergies (Wikipedia)", W + "TotalEnergies")]),
+
+"lvmh": dict(
+ res=["El mayor grupo de lujo del mundo (Louis Vuitton, Dior, Moët, Tiffany); dueño también de medios franceses como Les Échos y Le Parisien."],
+ manda=["Bernard Arnault, presidente y director ejecutivo; la familia Arnault controla el grupo."],
+ dinero="Bernard Arnault figura entre las personas más ricas del mundo.",
+ crono=[("1987", "Fusión de Louis Vuitton y Moët Hennessy."), ("2021-01", "Compra de Tiffany.")],
+ fuentes=[("LVMH (Wikipedia)", W + "LVMH")]),
+
+"rheinmetall": dict(
+ res=["El mayor fabricante de armas de Alemania y uno de los mayores productores de munición de artillería de Europa, impulsado por la guerra de Ucrania."],
+ manda=["Armin Papperger, director ejecutivo."],
+ dinero="Cartera de pedidos récord por el rearme europeo.",
+ crono=[("1889", "Fundación."), ("2022-02", "Comienza el auge por la invasión de Ucrania."), ("2024", "Fábrica de munición en Ucrania anunciada.")],
+ fuentes=[("Rheinmetall (Wikipedia)", W + "Rheinmetall")]),
+
+"gob_indonesia": dict(
+ res=["Gobierno del cuarto país más poblado del mundo y mayor productor de níquel; miembro de los BRICS desde 2025 sin abandonar la cooperación con EE.UU."],
+ manda=["Prabowo Subianto, presidente desde octubre de 2024."],
+ dinero="Fondo soberano Danantara, creado en 2025; prohibición de exportar níquel sin procesar.",
+ crono=[("2024-10-20", "Prabowo asume."), ("2025-01", "Ingreso a los BRICS."), ("2025-02", "Creación de Danantara.")],
+ fuentes=[("Prabowo Subianto (Wikipedia)", W + "Prabowo_Subianto")]),
+
+"pcv": dict(
+ res=["Partido único de Vietnam, que combina control político con apertura económica y se volvió un destino clave de las fábricas que salen de China."],
+ manda=["Tô Lâm, secretario general reelecto en enero de 2026 y presidente del Estado desde el 7 de abril de 2026, el líder vietnamita más poderoso en décadas."],
+ dinero="Exportaciones manufactureras en fuerte crecimiento.",
+ crono=[("1930-02", "Fundación."), ("1986-12", "Reformas Doi Moi."), ("2024-08", "Tô Lâm, secretario general."), ("2026-04-07", "Tô Lâm, también presidente del Estado.")],
+ fuentes=[("Communist Party of Vietnam (Wikipedia)", W + "Communist_Party_of_Vietnam"),
+          ("Vietnam Law Magazine: biografía de Tô Lâm", "https://vietnamlawmagazine.vn/brief-biography-of-party-general-secretary-and-state-president-to-lam-79148.html")]),
+
+"gob_filipinas": dict(
+ res=["Gobierno de Filipinas, aliado por tratado de EE.UU. y principal contraparte de China en las disputas del mar de China Meridional."],
+ manda=["Ferdinand Marcos Jr., presidente desde 2022."],
+ dinero="Remesas de trabajadores en el exterior y servicios.",
+ crono=[("2016-07", "Fallo arbitral contra los reclamos chinos."), ("2022-06-30", "Marcos Jr. asume."), ("2025-03", "Entrega de Rodrigo Duterte a la Corte Penal Internacional.")],
+ fuentes=[("Bongbong Marcos (Wikipedia)", W + "Bongbong_Marcos")]),
+
+"ejercito_tai": dict(
+ res=["Ejército tailandés, árbitro histórico de la política del país con doce golpes exitosos desde 1932; protagonizó el conflicto fronterizo con Camboya en 2025."],
+ manda=["Comandante en jefe del Ejército, con estrecha relación con la Corona."],
+ dinero="Empresas, tierras y frecuencias de radio y televisión a su cargo.",
+ crono=[("2014-05", "Último golpe de Estado."), ("2025-07", "Combates fronterizos con Camboya."), ("2026-02", "Elecciones ganadas por el conservador Bhumjaithai de Anutin Charnvirakul.")],
+ fuentes=[("Royal Thai Army (Wikipedia)", W + "Royal_Thai_Army"),
+          ("Al Jazeera: elecciones de Tailandia (2026-02-09)", "https://www.aljazeera.com/news/2026/2/9/thailands-bhumjaithai-set-for-coalition-talks-after-surprise-election-win")]),
+
+"tatmadaw": dict(
+ res=["Fuerzas armadas de Myanmar, en el poder desde el golpe de 2021 y en guerra con milicias étnicas y de la resistencia que controlan buena parte del territorio."],
+ manda=["General Min Aung Hlaing."],
+ dinero="Conglomerados militares, jade, gas y apoyo de China y Rusia.",
+ crono=[("2021-02-01", "Golpe de Estado."), ("2023-10", "Ofensiva rebelde Operación 1027."), ("2025-12", "Elecciones por etapas sin la oposición disuelta.")],
+ fuentes=[("Tatmadaw (Wikipedia)", W + "Tatmadaw")]),
+
+"gob_corea": dict(
+ res=["Gobierno de una potencia tecnológica e industrial (chips, barcos, armas) bajo protección militar de EE.UU. frente a Corea del Norte."],
+ manda=["Lee Jae-myung, presidente desde junio de 2025, tras la destitución de Yoon Suk-yeol."],
+ dinero="Grandes grupos familiares (chaebol) como Samsung, Hyundai y SK.",
+ crono=[("2024-12-03", "Ley marcial fallida de Yoon."), ("2025-04", "Destitución de Yoon."), ("2025-06-04", "Lee asume.")],
+ fuentes=[("Lee Jae-myung (Wikipedia)", W + "Lee_Jae-myung")]),
+
+"gob_australia": dict(
+ res=["Gobierno de un continente rico en minerales y aliado clave de EE.UU. en el Indo-Pacífico (AUKUS, Cinco Ojos)."],
+ manda=["Anthony Albanese, primer ministro, reelecto en mayo de 2025."],
+ dinero="Exportaciones de hierro, carbón, gas y litio, en gran parte a China.",
+ crono=[("2021-09", "Anuncio de AUKUS."), ("2022-05", "Albanese asume."), ("2025-05", "Reelección.")],
+ fuentes=[("Anthony Albanese (Wikipedia)", W + "Anthony_Albanese"), ("AUKUS (Wikipedia)", W + "AUKUS")]),
+
+"bhp": dict(
+ res=["La mayor minera del mundo por valor de mercado: hierro, cobre y potasa."],
+ manda=["Directorio y gerencia ejecutiva con sede en Melbourne."],
+ dinero="Ganancias de miles de millones de dólares, dependientes de la demanda china de acero.",
+ crono=[("1885", "Fundación como Broken Hill Proprietary."), ("2001", "Fusión con Billiton."), ("2015-11", "Colapso de la represa de Samarco, empresa conjunta con Vale, en Mariana, Brasil.")],
+ fuentes=[("BHP (Wikipedia)", W + "BHP")]),
+
+"reliance": dict(
+ res=["El mayor conglomerado privado de la India: la mayor refinería del mundo en Jamnagar, telecomunicaciones (Jio) y comercio minorista."],
+ manda=["Mukesh Ambani, presidente; la familia Ambani controla el grupo."],
+ dinero="Mukesh Ambani es la persona más rica de Asia según las listas de fortunas.",
+ crono=[("1966", "Fundación por Dhirubhai Ambani."), ("2016-09", "Lanzamiento de Jio."), ("2024-12", "Acuerdo de suministro de crudo con Rosneft.")],
+ fuentes=[("Reliance Industries (Wikipedia)", W + "Reliance_Industries")]),
+
+"adani": dict(
+ res=["Conglomerado indio de puertos, aeropuertos, energía y carbón, con concesiones en India, Israel (Haifa), Australia y otros países."],
+ manda=["Gautam Adani, presidente; acusado en Nueva York en 2024 de presuntos sobornos, cargos que el grupo niega."],
+ dinero="Fuerte endeudamiento; informe de Hindenburg Research de 2023, rechazado por el grupo.",
+ crono=[("1988", "Fundación."), ("2023-01", "Informe de Hindenburg."), ("2024-11", "Acusación en EE.UU.")],
+ fuentes=[("Adani Group (Wikipedia)", W + "Adani_Group")]),
+
+"kazatomprom": dict(
+ res=["El mayor productor de uranio del mundo, de mayoría estatal kazaja; abastece a centrales nucleares de China, Europa y EE.UU."],
+ manda=["El fondo soberano Samruk-Kazyna controla la mayoría."],
+ dinero="Cerca de una quinta parte de la producción mundial de uranio.",
+ crono=[("1997", "Creación."), ("2018-11", "Salida a bolsa en Londres y Astaná.")],
+ fuentes=[("Kazatomprom (Wikipedia)", W + "Kazatomprom")]),
+
+"temasek": dict(
+ res=["Fondo de inversión estatal de Singapur, accionista de bancos, telecomunicaciones y aerolíneas en toda Asia."],
+ manda=["Propiedad del Ministerio de Finanzas de Singapur."],
+ dinero="Cartera de varios cientos de miles de millones de dólares.",
+ crono=[("1974", "Creación.")],
+ fuentes=[("Temasek Holdings (Wikipedia)", W + "Temasek_Holdings")]),
+
+"petronas": dict(
+ res=["Petrolera estatal de Malasia, gran exportadora de gas natural licuado y pilar del presupuesto malasio."],
+ manda=["Empresa del Estado malasio, bajo autoridad del primer ministro."],
+ dinero="Aporta una parte significativa de los ingresos fiscales.",
+ crono=[("1974-08", "Fundación.")],
+ fuentes=[("Petronas (Wikipedia)", W + "Petronas")]),
+
+"gob_bangladesh": dict(
+ res=["Gobierno del octavo país más poblado del mundo y segundo exportador de ropa, tras la caída de Sheikh Hasina en 2024."],
+ manda=["Tarique Rahman, primer ministro desde el 17 de febrero de 2026, tras la victoria aplastante del BNP."],
+ dinero="Industria textil y remesas.",
+ crono=[("2024-08", "Caída de Hasina y gobierno interino de Yunus."), ("2026-02-12", "Elecciones."), ("2026-02-17", "Rahman asume.")],
+ fuentes=[("Tarique Rahman (Wikipedia)", W + "Tarique_Rahman"),
+          ("Dawn / AFP: Rahman jura (2026-02-17)", "https://www.dawn.com/news/1973874")]),
+
+"gob_siria": dict(
+ res=["Gobierno surgido de la caída de Bashar al-Assad en diciembre de 2024; en 2026 recuperó el noreste e integró a las Fuerzas Democráticas Sirias al ejército."],
+ manda=["Ahmed al-Sharaa, presidente interino."],
+ dinero="Reconstrucción con fondos del Golfo y Turquía tras el levantamiento de sanciones de EE.UU. en 2025.",
+ crono=[("2024-12-08", "Caída de Assad."), ("2025-06", "Levantamiento de sanciones de EE.UU."), ("2026-01", "Ofensiva en el noreste y acuerdo con las FDS."), ("2026-08", "Disolución formal de las FDS.")],
+ fuentes=[("Ahmed al-Sharaa (Wikipedia)", W + "Ahmed_al-Sharaa"),
+          ("Al Jazeera: acuerdo con las FDS (2026-01-30)", "https://www.aljazeera.com/news/2026/1/30/kurdish-led-sdf-agrees-integration-with-syrian-government-forces")]),
+
+"gob_irak": dict(
+ res=["Gobierno de un gran productor de petróleo disputado entre Irán y EE.UU., con milicias armadas integradas formalmente al Estado."],
+ manda=["Ali al-Zaidi, primer ministro desde el 14 de mayo de 2026, candidato de consenso tras el veto de EE.UU. a Nuri al-Maliki."],
+ dinero="El petróleo aporta casi todo el presupuesto.",
+ crono=[("2003-03", "Invasión de EE.UU."), ("2025-11", "Elecciones legislativas."), ("2026-05-14", "Al-Zaidi jura con un gabinete parcial.")],
+ fuentes=[("Prime Minister of Iraq (Wikipedia)", W + "Prime_Minister_of_Iraq"),
+          ("The National: al-Zaidi jura (2026-05-14)", "https://thenationalnews.com/news/mena/2026/05/14/iraqi-parliament-votes-on-thursday-in-key-step-towards-installing-government/")]),
+
+"gob_canada": dict(
+ res=["Gobierno del segundo país más extenso del mundo, gran exportador de petróleo, minerales y agua, enfrentado con Trump por aranceles y amenazas de anexión."],
+ manda=["Mark Carney, primer ministro desde marzo de 2025, ganó las elecciones de abril de 2025."],
+ dinero="Integración económica profunda con EE.UU.",
+ crono=[("2025-03-14", "Carney asume."), ("2025-04-28", "Victoria electoral liberal.")],
+ fuentes=[("Mark Carney (Wikipedia)", W + "Mark_Carney")]),
+})

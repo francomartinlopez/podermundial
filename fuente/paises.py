@@ -26,7 +26,7 @@ Iceland|Islandia|T|G|||
 Poland|Polonia|T|G|||
 Czechia|Chequia|T|G|||
 Slovakia|Eslovaquia|T|G|||
-Hungary|Hungría|T|P|||Miembro de la OTAN y la UE con lazos con Rusia y China.
+Hungary|Hungría|T|G|||Gobierno proeuropeo de Péter Magyar desde su victoria de abril de 2026 sobre Orbán.
 Austria|Austria|T|G|||
 Switzerland|Suiza|T|A|||Neutral, integrada al sistema financiero occidental.
 Slovenia|Eslovenia|T|G|||
@@ -81,7 +81,7 @@ El Salvador|El Salvador|D|IT|||
 Nicaragua_|—|D|S|||
 Costa Rica|Costa Rica|D|IT|||
 Panama|Panamá|D|IT|||Canal bajo presión estratégica de EE.UU.
-Colombia|Colombia|D|IT|X|t c|Grupos armados y narcotráfico en amplias regiones.
+Colombia|Colombia|D|IT|X|t c|Grupos armados y narcotráfico en amplias regiones; gobierno de De la Espriella desde agosto de 2026.
 Venezuela|Venezuela|T|R|P|c|Protectorado de EE.UU. en transición desde la captura de Maduro en enero de 2026.
 Ecuador|Ecuador|D|IT|X|c|Ola de violencia de bandas ligadas al narcotráfico.
 Peru|Perú|D|IT|P|c t|
@@ -108,7 +108,7 @@ Yemen|Yemen|D|S|X|t x|Dividido entre hutíes, gobierno reconocido y fuerzas del 
 Jordan|Jordania|D|R|||Depende de la ayuda y la protección de EE.UU.
 Egypt|Egipto|D|IT|||
 Iraq|Irak|D|P|P|x|Disputado entre Irán y EE.UU.; milicias con poder propio.
-Syria|Siria|D|S|X|t x|Nuevo gobierno sin control de todo el territorio desde la caída de Assad.
+Syria|Siria|D|S|X|t x|El gobierno de al-Sharaa recuperó el noreste en 2026, pero Israel ocupa una franja del sur.
 Lebanon|Líbano|D|P|P|x t|Hezbolá y presencia israelí en el sur.
 Palestine|Palestina|D|S|T|x t|Ocupación y guerra en Gaza.
 Afghanistan|Afganistán|D|S|P|f|Gobierno talibán; frontera disputada con Pakistán.
