@@ -1,5 +1,10 @@
 # Cambios
 
+## 2026-11-16 · Tanda 3 de fichas
+
+- Fichas para las posiciones 81 a 120 (BCE, OTAN, Mossad, Hezbolá, hutíes, Tren de Aragua, FAR de Sudán, Japón, DHS, Departamento de Justicia y otras 30).
+- Novedades verificadas: Lagarde dejará el BCE el 7 de febrero de 2027; Roman Gofman dirige el Mossad desde el 2 de junio; Hezbolá en guerra con Israel desde el 2 de marzo; ataques hutíes a petroleros saudíes en julio; muerte de 'Niño Guerrero' el 12 de junio; Matt Brittin dirige la BBC; Markwayne Mullin en Seguridad Nacional y Todd Blanche como fiscal general; Takaichi reelecta en febrero.
+
 ## 2026-11-16 · Tanda 2 de fichas
 
 - Fichas para las posiciones 41 a 80 (FSB, Lockheed, OpenAI, PCC, TSMC, Fed, NSA, CJNG, ByteDance y otras 31).

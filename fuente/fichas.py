@@ -681,3 +681,309 @@ FICHAS.update({
  fuentes=[("ByteDance (Wikipedia)", W + "ByteDance"),
           ("ABC News: TikTok cierra el acuerdo en EE.UU. (2026-01-23)", "https://abc7news.com/post/tiktok-finalizes-deal-keep-operating-us/18451438/")]),
 })
+
+# ---- Tanda 3 (posiciones 81 a 120) ----
+FICHAS.update({
+"talibanes": dict(
+ res=["Gobiernan Afganistán desde agosto de 2021 tras la retirada de EE.UU.; Rusia fue en 2025 el primer país en reconocer formalmente su gobierno."],
+ manda=["Hibatullah Akhundzada, líder supremo, gobierna desde Kandahar."],
+ dinero="Aduanas, minería y comercio regional; ayuda internacional muy reducida.",
+ crono=[("1994", "Surgimiento en Kandahar."), ("2001-11", "Caída de su primer gobierno."), ("2021-08-15", "Toma de Kabul."), ("2025-07", "Reconocimiento de Rusia.")],
+ fuentes=[("Taliban (Wikipedia)", W + "Taliban"), ("Islamic Emirate of Afghanistan (Wikipedia)", W + "Islamic_Emirate_of_Afghanistan")]),
+
+"anduril": dict(
+ res=["Contratista de defensa de Silicon Valley: drones, sistemas autónomos y software de mando para el Pentágono y aliados."],
+ manda=["Palmer Luckey, fundador; Brian Schimpf, director ejecutivo."],
+ dinero="Valuada en decenas de miles de millones de dólares en rondas privadas.",
+ crono=[("2017", "Fundación."), ("2024-12", "Acuerdo con OpenAI para defensa antidrones.")],
+ fuentes=[("Anduril Industries (Wikipedia)", W + "Anduril_Industries")]),
+
+"bae": dict(
+ res=["Mayor contratista de defensa de Europa: buques, submarinos nucleares británicos, aviones de combate y munición; gran proveedor de Arabia Saudita."],
+ manda=["Charles Woodburn, director ejecutivo."],
+ dinero="En 2010 pagó cerca de 450 millones de dólares en EE.UU. y Reino Unido por un caso de corrupción ligado a ventas de armas.",
+ crono=[("1999-11", "Fusión de British Aerospace y Marconi Electronic Systems."), ("2010-02", "Acuerdo por corrupción.")],
+ fuentes=[("BAE Systems (Wikipedia)", W + "BAE_Systems"), ("Al-Yamamah arms deal (Wikipedia)", W + "Al-Yamamah_arms_deal")]),
+
+"bce": dict(
+ res=["Banco central de la eurozona: fija la política monetaria de 21 países y supervisa a los grandes bancos europeos."],
+ manda=["Christine Lagarde, presidenta; anunció el 29 de octubre de 2026 que dejará el cargo el 7 de febrero de 2027, nueve meses antes de terminar su mandato.",
+        "El sucesor lo designa el Consejo Europeo, antes de la elección presidencial francesa de 2027."],
+ dinero="Emisor del euro, segunda moneda de reserva del mundo.",
+ crono=[("1998-06", "Creación."), ("2012-07", "\"Whatever it takes\" de Draghi."), ("2019-11", "Lagarde asume."), ("2026-10-29", "Anuncio de renuncia anticipada de Lagarde.")],
+ fuentes=[("European Central Bank (Wikipedia)", W + "European_Central_Bank"),
+          ("Banque de France: comunicado del BCE (2026-10-29)", "https://www.banque-france.fr/en/press-release/ecb-president-lagarde-step-down-7-february-2027")]),
+
+"epl": dict(
+ res=["Ejército Popular de Liberación: las fuerzas armadas más grandes del mundo, subordinadas al Partido Comunista y no al Estado.",
+      "Desde 2023 atraviesa purgas en su cúpula, incluida la expulsión del vicepresidente de la Comisión Militar Central He Weidong en 2025."],
+ manda=["Xi Jinping preside la Comisión Militar Central."],
+ dinero="Segundo presupuesto militar del mundo.",
+ crono=[("1927-08-01", "Fundación."), ("2015-12", "Reforma militar de Xi."), ("2025-10", "Expulsión de He Weidong y otros generales.")],
+ fuentes=[("People's Liberation Army (Wikipedia)", W + "People%27s_Liberation_Army"), ("Central Military Commission (China) (Wikipedia)", W + "Central_Military_Commission_(China)")]),
+
+"spglobal": dict(
+ res=["Calificadora de riesgo e índices bursátiles (S&P 500): sus notas condicionan el costo de deuda de países y empresas."],
+ manda=["Martina Cheung, directora ejecutiva."],
+ dinero="Junto con Moody's y Fitch concentra casi todo el mercado mundial de calificaciones.",
+ crono=[("1860", "Origen en la guía de Henry Varnum Poor."), ("2011-08", "Rebaja de la nota de EE.UU."), ("2022-02", "Compra de IHS Markit.")],
+ fuentes=[("S&P Global (Wikipedia)", W + "S%26P_Global"), ("Big Three (credit rating agencies) (Wikipedia)", W + "Big_Three_(credit_rating_agencies)")]),
+
+"nyt": dict(
+ res=["El diario de referencia de EE.UU. y uno de los más influyentes del mundo en la agenda política y diplomática."],
+ manda=["La familia Ochs-Sulzberger controla la empresa; A. G. Sulzberger es editor."],
+ dinero="Más de 11 millones de suscriptores, mayormente digitales.",
+ crono=[("1851-09", "Fundación."), ("1896", "Adolph Ochs compra el diario."), ("1971-06", "Papeles del Pentágono.")],
+ fuentes=[("The New York Times (Wikipedia)", W + "The_New_York_Times")]),
+
+"vitol": dict(
+ res=["La mayor comercializadora independiente de petróleo del mundo, con sede en Ginebra y Róterdam."],
+ manda=["Sociedad privada de sus socios; Russell Hardy, director ejecutivo."],
+ dinero="En 2020 pagó 135 millones de dólares en EE.UU. y Brasil por sobornos en América Latina.",
+ crono=[("1966", "Fundación en Róterdam."), ("2020-12", "Acuerdo por sobornos.")],
+ fuentes=[("Vitol (Wikipedia)", W + "Vitol")]),
+
+"isis": dict(
+ res=["Red yihadista con provincias activas en el Sahel, Mozambique, el Congo, Afganistán (ISIS-K) y remanentes en Siria e Irak."],
+ manda=["Liderazgo central clandestino; las provincias tienen gran autonomía operativa."],
+ dinero="Extorsión, secuestros y tributos en zonas de control en África.",
+ crono=[("2014-06", "Proclamación del califato en Mosul."), ("2019-03", "Caída de Baghuz, último territorio en Siria."), ("2024-03", "Atentado de ISIS-K en Moscú.")],
+ fuentes=[("Islamic State (Wikipedia)", W + "Islamic_State")]),
+
+"jnim": dict(
+ res=["Rama de Al Qaeda en el Sahel, la organización yihadista que más crece en el mundo; controla rutas y zonas rurales de Malí, Burkina Faso y Níger.",
+      "Desde 2025 impone bloqueos de combustible sobre ciudades de Malí, incluida Bamako."],
+ manda=["Iyad Ag Ghaly, líder."],
+ dinero="Impuestos a poblaciones rurales, secuestros, minería de oro y contrabando.",
+ crono=[("2017-03", "Fusión de grupos yihadistas sahelianos."), ("2024-09", "Ataque en Bamako."), ("2025-09", "Bloqueo de combustible en Malí.")],
+ fuentes=[("Jama'at Nusrat al-Islam wal-Muslimin (Wikipedia)", W + "Jama%27at_Nasr_al-Islam_wal_Muslimin")]),
+
+"aramco": dict(
+ res=["La petrolera más rentable del mundo y caja central del Estado saudí; su producción condiciona el precio internacional del crudo.",
+      "En la guerra con Irán, Arabia Saudita desvió exportaciones al puerto de Yanbu, sobre el mar Rojo, para evitar Ormuz."],
+ manda=["Amin Nasser, director ejecutivo; el Estado saudí y el fondo soberano PIF son dueños de casi todo el capital."],
+ dinero="Ganancias anuales superiores a 100.000 millones de dólares.",
+ crono=[("1933", "Concesión a Standard Oil of California."), ("1980", "Nacionalización completa."), ("2019-09", "Ataque a Abqaiq."), ("2019-12", "Salida a bolsa en Riad.")],
+ fuentes=[("Saudi Aramco (Wikipedia)", W + "Saudi_Aramco"),
+          ("Al-Monitor / Reuters: ataques hutíes a petroleros saudíes (2026-07)", "https://www.al-monitor.com/originals/2026/07/houthis-claim-attacks-saudi-tankers-red-sea-raising-risk-new-chokepoint-iran-war")]),
+
+"telegram": dict(
+ res=["Mensajería con canales masivos: principal canal de información de la guerra de Ucrania, de gobiernos, militares y también de redes criminales."],
+ manda=["Pavel Durov, fundador y dueño; investigado en Francia desde 2024 por presunta complicidad con delitos cometidos en la plataforma, que niega."],
+ dinero="Ingresos por publicidad, suscripciones y bonos.",
+ crono=[("2013-08", "Lanzamiento."), ("2024-08", "Detención de Durov en París.")],
+ fuentes=[("Telegram (Wikipedia)", W + "Telegram_(software)"), ("Pavel Durov (Wikipedia)", W + "Pavel_Durov")]),
+
+"hutis": dict(
+ res=["Ansar Allah controla el norte de Yemen y la capital Saná; con misiles y drones amenaza el estrecho de Bab el-Mandeb.",
+      "Entraron en la guerra de Irán en 2026 y en julio atacaron petroleros saudíes en el mar Rojo, anunciando un bloqueo a Arabia Saudita."],
+ manda=["Abdul-Malik al-Huthi, líder."],
+ dinero="Recaudación en zonas controladas, contrabando y apoyo iraní.",
+ crono=[("2014-09", "Toma de Saná."), ("2023-11", "Comienzo de ataques al tráfico en el mar Rojo."), ("2026-07-23", "Ataques a los petroleros Encelia y Layla.")],
+ fuentes=[("Houthis (Wikipedia)", W + "Houthis"),
+          ("PBS / AP: ataques a petroleros saudíes (2026-07-23)", "https://www.pbs.org/newshour/amp/world/yemens-houthis-attack-saudi-tankers-in-the-red-sea-threatening-to-widen-iran-war")]),
+
+"bbc": dict(
+ res=["Servicio público británico de radio, televisión y noticias, con audiencia mundial en decenas de idiomas.",
+      "Enfrenta una demanda de Trump por 10.000 millones de dólares por la edición de un discurso, y la renovación de su carta real."],
+ manda=["Matt Brittin, ex Google, director general desde el 18 de mayo de 2026; Rhodri Talfan Davies, director general adjunto."],
+ dinero="Financiada principalmente por la licencia de televisión.",
+ crono=[("1922-10", "Fundación."), ("2025-11", "Renuncia de Tim Davie."), ("2026-05-18", "Brittin asume.")],
+ fuentes=[("BBC (Wikipedia)", W + "BBC"),
+          ("Arab News: Brittin designado (2026-03-25)", "https://www.arabnews.pk/node/2637630")]),
+
+"maersk": dict(
+ res=["Una de las mayores navieras de contenedores y operadoras portuarias del mundo; desvió sus buques del mar Rojo por los ataques hutíes."],
+ manda=["La familia Mærsk Mc-Kinney Møller controla la empresa a través de A.P. Møller Holding; Vincent Clerc, director ejecutivo."],
+ dinero="Ingresos de decenas de miles de millones de dólares; terminales en todos los continentes vía APM Terminals.",
+ crono=[("1904", "Fundación en Dinamarca."), ("2017-06", "Ciberataque NotPetya.")],
+ fuentes=[("Maersk (Wikipedia)", W + "Maersk")]),
+
+"moodys": dict(
+ res=["Calificadora de riesgo: sus notas mueven el costo del crédito de países y empresas; en 2025 quitó a EE.UU. la máxima calificación."],
+ manda=["Rob Fauber, director ejecutivo; Berkshire Hathaway es uno de sus principales accionistas."],
+ dinero="Margen de ganancia muy alto en un mercado concentrado en tres firmas.",
+ crono=[("1909", "Primeras calificaciones de bonos ferroviarios."), ("2017-01", "Acuerdo de 864 millones de dólares por sus calificaciones previas a 2008."), ("2025-05", "Rebaja de la nota de EE.UU.")],
+ fuentes=[("Moody's Ratings (Wikipedia)", W + "Moody%27s_Ratings")]),
+
+"newscorp": dict(
+ res=["Fox News, The Wall Street Journal, The Times y medios australianos: el grupo mediático conservador más influyente del mundo anglosajón."],
+ manda=["Lachlan Murdoch, que en 2025 consolidó el control del fideicomiso familiar tras un acuerdo con sus hermanos."],
+ dinero="Fox News es uno de los canales de cable más rentables de EE.UU.",
+ crono=[("1980", "Fundación de News Corporation."), ("1996-10", "Lanzamiento de Fox News."), ("2023-04", "Acuerdo de 787 millones de dólares con Dominion."), ("2025-09", "Acuerdo sobre el fideicomiso familiar.")],
+ fuentes=[("News Corp (Wikipedia)", W + "News_Corp"), ("Fox Corporation (Wikipedia)", W + "Fox_Corporation")]),
+
+"trafigura": dict(
+ res=["Una de las mayores comercializadoras de petróleo y metales del mundo."],
+ manda=["Sociedad privada de sus empleados socios; Richard Holtum, director ejecutivo."],
+ dinero="En 2024 un tribunal suizo la declaró culpable de sobornos en Angola.",
+ crono=[("1993", "Fundación."), ("2006", "Caso de vertido tóxico en Costa de Marfil."), ("2024-12", "Condena en Suiza.")],
+ fuentes=[("Trafigura (Wikipedia)", W + "Trafigura")]),
+
+"oxford": dict(
+ res=["Universidad que formó a decenas de primeros ministros británicos y a buena parte de la élite del antiguo imperio."],
+ manda=["Irene Tracey, vicerrectora."],
+ dinero="Patrimonio repartido entre la universidad y sus colegios.",
+ crono=[("1096", "Primeros registros de enseñanza."), ("1902", "Creación de la beca Rhodes.")],
+ fuentes=[("University of Oxford (Wikipedia)", W + "University_of_Oxford"), ("Rhodes Scholarship (Wikipedia)", W + "Rhodes_Scholarship")]),
+
+"otan": dict(
+ res=["Alianza militar de 32 países bajo liderazgo de EE.UU.; en 2025 sus miembros acordaron elevar el gasto de defensa al 5% del PBI hacia 2035."],
+ manda=["Mark Rutte, secretario general; el comandante militar supremo es siempre un general estadounidense."],
+ dinero="El presupuesto común es menor; el peso está en el gasto militar de cada miembro.",
+ crono=[("1949-04-04", "Tratado de Washington."), ("2023-04", "Ingreso de Finlandia."), ("2024-03", "Ingreso de Suecia."), ("2025-06", "Cumbre de La Haya: meta del 5%.")],
+ fuentes=[("NATO (Wikipedia)", W + "NATO"), ("2025 The Hague NATO summit (Wikipedia)", W + "2025_The_Hague_NATO_summit")]),
+
+"stategrid": dict(
+ res=["La mayor empresa eléctrica del mundo, de propiedad estatal china; opera redes en Brasil, Chile, Portugal, Filipinas y otros países."],
+ manda=["Depende de la comisión estatal de activos (SASAC) y del Partido."],
+ dinero="Ingresos superiores a 500.000 millones de dólares.",
+ crono=[("2002-12", "Creación tras la división de la antigua empresa eléctrica estatal."), ("2017", "Compra de CPFL en Brasil.")],
+ fuentes=[("State Grid Corporation of China (Wikipedia)", W + "State_Grid_Corporation_of_China")]),
+
+"ucrania": dict(
+ res=["Conduce la defensa de Ucrania frente a la invasión rusa, sostenida por ayuda militar y financiera occidental."],
+ manda=["Volodímir Zelenski, presidente; la ley marcial suspende las elecciones."],
+ dinero="Dependencia de la ayuda de la Unión Europea, EE.UU. y otros aliados.",
+ crono=[("2019-05", "Zelenski asume."), ("2022-02-24", "Invasión rusa a gran escala."), ("2026-10", "Tregua local en Jersón.")],
+ fuentes=[("President of Ukraine (Wikipedia)", W + "President_of_Ukraine"), ("Russian invasion of Ukraine (Wikipedia)", W + "Russian_invasion_of_Ukraine")]),
+
+"byd": dict(
+ res=["El mayor fabricante de autos eléctricos e híbridos del mundo; superó a Tesla en ventas de eléctricos y produce sus propias baterías."],
+ manda=["Wang Chuanfu, fundador, presidente y director ejecutivo."],
+ dinero="Plantas en China, Brasil, Hungría, Turquía y Tailandia.",
+ crono=[("1995-02", "Fundación como fabricante de baterías."), ("2008-09", "Inversión de Berkshire Hathaway.")],
+ fuentes=[("BYD Company (Wikipedia)", W + "BYD_Company")]),
+
+"bpi": dict(
+ res=["El banco de los bancos centrales: coordina normas de capital (Basilea) y foros de supervisión financiera mundial."],
+ manda=["Pablo Hernández de Cos, gerente general desde julio de 2025."],
+ dinero="Administra parte de las reservas de bancos centrales.",
+ crono=[("1930-05", "Fundación en Basilea."), ("1988", "Primer acuerdo de Basilea.")],
+ fuentes=[("Bank for International Settlements (Wikipedia)", W + "Bank_for_International_Settlements")]),
+
+"catl": dict(
+ res=["El mayor fabricante de baterías para autos eléctricos del mundo; provee a Tesla, BMW, Volkswagen y otras."],
+ manda=["Robin Zeng (Zeng Yuqun), fundador y presidente."],
+ dinero="Salida a bolsa en Hong Kong en 2025, una de las mayores del año.",
+ crono=[("2011", "Fundación en Ningde."), ("2025-05", "Cotización en Hong Kong.")],
+ fuentes=[("CATL (Wikipedia)", W + "CATL")]),
+
+"kanzleramt": dict(
+ res=["Gobierno de la mayor economía de Europa; encabeza el rearme alemán tras reformar en 2025 el freno constitucional a la deuda."],
+ manda=["Friedrich Merz, canciller desde mayo de 2025, en coalición con el SPD."],
+ dinero="Fondos especiales de cientos de miles de millones de euros para defensa e infraestructura.",
+ crono=[("2025-03", "Reforma del freno a la deuda."), ("2025-05-06", "Merz asume como canciller.")],
+ fuentes=[("Chancellor of Germany (Wikipedia)", W + "Chancellor_of_Germany"), ("Friedrich Merz (Wikipedia)", W + "Friedrich_Merz")]),
+
+"dhs": dict(
+ res=["Departamento de Seguridad Nacional: inmigración (ICE), fronteras, aduanas, Guardia Costera y ciberseguridad (CISA); ejecuta las deportaciones masivas."],
+ manda=["Markwayne Mullin, secretario desde el 24 de marzo de 2026, tras la salida de Kristi Noem."],
+ dinero="Presupuesto ampliado en 2025 para detención y deportaciones.",
+ crono=[("2002-11", "Creación tras el 11 de septiembre."), ("2026-03-24", "Mullin jura como secretario.")],
+ fuentes=[("United States Department of Homeland Security (Wikipedia)", W + "United_States_Department_of_Homeland_Security"),
+          ("Casa Blanca: jura de Mullin (2026-03)", "https://www.whitehouse.gov/releases/2026/03/secretary-markwayne-mullin-is-ready-to-deliver-on-president-trumps-agenda")]),
+
+"elbit": dict(
+ res=["Principal fabricante de armamento privado de Israel: drones, electrónica, artillería y sistemas de vigilancia, exportados a decenas de países."],
+ manda=["Bezhalel Machlis, director ejecutivo."],
+ dinero="Ingresos impulsados por las guerras de Israel y el rearme europeo.",
+ crono=[("1966", "Origen en Elron."), ("1996", "Constitución como Elbit Systems.")],
+ fuentes=[("Elbit Systems (Wikipedia)", W + "Elbit_Systems")]),
+
+"kantei": dict(
+ res=["Gobierno de la cuarta economía del mundo y principal aliado de EE.UU. en Asia; acelera el rearme y endureció su postura sobre Taiwán."],
+ manda=["Sanae Takaichi, primera ministra desde octubre de 2025; ganó por amplio margen las elecciones anticipadas de febrero de 2026."],
+ dinero="Mayor acreedor externo de EE.UU. en bonos del Tesoro.",
+ crono=[("2025-10-21", "Takaichi, primera mujer en el cargo."), ("2026-02", "Victoria en elecciones anticipadas y reelección por el Parlamento.")],
+ fuentes=[("Prime Minister of Japan (Wikipedia)", W + "Prime_Minister_of_Japan"),
+          ("Asia Economy: Takaichi reelecta (2026-02-18)", "https://www.asiae.co.kr/en/article/2026021815312552109")]),
+
+"huawei": dict(
+ res=["Gigante chino de telecomunicaciones y chips: provee redes 5G a buena parte del Sur Global y desarrolla procesadores propios pese a las sanciones de EE.UU."],
+ manda=["Ren Zhengfei, fundador; presidencia rotativa entre ejecutivos.", "Se declara propiedad de sus empleados a través de un sindicato."],
+ dinero="Gasto en investigación entre los más altos del mundo.",
+ crono=[("1987", "Fundación en Shenzhen."), ("2019-05", "Inclusión en la lista negra comercial de EE.UU."), ("2023-08", "Teléfono con chip avanzado de fabricación china.")],
+ fuentes=[("Huawei (Wikipedia)", W + "Huawei")]),
+
+"mossad": dict(
+ res=["Servicio de inteligencia exterior y operaciones especiales de Israel, con historial de sabotajes y asesinatos selectivos, incluido el programa nuclear iraní."],
+ manda=["Roman Gofman, director desde el 2 de junio de 2026, ex secretario militar de Netanyahu y sin carrera previa en inteligencia; su predecesor David Barnea se opuso a la designación."],
+ dinero="Presupuesto reservado.",
+ crono=[("1949-12", "Creación."), ("2024-09", "Ataque con buscapersonas a Hezbolá."), ("2026-06-02", "Gofman asume.")],
+ fuentes=[("Mossad (Wikipedia)", W + "Mossad"),
+          ("Washington Times: aprobación de Gofman (2026-04-13)", "https://m.washingtontimes.com/news/2026/apr/13/roman-gofman-israeli-army-general-approved-director-mossad/"),
+          ("Al Majalla: perfil de Gofman", "https://en.majalla.com/node/331426/profiles/roman-gofman-israels-new-netanyahu-friendly-mossad-chief")]),
+
+"trenaragua": dict(
+ res=["Banda nacida en la cárcel de Tocorón que se expandió por Sudamérica y EE.UU. con extorsión, trata y narcotráfico; designada terrorista por EE.UU. en 2025.",
+      "Su líder histórico murió en junio de 2026; según InSight Crime, la cohesión del grupo ya se venía debilitando."],
+ manda=["Héctor Guerrero Flores, 'Niño Guerrero', murió el 12 de junio de 2026 en una operación conjunta de EE.UU. y Venezuela en el estado Bolívar; no hay sucesor claro."],
+ dinero="Extorsión, explotación sexual, tráfico de migrantes y minería ilegal.",
+ crono=[("2014", "Consolidación en Tocorón."), ("2023-09", "Toma de Tocorón por el gobierno venezolano."), ("2025-02", "Designación como organización terrorista."),
+        ("2026-06-12", "Muerte de 'Niño Guerrero'.")],
+ fuentes=[("Tren de Aragua (Wikipedia)", W + "Tren_de_Aragua"),
+          ("InSight Crime: perfil de Niño Guerrero", "https://insightcrime.org/es/?p=233191"),
+          ("NCTC: Tren de Aragua", "https://www.dni.gov/nctc/terrorist_groups/tren_de_aragua.html")]),
+
+"gazprom": dict(
+ res=["Gigante gasífero estatal ruso; perdió casi todo el mercado europeo desde 2022 y busca reorientarse hacia China."],
+ manda=["Alekséi Miller, director ejecutivo; el Estado ruso es accionista mayoritario."],
+ dinero="Registró pérdidas tras el corte de exportaciones a Europa.",
+ crono=[("1989-08", "Creación a partir del ministerio soviético del gas."), ("2019-12", "Inicio del gasoducto Fuerza de Siberia."), ("2022-09", "Sabotaje de los Nord Stream.")],
+ fuentes=[("Gazprom (Wikipedia)", W + "Gazprom")]),
+
+"x": dict(
+ res=["Red social de Elon Musk, integrada a SpaceX junto con xAI en febrero de 2026; plataforma central del debate político en EE.UU."],
+ manda=["Elon Musk."],
+ dinero="Publicidad y suscripciones; su valor se integró al grupo SpaceX.",
+ crono=[("2006-03", "Lanzamiento de Twitter."), ("2022-10", "Compra por Musk."), ("2025-03", "Fusión con xAI."), ("2026-02", "Integración a SpaceX.")],
+ fuentes=[("X Corp. (Wikipedia)", W + "X_Corp."), ("Twitter (Wikipedia)", W + "Twitter")]),
+
+"far_sudan": dict(
+ res=["Fuerzas de Apoyo Rápido, surgidas de las milicias Janjaweed de Darfur, en guerra con el ejército sudanés desde 2023.",
+      "Tras tomar El Fasher en octubre de 2025 controlan casi todo Darfur y encabezan un gobierno paralelo que la Unión Africana no reconoce."],
+ manda=["Mohamed Hamdan Dagalo, 'Hemedti', comandante y presidente del consejo presidencial del gobierno paralelo."],
+ dinero="Oro de Darfur y apoyo externo atribuido por investigaciones de la ONU a Emiratos Árabes Unidos, que lo niega.",
+ crono=[("2013", "Creación formal."), ("2023-04-15", "Comienzo de la guerra con el ejército."), ("2025-07", "Anuncio del gobierno paralelo."), ("2025-10", "Caída de El Fasher.")],
+ fuentes=[("Rapid Support Forces (Wikipedia)", W + "Rapid_Support_Forces"),
+          ("Al Arabiya: Hemedti jura como jefe del gobierno paralelo", "https://english.alarabiya.net/News/middle-east/2025/08/30/rsf-s-hemedti-sworn-in-as-head-of-parallel-sudanese-government")]),
+
+"vanguard": dict(
+ res=["Segunda gestora de activos del mundo; por sus fondos indexados es accionista de casi todas las grandes empresas de EE.UU."],
+ manda=["Salim Ramji, director ejecutivo; los fondos son dueños de la empresa."],
+ dinero="Alrededor de 10 billones de dólares administrados.",
+ crono=[("1975-05", "Fundación por John Bogle."), ("1976", "Primer fondo indexado para el público.")],
+ fuentes=[("The Vanguard Group (Wikipedia)", W + "The_Vanguard_Group")]),
+
+"doj": dict(
+ res=["Departamento de Justicia con el FBI: persecución penal federal, contrainteligencia y extradiciones; brazo jurídico de la ofensiva contra cárteles designados terroristas."],
+ manda=["Todd Blanche, fiscal general tras el despido de Pam Bondi en 2026; Kash Patel, director del FBI."],
+ dinero="Decomisos de activos, incluidos los bitcoins del Prince Group.",
+ crono=[("1870-06", "Creación."), ("1908-07", "Creación del FBI."), ("2026", "Blanche reemplaza a Bondi.")],
+ fuentes=[("United States Department of Justice (Wikipedia)", W + "United_States_Department_of_Justice"),
+          ("Political.org: quién es quién en el gobierno de Trump", "https://political.org/explained/trump-administration-whos-who/")]),
+
+"hezbola": dict(
+ res=["Partido y milicia chiita libanesa aliada de Irán; entró en la guerra el 2 de marzo de 2026 tras la muerte de Ali Jamenei, y Israel respondió con bombardeos y una invasión terrestre del sur del Líbano.",
+      "Rechaza las negociaciones directas entre el Líbano e Israel iniciadas en abril bajo patrocinio de EE.UU."],
+ manda=["Naim Qassem, secretario general desde octubre de 2024."],
+ dinero="Financiamiento iraní, redes comerciales y servicios propios en el Líbano.",
+ crono=[("1982", "Surgimiento durante la invasión israelí del Líbano."), ("2024-09", "Muerte de Hasán Nasralá."), ("2026-03-02", "Nueva guerra con Israel.")],
+ fuentes=[("Hezbollah (Wikipedia)", W + "Hezbollah"),
+          ("L'Orient-Le Jour: Qassem y las negociaciones (2026-06)", "https://today.lorientlejour.com/article/1538471/qassem-says-lebanon-israel-negotiations-must-be-limited-to-mutual-security.html")]),
+
+"sunyeeon": dict(
+ res=["Una de las tríadas más grandes de Hong Kong, con presencia en el juego, el préstamo usurario y el lavado en Asia y entre comunidades chinas del exterior."],
+ manda=["Estructura de sociedad secreta con conducción no pública."],
+ dinero="Juego ilegal, usura, extorsión y lavado.",
+ crono=[("1919", "Origen en Hong Kong.")],
+ fuentes=[("Sun Yee On (Wikipedia)", W + "Sun_Yee_On")]),
+
+"boe": dict(
+ res=["Banco central del Reino Unido y custodio de reservas de oro de decenas de países en su bóveda de Londres."],
+ manda=["Andrew Bailey, gobernador."],
+ dinero="Emisor de la libra esterlina.",
+ crono=[("1694", "Fundación."), ("1997-05", "Independencia operativa.")],
+ fuentes=[("Bank of England (Wikipedia)", W + "Bank_of_England")]),
+})
