@@ -1133,7 +1133,7 @@ FICHAS.update({
  dinero="Recaudación de pequeños donantes vía ActBlue y grandes comités de acción política.",
  crono=[("1828", "Fundación."), ("2024-11", "Derrota presidencial."), ("2026-11-03", "Elecciones legislativas de medio término.")],
  fuentes=[("Democratic Party (United States) (Wikipedia)", W + "Democratic_Party_(United_States)"),
-          ("Associated Press: resultados electorales", "https://apnews.com/hub/election-2026")]),
+          ("2026 United States elections (Wikipedia)", W + "2026_United_States_elections")]),
 
 "gop": dict(
  res=["Partido de gobierno de EE.UU. desde 2025, transformado por el movimiento de Donald Trump.",
@@ -1142,7 +1142,7 @@ FICHAS.update({
  dinero="Grandes donantes, comités de acción política y la estructura de campaña de Trump.",
  crono=[("1854", "Fundación."), ("2024-11", "Victoria de Trump."), ("2026-11-03", "Elecciones legislativas de medio término.")],
  fuentes=[("Republican Party (United States) (Wikipedia)", W + "Republican_Party_(United_States)"),
-          ("Associated Press: resultados electorales", "https://apnews.com/hub/election-2026")]),
+          ("2026 United States elections (Wikipedia)", W + "2026_United_States_elections")]),
 
 "statestreet": dict(
  res=["Uno de los mayores custodios de valores del mundo y tercer gestor de fondos indexados detrás de BlackRock y Vanguard."],
