@@ -1,5 +1,9 @@
 # Cambios
 
+## 2026-11-16 · Nueva imagen para compartir
+
+- Imagen de vista previa rediseñada: mapa mundial con la red de actores y el título a la izquierda (`img/og-mapa.png`). Nombre de archivo nuevo para que WhatsApp y X no sigan mostrando la anterior.
+
 ## 2026-11-16 · Relaciones, India y hoja de puntuación
 
 - Fuerzas Armadas de la India (293 actores) y 33 relaciones nuevas de propiedad, financiamiento y abastecimiento (296 en total).
