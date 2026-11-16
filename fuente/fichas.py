@@ -1281,3 +1281,299 @@ FICHAS.update({
  crono=[("1872", "Origen de China Merchants."), ("2017-07", "Concesión de 99 años en Hambantota.")],
  fuentes=[("China Merchants Port (Wikipedia)", W + "China_Merchants_Port"), ("Hambantota International Port (Wikipedia)", W + "Hambantota_International_Port")]),
 })
+
+# ---- Tanda 5 (posiciones 161 a 200) ----
+FICHAS.update({
+"ffaa_ucrania": dict(
+ res=["Sostienen desde 2022 la defensa frente a la invasión rusa, con una de las industrias de drones militares más grandes y probadas del mundo."],
+ manda=["Mijaílo Drapatyi, comandante en jefe desde el 21 de julio de 2026, tras el despido de Oleksandr Syrskyi en medio de protestas masivas."],
+ dinero="Dependientes de la ayuda militar y financiera de Europa y EE.UU.",
+ crono=[("2022-02-24", "Invasión rusa a gran escala."), ("2024-02", "Syrskyi reemplaza a Zaluzhnyi."), ("2024-08", "Incursión en Kursk."), ("2026-07-21", "Drapatyi, comandante en jefe.")],
+ fuentes=[("Armed Forces of Ukraine (Wikipedia)", W + "Armed_Forces_of_Ukraine"),
+          ("Euronews: Drapatyi reemplaza a Syrskyi (2026-07-21)", "https://www.euronews.com/2026/07/21/zelenskyy-replaces-oleksandr-syrskyi-with-mykhailo-drapatyi-as-ukraines-commander-in-chief")]),
+
+"oms": dict(
+ res=["Agencia sanitaria de la ONU: declara emergencias internacionales, fija normas sanitarias y coordina respuestas a pandemias; EE.UU. inició en 2025 su retiro del organismo."],
+ manda=["Tedros Adhanom Ghebreyesus, director general; la Asamblea Mundial de la Salud reúne a los Estados."],
+ dinero="Depende en gran parte de contribuciones voluntarias de Estados y fundaciones, como la Fundación Gates.",
+ crono=[("1948-04-07", "Creación."), ("2020-03", "Declaración de pandemia de covid-19."), ("2025-01", "EE.UU. anuncia su retiro."), ("2025-05", "Aprobación del acuerdo sobre pandemias.")],
+ fuentes=[("World Health Organization (Wikipedia)", W + "World_Health_Organization")]),
+
+"stf": dict(
+ res=["Corte suprema y constitucional de Brasil, con poder sobre plataformas digitales y causas penales contra altas autoridades.",
+      "Condenó a Jair Bolsonaro a 27 años y 3 meses por la trama golpista; desde marzo de 2026 cumple prisión domiciliaria humanitaria."],
+ manda=["Once ministros; Alexandre de Moraes es relator de las causas del golpe."],
+ dinero="Sin poder económico propio; decide sobre regulación, impuestos y contratos públicos.",
+ crono=[("1891", "Creación republicana."), ("2024-08", "Suspensión de X en Brasil."), ("2025-09", "Condena de Bolsonaro."), ("2025-11-25", "Inicio de la ejecución de la pena."), ("2026-03-24", "Prisión domiciliaria humanitaria.")],
+ fuentes=[("Supreme Federal Court (Wikipedia)", W + "Supreme_Federal_Court"),
+          ("STF: prisión domiciliaria de Bolsonaro (2026-03-24)", "https://noticias.stf.jus.br/postsnoticias/stf-concede-prisao-domiciliar-temporaria-ao-ex-presidente-jair-bolsonaro/")]),
+
+"africacorps": dict(
+ res=["Estructura bajo control del Ministerio de Defensa ruso que reemplazó al Grupo Wagner en el Sahel; protege a juntas militares en Malí, Burkina Faso y Níger a cambio de acceso a minería y bases."],
+ manda=["Mando del Ministerio de Defensa y la inteligencia militar rusa (GRU)."],
+ dinero="Concesiones mineras, sobre todo de oro, y pagos de los gobiernos protegidos.",
+ crono=[("2023-08", "Muerte de Yevgueni Prigozhin."), ("2024", "Despliegue de Africa Corps."), ("2025-06", "Wagner anuncia su salida de Malí.")],
+ fuentes=[("Africa Corps (Russia) (Wikipedia)", W + "Africa_Corps_(Russia)"), ("Wagner Group (Wikipedia)", W + "Wagner_Group")]),
+
+"epc": dict(
+ res=["Fuerzas armadas de Corea del Norte, dueñas de un arsenal nuclear y de misiles; enviaron tropas a combatir junto a Rusia en Kursk."],
+ manda=["Kim Jong-un, comandante supremo."],
+ dinero="Una de las mayores proporciones de gasto militar sobre el PBI del mundo.",
+ crono=[("1948-02", "Creación."), ("2006-10", "Primera prueba nuclear."), ("2024-10", "Envío de tropas a Rusia.")],
+ fuentes=[("Korean People's Army (Wikipedia)", W + "Korean_People%27s_Army")]),
+
+"gru": dict(
+ res=["Inteligencia militar rusa: sabotaje, ciberataques, operaciones de influencia y control de fuerzas expedicionarias como Africa Corps.",
+      "Gobiernos occidentales le atribuyen el envenenamiento de Skripal y ataques informáticos como NotPetya."],
+ manda=["Ígor Kostiukov, jefe desde 2018."],
+ dinero="Presupuesto reservado dentro del Ministerio de Defensa.",
+ crono=[("1918", "Origen soviético."), ("2018-03", "Caso Skripal en Salisbury."), ("2018-10", "Kostiukov asume.")],
+ fuentes=[("GRU (Wikipedia)", W + "GRU_(Russian_Federation)")]),
+
+"isi": dict(
+ res=["Inteligencia de las Fuerzas Armadas de Pakistán, eje del poder del ejército sobre la política interna y la relación con Afganistán."],
+ manda=["Teniente general Asim Malik, director general; responde al jefe del Ejército."],
+ dinero="Presupuesto reservado.",
+ crono=[("1948", "Creación."), ("1980s", "Canal del apoyo a los muyahidines en Afganistán."), ("2025-05", "Conflicto armado con India.")],
+ fuentes=[("Inter-Services Intelligence (Wikipedia)", W + "Inter-Services_Intelligence")]),
+
+"morena": dict(
+ res=["Partido gobernante de México, con mayoría calificada en el Congreso desde 2024; impulsó la elección popular de jueces de 2025."],
+ manda=["Claudia Sheinbaum, presidenta de la República; Andrés Manuel López Obrador, fundador, conserva influencia."],
+ dinero="Financiamiento público de partidos.",
+ crono=[("2014-07", "Registro como partido."), ("2018-07", "López Obrador gana la presidencia."), ("2024-10-01", "Sheinbaum asume."), ("2025-06", "Primera elección judicial.")],
+ fuentes=[("Morena (political party) (Wikipedia)", W + "Morena_(political_party)")]),
+
+"opusdei": dict(
+ res=["Prelatura personal de la Iglesia católica con fuerte presencia en universidades, escuelas de negocios y élites de España y América Latina."],
+ manda=["Fernando Ocáriz, prelado; en 2022 el papa Francisco redujo su autonomía institucional."],
+ dinero="Red de fundaciones, universidades (como la de Navarra y la Austral) y escuelas de negocios (IESE).",
+ crono=[("1928-10", "Fundación por Josemaría Escrivá."), ("1982-11", "Prelatura personal."), ("2022-07", "Motu proprio Ad charisma tuendum.")],
+ fuentes=[("Opus Dei (Wikipedia)", W + "Opus_Dei")]),
+
+"pt_br": dict(
+ res=["Partido de Lula, que gobierna Brasil y ganó la reelección en octubre de 2026."],
+ manda=["Luiz Inácio Lula da Silva, líder; Edinho Silva, presidente del partido."],
+ dinero="Fondo electoral público y aportes de afiliados.",
+ crono=[("1980-02", "Fundación."), ("2002-10", "Primera victoria de Lula."), ("2016-08", "Destitución de Dilma Rousseff."), ("2026-10-25", "Reelección de Lula.")],
+ fuentes=[("Workers' Party (Brazil) (Wikipedia)", W + "Workers%27_Party_(Brazil)")]),
+
+"rand": dict(
+ res=["Centro de investigación financiado sobre todo por el Pentágono; diseñó buena parte de la doctrina estratégica nuclear de EE.UU."],
+ manda=["Jason Matheny, presidente."],
+ dinero="Contratos federales de investigación.",
+ crono=[("1948-05", "Fundación a partir del Proyecto RAND de la Fuerza Aérea.")],
+ fuentes=[("RAND Corporation (Wikipedia)", W + "RAND_Corporation")]),
+
+"swift": dict(
+ res=["Red de mensajería que usan más de 11.000 bancos para los pagos internacionales; la exclusión de SWIFT es una de las sanciones más duras (Irán, Rusia)."],
+ manda=["Cooperativa de bancos con sede en Bélgica, bajo supervisión del Banco Nacional de Bélgica y bancos centrales del G10."],
+ dinero="Ingresos por tarifas de mensajes.",
+ crono=[("1973-05", "Fundación."), ("2012-03", "Desconexión de bancos iraníes."), ("2022-03", "Exclusión de bancos rusos.")],
+ fuentes=[("SWIFT (Wikipedia)", W + "SWIFT")]),
+
+"aljazeera": dict(
+ res=["Cadena de noticias financiada por el Estado de Catar, la más influyente del mundo árabe y herramienta de la diplomacia catarí."],
+ manda=["Red de medios del Estado catarí."],
+ dinero="Financiamiento público de Catar.",
+ crono=[("1996-11", "Lanzamiento."), ("2006-11", "Lanzamiento de Al Jazeera English."), ("2024-05", "Cierre de sus oficinas en Israel.")],
+ fuentes=[("Al Jazeera (Wikipedia)", W + "Al_Jazeera")]),
+
+"smic": dict(
+ res=["Mayor fabricante de chips de China, pieza central de su autonomía tecnológica frente a las restricciones de EE.UU."],
+ manda=["Empresa con fuerte participación de fondos estatales chinos."],
+ dinero="Inversiones respaldadas por el Fondo Nacional de Circuitos Integrados.",
+ crono=[("2000-04", "Fundación en Shanghái."), ("2020-12", "Inclusión en la lista negra comercial de EE.UU."), ("2023-08", "Chip de 7 nm para Huawei.")],
+ fuentes=[("SMIC (Wikipedia)", W + "Semiconductor_Manufacturing_International_Corporation")]),
+
+"xinhua": dict(
+ res=["Agencia oficial de noticias de China, órgano del Consejo de Estado y del Partido, con oficinas en todo el mundo."],
+ manda=["Dependiente del Departamento de Propaganda del Partido."],
+ dinero="Presupuesto estatal.",
+ crono=[("1931-11", "Fundación como Agencia Roja de Noticias.")],
+ fuentes=[("Xinhua News Agency (Wikipedia)", W + "Xinhua_News_Agency")]),
+
+"rothschild": dict(
+ res=["Familia de banqueros europeos cuyo banco, Rothschild & Co, es uno de los principales asesores en fusiones y reestructuraciones de deuda soberana del mundo."],
+ manda=["Alexandre de Rothschild, presidente ejecutivo de Rothschild & Co."],
+ dinero="La familia retiró al banco de la bolsa en 2023 para controlarlo por completo.",
+ crono=[("1760s", "Mayer Amschel Rothschild inicia el negocio en Fráncfort."), ("1815", "Financiamiento británico en las guerras napoleónicas."), ("2023", "Retiro de la bolsa de París.")],
+ fuentes=[("Rothschild family (Wikipedia)", W + "Rothschild_family"), ("Rothschild & Co (Wikipedia)", W + "Rothschild_%26_Co")]),
+
+"ugle": dict(
+ res=["La gran logia más antigua del mundo y referencia de la masonería regular en los países anglosajones."],
+ manda=["El duque de Kent, gran maestre desde 1967."],
+ dinero="Cuotas de unos 175.000 miembros y fundaciones benéficas.",
+ crono=[("1717-06", "Fundación de la Gran Logia de Londres."), ("1813", "Unión que da origen a la Gran Logia Unida.")],
+ fuentes=[("United Grand Lodge of England (Wikipedia)", W + "United_Grand_Lodge_of_England")]),
+
+"hamas": dict(
+ res=["Movimiento islamista palestino que gobernó Gaza desde 2007; tras el alto el fuego de octubre de 2025 aceptó en julio de 2026 un acuerdo de desarme por fases supervisado por la Junta de Paz de Trump.",
+      "Israel y EE.UU. condicionan la retirada israelí y la reconstrucción al desarme completo."],
+ manda=["Conducción colectiva tras la muerte de Yahya Sinwar; Khalil al-Hayya encabeza la negociación."],
+ dinero="Financiamiento externo de Irán y redes de donantes; Catar alojó a su liderazgo político.",
+ crono=[("1987-12", "Fundación."), ("2007-06", "Toma de Gaza."), ("2023-10-07", "Ataque contra Israel."), ("2025-10", "Alto el fuego."), ("2026-07", "Acuerdo de desarme por fases.")],
+ fuentes=[("Hamas (Wikipedia)", W + "Hamas"),
+          ("Al Jazeera: acuerdo de desarme de Hamás (2026-07)", "https://www.aljazeera.com/news/2026/7/40/gaza-board-of-peace-announces-hamas-disarmament-agreement-what-we-know")]),
+
+"hermandad": dict(
+ res=["Movimiento islamista transnacional nacido en Egipto, con partidos y redes en decenas de países; proscripto en Egipto, Arabia Saudita y Emiratos.",
+      "El 13 de enero de 2026 EE.UU. designó terroristas a sus ramas de Egipto, Jordania y el Líbano; la rama egipcia rechazó la designación."],
+ manda=["Sin conducción central efectiva; ramas nacionales autónomas."],
+ dinero="Redes de beneficencia, empresas y donantes; Catar y Turquía han dado refugio a dirigentes.",
+ crono=[("1928", "Fundación por Hasan al-Banna."), ("2012-06", "Mohamed Morsi gana la presidencia de Egipto."), ("2013-07", "Golpe militar en Egipto."), ("2026-01-13", "Designaciones de EE.UU.")],
+ fuentes=[("Muslim Brotherhood (Wikipedia)", W + "Muslim_Brotherhood"),
+          ("The National: designación de tres ramas (2026-01-13)", "https://www.thenationalnews.com/news/us/2026/01/13/us-designates-3-branches-of-muslim-brotherhood-as-terrorist-organisations")]),
+
+"euroclear": dict(
+ res=["Depositario central de valores con sede en Bruselas; custodia la mayor parte de los activos del banco central ruso inmovilizados en Europa desde 2022."],
+ manda=["Valérie Urbain, directora ejecutiva; accionistas bancarios e institucionales."],
+ dinero="Las ganancias extraordinarias sobre los activos rusos inmovilizados financian ayuda a Ucrania.",
+ crono=[("1968", "Fundación."), ("2022-02", "Inmovilización de activos rusos."), ("2024", "Primer uso de ganancias para Ucrania.")],
+ fuentes=[("Euroclear (Wikipedia)", W + "Euroclear")]),
+
+"patriarcado": dict(
+ res=["La Iglesia ortodoxa más grande del mundo, estrechamente aliada al Kremlin; respaldó la guerra en Ucrania."],
+ manda=["Patriarca Kiril de Moscú."],
+ dinero="Propiedades, donaciones y apoyo estatal.",
+ crono=[("1589", "Creación del patriarcado de Moscú."), ("2009-02", "Kiril, patriarca."), ("2018-10", "Ruptura con Constantinopla por Ucrania.")],
+ fuentes=[("Russian Orthodox Church (Wikipedia)", W + "Russian_Orthodox_Church")]),
+
+"alazhar": dict(
+ res=["La institución de enseñanza islámica sunita más prestigiosa del mundo; sus dictámenes tienen peso en todo el mundo musulmán."],
+ manda=["Gran imán Ahmed el-Tayeb."],
+ dinero="Presupuesto del Estado egipcio y donaciones.",
+ crono=[("970", "Fundación de la mezquita en El Cairo."), ("2019-02", "Documento sobre la fraternidad humana con el papa Francisco.")],
+ fuentes=[("Al-Azhar University (Wikipedia)", W + "Al-Azhar_University")]),
+
+"ufwd": dict(
+ res=["Departamento del Partido Comunista Chino que coordina la influencia sobre élites no comunistas, la diáspora china, religiones, Hong Kong y Taiwán."],
+ manda=["Shi Taifeng, jefe del departamento."],
+ dinero="Presupuesto del Partido y redes de asociaciones afines.",
+ crono=[("1942", "Creación."), ("2014", "Xi lo llama un 'arma mágica' del Partido.")],
+ fuentes=[("United Front Work Department (Wikipedia)", W + "United_Front_Work_Department")]),
+
+"tjue": dict(
+ res=["Máxima corte de la Unión Europea: su jurisprudencia se impone sobre las leyes nacionales y define el poder de Bruselas sobre datos, competencia y comercio."],
+ manda=["Koen Lenaerts, presidente."],
+ dinero="Sin poder económico propio; sus fallos afectan multas de miles de millones a grandes empresas.",
+ crono=[("1952", "Creación."), ("1964", "Fallo Costa contra ENEL sobre la primacía del derecho europeo."), ("2020-07", "Fallo Schrems II.")],
+ fuentes=[("European Court of Justice (Wikipedia)", W + "European_Court_of_Justice")]),
+
+"cic": dict(
+ res=["Fondo soberano de China para inversiones en el exterior y en bancos estatales chinos a través de Central Huijin."],
+ manda=["Depende del Consejo de Estado."],
+ dinero="Activos superiores a 1 billón de dólares.",
+ crono=[("2007-09", "Creación.")],
+ fuentes=[("China Investment Corporation (Wikipedia)", W + "China_Investment_Corporation")]),
+
+"csonu": dict(
+ res=["Única instancia internacional que puede autorizar el uso de la fuerza y sanciones obligatorias; paralizado por los vetos de sus cinco miembros permanentes.",
+      "En noviembre de 2025 aprobó la Resolución 2803 sobre Gaza, con abstención de Rusia y China; en 2026 conduce la selección del sucesor de António Guterres."],
+ manda=["Cinco miembros permanentes con veto (EE.UU., China, Rusia, Francia y Reino Unido) y diez electivos."],
+ dinero="Decide misiones de paz financiadas por los Estados miembros.",
+ crono=[("1946-01", "Primera sesión."), ("2025-11", "Resolución 2803 sobre Gaza."), ("2026-07", "Comienzan los sondeos para elegir secretario general.")],
+ fuentes=[("United Nations Security Council (Wikipedia)", W + "United_Nations_Security_Council"),
+          ("CRS: designación del secretario general (2026-09)", "https://www.everycrsreport.com/reports/IF10454.html")]),
+
+"bilderberg": dict(
+ res=["Conferencia anual y reservada de unas 130 figuras de la política, las finanzas, la defensa y los medios de Europa y Norteamérica."],
+ manda=["Comité directivo; la secretaría está en los Países Bajos."],
+ dinero="Financiamiento de sus participantes y fundaciones.",
+ crono=[("1954-05", "Primera reunión en el hotel Bilderberg, Países Bajos.")],
+ fuentes=[("Bilderberg meeting (Wikipedia)", W + "Bilderberg_meeting")]),
+
+"qia": dict(
+ res=["Fondo soberano de Catar, con participaciones en bancos, inmobiliarias de Londres, Volkswagen, Barclays y clubes deportivos."],
+ manda=["Depende de la familia gobernante Al Thani."],
+ dinero="Activos superiores a 500.000 millones de dólares.",
+ crono=[("2005", "Creación."), ("2008-10", "Inyección de capital en Barclays durante la crisis.")],
+ fuentes=[("Qatar Investment Authority (Wikipedia)", W + "Qatar_Investment_Authority")]),
+
+"lmm": dict(
+ res=["Organización saudí de proyección religiosa, que financió durante décadas mezquitas y centros en todo el mundo y hoy promueve el discurso del 'islam moderado' oficial."],
+ manda=["Mohammad al-Issa, secretario general."],
+ dinero="Financiamiento del Estado saudí.",
+ crono=[("1962", "Fundación en La Meca.")],
+ fuentes=[("Muslim World League (Wikipedia)", W + "Muslim_World_League")]),
+
+"taiwan": dict(
+ res=["Gobierno de Taiwán, sede de la industria de chips más avanzada del mundo (TSMC) y principal foco de tensión militar entre EE.UU. y China."],
+ manda=["Lai Ching-te, presidente desde mayo de 2024; el Parlamento lo controla la oposición."],
+ dinero="Su industria de semiconductores es crítica para la economía mundial.",
+ crono=[("1949", "Retirada del gobierno nacionalista a Taiwán."), ("1996-03", "Primera elección presidencial directa."), ("2024-05-20", "Lai asume.")],
+ fuentes=[("President of the Republic of China (Wikipedia)", W + "President_of_the_Republic_of_China")]),
+
+"rosgvardia": dict(
+ res=["Guardia Nacional de Rusia, fuerza de seguridad interior subordinada directamente a Putin para el control de protestas y la protección del régimen."],
+ manda=["Víktor Zólotov, director, exjefe de la guardia personal de Putin."],
+ dinero="Presupuesto federal de seguridad.",
+ crono=[("2016-04", "Creación."), ("2023-06", "Motín de Wagner.")],
+ fuentes=[("National Guard of Russia (Wikipedia)", W + "National_Guard_of_Russia")]),
+
+"brics": dict(
+ res=["Bloque de economías emergentes ampliado desde 2024 a Irán, Egipto, Etiopía, Emiratos e Indonesia; su Nuevo Banco de Desarrollo busca financiar sin condicionamientos occidentales."],
+ manda=["Cumbres anuales de jefes de Estado; Dilma Rousseff preside el Nuevo Banco de Desarrollo."],
+ dinero="Capital autorizado del banco de 100.000 millones de dólares.",
+ crono=[("2009-06", "Primera cumbre."), ("2015-07", "Inicio del Nuevo Banco de Desarrollo."), ("2024-01", "Primera ampliación.")],
+ fuentes=[("BRICS (Wikipedia)", W + "BRICS"), ("New Development Bank (Wikipedia)", W + "New_Development_Bank")]),
+
+"trilateral": dict(
+ res=["Foro privado fundado por David Rockefeller que reúne a élites políticas y empresarias de Norteamérica, Europa y Asia-Pacífico."],
+ manda=["Presidencias regionales y comité ejecutivo."],
+ dinero="Cuotas de miembros y donaciones.",
+ crono=[("1973-07", "Fundación.")],
+ fuentes=[("Trilateral Commission (Wikipedia)", W + "Trilateral_Commission")]),
+
+"mit_tr": dict(
+ res=["Inteligencia de Turquía, con operaciones en Siria, Libia, Irak y Asia Central, y canal de mediación en conflictos regionales."],
+ manda=["İbrahim Kalın, jefe desde 2023, depende de Erdoğan."],
+ dinero="Presupuesto reservado.",
+ crono=[("1965", "Creación."), ("2016-07", "Intento de golpe de Estado."), ("2023-06", "Kalın asume.")],
+ fuentes=[("National Intelligence Organization (Turkey) (Wikipedia)", W + "National_Intelligence_Organization_(Turkey)")]),
+
+"cips": dict(
+ res=["Sistema de pagos internacionales en yuanes creado por China como alternativa a SWIFT, usado por bancos rusos tras su exclusión."],
+ manda=["Operado bajo supervisión del Banco Popular de China."],
+ dinero="Volumen de operaciones en fuerte crecimiento desde 2022.",
+ crono=[("2015-10", "Lanzamiento.")],
+ fuentes=[("Cross-Border Interbank Payment System (Wikipedia)", W + "Cross-Border_Interbank_Payment_System")]),
+
+"opep": dict(
+ res=["Cártel de productores de petróleo ampliado con Rusia y otros países; administra cuotas que mueven el precio mundial del crudo."],
+ manda=["Arabia Saudita y Rusia son los ejes de las decisiones."],
+ dinero="Sus miembros concentran cerca de la mitad de la producción mundial.",
+ crono=[("1960-09", "Fundación en Bagdad."), ("1973-10", "Embargo petrolero."), ("2016-12", "Acuerdo OPEP+ con Rusia.")],
+ fuentes=[("OPEC (Wikipedia)", W + "OPEC"), ("OPEC+ (Wikipedia)", W + "OPEC%2B")]),
+
+"rt": dict(
+ res=["Canal internacional del Estado ruso en varios idiomas, con fuerte audiencia en América Latina, África y Medio Oriente; prohibido en la Unión Europea desde 2022."],
+ manda=["Margarita Simonián, directora."],
+ dinero="Presupuesto estatal ruso.",
+ crono=[("2005-12", "Lanzamiento como Russia Today."), ("2022-03", "Prohibición en la Unión Europea.")],
+ fuentes=[("RT (TV network) (Wikipedia)", W + "RT_(TV_network)")]),
+
+"omc": dict(
+ res=["Organización que administra las reglas del comercio mundial; su órgano de apelación está paralizado desde 2019 por el bloqueo de EE.UU."],
+ manda=["Ngozi Okonjo-Iweala, directora general."],
+ dinero="Presupuesto de cuotas de sus miembros.",
+ crono=[("1995-01", "Creación."), ("2001-12", "Ingreso de China."), ("2019-12", "Parálisis del órgano de apelación.")],
+ fuentes=[("World Trade Organization (Wikipedia)", W + "World_Trade_Organization")]),
+
+"ocs": dict(
+ res=["Organización de seguridad y cooperación euroasiática liderada por China y Rusia, con India, Pakistán, Irán y países de Asia Central."],
+ manda=["Consejo de jefes de Estado; secretaría en Pekín."],
+ dinero="Presupuesto reducido; peso político de sus miembros.",
+ crono=[("2001-06", "Fundación."), ("2017-06", "Ingreso de India y Pakistán."), ("2023-07", "Ingreso de Irán.")],
+ fuentes=[("Shanghai Cooperation Organisation (Wikipedia)", W + "Shanghai_Cooperation_Organisation")]),
+
+"cpi": dict(
+ res=["Tribunal penal permanente contra genocidio, crímenes de guerra y de lesa humanidad; emitió órdenes de detención contra Putin y Netanyahu.",
+      "EE.UU. sancionó a su fiscal, a jueces y en agosto de 2026 a su presidenta; los Estados parte destituyeron al fiscal Karim Khan el 24 de julio de 2026 por denuncias de conducta sexual indebida."],
+ manda=["Jueza Tomoko Akane, presidenta; fiscales adjuntos a cargo de la fiscalía."],
+ dinero="Cuotas de 125 Estados parte.",
+ crono=[("2002-07", "Entrada en vigor del Estatuto de Roma."), ("2023-03", "Orden contra Putin."), ("2024-11", "Órdenes contra Netanyahu y Gallant."), ("2025-02", "Sanciones de EE.UU."), ("2026-07-24", "Destitución de Khan.")],
+ fuentes=[("International Criminal Court (Wikipedia)", W + "International_Criminal_Court"),
+          ("UN News: destitución de Khan (2026-07-24)", "https://www.globalsecurity.org/military/library/news/2026/07/mil-260724-unnews04.htm"),
+          ("Irish Times: sanciones a la presidenta de la CPI (2026-08-18)", "https://www.irishtimes.com/world/americas/2026/08/18/us-sanctions-international-criminal-court-president-and-israel-prosecutor/")]),
+})

@@ -1,5 +1,10 @@
 # Cambios
 
+## 2026-11-16 · Tanda 5 de fichas: las 200 completas
+
+- Fichas para las posiciones 161 a 200 (Hamás, Hermandad Musulmana, CPI, Consejo de Seguridad, STF, SWIFT, Euroclear, BRICS, OPEP+ y otras 31). Todas las organizaciones tienen ficha.
+- Novedades verificadas: Drapatyi reemplaza a Syrskyi en Ucrania (21 de julio); destitución del fiscal de la CPI Karim Khan (24 de julio) y sanciones de EE.UU. a la presidenta de la Corte; acuerdo de desarme de Hamás (julio); designación de tres ramas de la Hermandad Musulmana (13 de enero); prisión domiciliaria humanitaria de Bolsonaro.
+
 ## 2026-11-16 · Tanda 4 de fichas
 
 - Fichas para las posiciones 121 a 160 (FMI, Banco Mundial, Corte Suprema de EE.UU., partidos Demócrata y Republicano, MI6, GCHQ, ASML, COSCO, PIF y otras 30).
