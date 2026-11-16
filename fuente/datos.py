@@ -514,3 +514,23 @@ ANCLAS = {
  "red": ("Acceso directo a jefes de Estado y a la cúpula de las mayores organizaciones del mundo", "Red de alto nivel regional o sectorial", "Red nacional"),
  "reg": ("Sus reglas obligan de hecho fuera de su jurisdicción", "Regula un país grande o un sector entero", "Normas propias o locales"),
 }
+
+# ---------- Ajustes del 2026-11-16 por la guerra con Irán y otros cambios verificados ----------
+# Irán: según Reuters, desde marzo de 2026 la Guardia Revolucionaria decide y el líder supremo legitima.
+def _set(oid, aut=None, dep=None):
+    global ORGS
+    ORGS = [(o[:5] + ((aut if aut is not None else o[5]),) + o[6:8] + ((dep if dep is not None else o[8]),)) if o[0] == oid else o for o in ORGS]
+_set("cgri", aut=1, dep="")
+_set("lider_iran", aut=3, dep="cgri")
+
+def _rel_text(a, b, t=None, x=None, i=None):
+    global RELACIONES
+    RELACIONES = [((a, b, t or r[2], x or r[3], i or r[4]) if (r[0], r[1]) == (a, b) else r) for r in RELACIONES]
+_rel_text("fdi", "cgri", x="Guerra de doce días en junio de 2025 y nueva guerra desde el 28 de febrero de 2026, junto con EE.UU.", i=3)
+_rel_text("sinaloa", "cjng", t="Enfrentamiento", x="Disputa histórica por rutas; en 2026 el CJNG apoyó con combatientes y dinero a Los Chapitos contra Los Mayos, según reconoció el gobierno mexicano.")
+RELACIONES += [
+ ("casablanca", "lider_iran", "Enfrentamiento", "Guerra iniciada el 28 de febrero de 2026, en la que murió Ali Jamenei; bloqueo naval a los puertos iraníes vigente desde julio.", 3),
+ ("pentagono", "cgri", "Enfrentamiento", "Operación Furia Épica desde febrero de 2026 y ataques posteriores contra objetivos de la Guardia.", 3),
+ ("ejercito_pak", "casablanca", "Ambigua", "Pakistán medió y fue sede de las negociaciones entre EE.UU. e Irán en 2026.", 1),
+ ("hutis", "pentagono", "Enfrentamiento", "Los hutíes se sumaron a la guerra de 2026 con ataques con misiles.", 2),
+]

@@ -1,7 +1,7 @@
 // El mapa del poder global · interfaz
 (function () {
   "use strict";
-  const M = window.META, ORGS = window.ORGS, REL = window.RELACIONES, PA = window.PAISES, WORLD = window.WORLD;
+  const M = window.META, ORGS = window.ORGS, REL = window.RELACIONES, PA = window.PAISES, WORLD = window.WORLD, FI = window.FICHAS || {};
   const byId = Object.fromEntries(ORGS.map(o => [o.id, o]));
   const app = document.getElementById("app");
   const tip = document.getElementById("tip");
@@ -129,7 +129,7 @@
   // ---------- listas ----------
   const METRIC = { red: "Poder en red", pe: "Poder efectivo", oculto: "Poder oculto", cap: "Capacidad" };
   function rankRows(list, key, max, color) {
-    return list.map((o, i) => `<a class="rk" href="#o-${o.id}"><span class="n">${String(i + 1).padStart(2, "0")}</span>${icon(o)}<span class="nm">${esc(corto(o.n))}<small>${esc(o.area)}</small></span><span class="bar"><i style="width:${Math.max(2, o[key] / max * 100)}%;background:${color || bcol(o.bloque)}"></i></span><span class="v">${num(o[key], key === "cap" ? 0 : 1)}</span></a>`).join("");
+    return list.map((o, i) => `<a class="rk" href="#o-${o.id}"><span class="n">${String(i + 1).padStart(2, "0")}</span>${icon(o)}<span class="nm">${esc(corto(o.n))}<small>${esc(o.area)}${FI[o.id] ? "" : " · ficha en preparación"}</small></span><span class="bar"><i style="width:${Math.max(2, o[key] / max * 100)}%;background:${color || bcol(o.bloque)}"></i></span><span class="v">${num(o[key], key === "cap" ? 0 : 1)}</span></a>`).join("");
   }
   const sortBy = k => ORGS.slice().sort((a, b) => b[k] - a[k] || b.red - a.red);
 
@@ -202,7 +202,7 @@
 
   V.org = (id) => {
     const o = byId[id]; if (!o) return V.organizaciones();
-    const deps = o.dep.map(d => byId[d]), subs = dependents(id), rels = relsOf(id);
+    const deps = o.dep.map(d => byId[d]), subs = dependents(id), rels = relsOf(id), F = FI[id];
     const rank = sortBy("red").indexOf(o) + 1;
     const ejeIdx = Object.fromEntries(M.ejes.map((e, i) => [e.k, i]));
     const perfil = M.familias.map(F => `<div class="fam">${esc(F.n)}</div>` + F.ejes.map(k => { const e = M.ejes[ejeIdx[k]], v = o.sc[ejeIdx[k]]; return `<div class="eje"><span>${esc(e.n)}</span><span class="segs" role="img" aria-label="${v} de 3">${[0, 1, 2].map(i => `<i class="${i < v ? "on" : ""}"></i>`).join("")}</span><span class="an">${v ? esc(e.a[3 - v]) : "Sin capacidad relevante"}</span></div>`; }).join("")).join("");
@@ -217,8 +217,13 @@
           <div class="note" style="display:flex;justify-content:space-between;margin:0"><span>Reconocido y sujeto a control</span><span style="color:#FF3B30">Fuera de control público</span></div>
           <div class="gapbar" role="img" aria-label="Brecha de ${pct(o.brecha)}"><i style="width:${(1 - o.brecha) * 100}%"></i><i style="width:${o.brecha * 100}%"></i></div>
           <p class="read" style="font-size:17px">Poder formal ${o.formal} de 3: ${pct(1 - o.brecha)} de su poder está reconocido públicamente y sujeto a control; el resto escapa a ese control.</p></div>
-        <div><h2>Perfil de poder</h2>${perfil}</div>
-        <div><h2>Resumen y contexto</h2><div class="pending">Ficha en preparación: el resumen, quién manda adentro, el dinero, la cronología y las fuentes se cargan en la próxima etapa, con un dato verificable para cada puntaje.</div></div>
+        
+        ${F ? `<div><h2>Resumen</h2>${F.res.map(p => `<p class="read" style="margin:0 0 14px">${esc(p)}</p>`).join("")}</div>
+        <div><h2>Quién manda adentro</h2><ul class="mlist">${F.manda.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
+        <div><h2>Dinero</h2><p class="read">${esc(F.dinero)}</p></div>
+        <div><h2>Cronología</h2><div class="crono">${F.crono.map(([d, x]) => `<div><span class="mono">${esc(d)}</span><p>${esc(x)}</p></div>`).join("")}</div></div>
+        <div><h2>Fuentes</h2><ol class="fuentes">${F.fuentes.map(([t, u]) => `<li><a href="${esc(u)}" rel="noopener" target="_blank">${esc(t)}</a></li>`).join("")}</ol><p class="note">Ficha revisada el ${fecha(F.rev)}.</p></div><div><h2>Perfil de poder</h2>${perfil}</div>`
+        : `<div><h2>Resumen y contexto</h2><div class="pending">Ficha en preparación: el resumen, quién manda adentro, el dinero, la cronología y las fuentes se cargan por tandas, con un dato verificable para cada puntaje.</div></div><div><h2>Perfil de poder</h2>${perfil}</div>`}
       </div>
       <aside class="org-side">
         <div class="box"><span class="lbl">Por familia</span>${radar(o)}</div>

@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.join(RAIZ, "fuente"))
 from datos import ORGS, EJES, ORDEN_ENTRADA, AREA_TIPO, BLOQUES, AUTONOMIA, CERTEZA, RELACIONES, FORMAL, FASE, FASES, ANCLAS
 from paises import PAISES, BLOQ, POS, GRADO, ASP
 from coords import C
+from fichas import FICHAS
 
 CORTE = "2026-11-16"
 PROXIMA = "2027-02-16"
@@ -72,5 +73,8 @@ out = os.path.join(RAIZ, "data")
 open(os.path.join(out, "meta.js"), "w").write(js("META", meta, "Metadatos: corte, ejes, anclas, bloques, tipos y escalas."))
 open(os.path.join(out, "organizaciones.js"), "w").write(js("ORGS", orgs, "Las 200 organizaciones con puntajes y métricas, ordenadas por poder en red."))
 open(os.path.join(out, "relaciones.js"), "w").write(js("RELACIONES", rel, "Vínculos entre organizaciones: tipo, intensidad (1 a 3) y explicación."))
+for k in FICHAS: assert k in ids, k
+fichas = {k: {"res": v["res"], "manda": v["manda"], "dinero": v["dinero"], "crono": v["crono"], "fuentes": v["fuentes"], "rev": CORTE} for k, v in FICHAS.items()}
+open(os.path.join(out, "fichas.js"), "w").write(js("FICHAS", fichas, "Contenido de las fichas cargadas: resumen, quién manda, dinero, cronología y fuentes."))
 open(os.path.join(out, "paises.js"), "w").write(js("PAISES", paises, "Bloque, posición y zona liberada de cada país, por nombre del mapa."))
-print(f"{len(orgs)} organizaciones, {len(rel)} relaciones, {len(paises)} países y territorios")
+print(f"{len(FICHAS)} fichas, {len(orgs)} organizaciones, {len(rel)} relaciones, {len(paises)} países y territorios")
