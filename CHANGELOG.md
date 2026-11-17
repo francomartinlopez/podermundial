@@ -1,5 +1,12 @@
 # Cambios
 
+## 2026-11-17 · Leyendas de los mapas
+
+- Capa «Organizaciones»: la leyenda muestra qué significa cada color (bloque), cada forma (tipo de actor) y cada tamaño, con círculos de referencia para 100, 50 y 10 puntos.
+- El tamaño de cada actor en el mapa ahora es proporcional a su puntaje de poder (antes usaba el poder efectivo, con poca diferencia visible entre actores).
+- Al tocar un país o un actor, la leyenda sigue disponible debajo del panel («Cómo leer el mapa»).
+- Capa «Posición»: la leyenda explica la intensidad del color.
+
 ## 2026-11-17 · El Marco, fiel a Cryptocracy
 
 - «La tesis», «Sistemas de gobierno» y «Marco teórico» reescritos a partir del texto del libro: la tesis sobre la naturaleza humana, la criptocracia como etapa más baja de las democracias republicanas constitucionales (Estado visible y Estado operativo), la tipología de autocracias (tecnocracia de resultados, régimen nacionalista e imperial, híbrido teocrático y regímenes residuales), Kennedy como punto de inflexión según el libro y la anatomía de la decadencia.

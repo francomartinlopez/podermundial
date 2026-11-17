@@ -235,3 +235,7 @@ td.mono { white-space: nowrap; }
 .define a:hover b { color: var(--red-text); }
 .define b { font-weight: 600; display: block; }
 .define small { color: var(--muted); font-size: 12.5px; }
+
+.leg-more { margin-top: 10px; }
+.leg-more summary { cursor: pointer; list-style: revert; }
+.leg-more .legend { margin-top: 10px; }

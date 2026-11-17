@@ -97,22 +97,25 @@
     const ll = sel.k === "o" ? byId[sel.v].ll : M.friccion.find(f => f.n === +sel.v).ll;
     const [x, y] = proj(ll); return fitBox([[x - 70, y - 40], [x + 70, y + 40]]);
   }
+  const RAD = pt => 1.6 + Math.sqrt(pt) * 1.15;
   function mapSVG(layer, sel, z = 1, vb = FULL) {
     const zs = 1 / Math.pow(z, .75);
     const defs = `<defs>${["T", "E", "I", "D"].map(b => `<pattern id="hatch-${b}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#141414"/><rect width="3" height="6" fill="${b === "D" ? "#5A5150" : bcol(b)}"/></pattern><pattern id="col-${b}" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="${b === "D" ? "#5A5150" : bcol(b)}"/><circle cx="2.5" cy="2.5" r="1.1" fill="#141414"/></pattern>`).join("")}</defs>`;
     const cs = CPATH.map(c => `<path class="m-c${sel && sel.k === "c" && sel.v === c.name ? " sel" : ""}" data-c="${esc(c.name)}" d="${c.d}" fill="${fillFor(c.name, layer)}"/>`).join("");
     let extra = "";
     if (layer === "bloques" || layer === "posicion") extra = `<g class="m-fr">${M.friccion.map(f => { const [x, y] = proj(f.ll); return `<g data-fr="${f.n}" tabindex="0" role="button" aria-label="Punto de fricción ${f.n}: ${esc(f.x)}"><circle cx="${x}" cy="${y}" r="${9 * zs}"/><text x="${x}" y="${y}" style="font-size:${10 * zs}px">${f.n}</text></g>`; }).join("")}</g>`;
-    if (layer === "organizaciones") extra = ORGS.filter(o => o.ll).slice().sort((a, b) => b.pe - a.pe).map(o => { const [x, y] = proj(o.ll); const r = (2 + Math.sqrt(o.pe) * .9) * zs; return shape(o.tipo, x, y, r, bcol(o.bloque), `class="m-o${sel && sel.k === "o" && sel.v === o.id ? " sel" : ""}" data-o="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}"`); }).join("");
+    if (layer === "organizaciones") extra = ORGS.filter(o => o.ll).slice().sort((a, b) => b.pt - a.pt).map(o => { const [x, y] = proj(o.ll); const r = RAD(o.pt) * zs; return shape(o.tipo, x, y, r, bcol(o.bloque), `class="m-o${sel && sel.k === "o" && sel.v === o.id ? " sel" : ""}" data-o="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}"`); }).join("");
     return `<svg viewBox="${vb.join(" ")}" role="img" aria-label="Mapa mundial: ${esc(LAYERS[layer])}">${defs}<path class="m-sphere" d="${SPHERE}"/><path class="m-grat" d="${GRAT}"/>${cs}${extra}</svg>`;
   }
   const LAYERS = { bloques: "Bloques", posicion: "Posición", zonas: "Zonas liberadas", organizaciones: "Organizaciones" };
   function legendFor(layer) {
     const sq = (c, t, extra = "") => `<div><span class="sq" style="background:${c};${extra}"></span>${t}</div>`;
     if (layer === "zonas") return sq(ZONA.T, "Total") + sq(ZONA.X, "Extendida") + sq(ZONA.P, "Parcial") + sq("#232323", "Sin zona liberada", "border:1px solid #2A1414");
-    if (layer === "organizaciones") return M.tipos.map(t => `<div><svg width="16" height="16" aria-hidden="true">${shape(t, 8, 8, 6.4, "#EDE6E3")}</svg>${t}</div>`).join("") + `<p class="note">Color: bloque de la organización. Tamaño: poder efectivo.</p>`;
+    if (layer === "organizaciones") return `<div class="lbl" style="margin:0">Color: bloque</div>` + ["T", "E", "I", "P", "X"].map(k => sq(BL[k].c, esc(BL[k].n))).join("")
+      + `<div class="lbl" style="margin:8px 0 0">Forma: tipo de actor</div>` + M.tipos.map(t => `<div><svg width="16" height="16" aria-hidden="true">${shape(t, 8, 8, 6.4, "#EDE6E3")}</svg>${t}</div>`).join("")
+      + `<div class="lbl" style="margin:8px 0 0">Tamaño: puntaje de poder</div><div style="align-items:flex-end;gap:14px">${[100, 50, 10].map(v => `<span style="display:inline-flex;flex-direction:column;align-items:center;gap:4px"><svg width="${2 * RAD(v) + 2}" height="${2 * RAD(v) + 2}" aria-hidden="true"><circle cx="${RAD(v) + 1}" cy="${RAD(v) + 1}" r="${RAD(v)}" fill="none" stroke="#EDE6E3" stroke-width="1.2"/></svg><small class="muted">${v}</small></span>`).join("")}</div>`;
     const base = sq(BL.T.c, "Imperio transoceánico") + sq(BL.E.c, "Alianza euroasiática") + sq(BL.I.c, "Independientes") + sq("#232323", "Terreno disputado", "border:1px solid #2A1414");
-    if (layer === "posicion") return base + sq("repeating-linear-gradient(45deg,#2F6BFF 0 3px,#141414 3px 6px)", "Protectorado") + sq("radial-gradient(circle,#141414 1.1px,#2F6BFF 1.3px) 0 0/5px 5px", "Colonia de hecho") + `<p class="note">Intensidad: centro y aliados, plenos; integrados, medios. En el terreno disputado, el tinte indica hacia qué bloque se inclina.</p>`;
+    if (layer === "posicion") return base + sq("repeating-linear-gradient(45deg,#2F6BFF 0 3px,#141414 3px 6px)", "Protectorado") + sq("radial-gradient(circle,#141414 1.1px,#2F6BFF 1.3px) 0 0/5px 5px", "Colonia de hecho") + `<p class="note">Color: bloque. Intensidad del color: centro y aliados, plena; integrados, media; pendulares e inclinados, tenue. En el terreno disputado, el tinte indica hacia qué bloque se inclina.</p>`;
     return base + `<div><span class="sq" style="border:1.6px solid #FF3B30;border-radius:50%"></span>Punto de fricción</div>`;
   }
   function countryPanel(name) {
@@ -168,7 +171,7 @@
       holder.innerHTML = mapSVG(layer, sel, MW / t[2], vb);
       side.innerHTML = !sel ? `<div class="lbl">Cómo leerlo</div><div class="legend">${legendFor(layer)}</div>`
         : sel.k === "c" ? countryPanel(sel.v) : sel.k === "o" ? orgPanel(byId[sel.v]) : frPanel(sel.v);
-      if (sel) side.insertAdjacentHTML("beforeend", `<button type="button" class="chip" data-clear style="align-self:flex-start">Volver a la leyenda</button>`);
+      if (sel) side.insertAdjacentHTML("beforeend", `<button type="button" class="chip" data-clear style="align-self:flex-start">Ver el mapa completo</button><details class="leg-more"><summary class="lbl">Cómo leer el mapa</summary><div class="legend">${legendFor(layer)}</div></details>`);
       const clear = side.querySelector("[data-clear]"); if (clear) clear.onclick = () => { sel = null; draw(FULL); zoomTo(FULL); };
       stage.querySelectorAll(".m-c").forEach(p => p.addEventListener("click", () => pick({ k: "c", v: p.dataset.c })));
       activate(stage, ".m-o", g => pick({ k: "o", v: g.dataset.o }));
