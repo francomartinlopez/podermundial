@@ -45,3 +45,6 @@ C = {
 
 from locales import COORDS as _CL
 C.update(_CL)
+
+from nucleo import COORDS as _CN
+C.update(_CN)

@@ -119,3 +119,7 @@ AUT = {
 
 # Dependencias formales que no reflejan el poder real ("" = no depende de nadie en el mapa)
 DEP = {"mossad": ""}
+
+# Altas de los países núcleo
+from nucleo import EXT as _EXT_N, AUT as _AUT_N, DEP as _DEP_N
+EXT.update(_EXT_N); AUT.update(_AUT_N); DEP.update(_DEP_N)

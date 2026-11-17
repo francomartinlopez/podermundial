@@ -11,7 +11,7 @@
   // ---------- utilidades ----------
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const num = (v, d = 1) => Number(v).toLocaleString("es-AR", { minimumFractionDigits: d, maximumFractionDigits: d });
-  const pct = v => Math.round(v * 100) + " %";
+  const pct = v => Math.round(v * 100) + " %";
   const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
   const fecha = iso => { const [y, m, d] = iso.split("-").map(Number); return `${d} de ${MESES[m - 1]} de ${y}`; };
   const corto = n => n.replace(/\s*\((?:[^()]*)\)\s*$/, "");
@@ -116,17 +116,17 @@
   }
   function countryPanel(name) {
     const p = PA[name]; if (!p) return "";
-    const orgs = ORGS.filter(o => o.pais === name || (p.m && p.m[0] === o.id && !p.m[1])).sort((a, b) => b.red - a.red);
+    const orgs = ORGS.filter(o => o.pais === name || (p.m && p.m[0] === o.id && !p.m[1])).sort((a, b) => b.pt - a.pt);
     const def = p.m ? byId[p.m[0]] : orgs[0];
-    const quien = def ? `<div class="define"><div class="lbl">Quién define aquí</div><a href="#o-${def.id}">${icon(def, 22)}<span><b>${esc(corto(def.n))}</b><small>${esc(def.area)} · poder en red ${num(def.red)}</small></span></a>${p.m && p.m[1] ? `<p class="side-x">${esc(p.m[1])}</p>` : ""}</div>` : "";
+    const quien = def ? `<div class="define"><div class="lbl">Quién define aquí</div><a href="#o-${def.id}">${icon(def, 22)}<span><b>${esc(corto(def.n))}</b><small>${esc(def.area)} · puntaje ${num(def.pt)}</small></span></a>${p.m && p.m[1] ? `<p class="side-x">${esc(p.m[1])}</p>` : ""}</div>` : "";
     return `<div class="lbl">${esc(BL[p.b].n)}</div><h3>${esc(p.n)}</h3>
       <p class="side-x"><b>Posición:</b> ${esc(M.posiciones[p.p])}${p.z ? `<br><b>Zona liberada:</b> ${esc(M.grados[p.z])} · ${esc(p.asp.map(a => M.aspectos[a]).join(", "))}` : ""}</p>
       ${p.x ? `<p class="side-x">${esc(p.x)}</p>` : ""}${quien}
-      ${(o2 => o2.length ? `<div class="lbl" style="margin-top:6px">${def ? "Otros actores" : "Actores"} con sede aquí (${o2.length})</div><div>${o2.map(o => `<a class="rk" style="grid-template-columns:18px minmax(0,1fr) 46px" href="#o-${o.id}">${icon(o)}<span class="nm">${esc(corto(o.n))}</span><span class="v">${num(o.red)}</span></a>`).join("")}</div>` : "")(orgs.filter(o => o !== def))}`;
+      ${(o2 => o2.length ? `<div class="lbl" style="margin-top:6px">${def ? "Otros actores" : "Actores"} con sede aquí (${o2.length})</div><div>${o2.map(o => `<a class="rk" style="grid-template-columns:18px minmax(0,1fr) 46px" href="#o-${o.id}">${icon(o)}<span class="nm">${esc(corto(o.n))}</span><span class="v">${num(o.pt)}</span></a>`).join("")}</div>` : "")(orgs.filter(o => o !== def))}`;
   }
   function orgPanel(o) {
     return `<div class="lbl">${esc(o.area)} · ${esc(BL[o.bloque].n)}</div><h3>${esc(o.n)}</h3>
-      <div class="nums"><div><small>Efectivo</small><b>${num(o.pe)}</b></div><div><small>En red</small><b>${num(o.red)}</b></div><div class="o"><small>Oculto</small><b>${num(o.oculto)}</b></div></div>
+      <div class="nums"><div><small>Puntaje</small><b>${num(o.pt)}</b></div><div><small>En red</small><b>${num(o.red)}</b></div><div class="o"><small>Oculto</small><b>${num(o.oculto)}</b></div></div>
       <p class="side-x"><b>Sede:</b> ${esc(o.sede)}<br><b>Autonomía:</b> ${o.aut} · ${esc(M.autonomia[o.aut])}</p>
       <a class="btn" href="#o-${o.id}">Abrir la ficha</a>`;
   }
@@ -173,7 +173,7 @@
       activate(stage, ".m-o", g => pick({ k: "o", v: g.dataset.o }));
       activate(stage, "[data-fr]", g => pick({ k: "f", v: g.dataset.fr }));
       bindTip(stage, ".m-c", p => { const c = PA[p.dataset.c]; return c ? `<b>${esc(c.n)}</b><span>${esc(BL[c.b].n)} · ${esc(M.posiciones[c.p])}${c.z ? " · zona liberada " + esc(M.grados[c.z]).toLowerCase() : ""}</span>` : esc(p.dataset.c); });
-      bindTip(stage, ".m-o", g => { const o = byId[g.dataset.o]; return `<b>${esc(o.n)}</b><span>${esc(o.area)} · poder en red ${num(o.red)}</span>`; });
+      bindTip(stage, ".m-o", g => { const o = byId[g.dataset.o]; return `<b>${esc(o.n)}</b><span>${esc(o.area)} · puntaje ${num(o.pt)}</span>`; });
     };
     el.querySelectorAll("[data-l]").forEach(b => b.addEventListener("click", () => { layer = b.dataset.l; if (sel && sel.k === "o" && layer !== "organizaciones") sel = null; draw(); }));
     side.addEventListener("click", e => { const a = e.target.closest("[data-pick]"); if (!a) return; e.preventDefault(); if (layer !== "organizaciones") layer = "organizaciones"; pick({ k: "o", v: a.dataset.pick }); });
@@ -181,24 +181,24 @@
   }
 
   // ---------- listas ----------
-  const METRIC = { red: "Poder en red", pe: "Poder efectivo", oculto: "Poder oculto", cap: "Capacidad" };
+  const METRIC = { pt: "Puntaje de poder", red: "Poder en red", pe: "Poder efectivo", oculto: "Poder oculto", cap: "Capacidad" };
   function rankRows(list, key, max, color) {
     return list.map((o, i) => `<a class="rk" href="#o-${o.id}"><span class="n">${String(i + 1).padStart(2, "0")}</span>${icon(o)}<span class="nm">${esc(corto(o.n))}<small>${esc(o.area)}${FI[o.id] ? "" : " · ficha en preparación"}</small></span><span class="bar"><i style="width:${Math.max(2, o[key] / max * 100)}%;background:${color || bcol(o.bloque)}"></i></span><span class="v">${num(o[key], key === "cap" ? 0 : 1)}</span></a>`).join("");
   }
-  const sortBy = k => ORGS.slice().sort((a, b) => b[k] - a[k] || b.red - a.red);
+  const sortBy = k => ORGS.slice().sort((a, b) => b[k] - a[k] || b.pt - a.pt);
 
   // ---------- vistas ----------
   const V = {};
   V.inicio = () => {
-    const red = sortBy("red").slice(0, 10), oc = sortBy("oculto").slice(0, 10);
+    const red = sortBy("pt").slice(0, 10), oc = sortBy("oculto").slice(0, 10);
     app.innerHTML = `<div class="wrap">
       <div class="hero"><div style="display:flex;flex-direction:column;gap:18px"><div class="kick">El mundo real, sin máscaras</div><h1>El mapa del<br>poder global</h1></div>
       <p class="read">Quién tiene el poder real en el mundo y quién solo lo aparenta. ${ORGS.length} organizaciones y personas medidas en ${M.ejes.length} ejes, su jerarquía y cuánto de su poder escapa al control público.</p></div>
       <section class="block" id="mapa-inicio"></section>
       <section class="block two">
-        <div><div class="sec-title"><h2>Poder en red</h2><a href="#organizaciones">Ver los ${ORGS.length}</a></div>${rankRows(red, "red", red[0].red)}</div>
+        <div><div class="sec-title"><h2>Puntaje de poder</h2><a href="#organizaciones">Ver los ${ORGS.length}</a></div>${rankRows(red, "pt", 100)}</div>
         <div><div class="sec-title"><h2>Poder oculto</h2><a href="#organizaciones-oculto">Ver el índice</a></div>${rankRows(oc, "oculto", oc[0].oculto, "#E10600")}</div>
-        <p class="note scale-note"><b>Cómo leer los números.</b> Son puntos, no dinero ni porcentajes, y sirven para comparar. Cada actor recibe de 0 a 3 en ${M.ejes.length} ejes; la coerción, la obtención de secretos y la acción fuera de la ley valen doble, y los contactos una vez y media. La suma ponderada es su capacidad (máximo ${M.capmax}). El poder efectivo la ajusta por autonomía, pero quien tiene armas, secretos y contactos conserva poder propio aunque dependa formalmente de otro. El <b>poder en red</b> suma, además, la parte del poder de quienes dependen de él que de verdad controla; por eso los centros superan los ${M.capmax} puntos. El <b>poder oculto</b> es la parte del poder efectivo que escapa a la ley, las elecciones, los tribunales y la auditoría. <a href="#marco">Ver el método</a>.</p>
+        <p class="note scale-note"><b>Cómo leer los números.</b> El <b>puntaje de poder</b> va de 0 a 100 y el actor más poderoso vale 100; los demás se miden en proporción. Combina cinco cosas: lo que suele pesar su categoría de actor (40 %), lo que esa categoría muestra en los datos (20 %), su capacidad propia en ${M.ejes.length} ejes (25 %), su autonomía real (10 %) y la red de quienes dependen de él (5 %). Se multiplican, no se suman: para estar arriba hay que tener puntaje en todo. El <b>poder oculto</b> es la parte de su poder que escapa a la ley, las elecciones, los tribunales y la auditoría. <a href="#marco">Ver el método</a>.</p>
       </section>
       <section class="block cards">
         <a class="card" href="#quien-manda"><span class="kick">Esquema</span><b>Quién manda</b><span>La jerarquía real: quién decide solo, quién obedece y quién aparenta.</span></a>
@@ -230,7 +230,7 @@
     app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Fichas</div><h1>Organizaciones</h1></div>
       <p class="read">${ORGS.length} organizaciones con nombre propio. Tocá una para abrir su ficha.</p></div>
       <div class="filters">
-        <label>Ordenar por<select id="fM">${Object.entries(METRIC).map(([k, n]) => `<option value="${k}"${k === (arg || "red") ? " selected" : ""}>${n}</option>`).join("")}</select></label>
+        <label>Ordenar por<select id="fM">${Object.entries(METRIC).map(([k, n]) => `<option value="${k}"${k === (arg || "pt") ? " selected" : ""}>${n}</option>`).join("")}</select></label>
         <label>Tipo<select id="fT"><option value="">Todos</option>${M.tipos.map(t => `<option>${t}</option>`).join("")}</select></label>
         <label>Área<select id="fA"><option value="">Todas</option>${areas.map(a => `<option>${esc(a)}</option>`).join("")}</select></label>
         <label>Bloque<select id="fB"><option value="">Todos</option>${["T", "E", "I", "P", "X"].map(k => `<option value="${k}">${esc(BL[k].n)}</option>`).join("")}</select></label>
@@ -259,7 +259,8 @@
   V.org = (id) => {
     const o = byId[id]; if (!o) return V.organizaciones();
     const deps = o.dep.map(d => byId[d]), subs = dependents(id), rels = relsOf(id), F = FI[id];
-    const rank = sortBy("red").indexOf(o) + 1;
+    const rank = sortBy("pt").indexOf(o) + 1;
+    const CAT = M.categorias[o.area];
     const ejeIdx = Object.fromEntries(M.ejes.map((e, i) => [e.k, i]));
     const perfil = M.familias.map(F => `<div class="fam">${esc(F.n)}</div>` + F.ejes.map(k => { const e = M.ejes[ejeIdx[k]], v = o.sc[ejeIdx[k]]; return `<div class="eje"><span>${esc(e.n)}</span><span class="segs" role="img" aria-label="${v} de 3">${[0, 1, 2].map(i => `<i class="${i < v ? "on" : ""}"></i>`).join("")}</span><span class="an">${v ? esc(e.a[3 - v]) : "Sin capacidad relevante"}</span></div>`; }).join("")).join("");
     const relHtml = rels.length ? rels.sort((a, b) => b.i - a.i).map(r => { const other = byId[r.a === id ? r.b : r.a]; return `<div class="rel">${lineIcon(r.t)}<div><a href="#o-${other.id}">${esc(corto(other.n))}</a> · ${esc(r.t.toLowerCase())}${r.i === 3 ? " fuerte" : r.i === 1 ? " débil" : ""}<small>${esc(r.x)}</small></div></div>`; }).join("") : `<p class="side-x">Sin relaciones cargadas todavía.</p>`;
@@ -267,8 +268,10 @@
       <div class="org-head"><div class="crumb"><a href="#organizaciones">Organizaciones</a> / ${esc(o.area)}</div>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px">${icon(o, 44)}<h1>${esc(o.n)}</h1></div>
         <div class="pills"><span style="border-color:${bcol(o.bloque)}">${esc(BL[o.bloque].n)}</span><span>Autonomía ${o.aut} · ${esc(M.autonomia[o.aut])} · factor real ${num(o.fr, 2)}</span><span>Fase: ${esc(M.fases[o.fase]).toLowerCase()}</span><span>Certeza: ${esc(M.certeza[o.cert]).toLowerCase()}</span><span>${esc(o.tipo)}</span><span>Sede: ${esc(o.sede)}</span><span style="border-color:transparent;color:#9A8F8C">Puesto ${rank} de ${ORGS.length}</span></div></div>
-      <div class="nums" style="margin-top:22px"><div><small>Capacidad</small><b>${num(o.cap)}<span class="muted" style="font-size:15px"> /${M.capmax}</span></b></div><div><small>Poder efectivo</small><b>${num(o.pe)}</b></div><div><small>Poder en red</small><b>${num(o.red)}</b></div><div><small>Brecha</small><b>${pct(o.brecha)}</b></div><div class="o"><small>Poder oculto</small><b>${num(o.oculto)}</b></div></div>
+      <div class="nums" style="margin-top:22px"><div><small>Puntaje de poder</small><b>${num(o.pt)}<span class="muted" style="font-size:15px"> /100</span></b></div><div><small>Capacidad</small><b>${num(o.cap)}<span class="muted" style="font-size:15px"> /${M.capmax}</span></b></div><div><small>Poder efectivo</small><b>${num(o.pe)}</b></div><div><small>Poder en red</small><b>${num(o.red)}</b></div><div><small>Brecha</small><b>${pct(o.brecha)}</b></div><div class="o"><small>Poder oculto</small><b>${num(o.oculto)}</b></div></div>
       <div class="org-body"><div class="org-main">
+        ${M.monarcas.includes(o.id) ? `<p class="note" style="margin:0;border-left:2px solid #E10600;padding-left:12px">${esc(M.nota_monarca)}</p>` : ""}
+        <div><h2>Su categoría</h2><p class="read" style="font-size:17px">${esc(o.area)} (${esc(o.tipo)}). Puntaje teórico de la categoría: ${num(CAT.t, 0)} de 10; puntaje real, según los datos del mapa: ${num(CAT.r, 1)} de 10. <a href="#marco">Cómo se calcula</a>.</p></div>
         <div><h2>Poder formal y poder real</h2>
           <div class="note" style="display:flex;justify-content:space-between;margin:0"><span>Reconocido y sujeto a control</span><span style="color:#FF3B30">Fuera de control público</span></div>
           <div class="gapbar" role="img" aria-label="Brecha de ${pct(o.brecha)}"><i style="width:${(1 - o.brecha) * 100}%"></i><i style="width:${o.brecha * 100}%"></i></div>
@@ -370,7 +373,7 @@
     const select = (id, focus) => { cur = id; document.getElementById("qS").value = corto(byId[id].n); draw(focus); };
     const qS = document.getElementById("qS");
     const find = () => { const q = norm(qS.value.trim()); if (!q) return null;
-      return ORGS.find(o => norm(corto(o.n)) === q) || ORGS.find(o => norm(o.n).startsWith(q)) || sortBy("red").find(o => norm(o.n).includes(q)); };
+      return ORGS.find(o => norm(corto(o.n)) === q) || ORGS.find(o => norm(o.n).startsWith(q)) || sortBy("pt").find(o => norm(o.n).includes(q)); };
     qS.addEventListener("change", () => { const o = find(); if (o) select(o.id, true); });
     qS.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); const o = find(); if (o) select(o.id, true); } });
     qS.addEventListener("search", () => { if (!qS.value) { cur = null; draw(); } });
@@ -402,6 +405,8 @@
       <div class="prose" style="padding:40px 0 64px">
         <h2>Fórmulas</h2>
         <ul>
+          <li><b>Puntaje de poder (0 a 100):</b> media geométrica ponderada de cinco componentes, cada uno llevado a una escala de 0 a 1: puntaje teórico de su categoría, ${pct(M.peso_final.ct)}; puntaje real de su categoría, ${pct(M.peso_final.cr)}; capacidad, ${pct(M.peso_final.cap)}; autonomía real, ${pct(M.peso_final.aut)}; red de dependientes, ${pct(M.peso_final.red)}. Los componentes se multiplican, cada uno elevado a su peso, así que un actor débil en uno no lo compensa del todo con los demás. Al final se reescala: el actor más poderoso vale 100 y el resto, en proporción.</li>
+          <li><b>Red de dependientes:</b> el poder que hereda de quienes dependen de él (poder en red menos poder efectivo), en escala logarítmica para que no domine a los demás componentes.</li>
           <li><b>Capacidad:</b> suma ponderada de los ${M.ejes.length} ejes, llevada a una escala de 0 a ${M.capmax}. Pesos: coerción, adquisición de información y acción fuera de la ley, 2; contactos, 1,5; el resto, 1.</li>
           <li><b>Autonomía real:</b> el factor formal (1 decide solo: 1; 2 aliado con criterio propio: 0,75; 3 subordinado: 0,5; 4 fachada: 0,25) sube hacia 1 según su poder duro: coerción, información, acción fuera de la ley y contactos. Una agencia de inteligencia que depende de un gobierno conserva así buena parte de su poder, porque puede resistirlo.</li>
           <li><b>Poder efectivo:</b> capacidad por el factor de autonomía real.</li>
@@ -409,6 +414,12 @@
           <li><b>Poder formal:</b> de 0 a 3, cuánto de su poder está reconocido públicamente y sujeto a control: ley, elecciones, tribunales, auditoría, transparencia.</li>
           <li><b>Brecha:</b> la parte de su poder que escapa a ese control. <b>Poder oculto:</b> poder efectivo por brecha.</li>
         </ul>
+        <h2>Tipos y categorías de actores</h2>
+        <p>Cada actor pertenece a una de ${Object.keys(M.categorias).length} categorías, agrupadas en ${M.tipos.length} tipos. Cada categoría tiene dos puntajes de 0 a 10. El <b>teórico</b> es un criterio editorial: cuánto poder real suele tener ese tipo de actor, con más peso para quien tiene armas, secretos o margen para actuar fuera de la ley. El <b>real</b> sale de los datos cargados en el mapa: es el promedio, entre los actores de la categoría, de su autonomía (50 %), de cuánto manda, financia o abastece a otros frente a cuánto depende de otros (30 %), de cuántos actores dependen de él (20 %) y de si enfrentó a su propio jefe formal (15 % adicional, con tope en 10).</p>
+        <p>Solo figuran monarcas con poder real: los que gobiernan o conservan poder de veto o de decisión. Las monarquías ceremoniales, como las de Reino Unido, España, Japón, los países nórdicos, Países Bajos y Bélgica, no entran.</p>
+      </div>
+      <div class="tbl-wrap"><table><thead><tr><th>Tipo</th><th>Categoría</th><th>Actores</th><th>Teórico</th><th>Real</th></tr></thead><tbody>${M.tipos.flatMap(t => Object.entries(M.categorias).filter(([, c]) => c.tipo === t).sort((a, b) => b[1].t - a[1].t || a[0].localeCompare(b[0], "es")).map(([n, c], i) => `<tr><td class="muted">${i ? "" : esc(t)}</td><td>${esc(n)}</td><td>${c.k}</td><td>${num(c.t, 0)}</td><td>${num(c.r, 1)}</td></tr>`)).join("")}</tbody></table></div>
+      <div class="prose" style="padding:40px 0 64px">
         <h2>Resguardos</h2>
         <ul>
           <li>Cada organización lleva un nivel de certeza: documentado, estimado o especulativo.</li>
@@ -427,7 +438,7 @@
     let navKey = "inicio";
     if (h.startsWith("o-")) { V.org(h.slice(2)); navKey = "organizaciones"; }
     else if (h === "quien-manda") { V.quien(); navKey = h; }
-    else if (h === "organizaciones" || h === "organizaciones-oculto") { V.organizaciones(h.endsWith("oculto") ? "oculto" : "red"); navKey = "organizaciones"; }
+    else if (h === "organizaciones" || h === "organizaciones-oculto") { V.organizaciones(h.endsWith("oculto") ? "oculto" : "pt"); navKey = "organizaciones"; }
     else if (h === "paises") { V.paises(); navKey = h; }
     else if (h === "marco") { V.marco(); navKey = h; }
     else V.inicio();

@@ -11,8 +11,10 @@ from coords import C
 from fichas import FICHAS
 from locales import MANDA
 from poder_duro import PESOS, EXT, AUTONOMIA_REAL
+from categorias import TEORICO, PESO_FINAL, PESO_REL, MONARCAS, NOTA_MONARCA
+import math
 
-CORTE = "2026-11-16"
+CORTE = "2026-11-17"
 PROXIMA = "2027-02-16"
 TERRITORIOS_D = {"Siachen Glacier"}  # el resto de los territorios dependientes hereda el bloque transoceánico
 
@@ -51,13 +53,42 @@ for o in ORGS:
                  "formal": f, "brecha": round((3 - f) / 3, 4), "oculto": round(pe[o[0]] * (3 - f) / 3, 2),
                  "fase": FASE[o[0]], "cert": o[7], "sede": o[3], "ll": C[o[3]], "dep": masters[o[0]],
                  **({"ext": list(EXT[o[0]][1:])} if o[0] in EXT else {})})
-orgs.sort(key=lambda x: (-x["red"], -x["pe"], x["n"]))
+
+# Puntaje de categoría real: sale del relevamiento cargado (autonomía, mando sobre otros, dependientes, desafío al jefe formal)
+for o in orgs: assert o["area"] in TEORICO, o["area"]
+for m in MONARCAS: assert m in ids, m
+byid = {o["id"]: o for o in orgs}
+sale = {i: 0.0 for i in ids}; entra = {i: 0.0 for i in ids}; desafia = {i: 0 for i in ids}; ndep = {i: 0 for i in ids}
+for a, b, t, x, n in RELACIONES:
+    w = PESO_REL.get(t)
+    if w: sale[a] += w; entra[b] += w
+    if t in ("Enfrentamiento", "Ambigua"):
+        if b in masters[a]: desafia[a] = 1
+        if a in masters[b]: desafia[b] = 1
+for i in ids:
+    for d in masters[i]: sale[d] += 1; entra[i] += 1; ndep[d] += 1
+real_actor = {i: min(1, .5 * (4 - aut[i]) / 3 + .3 * (sale[i] + 1) / (sale[i] + entra[i] + 2) + .2 * min(1, ndep[i] / 3) + .15 * desafia[i]) for i in ids}
+REAL = {}
+for o in orgs: REAL.setdefault(o["area"], []).append(real_actor[o["id"]])
+REAL = {a: round(10 * sum(v) / len(v), 1) for a, v in REAL.items()}
+
+# Puntaje final: media geométrica ponderada, llevada a 0-100 con el mayor en 100
+heredado = {o["id"]: o["red"] - o["pe"] for o in orgs}
+hmax = max(heredado.values())
+def comp(o):
+    return {"ct": TEORICO[o["area"]] / 10, "cr": REAL[o["area"]] / 10, "cap": max(o["cap"], .5) / CAPMAX, "aut": o["fr"],
+            "red": .5 + .5 * math.log1p(heredado[o["id"]]) / math.log1p(hmax)}
+bruto = {o["id"]: math.prod(v ** PESO_FINAL[k] for k, v in comp(o).items()) for o in orgs}
+bmax = max(bruto.values())
+for o in orgs: o["pt"] = round(100 * bruto[o["id"]] / bmax, 1)
+orgs.sort(key=lambda x: (-x["pt"], -x["red"], x["n"]))
 
 fam = []
 for e in EJES:
     if not fam or fam[-1]["n"] != e[2]: fam.append({"n": e[2], "ejes": []})
     fam[-1]["ejes"].append(e[0])
 meta = {"corte": CORTE, "proxima": PROXIMA, "skeleton": False, "pesos": peso, "capmax": CAPMAX, "autreal": AUTONOMIA_REAL,
+        "peso_final": PESO_FINAL, "monarcas": sorted(MONARCAS), "nota_monarca": NOTA_MONARCA, "categorias": {a: {"t": TEORICO[a], "r": REAL[a], "tipo": AREA_TIPO[a], "k": sum(1 for o in orgs if o["area"] == a)} for a in TEORICO},
         "ejes": [{"k": e[0], "n": e[1], "fam": e[2], "x": e[3], "a": list(ANCLAS[e[0]])} for e in EJES], "familias": fam,
         "bloques": {"T": {"n": "Transoceánico", "c": "#2F6BFF"}, "E": {"n": "Euroasiático", "c": "#9E1B32"},
                     "I": {"n": "Independiente", "c": "#BDBDBD"}, "P": {"n": "Pendular", "c": "#F2A93B"},

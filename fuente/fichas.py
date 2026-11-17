@@ -2415,3 +2415,6 @@ FICHAS["ffaa_india"] = dict(
 
 from locales import FICHAS as _FL
 FICHAS.update(_FL)
+
+from nucleo import FICHAS as _FN
+FICHAS.update(_FN)

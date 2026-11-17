@@ -928,6 +928,14 @@ FASE.update({n[0]: n[10] for n in _LOC})
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _REL_LOC if (r[0], r[1]) not in _ya]
 
+# Países núcleo: actores que faltaban en las potencias (ver fuente/nucleo.py)
+from nucleo import NUCLEO as _NUC, RELACIONES as _REL_NUC
+ORGS += [n[:9] for n in _NUC]
+FORMAL.update({n[0]: n[9] for n in _NUC})
+FASE.update({n[0]: n[10] for n in _NUC})
+_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+RELACIONES += [r for r in _REL_NUC if (r[0], r[1]) not in _ya]
+
 # Poder duro: eje 18 «Acción fuera de la ley» y revisión de autonomía (ver fuente/poder_duro.py)
 from poder_duro import EJE as _EJE, ANCLA as _ANCLA, AUT as _AUT_REAL, DEP as _DEP_REAL
 EJES.insert([e[0] for e in EJES].index("ter") + 1, _EJE)
@@ -938,3 +946,14 @@ ORGS = [o[:5] + (_AUT_REAL.get(o[0], o[5]),) + o[6:8] + (_DEP_REAL.get(o[0], o[8
 AREA_TIPO.update({"Empresario": "Persona", "Líder político": "Persona"})
 _EMPRESARIOS = {"musk", "ellison", "zuckerberg", "m_ambani", "bezos", "thiel", "arnault"}
 ORGS = [o[:2] + (("Empresario" if o[0] in _EMPRESARIOS else "Líder político") if o[2] == "Persona" else o[2],) + o[3:] for o in ORGS]
+
+# Partidos: único o hegemónico frente a sistema competitivo; el Frente Unido es un órgano del PCCh, no un partido.
+from categorias import HEGEMONICOS as _HEG
+AREA_TIPO.update({"Partido único o hegemónico": "Estado", "Partido en sistema competitivo": "Estado"})
+del AREA_TIPO["Partido político"]
+def _area(o):
+    if o[0] == "ufwd": return "Organismo de gobierno"
+    if o[2] == "Partido político": return "Partido único o hegemónico" if o[0] in _HEG else "Partido en sistema competitivo"
+    return o[2]
+ORGS = [o[:2] + (_area(o),) + o[3:] for o in ORGS]
+assert {o[0] for o in ORGS if o[2] == "Partido único o hegemónico"} == _HEG

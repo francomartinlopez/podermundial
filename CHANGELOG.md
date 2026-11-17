@@ -1,5 +1,13 @@
 # Cambios
 
+## 2026-11-17 · Puntaje de poder de 0 a 100 y potencias completas (470 actores)
+
+- Nuevo **puntaje de poder**, de 0 a 100, que ordena todo el sitio: media geométrica ponderada de la categoría teórica (40 %), la categoría real (20 %), la capacidad (25 %), la autonomía real (10 %) y la red de dependientes (5 %). El actor más poderoso vale 100 y el resto, en proporción.
+- Cada una de las 33 categorías tiene un puntaje teórico (criterio editorial) y uno real, calculado de los datos del mapa. El Marco lista los 7 tipos y las 33 categorías con su cantidad de actores y ambos puntajes; cada ficha muestra los de su categoría.
+- Los partidos se dividen en «partido único o hegemónico» (14) y «partido en sistema competitivo». El Departamento de Trabajo del Frente Unido pasa a organismo de gobierno: es un órgano del PCCh.
+- 67 actores nuevos en las potencias, con ficha y fuentes: Departamento de Energía de EE.UU. (con la NNSA), Congreso, ODNI, NRO, DIA, SOCOM, Northrop Grumman, Blackstone, Koch, Cámara de Comercio; SVR, Rosatom, Sberbank, Banco Central de Rusia, VTB, Kadýrov, Kovalchuk, Rotenberg, Timchenko; Comisión Militar Central, CASC, AVIC, CETC, CNPC, Banco de Desarrollo, SASAC, Ministerio de Comercio de China; MI5, HSBC, BP, Rio Tinto; DGSI, Thales, Safran, BNP Paribas, EDF; Volkswagen, Deutsche Bank, Allianz, familia Quandt; Mitsubishi, MUFG, GPIF; RAW, IB, Tata, Banco de la Reserva, Corte Suprema de la India, Gautam Adani; Fuerzas Armadas, Congreso, Banco Central, Vale y JBS de Brasil; Fuerza Quds, MOIS, Setad, Astan Quds Razavi, Basij; Oficina General de Reconocimiento y Oficina 39 de Corea del Norte; Unidad 8200, Rafael, IAI y NSO Group; AKP y Fuerzas Armadas de Turquía. 91 relaciones nuevas. Fuente: `fuente/nucleo.py`.
+- Monarcas: solo figuran los que tienen poder real; lo aclaran el Marco y la ficha de cada uno.
+
 ## 2026-11-16 · Poder real antes que jerarquía formal
 
 - Pesos fijos nuevos: coerción violenta, adquisición de información y el nuevo eje «Acción fuera de la ley» valen doble; contactos, una vez y media. La capacidad va de 0 a 54.
