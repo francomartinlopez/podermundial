@@ -152,7 +152,7 @@
       ${(o2 => o2.length ? `<div class="lbl" style="margin-top:6px">${def ? "Otros actores" : "Actores"} con sede aquí (${o2.length})</div><div>${o2.map(o => `<a class="rk" style="grid-template-columns:18px minmax(0,1fr) 46px" href="#o-${o.id}">${icon(o)}<span class="nm">${esc(corto(o.n))}</span><span class="v">${num(o.pt)}</span></a>`).join("")}</div>` : "")(orgs.filter(o => o !== def))}`;
   }
   function orgPanel(o) {
-    return `<div class="lbl">${esc(o.area)} · ${esc(BL[o.bloque].n)}</div><h3>${esc(o.n)}</h3>
+    return `<div class="lbl">${esc(o.area)} · ${esc(paisDe(o))}</div><h3>${esc(o.n)}</h3>
       <div class="nums"><div><small>Puntaje</small><b>${num(o.pt)}</b></div><div><small>En red</small><b>${num(o.red)}</b></div><div class="o"><small>Oculto</small><b>${num(o.oculto)}</b></div></div>
       <p class="side-x"><b>Sede:</b> ${esc(o.sede)}<br><b>Autonomía:</b> ${o.aut} · ${esc(M.autonomia[o.aut])}</p>
       <a class="btn" href="#o-${o.id}">Abrir la ficha</a>`;
@@ -212,9 +212,11 @@
   }
 
   // ---------- listas ----------
+  // país donde tiene su base (por la sede); sin sede fija lo dice
+  const paisDe = o => o.pais && PA[o.pais] ? PA[o.pais].n : /sin sede/i.test(o.sede) ? "sin sede fija" : o.sede.split(",").pop().trim();
   const METRIC = { pt: "Puntaje de poder", red: "Poder en red", pe: "Poder efectivo", oculto: "Poder oculto", cap: "Capacidad" };
   function rankRows(list, key, max, color) {
-    return list.map((o, i) => `<a class="rk" href="#o-${o.id}"><span class="n">${String(i + 1).padStart(2, "0")}</span>${icon(o)}<span class="nm">${esc(corto(o.n))}<small>${esc(o.area)}${FI[o.id] ? "" : " · ficha en preparación"}</small></span><span class="bar"><i style="width:${Math.max(2, o[key] / max * 100)}%;background:${color || bcol(o.bloque)}"></i></span><span class="v">${num(o[key], key === "cap" ? 0 : 1)}</span></a>`).join("");
+    return list.map((o, i) => `<a class="rk" href="#o-${o.id}"><span class="n">${String(i + 1).padStart(2, "0")}</span>${icon(o)}<span class="nm">${esc(corto(o.n))}<small>${esc(o.area)} · ${esc(paisDe(o))}${FI[o.id] ? "" : " · ficha en preparación"}</small></span><span class="bar"><i style="width:${Math.max(2, o[key] / max * 100)}%;background:${color || bcol(o.bloque)}"></i></span><span class="v">${num(o[key], key === "cap" ? 0 : 1)}</span></a>`).join("");
   }
   const sortBy = k => ORGS.slice().sort((a, b) => b[k] - a[k] || b.pt - a.pt);
 
@@ -265,17 +267,18 @@
         <label>Ordenar por<select id="fM">${Object.entries(METRIC).map(([k, n]) => `<option value="${k}"${k === (arg || "pt") ? " selected" : ""}>${n}</option>`).join("")}</select></label>
         <label>Tipo<select id="fT"><option value="">Todos</option>${M.tipos.map(t => `<option>${t}</option>`).join("")}</select></label>
         <label>Categoría<select id="fA"><option value="">Todas</option>${areas.map(a => `<option>${esc(a)}</option>`).join("")}</select></label>
+        <label>País<select id="fC"><option value="">Todos</option>${[...new Set(ORGS.map(paisDe))].sort((a, b) => a.localeCompare(b, "es")).map(c => `<option>${esc(c)}</option>`).join("")}</select></label>
         <label>Alcance<select id="fL"><option value="">Todos</option>${Object.entries(M.alcance).map(([k, a]) => `<option value="${k}">${esc(a.n)}</option>`).join("")}</select></label>
         <label>Bloque<select id="fB"><option value="">Todos</option>${["T", "E", "I", "P", "X"].map(k => `<option value="${k}">${esc(BL[k].n)}</option>`).join("")}</select></label>
       </div><p class="note" style="margin:-6px 0 14px">Qué agrupa cada categoría y cuánto pesa: <a href="#marco-categorias">tabla de tipos y categorías</a>.</p><div id="lst" style="padding-bottom:56px"></div></div>`;
     const g = id => document.getElementById(id);
     const fill = () => {
       const k = g("fM").value;
-      const l = sortBy(k).filter(o => (!g("fT").value || o.tipo === g("fT").value) && (!g("fA").value || o.area === g("fA").value) && (!g("fB").value || o.bloque === g("fB").value) && (!g("fL").value || o.alc === g("fL").value));
+      const l = sortBy(k).filter(o => (!g("fT").value || o.tipo === g("fT").value) && (!g("fA").value || o.area === g("fA").value) && (!g("fB").value || o.bloque === g("fB").value) && (!g("fL").value || o.alc === g("fL").value) && (!g("fC").value || paisDe(o) === g("fC").value));
       const max = sortBy(k)[0][k];
       g("lst").innerHTML = l.length ? rankRows(l, k, max, k === "oculto" ? "#E10600" : null) : `<p class="note">Ningún actor con esos filtros.</p>`;
     };
-    ["fM", "fT", "fA", "fB", "fL"].forEach(id => g(id).onchange = fill); fill();
+    ["fM", "fT", "fA", "fB", "fL", "fC"].forEach(id => g(id).onchange = fill); fill();
   };
 
   function radar(o) {
@@ -384,7 +387,7 @@
     }
     function list(vis) {
       stage.innerHTML = `<div class="qm-list">${[1, 2, 3, 4].map(a => { const l = vis.filter(o => o.aut === a).sort((x, y) => y[mode] - x[mode]); if (!l.length) return "";
-        return `<div><div class="lbl" style="padding:0 0 8px;border-bottom:1px solid var(--line)">${a} · ${esc(M.autonomia[a])} (${l.length})</div>${l.map(o => `<button type="button" class="qm-it${cur === o.id ? " on" : ""}" data-id="${o.id}" style="opacity:${near(o.id) ? 1 : .3}">${icon(o)}<span>${esc(corto(o.n))}<small>${o.dep.length ? "depende de " + esc(o.dep.map(d => corto(byId[d].n)).join(", ")) : esc(o.area)}</small></span><b>${num(o[mode])}</b></button>`).join("")}</div>`; }).join("")}</div><p class="note" style="padding:0 16px 14px">${vis.length} actores a la vista, ordenados por ${mode === "pt" ? "puntaje de poder" : "poder oculto"}.</p>`;
+        return `<div><div class="lbl" style="padding:0 0 8px;border-bottom:1px solid var(--line)">${a} · ${esc(M.autonomia[a])} (${l.length})</div>${l.map(o => `<button type="button" class="qm-it${cur === o.id ? " on" : ""}" data-id="${o.id}" style="opacity:${near(o.id) ? 1 : .3}">${icon(o)}<span>${esc(corto(o.n))}<small>${esc(paisDe(o))} · ${o.dep.length ? "depende de " + esc(o.dep.map(d => corto(byId[d].n)).join(", ")) : esc(o.area)}</small></span><b>${num(o[mode])}</b></button>`).join("")}</div>`; }).join("")}</div><p class="note" style="padding:0 16px 14px">${vis.length} actores a la vista, ordenados por ${mode === "pt" ? "puntaje de poder" : "poder oculto"}.</p>`;
     }
     const draw = (focus = false) => {
       app.querySelectorAll("[data-m]").forEach(b => { b.classList.toggle("on", b.dataset.m === mode); b.setAttribute("aria-pressed", b.dataset.m === mode); });
@@ -401,7 +404,7 @@
       const clr = side.querySelector("[data-clear]"); if (clr) clr.onclick = () => { cur = null; document.getElementById("qS").value = ""; draw(); };
       side.querySelectorAll("[data-go]").forEach(a => a.onclick = e => { e.preventDefault(); select(a.dataset.go, true); });
       activate(stage, "[data-id]", g => { cur = cur === g.dataset.id ? null : g.dataset.id; draw(true); });
-      bindTip(stage, ".qm-n", g => { const o = byId[g.dataset.id]; return `<b>${esc(o.n)}</b><span>${esc(o.area)} · ${esc(BL[o.bloque].n)}</span><span>Puntaje ${num(o.pt)} · en red ${num(o.red)} · oculto ${num(o.oculto)}</span>`; });
+      bindTip(stage, ".qm-n", g => { const o = byId[g.dataset.id]; return `<b>${esc(o.n)}</b><span>${esc(o.area)} · ${esc(paisDe(o))} · ${esc(BL[o.bloque].n)}</span><span>Puntaje ${num(o.pt)} · en red ${num(o.red)} · oculto ${num(o.oculto)}</span>`; });
       if (focus && cur) {
         if (pos && pos[cur]) { const sc = stage.querySelector(".qm-scroll"), svg = sc.querySelector("svg"); sc.scrollLeft = pos[cur][0] / 1200 * svg.clientWidth - sc.clientWidth / 2; }
         side.scrollIntoView({ block: "nearest", behavior: "smooth" });
@@ -609,7 +612,7 @@
       document.getElementById("frg").innerHTML = g.svg;
       const rels = g.rels.filter(r => !cur || r.a === cur || r.b === cur).sort((a, b) => (a.t === "Enfrentamiento" ? 0 : 1) - (b.t === "Enfrentamiento" ? 0 : 1) || b.i - a.i);
       document.getElementById("frr").innerHTML = (cur ? `<p class="note" style="margin:0 0 8px">Solo las de ${esc(corto(byId[cur].n))}. <a href="#" data-clr>Ver todas</a></p>` : "") + (rels.length ? rels.map(r => `<div class="rel">${lineIcon(r.t)}<div><a href="#o-${r.a}">${esc(corto(byId[r.a].n))}</a> y <a href="#o-${r.b}">${esc(corto(byId[r.b].n))}</a> · ${esc(r.t.toLowerCase())}${r.i === 3 ? " fuerte" : r.i === 1 ? " débil" : ""}<small>${esc(r.x)}</small></div></div>`).join("") : `<p class="note">Sin relaciones registradas.</p>`);
-      document.getElementById("fra").innerHTML = `<div class="tbl-wrap" style="margin:0"><table><thead><tr><th>Actor</th><th>Qué hace aquí</th><th>Puntaje</th></tr></thead><tbody>${f.actores.map(a => byId[a.id]).sort((a, b) => b.pt - a.pt).map(o => `<tr${cur === o.id ? ' class="on"' : ""}><td style="white-space:nowrap">${icon(o)} <a href="#o-${o.id}">${esc(corto(o.n))}</a></td><td>${esc(f.actores.find(a => a.id === o.id).r)}</td><td class="mono">${num(o.pt)}</td></tr>`).join("")}</tbody></table></div>`;
+      document.getElementById("fra").innerHTML = `<div class="tbl-wrap" style="margin:0"><table><thead><tr><th>Actor</th><th>Qué hace aquí</th><th>Puntaje</th></tr></thead><tbody>${f.actores.map(a => byId[a.id]).sort((a, b) => b.pt - a.pt).map(o => `<tr${cur === o.id ? ' class="on"' : ""}><td>${icon(o)} <a href="#o-${o.id}">${esc(corto(o.n))}</a><br><small class="muted">${esc(paisDe(o))}</small></td><td>${esc(f.actores.find(a => a.id === o.id).r)}</td><td class="mono">${num(o.pt)}</td></tr>`).join("")}</tbody></table></div>`;
       const o = cur && byId[cur];
       document.getElementById("frside").innerHTML = o ? orgPanel(o) + `<p class="side-x">${esc(f.actores.find(a => a.id === cur).r)}</p><button type="button" class="chip" data-clr style="align-self:flex-start">Ver todos</button>` : `<span class="lbl">Cómo leerlo</span><p class="side-x">Tocá un actor del gráfico para ver qué hace en este frente y con quién se relaciona.</p>`;
       app.querySelectorAll("[data-clr]").forEach(b => b.onclick = e => { e.preventDefault(); cur = null; draw(); });

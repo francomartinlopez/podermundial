@@ -1,6 +1,8 @@
 # Cambios
 
 ## 2026-11-17 (c)
+- Las listas de actores muestran el país donde cada uno tiene su base (también en Quién manda, en los paneles del mapa y en los puntos de fricción), y la página Actores suma un filtro por país.
+- Inicio: las cinco tarjetas de secciones van en una sola fila en escritorio.
 - Página nueva «Imperios» (`#imperios`): mapa de imperios y explicación de cada nivel (centro, aliado con autonomía, integrado, protectorado, colonia de hecho, independientes y terreno disputado) con la lista de países de cada uno. La capa «Posición» del mapa pasa a llamarse «Imperios».
 - Leyenda del mapa de imperios corregida: faltaban los países pendulares (el tono ámbar apagado) y los inclinados a cada bloque.
 - Marco teórico: se suma Ray Dalio (ciclo de los imperios: deuda, orden interno y orden externo) y se amplía la escuela de la elección pública en tres entradas: la política sin romanticismo (Buchanan, Tullock, Downs), la burocracia que trabaja para sí misma (Niskanen, Tullock) y el lobby, la búsqueda de rentas y la captura regulatoria (Tullock, Krueger, Olson, Stigler).
