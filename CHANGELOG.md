@@ -1,6 +1,7 @@
 # Cambios
 
 ## 2026-11-17 (d)
+- Menú de arriba: queda fijo, se esconde al bajar y reaparece apenas se sube un poco (antes solo volvía al llegar arriba de todo).
 - Relaciones duplicadas: 9 pares que figuraban dos veces (por ejemplo, Pentágono y hutíes) quedan en una sola relación; el generador ya no admite pares repetidos.
 - Quién manda: la leyenda explica cada tipo de línea (dependencia, alianza, enfrentamiento, ambigua, puerta giratoria o acceso a datos).
 - Marco teórico: síntesis de las seis piezas del marco; Schumpeter suma su teoría de las clases y de las élites; nueva entrada con la hipótesis de la herencia generacional (ciclos de unos ochenta años que cierran a las élites en una casta de herederos).

@@ -39,7 +39,8 @@ button, select { font: inherit; color: inherit; }
 .skip:focus { left: 8px; top: 8px; }
 
 /* Cabecera */
-.site-head { position: relative; z-index: 20; background: #000; border-bottom: 1px solid var(--line); }
+.site-head { position: sticky; top: 0; z-index: 40; background: #000; border-bottom: 1px solid var(--line); transition: transform .22s ease; }
+.site-head.oculto { transform: translateY(-100%); }
 .site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; }
 .brand { display: flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; }
 .brand:hover { color: var(--text); }
