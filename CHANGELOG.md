@@ -1,5 +1,8 @@
 # Cambios
 
+## 2026-11-17 (c)
+- Marco teórico: se suma Ray Dalio (ciclo de los imperios: deuda, orden interno y orden externo) y se amplía la escuela de la elección pública en tres entradas: la política sin romanticismo (Buchanan, Tullock, Downs), la burocracia que trabaja para sí misma (Niskanen, Tullock) y el lobby, la búsqueda de rentas y la captura regulatoria (Tullock, Krueger, Olson, Stigler).
+
 ## 2026-11-17 (b)
 - Nueva sección «Puntos de fricción» (`#friccion`, ficha de cada uno en `#f-1` a `#f-7`, datos en `fuente/friccion.py`): mapa de la región, qué está en juego, gráfico de los actores que intervienen con sus alianzas y enfrentamientos, qué hace cada uno, cronología y fuentes. Al tocar un punto en el mapa se puede abrir su ficha.
 - El punto 3 pasa a ser «Latinoamérica» (carteles, canal de Panamá, Chancay e inversiones chinas, gobiernos enfrentados con EE.UU., frontera con México y el Caribe); el 4 suma el Sahel y los conflictos africanos (Sudán, este del Congo, Cuerno de África, Sahara Occidental); el 6 pasa a «Medio Oriente», de Ormuz y Yemen hasta Afganistán. 26 relaciones nuevas entre actores.
