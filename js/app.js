@@ -317,6 +317,9 @@
           <div class="note" style="display:flex;justify-content:space-between;margin:0"><span>Reconocido y sujeto a control</span><span style="color:#FF3B30">Fuera de control público</span></div>
           <div class="gapbar" role="img" aria-label="Brecha de ${pct(o.brecha)}"><i style="width:${(1 - o.brecha) * 100}%"></i><i style="width:${o.brecha * 100}%"></i></div>
           <p class="read" style="font-size:17px">Poder formal ${o.formal} de 3: ${pct(1 - o.brecha)} de su poder está reconocido públicamente y sujeto a control; el resto escapa a ese control.</p></div>
+        <div><h2>Con quién se relaciona</h2>
+          <p class="note" style="margin:0 0 10px" id="og-n"></p>
+          <div class="box" style="padding:10px"><div class="qm-scroll" id="og"></div>${RELLEG.replace('<div class="legend" style="flex-direction:row;flex-wrap:wrap;gap:8px 18px">', '<div class="legend" style="flex-direction:row;flex-wrap:wrap;gap:8px 18px">' + DEPLEG)}</div></div>
         ${o.ext ? `<div><h2>Acción fuera de la ley</h2><p class="read" style="font-size:17px;margin:0">${o.sc[M.ejes.findIndex(e => e.k === "ext")]} de 3. ${esc(o.ext[0])} <a href="${esc(o.ext[1])}" rel="noopener" target="_blank">Fuente</a>.</p></div>` : ""}
         
         ${F ? `<div><h2>Resumen</h2>${F.res.map(p => `<p class="read" style="margin:0 0 14px">${esc(p)}</p>`).join("")}</div>
@@ -334,6 +337,20 @@
         <div class="box"><span class="lbl">Aliados y enemigos</span>${relHtml}</div>
         <div class="box"><span class="lbl">Fase de Quigley</span><div class="phase">${["E", "C", "D"].map(f => `<span class="${o.fase === f ? "on" : ""}">${M.fases[f]}</span>`).join("")}</div></div>
       </aside></div></div>`;
+    // gráfico de relaciones: el actor en el centro y sus vínculos (relaciones y dependencias), los más fuertes si son muchos
+    const peso = {};
+    rels.forEach(r => { const x = r.a === id ? r.b : r.a; peso[x] = Math.max(peso[x] || 0, r.i * 10 + byId[x].pt / 10); });
+    deps.forEach(d => peso[d.id] = Math.max(peso[d.id] || 0, 40 + d.pt / 10));
+    subs.forEach(d => peso[d.id] = Math.max(peso[d.id] || 0, 25 + d.pt / 10));
+    const todos = Object.keys(peso), MAXN = 24;
+    const vec = todos.sort((a, b) => peso[b] - peso[a]).slice(0, MAXN);
+    document.getElementById("og-n").textContent = (todos.length > MAXN ? `Sus ${MAXN} vínculos más fuertes de ${todos.length}. ` : todos.length ? "" : "Sin vínculos cargados con otros actores del mapa. ") + "Color: bloque. Forma: tipo de actor. Tamaño: puntaje de poder. Tocá un actor para ver su ficha.";
+    if (todos.length) {
+      const g = frGraph({ actores: [id, ...vec].map(i => ({ id: i })), centro: id, dep: true }, id);
+      const el = document.getElementById("og"); el.innerHTML = g.svg;
+      activate(el, "[data-fa]", n => { if (n.dataset.fa !== id) location.hash = "o-" + n.dataset.fa; });
+      bindTip(el, "[data-fa]", n => { const x = byId[n.dataset.fa]; return `<b>${esc(x.n)}</b><span>${esc(x.area)} · ${esc(paisDe(x))}</span><span>Puntaje ${num(x.pt)}</span>`; });
+    } else document.getElementById("og").parentElement.remove();
   };
 
   V.quien = () => {
@@ -574,15 +591,25 @@
   function frGraph(f, cur) {
     const ids = f.actores.map(a => a.id), set = new Set(ids), VW = 900, VH = 640, cx = VW / 2, cy = VH / 2, R = 230;
     const list = ids.map(i => byId[i]).sort((a, b) => BORDER.indexOf(a.bloque) - BORDER.indexOf(b.bloque) || b.pt - a.pt);
-    const pos = {}; list.forEach((o, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / list.length; pos[o.id] = [cx + R * Math.cos(a), cy + R * Math.sin(a), a]; });
+    const pos = {};
+    if (f.centro) { // gráfico de un actor: él en el centro y sus vínculos alrededor
+      const otros = list.filter(o => o.id !== f.centro);
+      otros.forEach((o, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / otros.length; pos[o.id] = [cx + R * Math.cos(a), cy + R * Math.sin(a), a]; });
+      pos[f.centro] = [cx, cy, Math.PI / 2];
+    } else list.forEach((o, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / list.length; pos[o.id] = [cx + R * Math.cos(a), cy + R * Math.sin(a), a]; });
     const rels = REL.filter(r => set.has(r.a) && set.has(r.b));
-    const lines = rels.map(r => { const [x1, y1] = pos[r.a], [x2, y2] = pos[r.b], on = !cur || r.a === cur || r.b === cur;
+    // dependencias (quién manda sobre quién) como línea gruesa con flecha hacia quien manda
+    const deps = f.dep ? list.flatMap(o => o.dep.filter(d => set.has(d)).map(d => [o.id, d])) : [];
+    const depLines = deps.map(([a, b]) => { const [x1, y1] = pos[a], [x2, y2] = pos[b], on = !cur || a === cur || b === cur, L = Math.hypot(x2 - x1, y2 - y1) || 1, rb = (f.centro === b ? 10 : 4) + 16 * Math.sqrt(byId[b].pt / 100) + 7;
+      return `<line x1="${x1}" y1="${y1}" x2="${x2 - (x2 - x1) / L * rb}" y2="${y2 - (y2 - y1) / L * rb}" stroke="#2F6BFF" stroke-width="3" marker-end="url(#fl)" opacity="${on ? .9 : .06}"/>`; }).join("");
+    const lines = depLines + rels.map(r => { const [x1, y1] = pos[r.a], [x2, y2] = pos[r.b], on = !cur || r.a === cur || r.b === cur;
       return `<path d="M${x1},${y1} Q${(x1 + x2) / 2 * .6 + cx * .4},${(y1 + y2) / 2 * .6 + cy * .4} ${x2},${y2}" fill="none" ${RELSTY(r.t)} stroke-width="${.8 + r.i * .6}" opacity="${on ? (cur ? .95 : .55) : .06}"/>`; }).join("");
-    const linked = cur ? new Set([cur, ...rels.filter(r => r.a === cur || r.b === cur).flatMap(r => [r.a, r.b])]) : null;
-    const nodes = list.map(o => { const [x, y, a] = pos[o.id], r = 4 + 16 * Math.sqrt(o.pt / 100), lx = x + Math.cos(a) * (r + 8), ly = y + Math.sin(a) * (r + 8), anc = Math.cos(a) > .25 ? "start" : Math.cos(a) < -.25 ? "end" : "middle", nm = corto(o.n), t = nm.length > 26 ? nm.slice(0, 25) + "…" : nm;
+    const linked = cur ? new Set([cur, ...rels.filter(r => r.a === cur || r.b === cur).flatMap(r => [r.a, r.b]), ...deps.filter(([a, b]) => a === cur || b === cur).flat()]) : null;
+    const nodes = list.map(o => { const [x, y, a] = pos[o.id], r = (f.centro === o.id ? 10 : 4) + 16 * Math.sqrt(o.pt / 100), lx = x + Math.cos(a) * (r + 8), ly = y + Math.sin(a) * (r + 8), anc = Math.cos(a) > .25 ? "start" : Math.cos(a) < -.25 ? "end" : "middle", nm = corto(o.n), t = nm.length > 26 ? nm.slice(0, 25) + "…" : nm;
       return `<g class="qm-n" data-fa="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}" opacity="${linked && !linked.has(o.id) ? .2 : 1}"><circle cx="${x}" cy="${y}" r="${Math.max(r, 12)}" fill="transparent"/>${shape(o.tipo, x, y, r, bcol(o.bloque))}${cur === o.id ? `<circle cx="${x}" cy="${y}" r="${r + 6}" fill="none" stroke="#FF3B30" stroke-width="2"/>` : ""}<text x="${lx}" y="${ly + (Math.sin(a) > .5 ? 10 : Math.sin(a) < -.5 ? -2 : 4)}" style="text-anchor:${anc}"${cur === o.id ? ' class="cur"' : ""}>${esc(t)}</text></g>`; }).join("");
-    return { svg: `<svg viewBox="0 0 ${VW} ${VH}" role="img" aria-label="Relaciones entre los actores del frente" style="display:block;width:100%;height:auto;min-width:640px">${lines}${nodes}</svg>`, rels };
+    return { svg: `<svg viewBox="0 0 ${VW} ${VH}" role="img" aria-label="Relaciones entre los actores del frente" style="display:block;width:100%;height:auto;min-width:640px"><defs><marker id="fl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2F6BFF"/></marker></defs>${lines}${nodes}</svg>`, rels, deps };
   }
+  const DEPLEG = `<div><svg width="30" height="10" aria-hidden="true"><line x1="0" y1="5" x2="24" y2="5" stroke="#2F6BFF" stroke-width="3"/><path d="M22,1 L30,5 L22,9 z" fill="#2F6BFF"/></svg>Dependencia: la flecha apunta a quien manda</div>`;
   const RELLEG = `<div class="legend" style="flex-direction:row;flex-wrap:wrap;gap:8px 18px">${[["Alianza, propiedad, contrato o abastecimiento", "Alianza"], ["Enfrentamiento", "Enfrentamiento"], ["Ambigua", "Ambigua"], ["Puerta giratoria o acceso a datos", "Acceso a datos"]].map(([n, t]) => `<div><svg width="30" height="10" aria-hidden="true"><line x1="0" y1="5" x2="30" y2="5" ${RELSTY(t)} stroke-width="2"/></svg>${n}</div>`).join("")}</div>`;
 
   V.friccion = () => {
