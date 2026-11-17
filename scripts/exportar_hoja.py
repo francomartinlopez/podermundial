@@ -18,7 +18,7 @@ old_src = json.load(open("/tmp/fuentes_rel.json")) if os.path.exists("/tmp/fuent
 wb = Workbook(); ws = wb.active; ws.title = "Organizaciones"
 ejes = [x["n"] for x in M["ejes"]]
 head = ["Organización", "Área", "Bloque", "Autonomía", "Capacidad", "Poder efectivo", "Poder en red", "Poder formal", "Brecha", "Poder oculto",
-        "Fase de Quigley", "Tipo", "Certeza", "Sede", "Depende de"] + ejes + ["Datos que justifican", "Fuentes", "ID", "Puntaje de poder (0-100)"]
+        "Fase de Quigley", "Tipo", "Certeza", "Sede", "Depende de"] + ejes + ["Datos que justifican", "Fuentes", "ID", "Puntaje de poder (0-100)", "Alcance efectivo"]
 ws.append(head)
 from openpyxl.utils import get_column_letter as L_
 keys = [x["k"] for x in M["ejes"]]
@@ -34,7 +34,7 @@ for i, o in enumerate(O, start=2):
     ws.append([o["n"], o["area"], BL[o["bloque"]], o["aut"], f"=SUMPRODUCT(P{i}:{U}{i},{{{PES}}})*{NORMA}",
                f"=E{i}*({fa}+(1-{fa})*MIN(1,({COL['coe']}{i}+{COL['adq']}{i}+{COL['ext']}{i}+{COL['red']}{i})/12)*{M['autreal']})", o["red"], o["formal"],
                f"=(3-H{i})/3", f"=F{i}*I{i}", FA[o["fase"]], o["tipo"], CE[o["cert"]], o["sede"],
-               ", ".join(name[d] for d in o["dep"]) or None] + o["sc"] + [just or None, src or None, o["id"], o["pt"]])
+               ", ".join(name[d] for d in o["dep"]) or None] + o["sc"] + [just or None, src or None, o["id"], o["pt"], {"G": "Global", "R": "Regional", "N": "Nacional"}[o["alc"]]])
 for c in ws[1]: c.font = Font(bold=True)
 ws.freeze_panes = "B2"
 for col in ("E", "F", "G", "J"):

@@ -198,7 +198,7 @@
       <section class="block two">
         <div><div class="sec-title"><h2>Puntaje de poder</h2><a href="#organizaciones">Ver los ${ORGS.length}</a></div>${rankRows(red, "pt", 100)}</div>
         <div><div class="sec-title"><h2>Poder oculto</h2><a href="#organizaciones-oculto">Ver el índice</a></div>${rankRows(oc, "oculto", oc[0].oculto, "#E10600")}</div>
-        <p class="note scale-note"><b>Cómo leer los números.</b> El <b>puntaje de poder</b> va de 0 a 100 y el actor más poderoso vale 100; los demás se miden en proporción. Combina cinco cosas: lo que suele pesar su categoría de actor (40 %), lo que esa categoría muestra en los datos (20 %), su capacidad propia en ${M.ejes.length} ejes (25 %), su autonomía real (10 %) y la red de quienes dependen de él (5 %). Se multiplican, no se suman: para estar arriba hay que tener puntaje en todo. El <b>poder oculto</b> es la parte de su poder que escapa a la ley, las elecciones, los tribunales y la auditoría. <a href="#marco">Ver el método</a>.</p>
+        <p class="note scale-note"><b>Cómo leer los números.</b> El <b>puntaje de poder</b> va de 0 a 100 y el actor más poderoso vale 100; los demás se miden en proporción. Combina seis cosas: lo que suele pesar su categoría de actor (40 %), lo que esa categoría muestra en los datos (10 %), su capacidad propia en ${M.ejes.length} ejes (20 %), su <b>alcance efectivo</b> —si puede actuar en cualquier parte del mundo, en un grupo de países o solo en el suyo— (20 %), su autonomía real (5 %) y la red de quienes dependen de él (5 %). Se multiplican, no se suman: para estar arriba hay que tener puntaje en todo. El <b>poder oculto</b> es la parte de su poder que escapa a la ley, las elecciones, los tribunales y la auditoría. <a href="#marco">Ver el método</a>.</p>
       </section>
       <section class="block cards">
         <a class="card" href="#quien-manda"><span class="kick">Esquema</span><b>Quién manda</b><span>La jerarquía real: quién decide solo, quién obedece y quién aparenta.</span></a>
@@ -233,16 +233,17 @@
         <label>Ordenar por<select id="fM">${Object.entries(METRIC).map(([k, n]) => `<option value="${k}"${k === (arg || "pt") ? " selected" : ""}>${n}</option>`).join("")}</select></label>
         <label>Tipo<select id="fT"><option value="">Todos</option>${M.tipos.map(t => `<option>${t}</option>`).join("")}</select></label>
         <label>Área<select id="fA"><option value="">Todas</option>${areas.map(a => `<option>${esc(a)}</option>`).join("")}</select></label>
+        <label>Alcance<select id="fL"><option value="">Todos</option>${Object.entries(M.alcance).map(([k, a]) => `<option value="${k}">${esc(a.n)}</option>`).join("")}</select></label>
         <label>Bloque<select id="fB"><option value="">Todos</option>${["T", "E", "I", "P", "X"].map(k => `<option value="${k}">${esc(BL[k].n)}</option>`).join("")}</select></label>
       </div><div id="lst" style="padding-bottom:56px"></div></div>`;
     const g = id => document.getElementById(id);
     const fill = () => {
       const k = g("fM").value;
-      const l = sortBy(k).filter(o => (!g("fT").value || o.tipo === g("fT").value) && (!g("fA").value || o.area === g("fA").value) && (!g("fB").value || o.bloque === g("fB").value));
+      const l = sortBy(k).filter(o => (!g("fT").value || o.tipo === g("fT").value) && (!g("fA").value || o.area === g("fA").value) && (!g("fB").value || o.bloque === g("fB").value) && (!g("fL").value || o.alc === g("fL").value));
       const max = sortBy(k)[0][k];
       g("lst").innerHTML = l.length ? rankRows(l, k, max, k === "oculto" ? "#E10600" : null) : `<p class="note">Ninguna organización con esos filtros.</p>`;
     };
-    ["fM", "fT", "fA", "fB"].forEach(id => g(id).onchange = fill); fill();
+    ["fM", "fT", "fA", "fB", "fL"].forEach(id => g(id).onchange = fill); fill();
   };
 
   function radar(o) {
@@ -267,7 +268,7 @@
     app.innerHTML = `<div class="wrap">
       <div class="org-head"><div class="crumb"><a href="#organizaciones">Organizaciones</a> / ${esc(o.area)}</div>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px">${icon(o, 44)}<h1>${esc(o.n)}</h1></div>
-        <div class="pills"><span style="border-color:${bcol(o.bloque)}">${esc(BL[o.bloque].n)}</span><span>Autonomía ${o.aut} · ${esc(M.autonomia[o.aut])} · factor real ${num(o.fr, 2)}</span><span>Fase: ${esc(M.fases[o.fase]).toLowerCase()}</span><span>Certeza: ${esc(M.certeza[o.cert]).toLowerCase()}</span><span>${esc(o.tipo)}</span><span>Sede: ${esc(o.sede)}</span><span style="border-color:transparent;color:#9A8F8C">Puesto ${rank} de ${ORGS.length}</span></div></div>
+        <div class="pills"><span style="border-color:${bcol(o.bloque)}">${esc(BL[o.bloque].n)}</span><span>Autonomía ${o.aut} · ${esc(M.autonomia[o.aut])} · factor real ${num(o.fr, 2)}</span><span>Alcance: ${esc(M.alcance[o.alc].n).toLowerCase()}</span><span>Fase: ${esc(M.fases[o.fase]).toLowerCase()}</span><span>Certeza: ${esc(M.certeza[o.cert]).toLowerCase()}</span><span>${esc(o.tipo)}</span><span>Sede: ${esc(o.sede)}</span><span style="border-color:transparent;color:#9A8F8C">Puesto ${rank} de ${ORGS.length}</span></div></div>
       <div class="nums" style="margin-top:22px"><div><small>Puntaje de poder</small><b>${num(o.pt)}<span class="muted" style="font-size:15px"> /100</span></b></div><div><small>Capacidad</small><b>${num(o.cap)}<span class="muted" style="font-size:15px"> /${M.capmax}</span></b></div><div><small>Poder efectivo</small><b>${num(o.pe)}</b></div><div><small>Poder en red</small><b>${num(o.red)}</b></div><div><small>Brecha</small><b>${pct(o.brecha)}</b></div><div class="o"><small>Poder oculto</small><b>${num(o.oculto)}</b></div></div>
       <div class="org-body"><div class="org-main">
         ${M.monarcas.includes(o.id) ? `<p class="note" style="margin:0;border-left:2px solid #E10600;padding-left:12px">${esc(M.nota_monarca)}</p>` : ""}
@@ -405,7 +406,8 @@
       <div class="prose" style="padding:40px 0 64px">
         <h2>Fórmulas</h2>
         <ul>
-          <li><b>Puntaje de poder (0 a 100):</b> media geométrica ponderada de cinco componentes, cada uno llevado a una escala de 0 a 1: puntaje teórico de su categoría, ${pct(M.peso_final.ct)}; puntaje real de su categoría, ${pct(M.peso_final.cr)}; capacidad, ${pct(M.peso_final.cap)}; autonomía real, ${pct(M.peso_final.aut)}; red de dependientes, ${pct(M.peso_final.red)}. Los componentes se multiplican, cada uno elevado a su peso, así que un actor débil en uno no lo compensa del todo con los demás. Al final se reescala: el actor más poderoso vale 100 y el resto, en proporción.</li>
+          <li><b>Puntaje de poder (0 a 100):</b> media geométrica ponderada de seis componentes, cada uno llevado a una escala de 0 a 1: puntaje teórico de su categoría, ${pct(M.peso_final.ct)}; puntaje real de su categoría, ${pct(M.peso_final.cr)}; capacidad, ${pct(M.peso_final.cap)}; alcance efectivo, ${pct(M.peso_final.alc)}; autonomía real, ${pct(M.peso_final.aut)}; red de dependientes, ${pct(M.peso_final.red)}. Los componentes se multiplican, cada uno elevado a su peso, así que un actor débil en uno no lo compensa del todo con los demás. Al final se reescala: el actor más poderoso vale 100 y el resto, en proporción.</li>
+          <li><b>Alcance efectivo:</b> dónde puede actuar de verdad, no lo que la ley le permite. ${Object.values(M.alcance).map(a => `${esc(a.n)}: ${num(a.v, 2)}`).join("; ")}. Pesa sobre todo a favor de las agencias de inteligencia, los ejércitos con armas de alcance mundial, las grandes empresas y las redes criminales transnacionales.</li>
           <li><b>Red de dependientes:</b> el poder que hereda de quienes dependen de él (poder en red menos poder efectivo), en escala logarítmica para que no domine a los demás componentes.</li>
           <li><b>Capacidad:</b> suma ponderada de los ${M.ejes.length} ejes, llevada a una escala de 0 a ${M.capmax}. Pesos: coerción, adquisición de información y acción fuera de la ley, 2; contactos y privilegio legal, 1,5; el resto, 1.</li>
           <li><b>Autonomía real:</b> el factor formal (1 decide solo: 1; 2 aliado con criterio propio: 0,75; 3 subordinado: 0,5; 4 fachada: 0,25) sube hacia 1 según su poder duro: coerción, información, acción fuera de la ley y contactos. Una agencia de inteligencia que depende de un gobierno conserva así buena parte de su poder, porque puede resistirlo.</li>

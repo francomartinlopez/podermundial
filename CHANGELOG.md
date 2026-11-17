@@ -1,5 +1,12 @@
 # Cambios
 
+## 2026-11-17 · Alcance efectivo
+
+- Nuevo componente del puntaje de poder: **alcance efectivo**, dónde puede actuar de verdad cada actor, más allá de lo que la ley le permita. Global (0,60), regional o en un grupo de países (0,25) o nacional (0,15), asignado actor por actor: 189 globales, 146 regionales y 186 nacionales (`fuente/alcance.py`).
+- Nuevos pesos del puntaje: categoría teórica 40 %, categoría real 10 %, capacidad 20 %, alcance 20 %, autonomía real 5 % y red de dependientes 5 %.
+- Suben las agencias de inteligencia y los ejércitos con alcance mundial: CIA 3.ª, MSS 4.ª, Mossad y NSA 6.ª y 7.ª, Fuerzas Armadas de Rusia 8.ª.
+- Las fichas muestran el alcance y la lista de organizaciones se puede filtrar por alcance.
+
 ## 2026-11-17 · Eje 21, privilegio legal
 
 - Nuevo eje **privilegio legal** (familia Norma, peso 1,5): lo que la ley le permite a un actor y no a otros — actuar sin supervisión, inmunidad, vetos o indultos, monopolio legal de un mercado o hacer legalmente lo que para otros sería delito. El 3 queda para privilegios con efecto mundial: la Casa Blanca, el Pentágono, la CIA, la NSA, la Reserva Federal, el Consejo de Seguridad de la ONU, el PCCh, el Partido del Trabajo de Corea, la Casa de Saud y el líder supremo de Irán. La capacidad pasa a ir de 0 a 63.
