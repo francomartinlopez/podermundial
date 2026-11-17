@@ -6,6 +6,7 @@
 - Eje 18, «Acción fuera de la ley»: operaciones encubiertas, asesinatos, sabotaje, chantaje, soborno sistemático o crimen. Puntuado en 88 actores, cada uno con un hecho documentado y su fuente.
 - Autonomía real: quien tiene armas, secretos y contactos conserva poder propio aunque dependa formalmente de otro, y su jefe formal hereda menos de él.
 - El Mossad pasa a «decide solo» y deja de figurar como dependiente de Netanyahu: por ley le responde, pero en los hechos fija su propia agenda.
+- Las personas se dividen en dos categorías: empresarios (7) y líderes políticos (35).
 - Revisión de casos: Shin Bet, MSS, ISI, SpaceX, Meta, X, Reliance y LVMH pasan de subordinados a aliados con criterio propio.
 
 ## 2026-11-16 · Un actor que define en cada país (403 actores)

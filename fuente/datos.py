@@ -933,3 +933,8 @@ from poder_duro import EJE as _EJE, ANCLA as _ANCLA, AUT as _AUT_REAL, DEP as _D
 EJES.insert([e[0] for e in EJES].index("ter") + 1, _EJE)
 ANCLAS[_EJE[0]] = _ANCLA
 ORGS = [o[:5] + (_AUT_REAL.get(o[0], o[5]),) + o[6:8] + (_DEP_REAL.get(o[0], o[8]),) + o[9:] for o in ORGS]
+
+# Personas: empresarios y líderes políticos (jefes de Estado, de gobierno o de régimen)
+AREA_TIPO.update({"Empresario": "Persona", "Líder político": "Persona"})
+_EMPRESARIOS = {"musk", "ellison", "zuckerberg", "m_ambani", "bezos", "thiel", "arnault"}
+ORGS = [o[:2] + (("Empresario" if o[0] in _EMPRESARIOS else "Líder político") if o[2] == "Persona" else o[2],) + o[3:] for o in ORGS]
