@@ -11,6 +11,7 @@ Responsable editorial: Franco Martín López. Proyecto hermano de Monitor de Esp
 - Solo figuran monarcas con poder real (lista en `fuente/categorias.py`).
 - Se mide el poder real, no la jerarquía oficial. Pesos fijos en `fuente/poder_duro.py`: coerción, adquisición de información y acción fuera de la ley valen 2; contactos y privilegio legal 1,5; el resto 1. Autonomía real: el poder duro sube el factor de autonomía y reduce lo que hereda el jefe formal. El sitio no ofrece controles para cambiar pesos.
 - El eje «acción fuera de la ley» incluye la corrupción (sobornos, tráfico de influencias, desvío de fondos, robo, fraude) y solo se puntúa con un hecho documentado y fuente; en personas vivas, solo lo establecido por un tribunal u organismo oficial.
+- Fichas de país: textos (qué está en juego, cronología, gobierno, sociedad, recursos, economía) en `fuente/paises_juego.py`, uno por cada país o territorio del mapa; cifras en `fuente/paises_datos.py`, que no se edita a mano: se regenera con `scripts/importar_factbook.py` (instrucciones en el propio script).
 - Puntos de fricción: textos, países, actores con su papel, cronología y fuentes en `fuente/friccion.py`; FR_REL suma relaciones a la base general.
 - El sitio no enlaza al libro Cryptocracy.
 - Resguardos: fuente obligatoria para calificar a una organización de fachada o protectorado o vincularla con delitos o grupos armados; nada especulativo sobre personas vivas.

@@ -632,8 +632,34 @@
 
   // ---------- ficha de país ----------
   const pHref = k => "#p-" + encodeURIComponent(k);
+  // ficha de país: cifras clave
+  const PF = window.PFICHAS || {};
+  const nf = (v, d = 1) => v.toLocaleString("es-AR", { maximumFractionDigits: d });
+  const yr = x => x && x[1] ? ` <small>(${x[1]})</small>` : "";
+  const fPob = v => v >= 1e9 ? nf(v / 1e9, 2) + " mil millones" : v >= 1e6 ? nf(v / 1e6, 1) + " millones" : nf(v, 0);
+  const fUsd = v => v >= 1e12 ? "US$ " + nf(v / 1e12, 1) + " billones" : v >= 1e9 ? "US$ " + nf(v / 1e9, v >= 1e10 ? 0 : 1) + " mil millones" : "US$ " + nf(v / 1e6, 0) + " millones";
+  const pfRow = (l, v) => v ? `<div><dt>${l}</dt><dd>${v}</dd></div>` : "";
+  const socios = l => l && l.length ? l.map(([n, x]) => esc(n) + (x ? ` ${x} %` : "")).join(", ") : "";
+  function pfDatos(f) {
+    const d = f.d || {}, pob = d.pob && d.pob[0];
+    const dens = pob && d.area >= 1 ? nf(pob / d.area, 0) + " hab./km²" : "";
+    const card = (t, body) => body.replace(/\s/g, "") ? `<div class="box pf-card"><span class="lbl">${t}</span>${body}</div>` : "";
+    return `<div class="pf-grid">
+      ${card("Territorio", `<dl class="pf-dl">${pfRow("Capital", esc(f.cap))}${pfRow("Superficie", d.area != null ? nf(d.area, 2) + " km²" : "")}${pfRow("Densidad", dens)}</dl>`)}
+      ${card("Demografía", `<dl class="pf-dl">${pfRow("Población", d.pob ? (pob ? fPob(pob) : "sin población permanente") + yr(d.pob) : "")}${pfRow("Crecimiento anual", d.crec ? nf(d.crec[0], 2) + " %" + yr(d.crec) : "")}${pfRow("Edad mediana", d.edad ? nf(d.edad[0]) + " años" + yr(d.edad) : "")}${pfRow("Población urbana", d.urb ? nf(d.urb[0]) + " %" + yr(d.urb) : "")}</dl>${f.soc && f.soc !== "—" ? `<p class="side-x">${esc(f.soc)}</p>` : ""}`)}
+      ${card("Gobierno", `<p class="side-x">${esc(f.gob)}</p>`)}
+      ${card("Recursos", `<p class="side-x">${esc(f.rec)}</p>`)}
+      <div class="box pf-card pf-eco"><span class="lbl">Economía</span><p class="side-x">${esc(f.eco)}</p><dl class="pf-dl">
+        ${pfRow("PBI", d.pib ? fUsd(d.pib[0]) + yr(d.pib) : "")}${pfRow("PBI por habitante (PPA)", d.pibpc ? "US$ " + nf(d.pibpc[0], 0) + yr(d.pibpc) : "")}
+        ${pfRow("Crecimiento del PBI", d.crecpib ? nf(d.crecpib[0]) + " %" + yr(d.crecpib) : "")}${pfRow("Inflación", d.infl ? nf(d.infl[0]) + " %" + yr(d.infl) : "")}
+        ${pfRow("Desempleo", d.desoc ? nf(d.desoc[0]) + " %" + yr(d.desoc) : "")}${pfRow("Deuda pública", d.deuda ? nf(d.deuda[0]) + " % del PBI" + yr(d.deuda) : "")}
+        ${pfRow("Gasto militar", d.mil ? nf(d.mil[0]) + " % del PBI" + yr(d.mil) : "")}${pfRow("Exporta a", socios(d.expo))}${pfRow("Importa de", socios(d.impo))}</dl></div>
+    </div><p class="note">Cifras: CIA World Factbook (ediciones 2024 y 2025; el año de cada dato va entre paréntesis; se omiten las anteriores a 2020 y, en inflación, crecimiento y desempleo, las anteriores a 2023). Textos: redacción del sitio.</p>`;
+  }
+
   V.pais = key => {
     const p = PA[key]; if (!p) return V.paises();
+    const pf = PF[key];
     const F = FEAT.find(x => x.properties.name === key);
     const ll = F ? d3.geoCentroid(F) : [0, 0];
     const locales = ORGS.filter(o => o.pais === key).sort((a, b) => b.pt - a.pt);
@@ -657,7 +683,9 @@
       <div class="org-head"><div class="crumb"><a href="#paises">Países</a> / ${esc(p.terr ? "Territorio" : BL[p.b].n)}</div><h1>${esc(p.n)}</h1>
         ${p.x ? `<p class="read">${esc(p.x)}</p>` : ""}</div>
       <div class="org-body"><div class="org-main">
+        ${pf ? `<div class="box pf-juego"><span class="lbl">Qué está en juego</span><p>${esc(pf.juego)}</p></div>` : ""}
         <div class="box" style="padding:0;overflow:hidden">${frMini(mini, true)}</div>
+        ${pf ? `<div><h2>Datos clave</h2>${pfDatos(pf)}</div>` : ""}
         <div><h2>Dónde está parado</h2>
           <div class="imp-row" style="border-top:0"><span class="sq" style="background:${swatch(p.b, p.p)};border:1px solid #2A1414"></span><div><b>${esc(BL[p.b].n)} · ${esc(M.posiciones[p.p] || "")}</b><p class="side-x" style="margin:4px 0">${esc(POSDEF[p.p] || "")}</p></div></div>
           ${p.z ? `<div class="imp-row"><span class="sq" style="background:#FF3B30"></span><div><b>Zona liberada: ${esc(M.grados[p.z])}</b><p class="side-x" style="margin:4px 0">Partes del territorio o de la vida del país donde el Estado no manda: ${esc(p.asp.map(a => M.aspectos[a]).join(", "))}.</p></div></div>` : ""}
@@ -666,6 +694,7 @@
         ${afuera.length || adentro.length ? `<div><h2>Quién manda desde afuera y sobre quién manda</h2>
           ${afuera.map(([o, d]) => `<div class="rel">${lineIcon("Gobierna")}<div><a href="#o-${d.id}">${esc(corto(d.n))}</a> (${esc(paisDe(d))}) manda sobre <a href="#o-${o.id}">${esc(corto(o.n))}</a></div></div>`).join("")}
           ${adentro.map(o => `<div class="rel">${lineIcon("Gobierna")}<div><a href="#o-${o.id}">${esc(corto(o.n))}</a> (${esc(paisDe(o))}) depende de ${o.dep.filter(d => ids.has(d)).map(d => `<a href="#o-${d}">${esc(corto(byId[d].n))}</a>`).join(" y ")}</div></div>`).join("")}</div>` : ""}
+        ${pf && pf.crono.length ? `<div><h2>Cronología</h2><div class="crono">${pf.crono.map(([d, x]) => `<div><span class="mono">${esc(d)}</span><p>${esc(x)}</p></div>`).join("")}</div></div>` : ""}
         <div><h2>Actores con sede aquí</h2>${locales.length ? `<div class="tbl-wrap" style="margin:0"><table><thead><tr><th>Actor</th><th>Categoría</th><th>Puntaje</th><th>Oculto</th></tr></thead><tbody>${locales.slice(0, 25).map(o => `<tr><td>${icon(o)} <a href="#o-${o.id}">${esc(corto(o.n))}</a></td><td>${esc(o.area)}</td><td class="mono">${num(o.pt)}</td><td class="mono">${num(o.oculto)}</td></tr>`).join("")}</tbody></table></div>${locales.length > 25 ? `<p class="note">Se muestran los 25 más poderosos de ${locales.length}. <a href="#actores:${encodeURIComponent(paisDe(locales[0]))}">Ver todos en Actores</a>.</p>` : ""}` : `<p class="side-x">Ningún actor del mapa tiene sede aquí${def ? `; lo decisivo lo define ${esc(corto(def.n))}` : ""}.</p>`}</div>
         <div><h2>Con quién se relacionan</h2>
           <p class="note" style="margin:0 0 10px">${locales.length > 12 ? "Los 12 actores más poderosos del país" : "Los actores del país"} y los de afuera con los que tienen los vínculos más fuertes. Color: bloque. Forma: tipo de actor. Tamaño: puntaje de poder. Tocá un actor para ver solo sus relaciones.</p>

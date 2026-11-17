@@ -15,6 +15,8 @@ from ejes_nuevos import COH, COH_AREA, APO, APO_AREA, PRI, PRI_AREA
 from alcance import VALOR as ALC_V, NOMBRE as ALC_N, GLOBAL as ALC_G, REGIONAL as ALC_R, alcance
 from cambios import CAMBIOS
 from friccion import FRICCION
+from paises_juego import PJ, EXTRA
+from paises_datos import DATOS as PDATOS
 from categorias import ESTIRAR, TEORICO, PESO_FINAL, PESO_REL, MONARCAS, NOTA_MONARCA
 import math
 
@@ -162,4 +164,12 @@ for k in FICHAS: assert k in ids, k
 fichas = {k: {"res": v["res"], "manda": v["manda"], "dinero": v["dinero"], "crono": v["crono"], "fuentes": v["fuentes"], "rev": CORTE} for k, v in FICHAS.items()}
 open(os.path.join(out, "fichas.js"), "w").write(js("FICHAS", fichas, "Contenido de las fichas cargadas: resumen, quién manda, dinero, cronología y fuentes."))
 open(os.path.join(out, "paises.js"), "w").write(js("PAISES", paises, "Bloque, posición y zona liberada de cada país, por nombre del mapa."))
+# ficha de cada país: qué está en juego, cronología y datos clave (cifras del CIA World Factbook)
+for m in paises: assert m in PJ, ("falta en paises_juego.py", m)
+for m in PJ: assert m in paises, ("sobra en paises_juego.py", m)
+pfichas = {}
+for m, v in PJ.items():
+    d = dict(PDATOS.get(m, {})); d.update(EXTRA.get(m, {}))
+    pfichas[m] = dict(v, crono=[[str(a), x] for a, x in v["crono"]], d={k: (list(x) if isinstance(x, tuple) else [list(y) for y in x] if isinstance(x, list) else x) for k, x in d.items()})
+open(os.path.join(out, "paisfichas.js"), "w").write(js("PFICHAS", pfichas, "Ficha de cada país: qué está en juego, cronología, gobierno, sociedad, recursos, economía y cifras (CIA World Factbook)."))
 print(f"{len(FICHAS)} fichas, {len(orgs)} organizaciones, {len(rel)} relaciones, {len(paises)} países y territorios")
