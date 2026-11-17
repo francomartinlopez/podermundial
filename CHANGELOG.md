@@ -1,6 +1,7 @@
 # Cambios
 
 ## 2026-11-17 (c)
+- Buscador por nombre en Actores y en Países.
 - Poder oculto de 0 a 100: puntaje de poder (ya estirado) por la brecha entre poder real y formal, con el mayor llevado a 100.
 - Las listas de actores muestran el país donde cada uno tiene su base (también en Quién manda, en los paneles del mapa y en los puntos de fricción), y la página Actores suma un filtro por país.
 - Inicio: las cinco tarjetas de secciones van en una sola fila en escritorio.

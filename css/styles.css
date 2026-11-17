@@ -264,3 +264,7 @@ tr.on td { background: rgba(225, 6, 0, .12); }
 .imp-paises { margin: 4px 0 0; font-size: 14px; line-height: 1.6; color: var(--soft); }
 /* Inicio: las tarjetas de secciones en una sola fila en escritorio */
 @media (min-width: 980px) { .cards { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); } .card b { font-size: 24px; } }
+.filters input { background: var(--surface); border: 1px solid var(--red); color: var(--text); padding: 12px 10px; min-height: 44px; font: 400 15px var(--f-ui); text-transform: none; letter-spacing: 0; width: 100%; }
+.f-search { flex: 1 1 100%; }
+.filters label:not(.f-search) { flex: 1 1 140px; }
+.filters label select { width: 100%; }

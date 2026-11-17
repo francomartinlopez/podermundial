@@ -14,6 +14,7 @@
   const pct = v => Math.round(v * 100) + " %";
   const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
   const fecha = iso => { const [y, m, d] = iso.split("-").map(Number); return `${d} de ${MESES[m - 1]} de ${y}`; };
+  const nrm = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   const corto = n => n.replace(/\s*\((?:[^()]*)\)\s*$/, "");
   const bcol = b => (BL[b] || BL.D).c;
   const relsOf = id => REL.filter(r => r.a === id || r.b === id);
@@ -249,14 +250,15 @@
       <p class="read">El orden mundial real: imperios con un país centro, aliados, protectorados que obedecen cuando el centro ordena, colonias de hecho que figuran como países, y zonas liberadas donde el Estado no manda y cada actor hace lo que su poder le permite. <a href="#marco">Cómo se clasifica</a>.</p></div>
       <section class="block" id="mapa-paises"></section>
       <section class="block"><div class="sec-title"><h2>Clasificación</h2><span class="note" style="margin:0">${rows.length} países y territorios</span></div>
-      <div class="filters"><label>Bloque<select id="fB"><option value="">Todos</option>${["T", "E", "I", "D"].map(k => `<option value="${k}">${esc(BL[k].n)}</option>`).join("")}</select></label>
+      <div class="filters"><label class="f-search">Buscar<input id="fQ" type="search" placeholder="Nombre de un país o territorio" autocomplete="off"></label><label>Bloque<select id="fB"><option value="">Todos</option>${["T", "E", "I", "D"].map(k => `<option value="${k}">${esc(BL[k].n)}</option>`).join("")}</select></label>
       <label>Posición<select id="fP"><option value="">Todas</option>${Object.entries(M.posiciones).filter(([k]) => rows.some(([, p]) => p.p === k)).map(([k, n]) => `<option value="${k}">${esc(n)}</option>`).join("")}</select></label>
       <label>Zona liberada<select id="fZ"><option value="">Todas</option><option value="si">Con zona liberada</option></select></label></div>
       <div class="tbl-wrap"><table><thead><tr><th>País</th><th>Bloque</th><th>Posición</th><th>Zona liberada</th><th>Nota</th></tr></thead><tbody id="tb"></tbody></table></div></section></div>`;
     mountMap(document.getElementById("mapa-paises"), { layer: "posicion" });
     const tb = document.getElementById("tb"), fB = document.getElementById("fB"), fZ = document.getElementById("fZ"), fP = document.getElementById("fP");
-    const fill = () => { tb.innerHTML = rows.filter(([, p]) => (!fB.value || p.b === fB.value) && (!fP.value || p.p === fP.value) && (!fZ.value || p.z)).map(([, p]) => `<tr><td>${esc(p.n)}</td><td><span class="sq" style="background:${p.b === "D" ? "#232323" : bcol(p.b)};border:1px solid #2A1414;vertical-align:-2px"></span> ${esc(BL[p.b].n)}</td><td>${esc(M.posiciones[p.p])}</td><td>${p.z ? esc(M.grados[p.z]) + " · " + esc(p.asp.map(a => M.aspectos[a]).join(", ")) : "—"}</td><td class="muted">${esc(p.x)}</td></tr>`).join(""); };
-    fB.onchange = fZ.onchange = fP.onchange = fill; fill();
+    const fQ = document.getElementById("fQ");
+    const fill = () => { const q = nrm(fQ.value.trim()); tb.innerHTML = rows.filter(([, p]) => (!q || nrm(p.n).includes(q)) && (!fB.value || p.b === fB.value) && (!fP.value || p.p === fP.value) && (!fZ.value || p.z)).map(([, p]) => `<tr><td>${esc(p.n)}</td><td><span class="sq" style="background:${p.b === "D" ? "#232323" : bcol(p.b)};border:1px solid #2A1414;vertical-align:-2px"></span> ${esc(BL[p.b].n)}</td><td>${esc(M.posiciones[p.p])}</td><td>${p.z ? esc(M.grados[p.z]) + " · " + esc(p.asp.map(a => M.aspectos[a]).join(", ")) : "—"}</td><td class="muted">${esc(p.x)}</td></tr>`).join(""); };
+    fB.onchange = fZ.onchange = fP.onchange = fill; fQ.oninput = fill; fill();
   };
 
   V.actores = (arg) => {
@@ -264,6 +266,7 @@
     app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Fichas</div><h1>Actores</h1></div>
       <p class="read">${ORGS.length} actores con nombre propio —organizaciones y personas—, ordenados por su puntaje de poder real. Filtrá por tipo, categoría, alcance o bloque, y tocá uno para ver su ficha: quién lo manda, de dónde saca el dinero, con quién se alía y cuánto de su poder escapa al control público.</p></div>
       <div class="filters">
+        <label class="f-search">Buscar<input id="fQ" type="search" placeholder="Nombre de un actor" autocomplete="off"></label>
         <label>Ordenar por<select id="fM">${Object.entries(METRIC).map(([k, n]) => `<option value="${k}"${k === (arg || "pt") ? " selected" : ""}>${n}</option>`).join("")}</select></label>
         <label>Tipo<select id="fT"><option value="">Todos</option>${M.tipos.map(t => `<option>${t}</option>`).join("")}</select></label>
         <label>Categoría<select id="fA"><option value="">Todas</option>${areas.map(a => `<option>${esc(a)}</option>`).join("")}</select></label>
@@ -273,12 +276,12 @@
       </div><p class="note" style="margin:-6px 0 14px">Qué agrupa cada categoría y cuánto pesa: <a href="#marco-categorias">tabla de tipos y categorías</a>.</p><div id="lst" style="padding-bottom:56px"></div></div>`;
     const g = id => document.getElementById(id);
     const fill = () => {
-      const k = g("fM").value;
-      const l = sortBy(k).filter(o => (!g("fT").value || o.tipo === g("fT").value) && (!g("fA").value || o.area === g("fA").value) && (!g("fB").value || o.bloque === g("fB").value) && (!g("fL").value || o.alc === g("fL").value) && (!g("fC").value || paisDe(o) === g("fC").value));
+      const k = g("fM").value, q = nrm(g("fQ").value.trim());
+      const l = sortBy(k).filter(o => (!g("fT").value || o.tipo === g("fT").value) && (!g("fA").value || o.area === g("fA").value) && (!g("fB").value || o.bloque === g("fB").value) && (!g("fL").value || o.alc === g("fL").value) && (!g("fC").value || paisDe(o) === g("fC").value) && (!q || nrm(o.n).includes(q)));
       const max = sortBy(k)[0][k];
       g("lst").innerHTML = l.length ? rankRows(l, k, max, k === "oculto" ? "#E10600" : null) : `<p class="note">Ningún actor con esos filtros.</p>`;
     };
-    ["fM", "fT", "fA", "fB", "fL", "fC"].forEach(id => g(id).onchange = fill); fill();
+    ["fM", "fT", "fA", "fB", "fL", "fC"].forEach(id => g(id).onchange = fill); g("fQ").oninput = fill; fill();
   };
 
   function radar(o) {
