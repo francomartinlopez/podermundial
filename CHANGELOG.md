@@ -1,5 +1,13 @@
 # Cambios
 
+## 2026-11-17 (b)
+- «Organizaciones» pasa a llamarse «Actores» en todo el sitio (las organizaciones son un subgrupo de los actores); la ruta nueva es `#actores` y `#organizaciones` sigue funcionando. El filtro «Área» pasa a «Categoría», con enlace a la tabla de tipos y categorías del Marco.
+- 57 actores nuevos (578 en total, `fuente/nucleo3.py`): todos los países soberanos tienen al menos un actor propio; estudios offshore de Caimán, Bermudas, Islas Vírgenes Británicas y Jersey; más cobertura en Sudamérica, India, Sahara y Libia, Afganistán y Pakistán, Sudeste Asiático, Kazajistán y Mongolia.
+- Territorios dependientes con nombre en español y país del que dependen.
+- Se quitó la sección «Cambios recientes» del Marco.
+- Quién manda: el gráfico ocupa todo el ancho, la leyenda va debajo y el tamaño de cada actor es proporcional (en área) a su puntaje de poder.
+- Mapa: al cambiar de capa se limpia la selección; en la capa de actores, tocar un país lista sus actores y un toque cerca de un punto elige ese actor.
+
 ## 2026-11-17 · Leyendas de los mapas
 
 - Capa «Organizaciones»: la leyenda muestra qué significa cada color (bloque), cada forma (tipo de actor) y cada tamaño, con círculos de referencia para 100, 50 y 10 puntos.

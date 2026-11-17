@@ -159,6 +159,8 @@ PRI = {
 
 from nucleo2 import COH as _COH2, APO as _APO2
 COH.update(_COH2); APO.update(_APO2)
+from nucleo3 import COH as _COH3, APO as _APO3, PRI as _PRI3
+COH.update(_COH3); APO.update(_APO3); PRI.update(_PRI3)
 
 from revision import COH as _COH_R, APO as _APO_R, PRI as _PRI_R
 COH.update(_COH_R); APO.update(_APO_R); PRI.update(_PRI_R)

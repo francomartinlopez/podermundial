@@ -51,3 +51,5 @@ C.update(_CN)
 
 from nucleo2 import COORDS as _CN2
 C.update(_CN2)
+from nucleo3 import COORDS as _CN3
+C.update(_CN3)

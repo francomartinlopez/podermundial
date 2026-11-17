@@ -103,7 +103,7 @@ aside h3 { font-size: 30px; font-weight: 800; }
 .m-c.sel { stroke: var(--red-text); stroke-width: 1.6; }
 .m-fr circle { fill: #000; stroke: var(--red-text); stroke-width: 1.6; }
 .m-fr text { fill: var(--red-text); font: 600 10px var(--f-mono); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
-.m-o { stroke: #000; stroke-width: .8; cursor: pointer; }
+.m-o { stroke: #000; stroke-width: .8; cursor: pointer; pointer-events: all; }
 .m-o:hover, .m-o.sel { stroke: var(--text); stroke-width: 1.6; }
 
 /* Rankings */
@@ -239,3 +239,8 @@ td.mono { white-space: nowrap; }
 .leg-more { margin-top: 10px; }
 .leg-more summary { cursor: pointer; list-style: revert; }
 .leg-more .legend { margin-top: 10px; }
+/* Quién manda: gráfico a todo el ancho y leyenda debajo */
+.qm-stack > aside { border-top: 1px solid var(--line); padding: 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px 32px; align-items: start; }
+.qm-stack > aside .side-x { margin: 0 0 8px; }
+.qm-mob { display: none; }
+@media (max-width: 900px) { .qm-mob { display: inline; } }

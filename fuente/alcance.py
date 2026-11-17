@@ -68,6 +68,8 @@ cas tsinghua
 ugle
 """.split())
 
+from nucleo3 import ALC_G as _G3, ALC_R as _R3
+GLOBAL |= _G3; REGIONAL |= _R3 - _G3
 from revision import A_GLOBAL as _AG, A_NACIONAL as _AN
 REGIONAL -= _AG | _AN
 GLOBAL = (GLOBAL | _AG) - _AN

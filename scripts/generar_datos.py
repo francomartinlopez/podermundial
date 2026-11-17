@@ -19,7 +19,22 @@ import math
 
 CORTE = "2026-11-17"
 PROXIMA = "2027-02-16"
-TERRITORIOS_D = {"Siachen Glacier"}  # el resto de los territorios dependientes hereda el bloque transoceánico
+TERRITORIOS_D = {"Siachen Glacier"}
+RU, EU, FR, PB, AU, NZ = "Reino Unido", "Estados Unidos", "Francia", "Países Bajos", "Australia", "Nueva Zelanda"
+TERR_ES = {  # nombre en español y país del que dependen
+    "N. Mariana Is.": ("Islas Marianas del Norte", EU), "U.S. Virgin Is.": ("Islas Vírgenes de EE.UU.", EU), "Guam": ("Guam", EU),
+    "American Samoa": ("Samoa Americana", EU), "S. Geo. and the Is.": ("Georgias del Sur y Sandwich del Sur", RU),
+    "Br. Indian Ocean Ter.": ("Territorio Británico del Océano Índico (Diego García)", RU), "Saint Helena": ("Santa Elena", RU),
+    "Pitcairn Is.": ("Islas Pitcairn", RU), "Anguilla": ("Anguila", RU), "Falkland Is.": ("Islas Malvinas", RU), "Bermuda": ("Bermudas", RU),
+    "British Virgin Is.": ("Islas Vírgenes Británicas", RU), "Turks and Caicos Is.": ("Islas Turcas y Caicos", RU), "Montserrat": ("Montserrat", RU),
+    "Guernsey": ("Guernsey", RU), "Isle of Man": ("Isla de Man", RU), "Jersey": ("Jersey", RU), "Cayman Is.": ("Islas Caimán", RU),
+    "Niue": ("Niue", NZ), "Cook Is.": ("Islas Cook", NZ), "Aruba": ("Aruba", PB), "Curaçao": ("Curazao", PB), "Sint Maarten": ("San Martín (Países Bajos)", PB),
+    "St. Pierre and Miquelon": ("San Pedro y Miquelón", FR), "Wallis and Futuna Is.": ("Wallis y Futuna", FR), "St-Martin": ("San Martín (Francia)", FR),
+    "St-Barthélemy": ("San Bartolomé", FR), "Fr. Polynesia": ("Polinesia Francesa", FR), "New Caledonia": ("Nueva Caledonia", FR),
+    "Fr. S. Antarctic Lands": ("Tierras Australes y Antárticas Francesas", FR), "Åland": ("Åland", "Finlandia"), "Faeroe Is.": ("Islas Feroe", "Dinamarca"),
+    "Indian Ocean Ter.": ("Islas Christmas y Cocos", AU), "Heard I. and McDonald Is.": ("Islas Heard y McDonald", AU), "Norfolk Island": ("Isla Norfolk", AU),
+    "Ashmore and Cartier Is.": ("Islas Ashmore y Cartier", AU), "Siachen Glacier": ("Glaciar de Siachen", None),
+}  # el resto de los territorios dependientes hereda el bloque transoceánico
 
 def js(nombre, valor, comentario):
     return f"// {comentario}\n// Generado por scripts/generar_datos.py: no editar a mano.\nwindow.{nombre} = " + json.dumps(valor, ensure_ascii=False, separators=(",", ":")) + ";\n"
@@ -124,7 +139,8 @@ paises = {m: {"n": es, "b": b, "p": p, "z": z, "asp": a, "x": n} for m, es, b, p
 nombres = json.load(open(os.path.join(RAIZ, "data", "nombres_mapa.json"))) if os.path.exists(os.path.join(RAIZ, "data", "nombres_mapa.json")) else []
 for m in nombres:
     if m not in paises:
-        paises[m] = {"n": m, "b": "D" if m in TERRITORIOS_D else "T", "p": "S" if m in TERRITORIOS_D else "G", "z": "", "asp": [], "x": "Territorio dependiente.", "terr": True}
+        _t = TERR_ES.get(m, (m, None))
+        paises[m] = {"n": _t[0], "b": "D" if m in TERRITORIOS_D else "T", "p": "S" if m in TERRITORIOS_D else "G", "z": "", "asp": [], "x": ("Bajo control británico desde 1833 y reclamadas por la Argentina; base militar británica en Mount Pleasant." if m == "Falkland Is." else "Base militar conjunta de EE.UU. y Reino Unido en Diego García; Mauricio reclama la soberanía y en 2025 se firmó su traspaso con arriendo de la base." if m == "Br. Indian Ocean Ter." else f"Territorio dependiente de {_t[1]}." if _t[1] else "Zona en disputa entre India y Pakistán." if m == "Siachen Glacier" else "Territorio dependiente."), "terr": True}
 
 for m, (i, nota) in MANDA.items():
     assert m in paises, m

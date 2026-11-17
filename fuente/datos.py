@@ -941,6 +941,13 @@ FORMAL.update({n[0]: n[9] for n in _NUC2})
 FASE.update({n[0]: n[10] for n in _NUC2})
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _REL_NUC2 if (r[0], r[1]) not in _ya]
+from nucleo3 import NUCLEO3 as _NUC3, RELACIONES as _REL_NUC3, SEDE as _SEDE3
+ORGS += [n[:9] for n in _NUC3]
+FORMAL.update({n[0]: n[9] for n in _NUC3})
+FASE.update({n[0]: n[10] for n in _NUC3})
+_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+RELACIONES += [r for r in _REL_NUC3 if (r[0], r[1]) not in _ya]
+ORGS = [o[:3] + (_SEDE3[o[0]],) + o[4:] if o[0] in _SEDE3 else o for o in ORGS]
 # El FBI pasa a ser actor propio
 ORGS = [(o[0], "Departamento de Justicia de EE.UU.") + o[2:] if o[0] == "doj" else o for o in ORGS]
 

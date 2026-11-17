@@ -40,5 +40,7 @@ HEGEMONICOS = {"pcch", "ptk", "pcv", "prpl", "pcc_cuba", "pfdj", "fpr", "zanupf"
 # Monarcas: solo figuran los que tienen poder real (las monarquías ceremoniales no entran).
 MONARCAS = {"saud", "alnahyan", "althani", "maktoum", "mswati", "al_said", "bolkiah", "al_sabah", "al_khalifa", "hachemita",
             "liechtenstein", "grimaldi", "wangchuck", "tupou"}
+from nucleo3 import HEGEMONICOS as _H3, MONARCAS as _M3
+HEGEMONICOS |= _H3; MONARCAS |= _M3
 NOTA_MONARCA = ("Figura porque ejerce poder real. El mapa solo incluye monarcas que gobiernan o tienen poder de veto o de decisión; "
                 "las monarquías ceremoniales, como las de Reino Unido, España, Japón, los países nórdicos, Países Bajos y Bélgica, no entran.")

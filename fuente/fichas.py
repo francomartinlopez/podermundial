@@ -2421,3 +2421,5 @@ FICHAS.update(_FN)
 
 from nucleo2 import FICHAS as _FN2
 FICHAS.update(_FN2)
+from nucleo3 import FICHAS as _FN3
+FICHAS.update(_FN3)
