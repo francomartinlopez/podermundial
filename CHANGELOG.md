@@ -1,5 +1,11 @@
 # Cambios
 
+## 2026-11-17 · Marco teórico ampliado y colonias de hecho
+
+- Marco: nueva sección «La tesis», con el resumen del enfoque de *Cryptocracy* y el asesinato de Kennedy como punto de inflexión; «Sistemas de gobierno» (autocracia, criptocracia y democracia republicana constitucional, y por qué ninguna democracia actual cumple el modelo); «El orden mundial» (centros, aliados, integrados, protectorados, colonias de hecho, pendulares y zonas liberadas); y un marco teórico ampliado: Mearsheimer, el realismo clásico, la teoría de las élites, Dahl, Quigley y las fases de las civilizaciones, la teoría de la frontera de Turner y Robert Greene.
+- Nueva posición de país, **colonia de hecho**: Micronesia, Islas Marshall y Palaos (EE.UU.) y Chipre del Norte (Turquía). En el mapa se ve con una trama de puntos.
+- Notas nuevas para 32 países importantes (Alemania, Japón, Corea del Sur, Canadá, Irán, Egipto, Indonesia, entre otros) y textos de introducción ampliados en Países, Organizaciones y Quién manda.
+
 ## 2026-11-17 · Revisión actor por actor
 
 - Revisados los 521 actores en cohesión interna, apoyo popular, privilegio legal y alcance efectivo. Cambios en `fuente/revision.py`:

@@ -77,6 +77,7 @@
     if (layer === "organizaciones") return p.b === "D" ? "#1D1D1D" : bcol(p.b) + "40";
     if (layer === "posicion") {
       if (p.p === "R") return `url(#hatch-${p.b})`;
+      if (p.p === "K") return `url(#col-${p.b})`;
       if (p.b === "D") { const c = p.p === "IT" ? BL.T.c : p.p === "IE" ? BL.E.c : p.p === "P" ? BL.P.c : null; if (!c) return "#232323"; return c + Math.round(POSOP[p.p] * 255).toString(16).padStart(2, "0"); }
       return bcol(p.b) + Math.round((POSOP[p.p] || 1) * 255).toString(16).padStart(2, "0");
     }
@@ -98,7 +99,7 @@
   }
   function mapSVG(layer, sel, z = 1, vb = FULL) {
     const zs = 1 / Math.pow(z, .75);
-    const defs = `<defs>${["T", "E", "I", "D"].map(b => `<pattern id="hatch-${b}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#141414"/><rect width="3" height="6" fill="${b === "D" ? "#5A5150" : bcol(b)}"/></pattern>`).join("")}</defs>`;
+    const defs = `<defs>${["T", "E", "I", "D"].map(b => `<pattern id="hatch-${b}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#141414"/><rect width="3" height="6" fill="${b === "D" ? "#5A5150" : bcol(b)}"/></pattern><pattern id="col-${b}" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="${b === "D" ? "#5A5150" : bcol(b)}"/><circle cx="2.5" cy="2.5" r="1.1" fill="#141414"/></pattern>`).join("")}</defs>`;
     const cs = CPATH.map(c => `<path class="m-c${sel && sel.k === "c" && sel.v === c.name ? " sel" : ""}" data-c="${esc(c.name)}" d="${c.d}" fill="${fillFor(c.name, layer)}"/>`).join("");
     let extra = "";
     if (layer === "bloques" || layer === "posicion") extra = `<g class="m-fr">${M.friccion.map(f => { const [x, y] = proj(f.ll); return `<g data-fr="${f.n}" tabindex="0" role="button" aria-label="Punto de fricción ${f.n}: ${esc(f.x)}"><circle cx="${x}" cy="${y}" r="${9 * zs}"/><text x="${x}" y="${y}" style="font-size:${10 * zs}px">${f.n}</text></g>`; }).join("")}</g>`;
@@ -111,7 +112,7 @@
     if (layer === "zonas") return sq(ZONA.T, "Total") + sq(ZONA.X, "Extendida") + sq(ZONA.P, "Parcial") + sq("#232323", "Sin zona liberada", "border:1px solid #2A1414");
     if (layer === "organizaciones") return M.tipos.map(t => `<div><svg width="16" height="16" aria-hidden="true">${shape(t, 8, 8, 6.4, "#EDE6E3")}</svg>${t}</div>`).join("") + `<p class="note">Color: bloque de la organización. Tamaño: poder efectivo.</p>`;
     const base = sq(BL.T.c, "Imperio transoceánico") + sq(BL.E.c, "Alianza euroasiática") + sq(BL.I.c, "Independientes") + sq("#232323", "Terreno disputado", "border:1px solid #2A1414");
-    if (layer === "posicion") return base + sq("repeating-linear-gradient(45deg,#2F6BFF 0 3px,#141414 3px 6px)", "Protectorado") + `<p class="note">Intensidad: centro y aliados, plenos; integrados, medios. En el terreno disputado, el tinte indica hacia qué bloque se inclina.</p>`;
+    if (layer === "posicion") return base + sq("repeating-linear-gradient(45deg,#2F6BFF 0 3px,#141414 3px 6px)", "Protectorado") + sq("radial-gradient(circle,#141414 1.1px,#2F6BFF 1.3px) 0 0/5px 5px", "Colonia de hecho") + `<p class="note">Intensidad: centro y aliados, plenos; integrados, medios. En el terreno disputado, el tinte indica hacia qué bloque se inclina.</p>`;
     return base + `<div><span class="sq" style="border:1.6px solid #FF3B30;border-radius:50%"></span>Punto de fricción</div>`;
   }
   function countryPanel(name) {
@@ -212,7 +213,7 @@
   V.paises = () => {
     const rows = Object.entries(PA).filter(([, p]) => !p.terr).sort((a, b) => a[1].n.localeCompare(b[1].n, "es"));
     app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Mapa</div><h1>Países</h1></div>
-      <p class="read">El orden mundial como bloques con centros, aliados, protectorados con fachada de independencia y zonas que ningún Estado controla del todo.</p></div>
+      <p class="read">El orden mundial real: imperios con un país centro, aliados, protectorados que obedecen cuando el centro ordena, colonias de hecho que figuran como países, y zonas liberadas donde el Estado no manda y cada actor hace lo que su poder le permite. <a href="#marco">Cómo se clasifica</a>.</p></div>
       <section class="block" id="mapa-paises"></section>
       <section class="block"><div class="sec-title"><h2>Clasificación</h2><span class="note" style="margin:0">${rows.length} países y territorios</span></div>
       <div class="filters"><label>Bloque<select id="fB"><option value="">Todos</option>${["T", "E", "I", "D"].map(k => `<option value="${k}">${esc(BL[k].n)}</option>`).join("")}</select></label>
@@ -228,7 +229,7 @@
   V.organizaciones = (arg) => {
     const areas = [...new Set(ORGS.map(o => o.area))].sort((a, b) => a.localeCompare(b, "es"));
     app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Fichas</div><h1>Organizaciones</h1></div>
-      <p class="read">${ORGS.length} organizaciones con nombre propio. Tocá una para abrir su ficha.</p></div>
+      <p class="read">${ORGS.length} organizaciones y personas con nombre propio, ordenadas por su puntaje de poder real. Filtrá por tipo, categoría, alcance o bloque, y tocá una para ver su ficha: quién la manda, de dónde saca el dinero, con quién se alía y cuánto de su poder escapa al control público.</p></div>
       <div class="filters">
         <label>Ordenar por<select id="fM">${Object.entries(METRIC).map(([k, n]) => `<option value="${k}"${k === (arg || "pt") ? " selected" : ""}>${n}</option>`).join("")}</select></label>
         <label>Tipo<select id="fT"><option value="">Todos</option>${M.tipos.map(t => `<option>${t}</option>`).join("")}</select></label>
@@ -301,7 +302,7 @@
     let mode = "pe", cur = null, showRel = true, view = "grafico", topN = 60, fB = "", fT = "";
     const norm = t => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
     app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Esquema</div><h1>Quién manda</h1></div>
-      <p class="read">La fila indica la autonomía; el tamaño, el poder; el color, el bloque; la forma, el tipo. Buscá un actor o filtrá para ver menos a la vez.</p></div>
+      <p class="read">La jerarquía real, no la del organigrama: quién decide solo, quién tiene criterio propio dentro de un bloque, quién obedece y quién es fachada de otro. La fila indica la autonomía; el tamaño, el poder; el color, el bloque; la forma, el tipo. Buscá un actor o filtrá para ver menos a la vez.</p></div>
       <div class="qm-tools">
         <label class="qm-search">Buscar<input id="qS" type="search" list="qL" placeholder="Nombre de un actor" autocomplete="off"><datalist id="qL">${ORGS.slice().sort((a, b) => corto(a.n).localeCompare(corto(b.n), "es")).map(o => `<option value="${esc(corto(o.n))}"></option>`).join("")}</datalist></label>
         <label>Mostrar<select id="qN"><option value="30">Los 30 con más poder</option><option value="60" selected>Los 60 con más poder</option><option value="120">Los 120 con más poder</option><option value="0">Todos (${ORGS.length})</option></select></label>
@@ -391,14 +392,38 @@
   V.marco = () => {
     app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Método</div><h1>Marco</h1></div></div>
       <div class="prose" style="padding-bottom:40px">
-        <p>El sitio responde una sola pregunta: quién tiene el poder real en el mundo y quién solo lo aparenta. La unidad de análisis es la organización con nombre propio, no el país.</p>
-        <h2>Teoría</h2>
+        <p>El sitio responde una sola pregunta: quién tiene el poder real en el mundo y quién solo lo aparenta. La unidad de análisis es la organización con nombre propio, no el país: un gobierno, un ejército, una agencia de inteligencia, una empresa, una familia, un partido, una red criminal o una persona.</p>
+        <h2>La tesis</h2>
+        <p>El mapa parte de la tesis de <i>Cryptocracy</i>: en el mundo actual el poder real casi nunca coincide con el poder formal. Detrás de las constituciones, las elecciones y los organigramas, las decisiones que importan las toman aparatos permanentes que nadie eligió y que casi nadie controla: servicios de inteligencia, fuerzas armadas, grandes bancos y fondos, burocracias de carrera, partidos convertidos en maquinarias, familias que concentran capital y redes que operan fuera de la ley. Las formas democráticas siguen en pie, pero funcionan como fachada: legitiman decisiones tomadas en otro lado.</p>
+        <p>Para el libro, el punto de inflexión es el asesinato de John F. Kennedy en 1963. Es el momento en que el aparato de seguridad nacional de Estados Unidos, crecido durante la Guerra Fría, deja de estar subordinado a la autoridad electa y pasa a fijar sus propios límites. En 1979, el comité especial de la Cámara de Representantes que reabrió el caso concluyó que Kennedy probablemente fue asesinado como resultado de una conspiración, sin identificar a sus autores.</p>
+        <p>De ahí salen las preguntas que ordenan el sitio: quién manda sin que se vea, cuánto de su poder escapa a la ley y al voto, y quién obedece a quién más allá de lo que dice el organigrama.</p>
+        <h2>Sistemas de gobierno</h2>
         <ul>
-          <li><b>Fachada y poder operativo.</b> Toda organización tiene un poder formal, el que le dan la ley y su mandato, y un poder real. El sitio mide el real y la distancia entre ambos.</li>
-          <li><b>La clase gerencial</b> (James Burnham). Manda quien controla la información, el personal y la maquinaria, aunque no sea dueño ni haya sido electo.</li>
+          <li><b>Autocracia.</b> El poder se concentra en una persona, una familia, un partido, una junta o un clero, sin competencia real ni límites efectivos. Adopta muchas formas: monarquía absoluta, dictadura personal, junta militar, partido único, teocracia o régimen personalista con elecciones decorativas. No esconde que manda; a lo sumo disimula cómo.</li>
+          <li><b>Criptocracia.</b> El gobierno oculto. Conserva todas las formas de la democracia (elecciones periódicas, parlamento, tribunales, prensa), pero las decisiones de fondo —guerra, seguridad, moneda, deuda, alianzas, qué se investiga y qué no— las toman aparatos no electos que capturan esas instituciones o las rodean. La alternancia existe, pero cambia el elenco y no la política de fondo. Es la forma dominante en las democracias del mundo de hoy, y el <b>poder oculto</b> de cada organización es su índice criptocrático.</li>
+          <li><b>Democracia republicana constitucional.</b> El modelo que las demás dicen ser. Tiene soberanía popular con elecciones libres, limpias y competitivas; una constitución que limita al poder y no puede cambiarse a gusto de quien gobierna; división de poderes —ejecutivo, legislativo y judicial independientes— con frenos y contrapesos reales; Estado de derecho, en el que nadie está por encima de la ley, ni siquiera los servicios secretos; derechos civiles y políticos garantizados: libertad de expresión, de prensa, de reunión y de culto, debido proceso, propiedad e igualdad ante la ley; control civil efectivo de las fuerzas armadas y de inteligencia; transparencia y rendición de cuentas.</li>
+        </ul>
+        <p>En el mundo actual ningún país cumple plenamente con el tercer modelo. Algunos se acercan más que otros, pero en todos hay aparatos con armas, secretos o dinero que actúan fuera del control público. Por eso el sitio no clasifica países por su régimen formal: mide, organización por organización, cuánto poder real tiene cada una y cuánto de ese poder escapa al control.</p>
+        <h2>El orden mundial: imperios, protectorados, colonias y zonas liberadas</h2>
+        <p>Debajo del mapa de los Estados soberanos, todos iguales en la ONU, hay otro mapa: el de los imperios. Cada imperio tiene un <b>país centro</b> y alrededor una gradación de dependencia. Hoy hay un imperio transoceánico, con centro en Estados Unidos, y una alianza euroasiática, con centros en China y Rusia. Fuera de ellos quedan unas pocas potencias independientes, como la India y Brasil, y un terreno disputado donde los bloques compiten.</p>
+        <ul>
+          <li><b>Centro.</b> Decide la estrategia del bloque y tiene la última palabra en guerra, moneda y alianzas.</li>
+          <li><b>Aliado con autonomía.</b> Pertenece al bloque, pero conserva criterio estratégico propio y capacidad de decir que no; por ejemplo, el Reino Unido, Francia o Israel.</li>
+          <li><b>Integrado.</b> Forma parte del bloque y rara vez se aparta de su línea, aunque gestione sus asuntos internos.</li>
+          <li><b>Protectorado.</b> Tiene un grado de independencia y gobierno propio, pero cuando el centro da una orden la cumple: su seguridad, su economía o la supervivencia de sus gobernantes dependen de él. Ejemplos: Taiwán, Ucrania o Jordania; Bielorrusia, del lado euroasiático.</li>
+          <li><b>Colonia de hecho.</b> Figura como otro país, con bandera, asiento en la ONU y gobierno, pero la potencia ejerce el control como si fuera parte de su territorio: decide su defensa, su moneda o su presupuesto, y su gobierno no puede contradecirla. A esto se suman los territorios que son formalmente dependientes, como Puerto Rico, Guam o Groenlandia.</li>
+          <li><b>Pendular, inclinado o sin alinear.</b> Países que negocian con más de un bloque, que se inclinan hacia uno sin pertenecer del todo o que se mantienen fuera de ambos.</li>
+        </ul>
+        <p>Además están las <b>zonas liberadas</b>: territorios, a veces dentro de países que figuran como soberanos y estables, donde el Estado no manda y cada actor hace lo que su poder real le permite. Un cártel cobra impuestos y administra justicia en una región de México; una milicia controla una frontera; una facción criminal gobierna cárceles y barrios en Brasil; una potencia extranjera mantiene tropas que nadie invitó. El mapa las marca por grado (parcial, extendida o total) y por aspecto: territorial, crimen organizado, fronteras, fiscal y económico, o presencia extranjera. Todo esto se ve en la capa «Posición» y en la capa «Zonas liberadas» del mapa de <a href="#paises">Países</a>.</p>
+        <h2>Marco teórico</h2>
+        <ul>
+          <li><b>Realismo ofensivo</b> (John Mearsheimer, <i>La tragedia de la política de las grandes potencias</i>, 2001). Es el eje del análisis geopolítico del sitio. En un sistema internacional sin autoridad por encima de los Estados, cada gran potencia busca maximizar su poder relativo, porque nunca puede estar segura de las intenciones de las otras. El objetivo final es la hegemonía regional y evitar que otra potencia la consiga en otra región. Las ideologías, los tratados y las instituciones internacionales pesan poco cuando choca con la seguridad. Mearsheimer explica también el «poder de contención del agua»: los océanos frenan a los ejércitos, por eso el imperio transoceánico domina desde afuera y equilibra a distancia.</li>
+          <li><b>El realismo clásico y la <i>realpolitik</i></b>. Tucídides, con el ascenso de una potencia que atemoriza a la establecida; Maquiavelo, que separa la política de la moral declarada; Hobbes y el estado de naturaleza; Hans Morgenthau, con el interés definido como poder; E. H. Carr y la crítica del idealismo; Kenneth Waltz y la estructura del sistema; Henry Kissinger y el equilibrio de poder. Todos parten de que el poder se mide por lo que se puede hacer, no por lo que se dice.</li>
+          <li><b>La teoría de las élites</b>. Gaetano Mosca y Vilfredo Pareto muestran que siempre gobierna una minoría organizada; Robert Michels formula la «ley de hierro de la oligarquía», por la que toda organización termina en manos de quienes la administran. James Burnham agrega la <b>clase gerencial</b>: manda quien controla la información, el personal y la maquinaria, aunque no sea dueño ni haya sido electo.</li>
           <li><b>El costo de reprimir</b> (Robert Dahl). Cuando una parte del Estado puede reprimir a bajo costo visible, la democracia conserva la forma y pierde el fondo.</li>
-          <li><b>El ciclo de las instituciones</b> (Carroll Quigley). Los instrumentos de expansión se convierten en instituciones que se defienden a sí mismas: expansión, captura, distorsión.</li>
-          <li><b>Realismo ofensivo</b> (John Mearsheimer). Un orden multipolar con un imperio transoceánico, una alianza euroasiática, potencias independientes y un terreno disputado.</li>
+          <li><b>La evolución de las civilizaciones</b> (Carroll Quigley). Las civilizaciones atraviesan fases: mezcla, gestación, expansión, era de conflictos, imperio universal, decadencia e invasión. En la expansión crean instrumentos para crecer; con el tiempo esos instrumentos se convierten en instituciones que se defienden a sí mismas y dejan de servir a su propósito. El sitio aplica esa idea a cada organización: expansión, captura o distorsión.</li>
+          <li><b>La teoría de la frontera</b> (Frederick Jackson Turner, 1893). La frontera abierta moldea el carácter de una sociedad y descarga su energía hacia afuera. Cuando la frontera interior se cierra, la expansión busca nuevas fronteras en el exterior. Hoy esas fronteras son el espacio, el ciberespacio, el Ártico, los fondos marinos y la inteligencia artificial, y quien las ocupa primero fija las reglas.</li>
+          <li><b>La naturaleza humana aplicada al poder</b> (Robert Greene, <i>Las 48 leyes del poder</i> y <i>Las leyes de la naturaleza humana</i>). Las organizaciones las dirigen personas, y las personas buscan poder, ocultan sus intenciones, cultivan apariencias, se alían por interés y temen perder posición. Entender esas pulsiones explica por qué el poder real se esconde detrás del formal y por qué la apariencia de debilidad o de virtud es, muchas veces, una estrategia.</li>
         </ul>
         <h2>Cómo se mide</h2>
         <p>Cada organización recibe de 0 a 3 en ${M.ejes.length} ejes agrupados en seis familias. El 3 se reserva a quienes están entre los pocos primeros del mundo en ese eje. El sitio mide el poder real y no la jerarquía oficial, así que el poder duro pesa más: la coerción violenta, la obtención de información y la acción fuera de la ley valen doble, y los contactos y el privilegio legal una vez y media. Los pesos son fijos.</p>
