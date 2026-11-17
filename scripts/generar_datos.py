@@ -13,7 +13,7 @@ from locales import MANDA
 from poder_duro import PESOS, EXT, AUTONOMIA_REAL
 from ejes_nuevos import COH, COH_AREA, APO, APO_AREA, PRI, PRI_AREA
 from alcance import VALOR as ALC_V, NOMBRE as ALC_N, GLOBAL as ALC_G, REGIONAL as ALC_R, alcance
-from categorias import TEORICO, PESO_FINAL, PESO_REL, MONARCAS, NOTA_MONARCA
+from categorias import ESTIRAR, TEORICO, PESO_FINAL, PESO_REL, MONARCAS, NOTA_MONARCA
 import math
 
 CORTE = "2026-11-17"
@@ -85,7 +85,7 @@ def comp(o):
             "red": .5 + .5 * math.log1p(heredado[o["id"]]) / math.log1p(hmax), "alc": ALC_V[alcance(o["id"])] / ALC_V["G"]}
 bruto = {o["id"]: math.prod(v ** PESO_FINAL[k] for k, v in comp(o).items() if k in PESO_FINAL) for o in orgs}
 bmax = max(bruto.values())
-for o in orgs: o["pt"] = round(100 * bruto[o["id"]] / bmax, 1)
+for o in orgs: o["pt"] = round(100 * (bruto[o["id"]] / bmax) ** ESTIRAR, 1)
 for o in orgs: o["alc"] = alcance(o["id"])
 orgs.sort(key=lambda x: (-x["pt"], -x["red"], x["n"]))
 
@@ -94,7 +94,7 @@ for e in EJES:
     if not fam or fam[-1]["n"] != e[2]: fam.append({"n": e[2], "ejes": []})
     fam[-1]["ejes"].append(e[0])
 meta = {"corte": CORTE, "proxima": PROXIMA, "skeleton": False, "pesos": peso, "capmax": CAPMAX, "autreal": AUTONOMIA_REAL,
-        "peso_final": PESO_FINAL, "alcance": {k: {"n": ALC_N[k], "v": ALC_V[k]} for k in ALC_V}, "monarcas": sorted(MONARCAS), "nota_monarca": NOTA_MONARCA, "categorias": {a: {"t": TEORICO[a], "r": REAL[a], "tipo": AREA_TIPO[a], "k": sum(1 for o in orgs if o["area"] == a)} for a in TEORICO},
+        "peso_final": PESO_FINAL, "estirar": ESTIRAR, "alcance": {k: {"n": ALC_N[k], "v": ALC_V[k]} for k in ALC_V}, "monarcas": sorted(MONARCAS), "nota_monarca": NOTA_MONARCA, "categorias": {a: {"t": TEORICO[a], "r": REAL[a], "tipo": AREA_TIPO[a], "k": sum(1 for o in orgs if o["area"] == a)} for a in TEORICO},
         "ejes": [{"k": e[0], "n": e[1], "fam": e[2], "x": e[3], "a": list(ANCLAS[e[0]])} for e in EJES], "familias": fam,
         "bloques": {"T": {"n": "Transoceánico", "c": "#2F6BFF"}, "E": {"n": "Euroasiático", "c": "#9E1B32"},
                     "I": {"n": "Independiente", "c": "#BDBDBD"}, "P": {"n": "Pendular", "c": "#F2A93B"},

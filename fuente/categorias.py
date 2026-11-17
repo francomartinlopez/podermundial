@@ -25,6 +25,9 @@ TEORICO = {
 
 # Puntaje final: media geométrica ponderada de cinco componentes, cada uno entre 0 y 1 (alcance: ver fuente/alcance.py).
 PESO_FINAL = {"ct": .40, "cap": .30, "alc": .20, "aut": .05, "red": .05}
+# Estiramiento de la escala: el resultado se eleva a esta potencia antes de llevar el mayor a 100,
+# para que las distancias reflejen diferencias de poder de varios órdenes de magnitud (no cambia el orden).
+ESTIRAR = 3
 # La categoría real se sigue calculando y publicando, pero no entra en la fórmula (evita contar dos veces autonomía y relaciones).
 
 # Relevamiento del puntaje real de cada actor (se promedia por categoría y se lleva a 0-10).

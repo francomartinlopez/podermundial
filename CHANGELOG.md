@@ -1,5 +1,9 @@
 # Cambios
 
+## 2026-11-17 · Escala estirada
+
+- El puntaje de poder se eleva al cubo antes de llevar el mayor a 100. El orden no cambia, pero las distancias se acercan a las reales: el último actor pasa de 35 a unos 5 puntos y la mediana de 57 a 19.
+
 ## 2026-11-17 · Fórmula sin categoría real
 
 - El puntaje de categoría real deja de entrar en el puntaje de poder: se calculaba con la autonomía y las relaciones, que ya están en la fórmula. Se sigue publicando como dato informativo.
