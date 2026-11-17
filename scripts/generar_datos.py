@@ -104,6 +104,9 @@ bruto = {o["id"]: math.prod(v ** PESO_FINAL[k] for k, v in comp(o).items() if k 
 bmax = max(bruto.values())
 for o in orgs: o["pt"] = round(100 * (bruto[o["id"]] / bmax) ** ESTIRAR, 1)
 for o in orgs: o["alc"] = alcance(o["id"])
+# Poder oculto de 0 a 100: puntaje de poder (ya estirado) por la brecha, y el mayor vale 100
+_omax = max(o["pt"] * o["brecha"] for o in orgs)
+for o in orgs: o["oculto"] = round(100 * o["pt"] * o["brecha"] / _omax, 1)
 for o in orgs: o["cp"] = [round(comp(o)[k], 3) for k in PESO_FINAL]
 orgs.sort(key=lambda x: (-x["pt"], -x["red"], x["n"]))
 
