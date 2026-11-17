@@ -147,10 +147,10 @@
     const quien = def ? `<div class="define"><div class="lbl">Quién define aquí</div><a href="#o-${def.id}">${icon(def, 22)}<span><b>${esc(corto(def.n))}</b><small>${esc(def.area)} · puntaje ${num(def.pt)}</small></span></a>${p.m && p.m[1] ? `<p class="side-x">${esc(p.m[1])}</p>` : ""}</div>` : "";
     if (layer === "actores") return `<div class="lbl">Actores con sede en</div><h3>${esc(p.n)}</h3>
       ${orgs.length ? `<div>${orgs.map(o => `<a class="rk" style="grid-template-columns:18px minmax(0,1fr) 46px" href="#o-${o.id}" data-pick="${o.id}">${icon(o)}<span class="nm">${esc(corto(o.n))}<small>${esc(o.area)}</small></span><span class="v">${num(o.pt)}</span></a>`).join("")}</div><p class="note">Tocá uno para ubicarlo en el mapa.</p>` : `<p class="side-x">Ningún actor del mapa tiene sede aquí.</p>`}
-      ${def && p.m ? `<p class="side-x"><b>Quién define aquí:</b> <a href="#o-${def.id}">${esc(corto(def.n))}</a></p>` : ""}`;
+      ${def && p.m ? `<p class="side-x"><b>Quién define aquí:</b> <a href="#o-${def.id}">${esc(corto(def.n))}</a></p>` : ""}<a class="btn" href="${pHref(name)}">Abrir la ficha del país</a>`;
     return `<div class="lbl">${esc(BL[p.b].n)}</div><h3>${esc(p.n)}</h3>
       <p class="side-x"><b>Posición:</b> ${esc(M.posiciones[p.p])}${p.z ? `<br><b>Zona liberada:</b> ${esc(M.grados[p.z])} · ${esc(p.asp.map(a => M.aspectos[a]).join(", "))}` : ""}</p>
-      ${p.x ? `<p class="side-x">${esc(p.x)}</p>` : ""}${quien}
+      ${p.x ? `<p class="side-x">${esc(p.x)}</p>` : ""}<a class="btn" href="${pHref(name)}" style="align-self:flex-start">Abrir la ficha del país</a>${quien}
       ${(o2 => o2.length ? `<div class="lbl" style="margin-top:6px">${def ? "Otros actores" : "Actores"} con sede aquí (${o2.length})</div><div>${o2.map(o => `<a class="rk" style="grid-template-columns:18px minmax(0,1fr) 46px" href="#o-${o.id}">${icon(o)}<span class="nm">${esc(corto(o.n))}</span><span class="v">${num(o.pt)}</span></a>`).join("")}</div>` : "")(orgs.filter(o => o !== def))}`;
   }
   function orgPanel(o) {
@@ -258,11 +258,11 @@
     mountMap(document.getElementById("mapa-paises"), { layer: "posicion" });
     const tb = document.getElementById("tb"), fB = document.getElementById("fB"), fZ = document.getElementById("fZ"), fP = document.getElementById("fP");
     const fQ = document.getElementById("fQ");
-    const fill = () => { const q = nrm(fQ.value.trim()); tb.innerHTML = rows.filter(([, p]) => (!q || nrm(p.n).includes(q)) && (!fB.value || p.b === fB.value) && (!fP.value || p.p === fP.value) && (!fZ.value || p.z)).map(([, p]) => `<tr><td>${esc(p.n)}</td><td><span class="sq" style="background:${p.b === "D" ? "#232323" : bcol(p.b)};border:1px solid #2A1414;vertical-align:-2px"></span> ${esc(BL[p.b].n)}</td><td>${esc(M.posiciones[p.p])}</td><td>${p.z ? esc(M.grados[p.z]) + " · " + esc(p.asp.map(a => M.aspectos[a]).join(", ")) : "—"}</td><td class="muted">${esc(p.x)}</td></tr>`).join(""); };
+    const fill = () => { const q = nrm(fQ.value.trim()); tb.innerHTML = rows.filter(([, p]) => (!q || nrm(p.n).includes(q)) && (!fB.value || p.b === fB.value) && (!fP.value || p.p === fP.value) && (!fZ.value || p.z)).map(([k, p]) => `<tr><td><a href="${pHref(k)}">${esc(p.n)}</a></td><td><span class="sq" style="background:${p.b === "D" ? "#232323" : bcol(p.b)};border:1px solid #2A1414;vertical-align:-2px"></span> ${esc(BL[p.b].n)}</td><td>${esc(M.posiciones[p.p])}</td><td>${p.z ? esc(M.grados[p.z]) + " · " + esc(p.asp.map(a => M.aspectos[a]).join(", ")) : "—"}</td><td class="muted">${esc(p.x)}</td></tr>`).join(""); };
     fB.onchange = fZ.onchange = fP.onchange = fill; fQ.oninput = fill; fill();
   };
 
-  V.actores = (arg) => {
+  V.actores = (arg, pais) => {
     const areas = [...new Set(ORGS.map(o => o.area))].sort((a, b) => a.localeCompare(b, "es"));
     app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Fichas</div><h1>Actores</h1></div>
       <p class="read">${ORGS.length} actores con nombre propio —organizaciones y personas—, ordenados por su puntaje de poder real. Filtrá por tipo, categoría, alcance o bloque, y tocá uno para ver su ficha: quién lo manda, de dónde saca el dinero, con quién se alía y cuánto de su poder escapa al control público.</p></div>
@@ -282,7 +282,7 @@
       const max = sortBy(k)[0][k];
       g("lst").innerHTML = l.length ? rankRows(l, k, max, k === "oculto" ? "#E10600" : null) : `<p class="note">Ningún actor con esos filtros.</p>`;
     };
-    ["fM", "fT", "fA", "fB", "fL", "fC"].forEach(id => g(id).onchange = fill); g("fQ").oninput = fill; fill();
+    ["fM", "fT", "fA", "fB", "fL", "fC"].forEach(id => g(id).onchange = fill); g("fQ").oninput = fill; if (pais) g("fC").value = pais; fill();
   };
 
   function radar(o) {
@@ -558,7 +558,9 @@
   // mapa chico de la región: países del frente resaltados
   function frMini(f, big = false) {
     const set = new Set(f.paises);
-    const bs = FEAT.filter(F => set.has(F.properties.name)).map(F => gpath.bounds(F)).filter(([[a], [b]]) => b - a < MW / 3 && Math.abs((a + b) / 2 - proj(f.ll)[0]) < MW / 3);
+    // cada polígono por separado, para que islas lejanas o territorios del otro lado del mapa no agranden el recuadro
+    const partes = F => F.geometry.type === "MultiPolygon" ? F.geometry.coordinates.map(c => ({ type: "Feature", geometry: { type: "Polygon", coordinates: c } })) : [F];
+    const bs = FEAT.filter(F => set.has(F.properties.name)).flatMap(partes).map(F => gpath.bounds(F)).filter(([[a], [b]]) => b - a < MW / 3 && Math.abs((a + b) / 2 - proj(f.ll)[0]) < MW / 3);
     let x0 = Math.min(...bs.map(b => b[0][0])), y0 = Math.min(...bs.map(b => b[0][1])), x1 = Math.max(...bs.map(b => b[1][0])), y1 = Math.max(...bs.map(b => b[1][1]));
     const [px, py] = proj(f.ll); x0 = Math.min(x0, px); x1 = Math.max(x1, px); y0 = Math.min(y0, py); y1 = Math.max(y1, py);
     const pad = Math.max(x1 - x0, y1 - y0) * .08 + 6, ar = big ? 1.9 : 1.6;
@@ -628,6 +630,68 @@
     draw();
   };
 
+  // ---------- ficha de país ----------
+  const pHref = k => "#p-" + encodeURIComponent(k);
+  V.pais = key => {
+    const p = PA[key]; if (!p) return V.paises();
+    const F = FEAT.find(x => x.properties.name === key);
+    const ll = F ? d3.geoCentroid(F) : [0, 0];
+    const locales = ORGS.filter(o => o.pais === key).sort((a, b) => b.pt - a.pt);
+    const def = p.m ? byId[p.m[0]] : locales[0];
+    const ids = new Set(locales.map(o => o.id)); if (def) ids.add(def.id);
+    // vínculos con actores de afuera, los más fuertes primero
+    const ext = {};
+    REL.forEach(r => { const ia = ids.has(r.a), ib = ids.has(r.b); if (ia !== ib) { const o = ia ? r.b : r.a; ext[o] = (ext[o] || 0) + r.i * (1 + byId[o].pt / 50); } });
+    ORGS.forEach(o => o.dep.forEach(d => { if (ids.has(o.id) && !ids.has(d)) ext[d] = (ext[d] || 0) + 4; if (ids.has(d) && !ids.has(o.id)) ext[o.id] = (ext[o.id] || 0) + 2; }));
+    // en países con muchos actores, el gráfico muestra los 12 más poderosos y sus vínculos de afuera más fuertes
+    const top = new Set(locales.slice(0, 12).map(o => o.id)); if (def) top.add(def.id);
+    const externos = Object.entries(ext).sort((a, b) => b[1] - a[1]).slice(0, Math.max(6, 18 - top.size)).map(([i]) => i);
+    const nodos = [...top, ...externos];
+    const afuera = locales.filter(o => o.tipo !== "Supranacional").flatMap(o => o.dep.filter(d => !ids.has(d)).map(d => [o, byId[d]]));
+    const adentro = ORGS.filter(o => !ids.has(o.id) && o.dep.some(d => ids.has(d)));
+    // frentes en su territorio o en los que intervienen sus actores
+    const frentes = M.friccion.filter(f => f.paises.includes(key) || f.actores.some(a => ids.has(a.id)));
+    const mini = { n: "", ll, paises: [key] };
+    let cur = null;
+    app.innerHTML = `<div class="wrap">
+      <div class="org-head"><div class="crumb"><a href="#paises">Países</a> / ${esc(p.terr ? "Territorio" : BL[p.b].n)}</div><h1>${esc(p.n)}</h1>
+        ${p.x ? `<p class="read">${esc(p.x)}</p>` : ""}</div>
+      <div class="org-body"><div class="org-main">
+        <div class="box" style="padding:0;overflow:hidden">${frMini(mini, true)}</div>
+        <div><h2>Dónde está parado</h2>
+          <div class="imp-row" style="border-top:0"><span class="sq" style="background:${swatch(p.b, p.p)};border:1px solid #2A1414"></span><div><b>${esc(BL[p.b].n)} · ${esc(M.posiciones[p.p] || "")}</b><p class="side-x" style="margin:4px 0">${esc(POSDEF[p.p] || "")}</p></div></div>
+          ${p.z ? `<div class="imp-row"><span class="sq" style="background:#FF3B30"></span><div><b>Zona liberada: ${esc(M.grados[p.z])}</b><p class="side-x" style="margin:4px 0">Partes del territorio o de la vida del país donde el Estado no manda: ${esc(p.asp.map(a => M.aspectos[a]).join(", "))}.</p></div></div>` : ""}
+          <p class="note"><a href="#imperios">Cómo se lee el mapa de imperios</a>.</p></div>
+        ${def ? `<div><h2>Quién define aquí</h2><div class="define"><a href="#o-${def.id}">${icon(def, 22)}<span><b>${esc(corto(def.n))}</b><small>${esc(def.area)} · ${esc(paisDe(def))} · puntaje ${num(def.pt)}</small></span></a></div>${p.m && p.m[1] ? `<p class="side-x">${esc(p.m[1])}</p>` : ""}</div>` : ""}
+        ${afuera.length || adentro.length ? `<div><h2>Quién manda desde afuera y sobre quién manda</h2>
+          ${afuera.map(([o, d]) => `<div class="rel">${lineIcon("Gobierna")}<div><a href="#o-${d.id}">${esc(corto(d.n))}</a> (${esc(paisDe(d))}) manda sobre <a href="#o-${o.id}">${esc(corto(o.n))}</a></div></div>`).join("")}
+          ${adentro.map(o => `<div class="rel">${lineIcon("Gobierna")}<div><a href="#o-${o.id}">${esc(corto(o.n))}</a> (${esc(paisDe(o))}) depende de ${o.dep.filter(d => ids.has(d)).map(d => `<a href="#o-${d}">${esc(corto(byId[d].n))}</a>`).join(" y ")}</div></div>`).join("")}</div>` : ""}
+        <div><h2>Actores con sede aquí</h2>${locales.length ? `<div class="tbl-wrap" style="margin:0"><table><thead><tr><th>Actor</th><th>Categoría</th><th>Puntaje</th><th>Oculto</th></tr></thead><tbody>${locales.slice(0, 25).map(o => `<tr><td>${icon(o)} <a href="#o-${o.id}">${esc(corto(o.n))}</a></td><td>${esc(o.area)}</td><td class="mono">${num(o.pt)}</td><td class="mono">${num(o.oculto)}</td></tr>`).join("")}</tbody></table></div>${locales.length > 25 ? `<p class="note">Se muestran los 25 más poderosos de ${locales.length}. <a href="#actores:${encodeURIComponent(paisDe(locales[0]))}">Ver todos en Actores</a>.</p>` : ""}` : `<p class="side-x">Ningún actor del mapa tiene sede aquí${def ? `; lo decisivo lo define ${esc(corto(def.n))}` : ""}.</p>`}</div>
+        <div><h2>Con quién se relacionan</h2>
+          <p class="note" style="margin:0 0 10px">${locales.length > 12 ? "Los 12 actores más poderosos del país" : "Los actores del país"} y los de afuera con los que tienen los vínculos más fuertes. Color: bloque. Forma: tipo de actor. Tamaño: puntaje de poder. Tocá un actor para ver solo sus relaciones.</p>
+          <div class="box" style="padding:10px"><div class="qm-scroll" id="pg"></div>${RELLEG}</div></div>
+        <div><h2>Relaciones</h2><div id="pr"></div></div>
+        ${frentes.length ? `<div><h2>Puntos de fricción</h2><p class="note" style="margin:0 0 10px">Los frentes que pasan por su territorio o en los que intervienen sus actores.</p><div class="fr-grid">${frentes.map(f => `<a class="fr-card" href="#f-${f.n}"><div><span class="kick">Punto ${f.n} · ${f.paises.includes(key) ? "en su territorio" : (n => n + (n === 1 ? " actor propio interviene" : " actores propios intervienen"))(f.actores.filter(a => ids.has(a.id)).length)}</span><b>${esc(f.x)}</b><span>${esc(f.d)}</span></div></a>`).join("")}</div></div>` : ""}
+      </div>
+      <aside class="org-side">
+        <div class="box"><span class="lbl">En números</span><div class="nums"><div><small>Actores con sede</small><b>${locales.length}</b></div><div><small>Vínculos externos</small><b>${Object.keys(ext).length}</b></div><div class="o"><small>Frentes</small><b>${frentes.length}</b></div></div></div>
+        <div class="box" id="pside"></div>
+        <div class="box"><span class="lbl">Mismo bloque y posición</span>${Object.entries(PA).filter(([k, x]) => k !== key && !x.terr && x.b === p.b && x.p === p.p).sort((a, b) => a[1].n.localeCompare(b[1].n, "es")).slice(0, 24).map(([k, x]) => `<a href="${pHref(k)}">${esc(x.n)}</a>`).join("") || `<p class="side-x">Ninguno.</p>`}</div>
+      </aside></div></div>`;
+    const draw = () => {
+      const g = frGraph({ actores: nodos.map(id => ({ id })) }, cur), set = new Set(nodos);
+      document.getElementById("pg").innerHTML = g.svg;
+      const rels = g.rels.filter(r => (ids.has(r.a) || ids.has(r.b)) && (!cur || r.a === cur || r.b === cur)).sort((a, b) => (a.t === "Enfrentamiento" ? 0 : 1) - (b.t === "Enfrentamiento" ? 0 : 1) || b.i - a.i);
+      document.getElementById("pr").innerHTML = (cur ? `<p class="note" style="margin:0 0 8px">Solo las de ${esc(corto(byId[cur].n))}. <a href="#" data-clr>Ver todas</a></p>` : "") + (rels.length ? rels.map(r => `<div class="rel">${lineIcon(r.t)}<div><a href="#o-${r.a}">${esc(corto(byId[r.a].n))}</a> y <a href="#o-${r.b}">${esc(corto(byId[r.b].n))}</a> · ${esc(r.t.toLowerCase())}${r.i === 3 ? " fuerte" : r.i === 1 ? " débil" : ""}<small>${esc(r.x)}</small></div></div>`).join("") : `<p class="note">Sin relaciones registradas con los actores que se ven en el gráfico.</p>`);
+      const o = cur && byId[cur];
+      document.getElementById("pside").innerHTML = o ? orgPanel(o) + `<button type="button" class="chip" data-clr style="align-self:flex-start">Ver todos</button>` : `<span class="lbl">Cómo leerlo</span><p class="side-x">Tocá un actor del gráfico para ver sus datos y solo sus relaciones.</p>`;
+      app.querySelectorAll("[data-clr]").forEach(b => b.onclick = e => { e.preventDefault(); cur = null; draw(); });
+      activate(document.getElementById("pg"), "[data-fa]", el => { cur = cur === el.dataset.fa ? null : el.dataset.fa; draw(); });
+      bindTip(document.getElementById("pg"), "[data-fa]", el => { const o = byId[el.dataset.fa]; return `<b>${esc(o.n)}</b><span>${esc(o.area)} · ${esc(paisDe(o))}</span><span>Puntaje ${num(o.pt)}</span>`; });
+    };
+    draw();
+  };
+
   // ---------- rutas ----------
   const NAV = { inicio: "", "quien-manda": "quien", actores: "actores", paises: "paises", imperios: "imperios", friccion: "friccion", marco: "marco" };
   function route() {
@@ -636,17 +700,19 @@
     let navKey = "inicio";
     if (h.startsWith("o-")) { V.org(h.slice(2)); navKey = "actores"; }
     else if (h === "quien-manda") { V.quien(); navKey = h; }
+    else if (h.startsWith("actores:")) { V.actores("pt", h.slice(8)); navKey = "actores"; }
     else if (/^(actores|organizaciones)(-oculto)?$/.test(h)) { V.actores(h.endsWith("oculto") ? "oculto" : "pt"); navKey = "actores"; }
     else if (h === "paises") { V.paises(); navKey = h; }
     else if (h === "friccion") { V.friccion(); navKey = h; }
     else if (h === "imperios") { V.imperios(); navKey = h; }
     else if (/^f-\d+$/.test(h)) { V.fr(h.slice(2)); navKey = "friccion"; }
+    else if (h.startsWith("p-") && PA[h.slice(2)]) { V.pais(h.slice(2)); navKey = "paises"; }
     else if (h === "marco" || h === "marco-categorias") { V.marco(); navKey = "marco"; }
     else V.inicio();
     document.querySelectorAll(".mainnav a").forEach(a => a.classList.toggle("on", a.dataset.k === navKey));
     const titles = { inicio: "", "quien-manda": "Quién manda", actores: "Actores", paises: "Países", imperios: "Imperios", friccion: "Puntos de fricción", marco: "Marco" };
     const fx = /^f-\d+$/.test(h) && M.friccion.find(x => x.n === +h.slice(2));
-    const t = h.startsWith("o-") && byId[h.slice(2)] ? corto(byId[h.slice(2)].n) : fx ? fx.x : titles[navKey];
+    const t = h.startsWith("o-") && byId[h.slice(2)] ? corto(byId[h.slice(2)].n) : fx ? fx.x : h.startsWith("p-") && PA[h.slice(2)] ? PA[h.slice(2)].n : titles[navKey];
     document.title = (t ? t + " · " : "") + "El mapa del poder global";
     const anc = h === "marco-categorias" && document.getElementById("cat");
     if (anc) anc.scrollIntoView({ block: "start" }); else window.scrollTo({ top: 0, left: 0, behavior: "instant" });
