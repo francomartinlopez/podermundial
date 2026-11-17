@@ -1,5 +1,13 @@
 # Cambios
 
+## 2026-11-17 · Revisión actor por actor
+
+- Revisados los 521 actores en cohesión interna, apoyo popular, privilegio legal y alcance efectivo. Cambios en `fuente/revision.py`:
+  - Cohesión: suben las Fuerzas de Defensa de Finlandia, Nvidia y Palantir; bajan la ODNI (purgas internas) y Hezbolá (debilitada tras la guerra); Tisza pasa a 2.
+  - Apoyo popular: suben el Mossad, la Unidad 8200, la inteligencia militar ucraniana, TSMC y la Casa Grimaldi; bajan el CCM de Tanzania, el ejército tailandés, el de Guinea-Bisáu, Sueño Georgiano, el PML-N, el Grupo Adani y las redes criminales sin base social (Prince Group, Sun Yee On, Tren de Aragua, Los Lobos, Yamaguchi-gumi, Viv Ansanm).
+  - Privilegio: Alphabet sube a 1 (inmunidad de plataformas en EE.UU.), el Ministerio de Comercio de China a 2 (controles de exportación) y Telegram baja a 0.
+  - Alcance: pasan a global Exor, los Wallenberg, los Quandt, los Rothschild, la Fundación Novo Nordisk y el Banco Central Europeo; pasan a nacional las fuerzas armadas de Corea del Sur y de Japón, la NIS, la Casa de Al Sabah, SMIC, Los Lobos, Itaú, Sberbank y el M23.
+
 ## 2026-11-17 · Método explicado en el sitio
 
 - Marco: explica los ejes de cohesión interna, apoyo popular y privilegio legal, la corrupción dentro de «acción fuera de la ley», cómo se asigna el alcance efectivo, la división de partidos y suma una lista de cambios recientes.

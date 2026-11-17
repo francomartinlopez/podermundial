@@ -1,5 +1,6 @@
 # Cambios de método y de datos que el Marco muestra al lector (los más recientes primero).
 CAMBIOS = [
+ ("2026-11-17", "Revisión de los 521 actores, uno por uno, en cohesión interna, apoyo popular, privilegio legal y alcance efectivo: 23 valores corregidos y 15 actores reclasificados en alcance."),
  ("2026-11-17", "Escala estirada: el puntaje se eleva al cubo antes de llevar el mayor a 100, para que las distancias entre actores se parezcan a las reales."),
  ("2026-11-17", "Fórmula del puntaje de poder: categoría teórica 40 %, capacidad 30 %, alcance efectivo 20 %, autonomía real 5 % y red de dependientes 5 %. La categoría real queda como dato informativo."),
  ("2026-11-17", "Alcance efectivo: cada actor se clasifica según pueda actuar de verdad en cualquier parte del mundo, en un grupo de países o solo en el suyo."),

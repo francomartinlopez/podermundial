@@ -68,6 +68,9 @@ cas tsinghua
 ugle
 """.split())
 
+from revision import A_GLOBAL as _AG, A_NACIONAL as _AN
+REGIONAL -= _AG | _AN
+GLOBAL = (GLOBAL | _AG) - _AN
 assert not GLOBAL & REGIONAL, GLOBAL & REGIONAL
 
 
