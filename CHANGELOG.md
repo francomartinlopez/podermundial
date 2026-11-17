@@ -1,5 +1,8 @@
 # Cambios
 
+## 2026-11-17 (d)
+- 22 actores no estatales nuevos (600 en total, `fuente/nucleo4.py`) en países que tenían uno solo, priorizados por peso real: Vingroup (Vietnam), Ayala e Iglesia ni Cristo (Filipinas), MOL (Hungría), EPH (Chequia), Nokia (Finlandia), BRAC (Bangladés), Iglesia Ortodoxa Etíope, Asociación de Bancos del Líbano, Fuerzas Democráticas Sirias, UNRWA (Palestina), Consejo de Transición del Sur (Yemen), CK Hutchison (Hong Kong), ArcelorMittal (Luxemburgo), Raiffeisen (Austria), CENCO (Congo), NIS (Serbia), Ryanair (Irlanda), Radio Maryja (Polonia), EDP (Portugal), UGTT (Túnez) y John Fredriksen (Chipre). 24 relaciones nuevas.
+
 ## 2026-11-17 (c)
 - Puntos de fricción: pasan de 7 a 9. Latinoamérica se divide en «México, Centroamérica y el Caribe» y «Sudamérica»; se suma «África central y austral» (este del Congo, minerales críticos y corredor de Lobito, Mozambique, Sudáfrica frente a EE.UU.), y el punto del norte queda como «Norte de África, Sahel y Cuerno de África». 11 relaciones nuevas.
 - Buscador por nombre en Actores y en Países.

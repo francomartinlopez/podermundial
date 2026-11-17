@@ -948,6 +948,12 @@ FASE.update({n[0]: n[10] for n in _NUC3})
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _REL_NUC3 if (r[0], r[1]) not in _ya]
 ORGS = [o[:3] + (_SEDE3[o[0]],) + o[4:] if o[0] in _SEDE3 else o for o in ORGS]
+from nucleo4 import NUCLEO4 as _NUC4, RELACIONES as _REL_NUC4
+ORGS += [n[:9] for n in _NUC4]
+FORMAL.update({n[0]: n[9] for n in _NUC4})
+FASE.update({n[0]: n[10] for n in _NUC4})
+_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+RELACIONES += [r for r in _REL_NUC4 if (r[0], r[1]) not in _ya]
 from friccion import FR_REL as _FR_REL
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _FR_REL if (r[0], r[1]) not in _ya]
