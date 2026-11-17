@@ -954,6 +954,9 @@ FORMAL.update({n[0]: n[9] for n in _NUC4})
 FASE.update({n[0]: n[10] for n in _NUC4})
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _REL_NUC4 if (r[0], r[1]) not in _ya]
+from relaciones_extra import RELACIONES as _REL_EXTRA
+_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+RELACIONES += [r for r in _REL_EXTRA if (r[0], r[1]) not in _ya]
 from friccion import FR_REL as _FR_REL
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _FR_REL if (r[0], r[1]) not in _ya]
