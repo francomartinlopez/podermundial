@@ -747,21 +747,6 @@
     if (anc) anc.scrollIntoView({ block: "start" }); else window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  // Menú de arriba: se esconde al bajar y vuelve apenas se sube un poco, o al llegar arriba
-  (() => {
-    const head = document.querySelector(".site-head"); if (!head) return;
-    let last = scrollY, ticking = false;
-    const upd = () => {
-      const y = Math.max(scrollY, 0), d = y - last;
-      if (y < 80 || d < -4) head.classList.remove("oculto");
-      else if (d > 6 && !head.contains(document.activeElement)) head.classList.add("oculto");
-      if (Math.abs(d) > 4 || y < 80) last = y;
-      ticking = false;
-    };
-    addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(upd); } }, { passive: true });
-    addEventListener("hashchange", () => head.classList.remove("oculto"));
-    head.addEventListener("focusin", () => head.classList.remove("oculto"));
-  })();
   document.getElementById("stamp").innerHTML = `Corte <b>${fecha(M.corte)}</b><br>Próxima revisión ${fecha(M.proxima)}`;
   document.getElementById("foot-date").textContent = `Corte del ${fecha(M.corte)} · próxima revisión el ${fecha(M.proxima)}`;
   window.addEventListener("hashchange", route);

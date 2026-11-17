@@ -2,6 +2,8 @@
 
 ## 2026-11-17 (d)
 
+- El menú de arriba queda fijo y ya no se esconde al bajar.
+
 - Fichas de país: se suman «Qué está en juego», una cronología y los datos clave (territorio, demografía, gobierno, recursos y economía) de los 240 países y territorios. Textos en `fuente/paises_juego.py`; cifras del CIA World Factbook en `fuente/paises_datos.py`, generadas con `scripts/importar_factbook.py`; salida en `data/paisfichas.js`.
 
 - Marco: la democracia republicana constitucional se describe como economía de libre mercado con regulación, intervención, servicios y asistencia estatal en distintos grados según la ideología, entre polos de izquierda y derecha acotados; en autocracias y criptocracias los polos pueden ser más extremos, reales o de fachada. En la criptocracia, el extremismo llega también por el voto, empujado por los problemas que el sistema abandona o genera, y el resultado electoral le resulta barato al sistema porque no cambia el eje del poder; en la autocracia, la coerción facilita imponer extremos.
