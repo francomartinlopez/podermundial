@@ -1,5 +1,10 @@
 # Cambios
 
+## 2026-11-17 · Eje 21, privilegio legal
+
+- Nuevo eje **privilegio legal** (familia Norma, peso 1,5): lo que la ley le permite a un actor y no a otros — actuar sin supervisión, inmunidad, vetos o indultos, monopolio legal de un mercado o hacer legalmente lo que para otros sería delito. El 3 queda para privilegios con efecto mundial: la Casa Blanca, el Pentágono, la CIA, la NSA, la Reserva Federal, el Consejo de Seguridad de la ONU, el PCCh, el Partido del Trabajo de Corea, la Casa de Saud y el líder supremo de Irán. La capacidad pasa a ir de 0 a 63.
+- El puntaje teórico de «Organismo de gobierno» sube de 4 a 6: el Departamento de Energía, el Congreso de EE.UU. y los departamentos del PCCh quedaban subvaluados.
+
 ## 2026-11-17 · Inteligencia que faltaba, el FBI y más actores de las potencias (521 actores)
 
 - Inteligencia y seguridad: Organización de Inteligencia de la Guardia Revolucionaria, Oficina de Inteligencia del Estado Mayor Conjunto del EPL, Policía Armada Popular, Departamentos de Organización y de Propaganda del PCCh, SBU de Ucrania, Presidencia General de Inteligencia saudí, BfV alemana y Policía Federal de Brasil.

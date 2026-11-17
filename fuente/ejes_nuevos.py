@@ -12,7 +12,14 @@ EJES = [
      ("Respaldo de cientos de millones de personas o clara mayoría en una gran potencia",
       "Mayoría o fuerte legitimidad en su país o en su ámbito",
       "Apoyo relevante pero minoritario o limitado")),
+    ("pri", "Privilegio legal", "Norma",
+     "Lo que la ley le permite y a otros no: actuar sin supervisión, inmunidad (aunque sea mientras dura el cargo), vetos o indultos, cuotas o el monopolio legal de un mercado, o hacer legalmente lo que para otros sería delito.",
+     ("Privilegios con efecto mundial: veto en el Consejo de Seguridad, emisión de la moneda de reserva, operaciones encubiertas en el exterior autorizadas por ley o inmunidad soberana total",
+      "Privilegios en su país: inmunidad, veto o indulto, secreto legal sin control externo, monopolio legal de un mercado nacional o uso legal de la fuerza, escuchas o detenciones",
+      "Privilegios parciales: concesiones o cuotas exclusivas, patentes, exenciones especiales o inmunidad limitada a algunos actos")),
 ]
+# Eje tras el que va cada eje nuevo
+DESPUES = {"coh": "red", "apo": "red", "pri": "reg"}
 
 COH_AREA = {
     "Partido único o hegemónico": 3, "Ejército": 2, "Servicio de inteligencia": 2, "Organización criminal": 1, "Gobierno": 2,
@@ -113,6 +120,42 @@ APO = {
 
 def valor(tabla, area_tabla, i, area):
     return tabla.get(i, area_tabla[area])
+
+PRI_AREA = {
+    "Gobierno": 2, "Ejército": 2, "Servicio de inteligencia": 2, "Fuerza de seguridad": 2, "Banco central": 2, "Justicia": 2,
+    "Partido único o hegemónico": 2, "Partido en sistema competitivo": 1, "Organismo de gobierno": 1, "Institución mundial": 1,
+    "Estandarización e infraestructura técnica": 1, "Empresa financiera": 1, "Empresa tecnológica": 0, "Red social": 1,
+    "Recursos primarios": 1, "Empresa de armamento": 1, "Empresa industrial": 0, "Logística y transporte": 0,
+    "Farmacéutica y agroquímica": 1, "Consultoría y auditoría": 0, "Familia y oficina patrimonial": 0, "Líder político": 2,
+    "Empresario": 0, "Organización criminal": 0, "Paramilitar": 0, "Organización reservada": 0, "Organización religiosa": 1,
+    "Federación empresaria": 0, "ONG, fundación o think tank": 0, "Organización deportiva": 2, "Sindicato": 1,
+    "Medio de comunicación": 0, "Institución de conocimiento": 0,
+}
+PRI = {
+    # Alcance mundial
+    "casablanca": 3, "pentagono": 3, "cia": 3, "nsa": 3, "fed": 3, "csonu": 3, "pcch": 3, "ptk": 3, "saud": 3, "lider_iran": 3,
+    # Monarcas con poder real
+    "alnahyan": 2, "althani": 2, "maktoum": 2, "al_sabah": 2, "al_khalifa": 2, "liechtenstein": 2, "grimaldi": 2, "wangchuck": 2, "tupou": 2,
+    "santasede": 2, "aqr": 2,
+    # Líderes sin inmunidad
+    "netanyahu": 1,
+    # Monopolios legales y empresas del Estado
+    "aramco": 2, "gazprom": 2, "pdvsa": 2, "nnpc": 2, "sonatrach": 2, "ocp": 2, "stategrid": 2, "rosatom": 2, "cnnc": 2, "edf": 2,
+    "kazatomprom": 2, "pif": 2, "setad": 2, "khatam": 2, "oficina39": 2, "cosco": 1, "cmport": 1, "dpworld": 1, "spacex": 1, "nso": 1,
+    # Organismos
+    "city_londres": 2, "acp": 2, "junta_pr": 2, "doe": 2, "tesoro_eeuu": 2, "bis": 2, "congreso_eeuu": 2, "congreso_br": 2, "sasac": 2,
+    "ccdi": 2, "org_pcch": 2, "prop_pcch": 2,
+    # Seguridad
+    "pf_br": 1, "cac": 2,
+    # Paramilitares con estatus legal
+    "pmf": 2, "talibanes": 2, "hezbola": 1, "lna": 1,
+    # Instituciones mundiales y técnicas
+    "bm": 2, "fmi": 2, "cpi": 2, "icann": 2, "swift": 2,
+    # Bancos centrales menores
+    "eccb": 1,
+    # Sindicatos, medios
+    "cgt_arg": 2, "bbc": 2, "xinhua": 2, "rt": 1,
+}
 
 from nucleo2 import COH as _COH2, APO as _APO2
 COH.update(_COH2); APO.update(_APO2)

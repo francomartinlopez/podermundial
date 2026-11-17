@@ -11,7 +11,7 @@ from coords import C
 from fichas import FICHAS
 from locales import MANDA
 from poder_duro import PESOS, EXT, AUTONOMIA_REAL
-from ejes_nuevos import COH, COH_AREA, APO, APO_AREA
+from ejes_nuevos import COH, COH_AREA, APO, APO_AREA, PRI, PRI_AREA
 from categorias import TEORICO, PESO_FINAL, PESO_REL, MONARCAS, NOTA_MONARCA
 import math
 
@@ -25,7 +25,7 @@ def js(nombre, valor, comentario):
 fac = {1: 1, 2: .75, 3: .5, 4: .25}
 ids = {o[0] for o in ORGS}
 for k in EXT: assert k in ids, k
-for k in list(COH) + list(APO): assert k in ids, k
+for k in list(COH) + list(APO) + list(PRI): assert k in ids, k
 masters = {o[0]: [d for d in o[8].split(",") if d] for o in ORGS}
 ejes = [e[0] for e in EJES]
 peso = {k: PESOS.get(k, 1) for k in ejes}
@@ -34,7 +34,7 @@ norma = CAPMAX / sum(3 * w for w in peso.values())
 SC = {}
 for o in ORGS:
     sc = dict(zip(ORDEN_ENTRADA, map(int, o[6]))); sc["ext"] = EXT.get(o[0], (0,))[0]
-    sc["coh"] = COH.get(o[0], COH_AREA[o[2]]); sc["apo"] = APO.get(o[0], APO_AREA[o[2]]); SC[o[0]] = sc
+    sc["coh"] = COH.get(o[0], COH_AREA[o[2]]); sc["apo"] = APO.get(o[0], APO_AREA[o[2]]); sc["pri"] = PRI.get(o[0], PRI_AREA[o[2]]); SC[o[0]] = sc
 cap = {i: round(sum(SC[i][k] * peso[k] for k in ejes) * norma, 2) for i in ids}
 # autonomía real: armas, secretos, acción fuera de la ley y contactos dan margen propio frente al jefe formal
 dur = {i: min(1, (SC[i]["coe"] + SC[i]["adq"] + SC[i]["ext"] + SC[i]["red"]) / 12) for i in ids}

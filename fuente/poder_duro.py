@@ -4,7 +4,7 @@
 W = "https://en.wikipedia.org/wiki/"
 
 # Pesos fijos por eje (el resto vale 1). El sitio no ofrece controles para cambiarlos.
-PESOS = {"coe": 2, "adq": 2, "ext": 2, "red": 1.5}
+PESOS = {"coe": 2, "adq": 2, "ext": 2, "red": 1.5, "pri": 1.5}
 
 # Autonomía real: d = (coerción + adquisición de información + acción fuera de la ley + contactos) / 12, tope 1.
 # El factor de autonomía sube hacia 1 en proporción a d (AUTONOMIA_REAL) y el jefe formal hereda menos de ese actor.

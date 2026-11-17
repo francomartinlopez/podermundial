@@ -5,7 +5,7 @@
 TEORICO = {
     # Estado
     "Servicio de inteligencia": 9, "Ejército": 8, "Fuerza de seguridad": 7, "Gobierno": 6, "Banco central": 6,
-    "Justicia": 5, "Partido único o hegemónico": 8, "Partido en sistema competitivo": 5, "Organismo de gobierno": 4,
+    "Justicia": 5, "Partido único o hegemónico": 8, "Partido en sistema competitivo": 5, "Organismo de gobierno": 6,
     # Capital
     "Empresa financiera": 7, "Familia y oficina patrimonial": 7, "Empresa tecnológica": 7, "Empresa de armamento": 6,
     "Recursos primarios": 6, "Farmacéutica y agroquímica": 5, "Empresa industrial": 5, "Consultoría y auditoría": 4,

@@ -399,7 +399,7 @@
           <li><b>Realismo ofensivo</b> (John Mearsheimer). Un orden multipolar con un imperio transoceánico, una alianza euroasiática, potencias independientes y un terreno disputado.</li>
         </ul>
         <h2>Cómo se mide</h2>
-        <p>Cada organización recibe de 0 a 3 en ${M.ejes.length} ejes agrupados en seis familias. El 3 se reserva a quienes están entre los pocos primeros del mundo en ese eje. El sitio mide el poder real y no la jerarquía oficial, así que el poder duro pesa más: la coerción violenta, la obtención de información y la acción fuera de la ley valen doble, y los contactos una vez y media. Los pesos son fijos.</p>
+        <p>Cada organización recibe de 0 a 3 en ${M.ejes.length} ejes agrupados en seis familias. El 3 se reserva a quienes están entre los pocos primeros del mundo en ese eje. El sitio mide el poder real y no la jerarquía oficial, así que el poder duro pesa más: la coerción violenta, la obtención de información y la acción fuera de la ley valen doble, y los contactos y el privilegio legal una vez y media. Los pesos son fijos.</p>
       </div>
       <div class="tbl-wrap"><table><thead><tr><th>Familia</th><th>Eje</th><th>3 · Dominante</th><th>2 · Alto</th><th>1 · Relevante</th></tr></thead><tbody>${M.ejes.map(e => `<tr><td class="muted">${esc(e.fam)}</td><td><b>${esc(e.n)}</b><br><span class="muted">${esc(e.x)}</span></td>${e.a.map(a => `<td>${esc(a)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>
       <div class="prose" style="padding:40px 0 64px">
@@ -407,7 +407,7 @@
         <ul>
           <li><b>Puntaje de poder (0 a 100):</b> media geométrica ponderada de cinco componentes, cada uno llevado a una escala de 0 a 1: puntaje teórico de su categoría, ${pct(M.peso_final.ct)}; puntaje real de su categoría, ${pct(M.peso_final.cr)}; capacidad, ${pct(M.peso_final.cap)}; autonomía real, ${pct(M.peso_final.aut)}; red de dependientes, ${pct(M.peso_final.red)}. Los componentes se multiplican, cada uno elevado a su peso, así que un actor débil en uno no lo compensa del todo con los demás. Al final se reescala: el actor más poderoso vale 100 y el resto, en proporción.</li>
           <li><b>Red de dependientes:</b> el poder que hereda de quienes dependen de él (poder en red menos poder efectivo), en escala logarítmica para que no domine a los demás componentes.</li>
-          <li><b>Capacidad:</b> suma ponderada de los ${M.ejes.length} ejes, llevada a una escala de 0 a ${M.capmax}. Pesos: coerción, adquisición de información y acción fuera de la ley, 2; contactos, 1,5; el resto, 1.</li>
+          <li><b>Capacidad:</b> suma ponderada de los ${M.ejes.length} ejes, llevada a una escala de 0 a ${M.capmax}. Pesos: coerción, adquisición de información y acción fuera de la ley, 2; contactos y privilegio legal, 1,5; el resto, 1.</li>
           <li><b>Autonomía real:</b> el factor formal (1 decide solo: 1; 2 aliado con criterio propio: 0,75; 3 subordinado: 0,5; 4 fachada: 0,25) sube hacia 1 según su poder duro: coerción, información, acción fuera de la ley y contactos. Una agencia de inteligencia que depende de un gobierno conserva así buena parte de su poder, porque puede resistirlo.</li>
           <li><b>Poder efectivo:</b> capacidad por el factor de autonomía real.</li>
           <li><b>Poder en red:</b> poder efectivo más la mitad del poder en red de quienes dependen de él, descontada la parte que esos dependientes pueden sustraerle por su propio poder duro; en cadena.</li>
