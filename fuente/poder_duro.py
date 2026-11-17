@@ -11,13 +11,11 @@ PESOS = {"coe": 2, "adq": 2, "ext": 2, "red": 1.5}
 AUTONOMIA_REAL = 0.6
 
 EJE = ("ext", "Acción fuera de la ley", "Fuerza",
-       "Capacidad de operar por fuera de la ley o de forma encubierta: operaciones secretas, asesinatos selectivos, sabotaje, chantaje, soborno sistemático o crimen organizado.")
-ANCLA = ("Operaciones encubiertas, asesinatos, sabotaje o crimen a escala mundial, con impunidad de hecho",
-         "Opera fuera de la ley en una región o en varios países, documentado por tribunales u organismos oficiales",
-         "Prácticas ilegales o encubiertas documentadas, de alcance limitado")
+       "Capacidad de operar por fuera de la ley: operaciones encubiertas, asesinatos, sabotaje, chantaje, crimen organizado y corrupción (sobornos, tráfico de influencias, desvío de fondos, robo, fraude o violación de sanciones), más o menos graves.")
+ANCLA = ("Violencia encubierta, crimen o corrupción a escala mundial y sostenidos, con impunidad de hecho",
+         "Prácticas ilegales graves o repetidas (asesinatos, crimen organizado, sobornos sistemáticos, desvío de fondos) en una región o en varios países, documentadas por tribunales u organismos oficiales",
+         "Un hecho ilegal documentado o prácticas de alcance limitado: un soborno, tráfico de influencias, fraude o violación de sanciones")
 
-# id: (valor, justificación, fuente). Toda calificación lleva un hecho documentado y una fuente.
-# En personas vivas solo se puntúa lo establecido por un tribunal u organismo oficial.
 EXT = {
  # Servicios de inteligencia y fuerzas de seguridad
  "cia": (3, "Acción encubierta en el exterior por mandato legal: golpes, programas de drones y prisiones secretas documentados.", W + "CIA_black_sites"),
@@ -123,3 +121,24 @@ DEP = {"mossad": ""}
 # Altas de los países núcleo
 from nucleo import EXT as _EXT_N, AUT as _AUT_N, DEP as _DEP_N
 EXT.update(_EXT_N); AUT.update(_AUT_N); DEP.update(_DEP_N)
+
+# Corrupción y otras ilegalidades documentadas (ampliación del 17/11/2026)
+W_ = "https://en.wikipedia.org/wiki/"
+EXT.update({
+ "anc": (1, "La comisión judicial Zondo documentó la «captura del Estado» y el reparto de sobornos bajo el gobierno del ANC de Jacob Zuma.", W_ + "Zondo_Commission"),
+ "fifa": (1, "La justicia de EE.UU. condenó desde 2015 a dirigentes de la FIFA por sobornos en la venta de derechos de torneos.", W_ + "2015_FIFA_corruption_case"),
+ "coi": (1, "Expulsó a miembros por los sobornos de la candidatura de Salt Lake City a los Juegos de 2002.", W_ + "2002_Winter_Olympic_bid_scandal"),
+ "bae": (1, "Se declaró culpable en EE.UU. en 2010 de declaraciones falsas en una causa por sobornos ligada a la venta de armas a Arabia Saudita.", W_ + "Al-Yamamah_arms_deal"),
+ "siemens": (2, "Pagó en 2008 multas récord en EE.UU. y Alemania por sobornos sistemáticos en una decena de países.", W_ + "Siemens"),
+ "samsung": (1, "La Corte Suprema de Corea del Sur confirmó en 2021 la condena de su jefe por sobornos a la presidenta Park Geun-hye.", W_ + "2016_South_Korean_political_scandal"),
+ "boeing": (1, "Acuerdo de 2021 con la justicia de EE.UU. por conspirar para engañar a la autoridad aeronáutica sobre el 737 MAX.", W_ + "Boeing_737_MAX_groundings"),
+ "pfizer": (1, "Se declaró culpable en 2009 de promoción ilegal de medicamentos y pagó 2.300 millones de dólares.", W_ + "Pfizer"),
+ "bayer": (1, "Monsanto, su filial, se declaró culpable en 2019 de usar un pesticida prohibido en Hawái.", W_ + "Monsanto"),
+ "jpmorgan": (1, "Admitió en 2020 ante la justicia de EE.UU. la manipulación de mercados de metales y bonos y pagó 920 millones de dólares.", W_ + "JPMorgan_Chase"),
+ "alphabet": (1, "Tribunales de EE.UU. declararon en 2024 y 2025 que monopolizó ilegalmente la búsqueda y la publicidad en internet.", W_ + "United_States_v._Google_LLC_(2020)"),
+ "apple": (1, "Un tribunal de EE.UU. la declaró en desacato en 2025 por incumplir la orden del caso Epic Games.", W_ + "Epic_Games_v._Apple"),
+ "meta": (1, "Pagó en 2019 una multa de 5.000 millones de dólares a la FTC por violar una orden de privacidad (caso Cambridge Analytica).", W_ + "Facebook%E2%80%93Cambridge_Analytica_data_scandal"),
+ "lockheed": (1, "Sus sobornos a gobiernos extranjeros en los años setenta dieron origen a la ley anticorrupción de EE.UU.", W_ + "Lockheed_bribery_scandals"),
+ "walton": (1, "Walmart pagó en 2019 282 millones de dólares a EE.UU. por violar la ley anticorrupción en México, Brasil, India y China.", W_ + "Walmart"),
+ "epl": (1, "Purgas oficiales por corrupción en la Fuerza de Cohetes y en la cúpula militar desde 2023.", W_ + "People%27s_Liberation_Army_Rocket_Force"),
+})

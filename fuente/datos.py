@@ -957,3 +957,8 @@ def _area(o):
     return o[2]
 ORGS = [o[:2] + (_area(o),) + o[3:] for o in ORGS]
 assert {o[0] for o in ORGS if o[2] == "Partido único o hegemónico"} == _HEG
+
+# Ejes 19 y 20: cohesión interna y apoyo popular (ver fuente/ejes_nuevos.py)
+from ejes_nuevos import EJES as _EJN
+for _e in _EJN:
+    EJES.insert([e[0] for e in EJES].index("red") + 1, _e[:4]); ANCLAS[_e[0]] = _e[4]

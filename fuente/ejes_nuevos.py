@@ -1,0 +1,115 @@
+# Ejes 19 y 20 (17 de noviembre de 2026): cohesión interna y apoyo popular.
+# Puntaje editorial de 0 a 3: un valor por categoría y excepciones actor por actor.
+
+EJES = [
+    ("coh", "Cohesión interna", "Personas",
+     "Unidad de mando frente a la fragmentación: cuánto lo traban las facciones, las pujas internas o las disputas de sucesión.",
+     ("Mando único sin pujas visibles; nadie disputa la conducción",
+      "Pujas internas contenidas que no frenan sus decisiones",
+      "Facciones o rivalidades abiertas que traban o dividen sus decisiones")),
+    ("apo", "Apoyo popular", "Personas",
+     "Respaldo o legitimidad pública que tiene entre la población: votos, aprobación, fieles, usuarios o prestigio.",
+     ("Respaldo de cientos de millones de personas o clara mayoría en una gran potencia",
+      "Mayoría o fuerte legitimidad en su país o en su ámbito",
+      "Apoyo relevante pero minoritario o limitado")),
+]
+
+COH_AREA = {
+    "Partido único o hegemónico": 3, "Ejército": 2, "Servicio de inteligencia": 2, "Organización criminal": 1, "Gobierno": 2,
+    "Familia y oficina patrimonial": 2, "Líder político": 3, "Fuerza de seguridad": 2, "Empresa tecnológica": 2, "Paramilitar": 2,
+    "Empresario": 3, "Empresa financiera": 2, "Red social": 2, "Recursos primarios": 2, "Empresa industrial": 2,
+    "Empresa de armamento": 2, "Banco central": 2, "Farmacéutica y agroquímica": 2, "Justicia": 1, "Organización religiosa": 2,
+    "Partido en sistema competitivo": 1, "Organismo de gobierno": 2, "Organización deportiva": 2, "Consultoría y auditoría": 2,
+    "Estandarización e infraestructura técnica": 2, "Medio de comunicación": 2, "Institución mundial": 1, "Federación empresaria": 1,
+    "ONG, fundación o think tank": 2, "Logística y transporte": 2, "Sindicato": 1, "Institución de conocimiento": 1,
+    "Organización reservada": 1,
+}
+COH = {
+    # Partidos únicos con fracturas
+    "psuv": 1, "zanupf": 1, "prosperidad": 2, "mpla": 2, "frelimo": 2, "ccm": 2, "pcc_cuba": 2, "cndd_fdd": 2, "prpl": 2,
+    # Ejércitos y mandos
+    "epl": 1, "cmc": 1, "ejercito_pak": 3, "ffaa_egipto": 3, "epc": 3, "saf": 1, "tatmadaw": 1, "fanb": 1, "ffaa_gbissau": 1,
+    # Inteligencia
+    "mossad": 3, "isi": 3, "svr": 3, "mi6": 3, "u8200": 3, "rgb": 3, "cia": 1, "shinbet": 1, "mois": 1,
+    # Crimen organizado
+    "sinaloa": 0, "cjng": 2, "pcc": 3, "ndrangheta": 2, "prince": 2, "clan_golfo": 2, "sunyeeon": 2,
+    # Gobiernos
+    "kremlin": 3, "gob_india": 3, "consejoestado": 3, "majzen": 3, "hachemita": 3, "lider_iran": 1, "comisioneu": 1,
+    "gob_groenlandia": 1, "coprincipes": 1,
+    # Familias
+    "saud": 3, "alnahyan": 3, "althani": 3, "maktoum": 3, "bollore": 3, "wallenberg": 3, "rotenberg": 3, "liechtenstein": 3,
+    "grimaldi": 3, "wangchuck": 3, "porsche_se": 1, "al_sabah": 1,
+    # Líderes con coaliciones o sucesiones en disputa
+    "lula": 1, "netanyahu": 1, "rodrigo_paz": 1, "kiir": 1, "sharaa": 1, "delcy": 1, "biya": 1, "zelenski": 2, "milei": 2,
+    "prabowo": 2, "kadyrov": 2, "ortega_murillo": 2, "deby": 2, "vilanova": 2,
+    # Fuerzas de seguridad
+    "dhs": 1,
+    # Tecnológicas y redes
+    "openai": 1, "x": 3, "telegram": 3, "meta": 3, "spacex": 3, "reliance": 3, "adani": 3, "lvmh": 3, "vw": 1, "boeing": 1,
+    # Paramilitares
+    "hutis": 3, "lna": 3, "isis": 1, "talibanes": 1, "pmf": 1, "eln": 1, "hamas": 1,
+    # Finanzas y recursos
+    "setad": 3, "pif": 3, "pdvsa": 1, "nnpc": 1, "petrobras": 1,
+    # Bancos centrales y justicia
+    "fed": 1, "doj": 1, "scotus": 2, "stf": 2, "sc_india": 2, "tjue": 2, "cpi": 1,
+    # Religión
+    "sud": 3, "aqr": 3, "patriarcado": 3, "opusdei": 3, "hermandad": 1,
+    # Partidos en sistemas competitivos
+    "bjp": 3, "sns": 3, "sueno_georgiano": 3, "akp": 3, "ps_albania": 3, "gop": 2, "morena": 2, "pt_br": 2, "fpa": 2, "smer": 2,
+    "dem": 0, "marco_coord": 0,
+    # Organismos
+    "congreso_eeuu": 1, "congreso_br": 1, "ccdi": 3, "oficina39": 3, "ufwd": 3, "consejo_seg_rusia": 3,
+    # Instituciones mundiales
+    "csonu": 0, "brics": 0, "omc": 0, "bm": 2, "fmi": 2, "aes": 2, "ohr": 2,
+    # Otros
+    "ugle": 2, "aflcio": 2, "cut_br": 2, "igmetall": 2, "rt": 3, "xinhua": 3, "wef": 1, "aipac": 3,
+}
+
+APO_AREA = {
+    "Partido único o hegemónico": 1, "Ejército": 2, "Servicio de inteligencia": 1, "Organización criminal": 1, "Gobierno": 1,
+    "Familia y oficina patrimonial": 1, "Líder político": 1, "Fuerza de seguridad": 1, "Empresa tecnológica": 2, "Paramilitar": 1,
+    "Empresario": 1, "Empresa financiera": 1, "Red social": 2, "Recursos primarios": 1, "Empresa industrial": 2,
+    "Empresa de armamento": 1, "Banco central": 1, "Farmacéutica y agroquímica": 1, "Justicia": 1, "Organización religiosa": 2,
+    "Partido en sistema competitivo": 2, "Organismo de gobierno": 1, "Organización deportiva": 2, "Consultoría y auditoría": 0,
+    "Estandarización e infraestructura técnica": 1, "Medio de comunicación": 1, "Institución mundial": 1, "Federación empresaria": 0,
+    "ONG, fundación o think tank": 1, "Logística y transporte": 1, "Sindicato": 1, "Institución de conocimiento": 2,
+    "Organización reservada": 0,
+}
+APO = {
+    # Partidos únicos
+    "pcch": 2, "pcv": 2, "fpr": 2, "ccm": 2, "psuv": 0,
+    # Ejércitos
+    "ffaa_india": 3, "tatmadaw": 0, "fanb": 0, "saf": 1, "epc": 1, "ffaa_br": 1, "bundeswehr": 1,
+    # Gobiernos
+    "gob_india": 3, "kremlin": 2, "consejoestado": 2, "majzen": 2, "hachemita": 2, "lider_iran": 0,
+    # Familias
+    "saud": 2, "alnahyan": 2, "althani": 2, "maktoum": 2, "wangchuck": 2, "liechtenstein": 2,
+    "koch": 0, "bollore": 0, "rothschild": 0, "rotenberg": 0,
+    # Líderes
+    "prabowo": 3, "erdogan": 2, "lula": 2, "milei": 2, "zelenski": 2, "bukele": 2, "delcy": 0, "kadyrov": 0,
+    # Fuerzas de seguridad y paramilitares
+    "cgri": 0, "basij": 0, "hezbola": 2, "isis": 0, "jnim": 0, "far_sudan": 0, "africacorps": 0, "m23": 0, "alshabaab": 0,
+    # Tecnológicas, redes e industria
+    "apple": 3, "alphabet": 3, "amazon": 3, "openai": 3, "nvidia": 1, "palantir": 0, "anduril": 0, "nso": 0, "tsmc": 1,
+    "foxconn": 1, "asml": 1, "smic": 1, "meta": 3, "tencent": 3, "bytedance": 3, "toyota": 3, "samsung": 3,
+    # Personas
+    "ellison": 0, "thiel": 0, "kovalchuk": 0, "timchenko": 0,
+    # Finanzas y recursos
+    "setad": 0, "berkshire": 2, "petrobras": 2, "pdvsa": 0,
+    # Justicia
+    "sc_india": 2,
+    # Religión
+    "santasede": 3, "hawza_najaf": 2, "alazhar": 2, "opusdei": 1, "lmm": 1,
+    # Partidos
+    "bjp": 3, "ldp": 1, "anc": 1, "marco_coord": 1, "fpa": 1, "fuerza_popular": 1,
+    # Organismos
+    "congreso_eeuu": 0, "congreso_br": 0,
+    # Deporte, medios, instituciones
+    "fifa": 3, "bbc": 2, "globo": 2, "aljazeera": 2, "otan": 2, "cas": 1,
+    # Influencia
+    "gates": 1, "wef": 0, "osf": 0, "cfr": 0, "cut_br": 2, "aflcio": 2, "igmetall": 2, "uschamber": 1, "keidanren": 1,
+}
+
+
+def valor(tabla, area_tabla, i, area):
+    return tabla.get(i, area_tabla[area])

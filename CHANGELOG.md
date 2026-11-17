@@ -1,5 +1,12 @@
 # Cambios
 
+## 2026-11-17 · Ejes 19 y 20 y corrupción dentro de «acción fuera de la ley»
+
+- Eje 19, **cohesión interna**: unidad de mando frente a facciones, pujas internas o disputas de sucesión (3 = mando único sin pujas; 0 = partido en facciones enfrentadas, como el Cártel de Sinaloa o el Partido Demócrata de EE.UU.).
+- Eje 20, **apoyo popular**: respaldo o legitimidad pública, en votos, aprobación, fieles o usuarios.
+- Ambos pesan 1; la capacidad pasa a ir de 0 a 60. Puntaje editorial por categoría con excepciones actor por actor (`fuente/ejes_nuevos.py`).
+- «Acción fuera de la ley» incluye ahora la corrupción —sobornos, tráfico de influencias, desvío de fondos, robo, fraude o violación de sanciones—, con anclas por gravedad y alcance. 16 casos nuevos documentados: ANC, FIFA, COI, BAE, Siemens, Samsung, Boeing, Pfizer, Bayer, JPMorgan, Alphabet, Apple, Meta, Lockheed Martin, Walmart (familia Walton) y el EPL.
+
 ## 2026-11-17 · Puntaje de poder de 0 a 100 y potencias completas (470 actores)
 
 - Nuevo **puntaje de poder**, de 0 a 100, que ordena todo el sitio: media geométrica ponderada de la categoría teórica (40 %), la categoría real (20 %), la capacidad (25 %), la autonomía real (10 %) y la red de dependientes (5 %). El actor más poderoso vale 100 y el resto, en proporción.
