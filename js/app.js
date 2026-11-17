@@ -747,6 +747,13 @@
     if (anc) anc.scrollIntoView({ block: "start" }); else window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  // Menú de arriba fijo: el cuerpo deja lugar a su alto real, que cambia con el ancho de pantalla
+  (() => {
+    const head = document.querySelector(".site-head"); if (!head) return;
+    const fit = () => document.documentElement.style.setProperty("--head-h", head.offsetHeight + "px");
+    fit(); addEventListener("resize", fit);
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(head);
+  })();
   document.getElementById("stamp").innerHTML = `Corte <b>${fecha(M.corte)}</b><br>Próxima revisión ${fecha(M.proxima)}`;
   document.getElementById("foot-date").textContent = `Corte del ${fecha(M.corte)} · próxima revisión el ${fecha(M.proxima)}`;
   window.addEventListener("hashchange", route);
