@@ -413,3 +413,459 @@ B('Seychelles', 'Seguridad marítima.', [], 'Ninguno relevante.', [])
 B('Saint Helena', 'La base de Ascensión.', [], 'Ninguno relevante.', [])
 B('Br. Indian Ocean Ter.', 'Conservar Diego García.', [(2025, 'Acuerdo de traspaso a Mauricio con arriendo de 99 años.')], 'Que la base se pierda.', [])
 B('Fr. S. Antarctic Lands', 'Ninguno particular.', [], 'Ninguno relevante.', [])
+
+
+# ═════════════════ Intereses ampliados (reemplazan ti y ei de arriba) ═════════════════
+
+def Q(k, ti, ei):
+    PB[k]['ti'] = ti
+    PB[k]['ei'] = ei
+
+
+# América del Norte
+Q('United States of America',
+  'Es el centro del bloque. Quiere conservar la primacía militar en todos los océanos, el dólar como moneda de reserva y de las sanciones, la delantera en chips, inteligencia artificial y biotecnología, y volver a fabricar en casa lo estratégico. Hacia adentro, cerrar la frontera sur y bajar su dependencia de China en minerales y medicamentos.',
+  'China quiere alcanzarlo en tecnología, desplazarlo del Pacífico occidental y restarle peso al dólar. Rusia quiere que se retire de Europa y deje de armar a Ucrania. Irán quiere sacarlo de Medio Oriente. Los tres buscan dividir su opinión pública y explotar su polarización.')
+Q('Canada',
+  'Mantenerlo dentro de la defensa común de América del Norte (NORAD) y de los Cinco Ojos, que modernice la vigilancia del Ártico y del paso del Noroeste, y que su petróleo, uranio, potasa y minerales críticos abastezcan a EE.UU. y no a China. Que gaste más en defensa y se alinee en comercio con Washington.',
+  'China quiere sus minerales y su energía, influir en su gran diáspora y en su política, y acceso a las rutas del Ártico. Rusia disputa el Ártico y la plataforma continental del polo Norte.')
+Q('Mexico',
+  'Cerrar la frontera al fentanilo, a los cárteles y a la migración irregular; integrarlo como fábrica cercana que reemplace a China (el nearshoring), y que no sea la puerta trasera de productos y capitales chinos al mercado de EE.UU. Que coopere con fuerzas y agencias estadounidenses contra los cárteles.',
+  'China quiere usarlo como plataforma industrial para entrar al mercado de EE.UU. sin aranceles y ganar presencia en el vecino de su rival. Rusia busca influir en su opinión pública y mantener canales de inteligencia en la frontera de EE.UU.')
+Q('Greenland',
+  'Controlar el Ártico occidental: la base espacial de Pituffik, la vigilancia de misiles y submarinos en el corredor entre Groenlandia, Islandia y el Reino Unido, las rutas que abre el deshielo y sus tierras raras y uranio. EE.UU. llegó a plantear comprarla o anexarla.',
+  'China quiere minerales e infraestructura (aeropuertos, puertos, minas) y presencia como «Estado cercano al Ártico». Rusia quiere que el Ártico no quede bajo control exclusivo de la OTAN.')
+Q('Bermuda', 'Que siga siendo la gran plaza mundial de reaseguros ligada a Londres y Wall Street, y que cumpla los estándares de transparencia e impuesto mínimo de la OCDE.',
+  'No tiene intereses relevantes: algún uso de sus vehículos financieros para capitales asiáticos.')
+Q('St. Pierre and Miquelon', 'Que Francia conserve sus derechos de pesca y su plataforma marítima frente a Canadá.', 'No tiene intereses relevantes.')
+
+# Centroamérica y Caribe
+Q('Guatemala', 'Que frene la migración hacia EE.UU. y acepte deportados, combata el narcotráfico, mantenga el reconocimiento de Taiwán y limpie su justicia de las redes de corrupción.',
+  'China quiere que cambie su reconocimiento de Taiwán por el de Pekín, como hicieron sus vecinos, y abrir su mercado e infraestructura.')
+Q('Belize', 'Cooperación antinarcóticos en su costa y su frontera, y que siga reconociendo a Taiwán.', 'China quiere que reconozca a Pekín.')
+Q('Honduras', 'Conservar la base de Soto Cano, frenar el narcotráfico y la migración, y recuperar su reconocimiento de Taiwán.',
+  'China quiere consolidar el cambio de reconocimiento de 2023 con obras y créditos. Rusia y Venezuela buscan gobiernos afines en el istmo.')
+Q('El Salvador', 'Un aliado firme: que reciba deportados, mantenga la seguridad sin pandillas, use el dólar y no profundice con China.',
+  'China quiere influencia económica tras su reconocimiento de 2018: obras, puertos y préstamos.')
+Q('Costa Rica', 'Que frene el paso de la cocaína hacia Europa y EE.UU., excluya a Huawei y a otros proveedores chinos de su 5G y siga siendo plataforma de fábricas de chips y dispositivos médicos estadounidenses.',
+  'China quiere comercio, obras y proveedores tecnológicos en un país que la reconoce desde 2007.')
+Q('Panama', 'El canal: paso garantizado y prioritario para la marina de EE.UU., sacar a las empresas chinas de los puertos y de las obras del canal, y que Panamá siga fuera de la Franja y la Ruta. Que sus registros de buques y bancos no sirvan para evadir sanciones.',
+  'China quiere mantener a sus empresas en la logística, los puertos y las obras del canal, por donde pasa una parte grande de su comercio con América. Irán y Rusia usan su bandera de conveniencia para petroleros sancionados.')
+Q('Nicaragua', 'Aislar al régimen de Ortega y Murillo, impedir que aloje presencia militar o de inteligencia rusa o china y frenar su uso como puente migratorio hacia EE.UU.',
+  'Rusia quiere un aliado y un punto de apoyo militar y de inteligencia en el istmo. China quiere comercio, el reconocimiento ganado en 2021 y, a futuro, obras. Irán busca cooperación con un régimen aliado.')
+Q('Cuba', 'La caída o la transformación del régimen comunista, y que la isla no vuelva a ser base militar o de espionaje de una potencia rival a 150 km de Florida.',
+  'China quiere bases de escucha para vigilar a EE.UU. Rusia quiere un aliado histórico donde mostrar buques de guerra. Ambos lo sostienen con petróleo y ayuda para que el régimen no caiga.')
+Q('Haiti', 'Contener a las pandillas, que no se vuelva una base del narcotráfico ni una fuente de migración masiva, y que una fuerza internacional, no de EE.UU., cargue con la seguridad.', 'No tiene intereses relevantes.')
+Q('Dominican Rep.', 'Mantenerlo como aliado estable y escala para las operaciones en el Caribe, frenar el tránsito de drogas y que no avance la inversión china en puertos y energía.',
+  'China quiere comercio, infraestructura y consolidar el reconocimiento de 2018.')
+Q('Jamaica', 'Cooperación contra el narcotráfico y las bandas, y frenar la inversión china en infraestructura y bauxita.', 'China quiere su alúmina y bauxita y obras de infraestructura.')
+Q('Trinidad and Tobago', 'Usarla como aliada y plataforma frente a Venezuela y asegurar su gas.', 'Venezuela, aliada de la alianza, quería sus acuerdos de gas; China, comercio.')
+Q('Bahamas', 'Seguridad marítima frente a la droga y la migración hacia Florida, y control del lavado de dinero en su plaza financiera.', 'China quiere inversión turística e influencia a 80 km de Florida.')
+Q('Puerto Rico', 'Usarlo como base aérea y naval para el Caribe y Venezuela, y mantener su estatus de territorio.', 'No tiene intereses relevantes.')
+for k in ['Antigua and Barb.', 'Barbados', 'Dominica', 'Grenada', 'St. Kitts and Nevis', 'Saint Lucia', 'St. Vin. and Gren.']:
+    Q(k, 'Que su venta de pasaportes no sirva a delincuentes ni a ciudadanos de países sancionados, que coopere contra el narcotráfico y que vote con Occidente en los organismos internacionales.',
+      'China quiere sus votos en la ONU y la OEA, alejarlos de Taiwán (algunos todavía lo reconocen) y obras de infraestructura y deuda.')
+for k in ['U.S. Virgin Is.', 'Anguilla', 'Montserrat', 'St-Martin', 'St-Barthélemy', 'Sint Maarten']:
+    Q(k, 'Mantenerlo como territorio de una potencia del bloque, con controles de lavado y de migración.', 'No tiene intereses relevantes.')
+for k in ['Cayman Is.', 'British Virgin Is.', 'Turks and Caicos Is.']:
+    Q(k, 'Que siga como plaza extraterritorial ligada a la City y a Wall Street, pero que entregue información sobre los dueños reales de sus sociedades y no sirva para evadir sanciones.',
+      'Usar sus sociedades pantalla para mover capital y ocultar dueños: muchas empresas chinas y fortunas rusas están registradas allí.')
+for k in ['Aruba', 'Curaçao']:
+    Q(k, 'Mantener la base antinarcóticos de EE.UU. y usarlo como punto de vigilancia frente a Venezuela.', 'No tiene intereses relevantes desde la caída de Maduro.')
+
+# Sudamérica
+Q('Colombia', 'Su principal aliado militar en Sudamérica: que combata la producción de cocaína, coopere con sus fuerzas armadas, sea socio global de la OTAN, vigile Venezuela y no deje entrar a China en infraestructura sensible.',
+  'China quiere obras (el metro de Bogotá), comercio y su ingreso a la Franja y la Ruta. Rusia busca alejarlo de EE.UU. aprovechando choques como los del gobierno de Petro.')
+Q('Venezuela', 'Controlar su petróleo y que lo exploten empresas occidentales, sacar a Rusia, China, Irán y Cuba del país, frenar el narcotráfico y la migración, y conducir la transición tras la captura de Maduro.',
+  'China quiere cobrar los préstamos pagados con petróleo y no perder su acceso al crudo. Rusia quería una base política y militar en el hemisferio. Irán usaba el país para triangular petróleo y obtener oro. Tras 2026 los tres pierden terreno.')
+Q('Ecuador', 'Bases o presencia de seguridad contra las bandas ligadas a los cárteles mexicanos y la mafia albanesa, control de sus puertos y que no dependa de China para su deuda y sus represas.',
+  'China quiere cobrar su deuda, mantener sus represas y minas (Mirador) y su tratado de libre comercio. Rusia, comprar banano y camarón.')
+Q('Peru', 'Que el puerto chino de Chancay no tenga uso militar, asegurar el cobre y que las empresas occidentales no queden afuera de la minería y la energía.',
+  'China quiere Chancay como su puerta al Pacífico sudamericano, el cobre (Las Bambas, Toromocho) y la distribución eléctrica de Lima, que ya compró.')
+Q('Bolivia', 'Recuperarlo como socio tras dos décadas de MAS, acceder al litio y frenar la producción de coca.',
+  'China y Rusia quieren el litio (contratos de CATL y Uranium One) y un aliado político; Irán buscaba cooperación en drones.')
+Q('Chile', 'El cobre y el litio, que la infraestructura crítica (puertos, energía, cables) no quede en manos chinas y su apoyo diplomático.',
+  'China, su mayor cliente, quiere cobre, litio, la distribución eléctrica y que Chile siga siendo un socio abierto.')
+Q('Argentina', 'Alinearla con Washington, sacar a China de la estación espacial de Neuquén, del swap y de la infraestructura, abrir el litio, el cobre y Vaca Muerta a empresas occidentales, y que se proyecte sobre el Atlántico Sur y la Antártida como aliada.',
+  'China quiere soja, carne y litio, mantener la estación espacial y el swap de monedas, puertos y obras. Rusia quiere comprarle granos y venderle tecnología nuclear.')
+Q('Uruguay', 'Que el puerto de Montevideo no sea escala de la cocaína y que no firme un tratado comercial con China por fuera del Mercosur.', 'China quiere un tratado de libre comercio, carne y celulosa.')
+Q('Paraguay', 'Que siga reconociendo a Taiwán, combatir el contrabando y las redes de Hezbolá en la Triple Frontera.', 'China quiere que reconozca a Pekín, el último gran Estado sudamericano que no lo hace.')
+Q('Brazil', 'Evitar que se incline hacia China y Rusia dentro de los BRICS, que no acepte monedas alternativas al dólar, abrir su mercado y sus minerales críticos (tierras raras, niobio) y proteger a sus aliados políticos.',
+  'China, su mayor socio, quiere soja, hierro, petróleo y que Brasil sostenga a los BRICS. Rusia le vende fertilizantes y diésel. Ambos quieren que lidere un «Sur global» autónomo de EE.UU.')
+Q('Guyana', 'Proteger el petróleo que extrae ExxonMobil y defender a Guyana del reclamo venezolano sobre el Esequibo.', 'China quiere participación en el petróleo (CNOOC es socia) e infraestructura.')
+Q('Suriname', 'El petróleo marino que explotan TotalEnergies y otras, y alejarlo de la deuda china.', 'China quiere infraestructura y su deuda.')
+Q('Falkland Is.', 'Conservar la base de Mount Pleasant, que proyecta al Reino Unido y a la OTAN sobre el Atlántico Sur, el paso de Drake y la Antártida, y la pesca y el petróleo.', 'No tiene intereses relevantes; China pesca en la milla 201.')
+Q('S. Geo. and the Is.', 'La puerta a la Antártida y el control de la pesca.', 'Buques pesqueros chinos operan en la zona.')
+
+# Europa occidental
+Q('United Kingdom', 'Su socio militar y de inteligencia más cercano: armas nucleares compartidas, los Cinco Ojos, AUKUS, la City como segunda plaza financiera del bloque y su peso en el apoyo a Ucrania. Que mantenga a Huawei y a China fuera de su infraestructura.',
+  'Rusia quiere debilitar su apoyo a Ucrania, usar Londres para mover capital y castigar a desertores. China quiere sus universidades, su tecnología y la City como puerta financiera, e influir en su política.')
+Q('Ireland', 'Que siga siendo la sede europea de las tecnológicas y farmacéuticas de EE.UU. y que su régimen fiscal favorezca a esas empresas, aunque se repatrie producción a EE.UU.',
+  'Rusia vigila sus cables submarinos, por donde pasa buena parte del tráfico de datos entre Europa y América. China, comercio.')
+Q('France', 'Que siga en la OTAN y aporte su arsenal nuclear a la defensa europea, que su «autonomía estratégica» no divida a Occidente y que conserve su presencia en África y el Indo-Pacífico frente a Rusia y China.',
+  'Rusia quiere expulsarla de África (lo logró en el Sahel), dividir su sociedad con desinformación y alentar a sus partidos más afines. China quiere su mercado, su tecnología aeronáutica y nuclear, y que frene la línea dura de la UE.')
+Q('Germany', 'Que se rearme y sea el pilar convencional de la OTAN en Europa, que no vuelva a depender del gas ruso, que reduzca su exposición industrial a China y que aloje los misiles y las bases de EE.UU. (Ramstein).',
+  'Rusia quiere recuperar el negocio del gas, frenar su apoyo a Ucrania y alentar a la ultraderecha y a la izquierda prorrusa. China quiere que sus autos, química y máquinas sigan dependiendo de su mercado, y su tecnología.')
+Q('Italy', 'Que siga en la OTAN con sus bases (Sigonella, Aviano, Nápoles), controle el Mediterráneo central y la migración, y se mantenga fuera de la Franja y la Ruta.',
+  'China quería sus puertos (Trieste, Génova) y su ingreso a la Franja y la Ruta. Rusia quiere aliados políticos que frenen las sanciones.')
+Q('Spain', 'Las bases de Rota y Morón, su aporte al flanco sur de la OTAN y que cumpla el gasto en defensa; que su apertura a fábricas chinas de autos y baterías no sea puerta de entrada de China a la UE.',
+  'China quiere fábricas de autos eléctricos y baterías dentro de la UE y un gobierno que frene los aranceles europeos. Rusia, explotar el independentismo catalán y la polarización.')
+Q('Portugal', 'Las Azores y la base de Lajes, escala clave hacia Europa y Medio Oriente, y que su energía y puertos no queden en manos chinas.',
+  'China quiere su energía (es accionista de EDP y de las redes eléctricas) y el puerto de Sines.')
+Q('Netherlands', 'Que ASML no venda a China las máquinas para chips avanzados, el puerto de Róterdam como gran puerta de Europa y su aporte a la OTAN.',
+  'China quiere las máquinas de ASML y las empresas de chips como Nexperia. Rusia usaba Róterdam para su petróleo antes de las sanciones.')
+Q('Belgium', 'Que aloje a la OTAN y la UE sin filtraciones, que use las reservas rusas de Euroclear para Ucrania y que el puerto de Amberes no sea la entrada de la cocaína.',
+  'Rusia quiere recuperar sus reservas inmovilizadas en Euroclear y espiar a la OTAN y la UE desde Bruselas. China, el puerto de Zeebrugge, donde COSCO tiene una terminal.')
+Q('Luxembourg', 'Que su plaza de fondos de inversión cumpla las sanciones y la transparencia fiscal.', 'Usar sus fondos y sociedades para mover capital.')
+Q('Switzerland', 'Que aplique las sanciones a Rusia, entregue información bancaria y que sus traders de materias primas no sirvan para evadirlas.',
+  'Rusia quiere sus bancos y casas de materias primas para mover capital; China, su plaza financiera y su tecnología de precisión.')
+Q('Austria', 'Que su neutralidad no la convierta en el centro de la inteligencia rusa en Europa y que corte el gas ruso.', 'Rusia usa Viena como base de espionaje y tenía allí su gran puerta de gas a Europa.')
+for k in ['Liechtenstein', 'Monaco', 'San Marino', 'Andorra']:
+    Q(k, 'Transparencia financiera y que cumpla las sanciones.', 'Usar sus plazas para guardar fortunas de oligarcas y funcionarios.')
+Q('Vatican', 'Que la Santa Sede apoye la causa de Ucrania y la libertad religiosa en China, y que su diplomacia no legitime a Moscú ni a Pekín.',
+  'China quiere controlar el nombramiento de obispos y que el Vaticano rompa con Taiwán, su último aliado en Europa. Rusia quiere su neutralidad en la guerra.')
+Q('Malta', 'Que deje de vender pasaportes y que sus buques y su registro no sirvan para el contrabando de petróleo ruso o libio.', 'Rusia usa registros y puertos para su flota en la sombra.')
+
+# Europa del norte
+Q('Denmark', 'Groenlandia y las islas Feroe, el control de los estrechos que unen el Báltico con el mar del Norte, la compra de F-35 y su apoyo a Ucrania.',
+  'Rusia necesita sus estrechos para sacar petróleo y su flota del Báltico. China quiere minerales e infraestructura en Groenlandia.')
+Q('Norway', 'Que sea el principal proveedor de gas de Europa en reemplazo de Rusia, la frontera ártica con Rusia y la vigilancia de los submarinos rusos de la península de Kola.',
+  'Rusia quiere el Ártico, la pesca y Svalbard, y sabotear la infraestructura energética noruega si hay guerra.')
+Q('Sweden', 'Su ingreso a la OTAN, su industria de defensa (Saab) y cerrar el Báltico a Rusia con Gotland.', 'Rusia quiere un Báltico abierto para su flota; Irán ha usado bandas suecas para atacar objetivos israelíes.')
+Q('Finland', 'Su frontera de 1.300 km con Rusia ya dentro de la OTAN, su artillería y su acuerdo de bases con EE.UU.', 'Rusia quiere presionarla en la frontera y en el golfo de Finlandia, su salida desde San Petersburgo.')
+Q('Iceland', 'El corredor entre Groenlandia, Islandia y el Reino Unido, por donde salen los submarinos rusos al Atlántico, y la base de Keflavík.', 'Rusia quiere ese corredor libre. China, presencia en el Ártico.')
+Q('Faeroe Is.', 'Que siga alineada con la OTAN en el Atlántico Norte.', 'Rusia quiere su acuerdo de pesca y acceso a sus puertos.')
+Q('Åland', 'Que Finlandia pueda defenderla en caso de guerra, aunque esté desmilitarizada.', 'Rusia quiere que siga desmilitarizada: está a la entrada del golfo de Botnia.')
+
+# Europa central y oriental
+Q('Poland', 'El frente oriental de la OTAN: tropas y bases de EE.UU., compra masiva de armas estadounidenses y coreanas, corredor de la ayuda a Ucrania y freno a Bielorrusia.',
+  'Rusia quiere desestabilizarla con sabotajes, migrantes empujados desde Bielorrusia y drones, y frenar su papel de corredor de armas. China, su mercado.')
+Q('Czechia', 'Que siga en la línea de apoyo a Ucrania (la iniciativa de municiones) y fuera del alcance de la influencia rusa y china.', 'Rusia quiere un gobierno que frene la ayuda a Ucrania y redes de propaganda en su territorio.')
+Q('Slovakia', 'Que no rompa el frente común de la UE y la OTAN sobre Ucrania.', 'Rusia quiere un aliado que bloquee sanciones y ayuda, y que siga comprando su gas y petróleo.')
+Q('Hungary', 'Que vuelva a la línea común de la UE y la OTAN, deje de vetar la ayuda a Ucrania y no sea la puerta de China en Europa.',
+  'Rusia quería un aliado que vetara desde adentro las decisiones europeas. China, que fuera su puerta industrial en la UE (fábricas de baterías y autos).')
+Q('Slovenia', 'Que siga integrada en la OTAN y la UE.', 'No tiene intereses relevantes.')
+Q('Croatia', 'La terminal de gas de Krk y el puerto de Rijeka como alternativas al gas ruso y a los puertos chinos.', 'China quería el puerto de Rijeka.')
+Q('Romania', 'La gran base de la OTAN en el mar Negro (Mihail Kogălniceanu), el escudo antimisiles de Deveselu, el gas marino y frenar a Rusia en Moldavia.',
+  'Rusia quiere influir en sus elecciones, debilitar el flanco sur de la OTAN y presionarla desde el mar Negro.')
+Q('Bulgaria', 'Que deje de depender del gas y del petróleo rusos y que su costa del mar Negro sea segura para la OTAN.', 'Rusia quiere su energía, su red de influencia política y sus depósitos de armas fuera del alcance de Ucrania.')
+Q('Greece', 'Las bases de Souda y Alexandroupolis, su rivalidad controlada con Turquía y que el puerto del Pireo no sea plataforma china.',
+  'China quiere el Pireo, que controla COSCO, como puerta a Europa. Rusia, influencia por la iglesia ortodoxa y sus armadores.')
+Q('Cyprus', 'Sacar el dinero ruso de su banca, usarlo como plataforma para operar en Medio Oriente (con bases británicas), el gas del Mediterráneo y acercarlo a la OTAN.',
+  'Rusia quiere su banca y sus empresas pantalla para mover capital; China, su posición en el Mediterráneo oriental.')
+Q('N. Cyprus', 'Que la división no se vuelva definitiva y que no sirva de refugio a capitales sancionados.', 'Universidades, bancos y casinos que sirven a capitales rusos e iraníes.')
+Q('Estonia', 'Que resista en la frontera con Rusia con tropas de la OTAN, y su experiencia en ciberdefensa.', 'Rusia quiere presionarla por la minoría rusa, con ciberataques y sabotajes de cables, y probar a la OTAN.')
+Q('Latvia', 'Que resista en la frontera con Rusia y Bielorrusia con tropas de la OTAN.', 'Rusia quiere presionarla por su gran minoría rusa y probar a la OTAN.')
+Q('Lithuania', 'El corredor de Suwałki, que une a los bálticos con Polonia, y la brigada alemana permanente.', 'Rusia quiere el paso a Kaliningrado; China, castigar su apoyo a Taiwán.')
+
+# Balcanes
+Q('Albania', 'Su papel en la OTAN (la base de Kuçova), su ingreso a la UE y su lucha contra la mafia de la cocaína.', 'Irán la castiga por alojar a los opositores de los Muyahidines del Pueblo.')
+Q('Macedonia', 'Que siga en la OTAN y avance hacia la UE.', 'Rusia quiere frenar su integración occidental.')
+Q('Montenegro', 'Que siga en la OTAN, avance hacia la UE y su costa adriática no caiga en manos rusas o chinas.', 'Rusia quiere recuperar influencia por la iglesia serbia; China, cobrar la deuda de la autopista.')
+Q('Bosnia and Herz.', 'Preservar el acuerdo de Dayton, frenar el secesionismo serbobosnio e integrarla a la UE y la OTAN.', 'Rusia usa la República Srpska como palanca en los Balcanes y para frenar el ingreso a la OTAN.')
+Q('Serbia', 'Alejarla de Rusia y China, que reconozca a Kosovo y avance a la UE, y su litio para Europa.',
+  'Rusia quiere su principal aliado en los Balcanes, su petrolera NIS y su veto a Kosovo. China quiere minas (Bor), acerías y fábricas, y venderle armas.')
+Q('Kosovo', 'La base de Bondsteel, la KFOR y su reconocimiento internacional.', 'Rusia y China quieren bloquear su reconocimiento para no sentar precedentes (Crimea, Taiwán).')
+for k in ['Jersey', 'Guernsey', 'Isle of Man']:
+    Q(k, 'Transparencia financiera y que cumpla las sanciones.', 'Usar sus plazas para guardar fortunas.')
+
+# Rusia y su periferia
+Q('Russia', 'Debilitarla para que no pueda volver a invadir a sus vecinos, cortarle la renta del petróleo y el gas, impedir su alianza plena con China y que acepte una Ucrania soberana. Una parte de EE.UU. busca además separarla de Pekín con un acuerdo.',
+  'Es uno de los centros de la alianza. China quiere su energía barata, sus materias primas y un socio militar que distraiga a EE.UU. en Europa; Irán y Corea del Norte, tecnología militar a cambio de drones, misiles y municiones.')
+Q('Ukraine', 'Que no caiga en manos de Rusia y que Rusia no gane la guerra; integrarla a la UE y, en la visión de muchos aliados, a la OTAN, como frontera oriental de Europa; reconstruirla con empresas occidentales y acceder a sus tierras negras, su litio, titanio y tierras raras.',
+  'Rusia quiere anexar los territorios ocupados, una Ucrania neutral, desarmada y fuera de la OTAN y la UE, y un gobierno afín en Kiev. China quiere que Rusia no pierda, sin quedar atrapada en sanciones. Irán y Corea del Norte prueban sus armas en el frente.')
+Q('Belarus', 'Separarla de Rusia, liberar a los presos políticos, frenar el despliegue de armas nucleares y que no sirva de plataforma para atacar a Ucrania o presionar a Polonia y los bálticos.',
+  'Rusia quiere integrarla en el «Estado de la Unión», con armas nucleares y tropas, como plataforma contra la OTAN. China, un corredor ferroviario hacia Europa.')
+Q('Moldova', 'Que entre a la UE, se libere de la energía rusa y que Transnistria no se vuelva un frente más.', 'Rusia quiere mantenerla en su órbita, conservar sus tropas en Transnistria y un gobierno afín.')
+Q('Georgia', 'Que retome el camino a la UE y la OTAN, frene la deriva autoritaria y siga siendo el corredor del Cáucaso que evita a Rusia e Irán.',
+  'Rusia quiere mantenerla fuera de la OTAN y la UE y conservar Abjasia y Osetia del Sur. China quiere el puerto de Anaklia y el corredor hacia Europa.')
+Q('Armenia', 'Sacarla de la órbita rusa (la base de Gyumri, la OTSC), firmar la paz con Azerbaiyán y abrir un corredor bajo gestión de EE.UU. por Syunik hacia Asia central.',
+  'Rusia quiere conservar su base y su control del país. Irán quiere que no haya corredor que lo aísle de Armenia y que sus fronteras no cambien.')
+Q('Azerbaijan', 'Gas para Europa por fuera de Rusia, un socio laico entre Rusia e Irán, cercano a Israel y Turquía, y el corredor transcaspio.',
+  'Rusia quiere retener influencia en el Cáucaso. Irán teme el nacionalismo azerí en su propio territorio y la alianza con Israel.')
+
+# Asia central
+Q('Kazakhstan', 'Uranio, petróleo y minerales críticos para Occidente, y el corredor transcaspio que une Asia con Europa sin pasar por Rusia. Que no sirva para evadir sanciones.',
+  'Rusia quiere mantenerlo en la OTSC y la Unión Euroasiática, como su retaguardia. China quiere su tránsito ferroviario hacia Europa, su petróleo, gas y uranio.')
+Q('Uzbekistan', 'Minerales críticos, que abra su economía a Occidente y que no dependa de Rusia.', 'Rusia quiere sus migrantes y su mercado; China, inversión, minería y tránsito.')
+Q('Kyrgyzstan', 'Que deje de ser la vía para reexportar a Rusia productos sancionados.', 'Rusia quiere su base aérea de Kant y usarlo para importar lo sancionado; China, el ferrocarril hacia Uzbekistán.')
+Q('Tajikistan', 'Que contenga a los grupos yihadistas de la frontera afgana.', 'Rusia quiere su base 201; China, vigilar la frontera con Afganistán y Xinjiang.')
+Q('Turkmenistan', 'Que su gas llegue a Europa por el Caspio, sin pasar por Rusia.', 'China quiere su gas, del que es casi el único comprador.')
+Q('Mongolia', 'Un «tercer vecino» democrático entre Rusia y China, con minerales y tierras raras para Occidente.', 'Rusia quiere un gasoducto hacia China por su territorio; China, sus minerales.')
+Q('Afghanistan', 'Contener al Estado Islámico-Khorasan y a Al Qaeda, recuperar la base de Bagram y que no vuelva a ser santuario terrorista.',
+  'China quiere cobre, litio y petróleo, y que no se exporte el yihadismo a Xinjiang. Rusia, un régimen estable en su retaguardia. Irán, agua del río Helmand y frontera tranquila.')
+
+# Turquía y Medio Oriente
+Q('Turkey', 'Que siga en la OTAN, controle los estrechos del Bósforo y los Dardanelos para cerrar el mar Negro a Rusia, aloje la base de Incirlik y no compre armas rusas.',
+  'Rusia quiere alejarla de la OTAN, venderle armas y energía (Akkuyu, TurkStream) y usarla para evadir sanciones. China, que sea un nodo del corredor medio.')
+Q('Israel', 'Su principal aliado en Medio Oriente: superioridad militar frente a Irán y sus aliados, ampliar los Acuerdos de Abraham con Arabia Saudita e integrarlo a la región, y sus empresas de tecnología y defensa.',
+  'Irán quiere destruirlo o desgastarlo con Hamás, Hezbolá y los hutíes. China quiere comercio y puertos (Haifa) sin pelearse con los árabes. Rusia mantiene canales con Israel y con Irán a la vez.')
+Q('Palestine', 'Que Hamás no gobierne Gaza, que la Autoridad Palestina se reforme y que la normalización árabe con Israel avance.',
+  'Irán quiere usar a Hamás y la Yihad Islámica contra Israel. China quiere aparecer como mediadora y referente del «Sur global» en la causa palestina.')
+Q('Lebanon', 'Desarmar a Hezbolá, fortalecer al ejército libanés y que el país no sea una base iraní en la frontera de Israel.',
+  'Irán quiere mantener a Hezbolá como su brazo armado más poderoso y su frente contra Israel.')
+Q('Syria', 'Integrar al nuevo gobierno a la órbita occidental y árabe, contener al Estado Islámico, proteger a kurdos y drusos y sacar a Rusia e Irán.',
+  'Rusia quiere conservar sus bases de Tartús y Hmeimim, su única salida militar al Mediterráneo. Irán quería su corredor terrestre hacia Hezbolá, que perdió en 2024.')
+Q('Jordan', 'Un aliado estable que aloja bases de EE.UU., protege la frontera de Israel y derriba drones iraníes.', 'Irán quiere usar su frontera para pasar armas a Cisjordania.')
+Q('Iraq', 'Que no quede bajo control iraní, que se disuelvan o integren las milicias, contener al Estado Islámico y que su petróleo siga en el mercado en dólares.',
+  'Irán quiere controlar su gobierno, sus milicias y su sistema bancario para evadir sanciones. China quiere su petróleo y obras.')
+Q('Iran', 'Impedir que tenga armas nucleares, desarmar su red de milicias (Hezbolá, hutíes, milicias iraquíes) y, para una parte del bloque, la caída del régimen.',
+  'Es uno de los socios de la alianza: China compra casi todo su petróleo y Rusia le compra drones y le vende armas y tecnología.')
+Q('Saudi Arabia', 'Que venda petróleo en dólares, compre armas estadounidenses, invierta en EE.UU., normalice relaciones con Israel y se mantenga del lado occidental frente a China.',
+  'China quiere su petróleo, pagarlo en yuanes y su ingreso pleno a los BRICS. Rusia quiere coordinar la producción de petróleo en la OPEP+.')
+Q('United Arab Emirates', 'Defensa, inteligencia artificial, los Acuerdos de Abraham y que deje de ser plaza para el capital ruso y el comercio con Irán.',
+  'Rusia quiere Dubái como plaza para mover capital y comerciar; Irán, su comercio a través de Dubái; China, puertos e inteligencia artificial.')
+Q('Qatar', 'La base de Al Udeid, sede del comando de EE.UU. para Medio Oriente, y su papel de mediador con Hamás y los talibanes.', 'China quiere su gas a largo plazo. Irán comparte con Qatar el mayor yacimiento de gas del mundo.')
+Q('Bahrain', 'La base de la Quinta Flota de EE.UU. y su alianza con Israel.', 'Irán quiere influir sobre su mayoría chií.')
+Q('Kuwait', 'Bases de EE.UU. para todo el golfo.', 'No tiene intereses relevantes más allá del petróleo.')
+Q('Oman', 'Su mediación con Irán y el acceso a los puertos de Duqm y Salalah, fuera del estrecho de Ormuz.', 'Irán lo usa como canal de mediación; China, sus puertos y petróleo.')
+Q('Yemen', 'Que los hutíes no cierren el mar Rojo ni el estrecho de Bab el-Mandeb, por donde pasa una parte grande del comercio mundial.',
+  'Irán quiere usar a los hutíes contra Israel, Arabia Saudita y el tráfico marítimo. China y Rusia evitan condenarlos en la ONU.')
+Q('Egypt', 'Estabilidad, el canal de Suez abierto, la paz con Israel y su control de la frontera con Gaza.',
+  'China quiere el canal, la zona económica de Suez y obras en la nueva capital. Rusia construye su central nuclear y le vende trigo y armas.')
+
+# Asia del Sur
+Q('India', 'Un contrapeso a China en Asia: el Quad con EE.UU., Japón y Australia, comprarle armas y tecnología, mover fábricas desde China hacia India y que deje de comprar petróleo y armas rusas.',
+  'Rusia quiere venderle petróleo y armas y mantenerla neutral en Ucrania. China quiere frenarla en el Himalaya, mantenerla fuera de alianzas con EE.UU. y competir por el océano Índico.')
+Q('Pakistan', 'Cooperación contra el terrorismo, que su arsenal nuclear esté seguro, acceso a sus minerales y alejarlo de China.',
+  'China quiere el Corredor Económico China-Pakistán y el puerto de Gwadar, su salida al mar Arábigo, y un aliado militar contra India.')
+Q('Bangladesh', 'Un socio en el golfo de Bengala, que no se vuelva plataforma china ni dependa de su deuda.', 'China quiere puertos, obras y venderle armas; Rusia construye su central nuclear de Rooppur.')
+Q('Sri Lanka', 'Que no aloje buques militares o espías chinos y que su deuda no la entregue a China.', 'China quiere Hambantota y Colombo Port City como escalas en el océano Índico.')
+Q('Nepal', 'Equilibrar a China con programas de ayuda estadounidenses.', 'China quiere tránsito, la Franja y la Ruta y frenar el activismo tibetano.')
+Q('Bhutan', 'Que siga ligado a India.', 'China quiere cerrar la frontera en su favor, incluido Doklam, cerca del corredor que une India con su noreste.')
+Q('Maldives', 'Seguridad marítima en el Índico y que no se vuelva base china.', 'China quiere influencia y una escala en las rutas del océano Índico.')
+Q('Siachen Glacier', 'No tiene intereses particulares.', 'China vigila la zona, vecina al Aksai Chin que controla.')
+
+# Sudeste asiático
+Q('Myanmar', 'Contener a la junta, apoyar a la oposición democrática, cortar las redes de estafas y el narcotráfico y que no sea una salida china al océano Índico.',
+  'China quiere las tierras raras del norte, sus gasoductos y el puerto de Kyaukphyu, y un régimen estable en su frontera. Rusia quiere venderle armas.')
+Q('Thailand', 'Su alianza tratada con EE.UU., ejercicios militares conjuntos y que no se incline hacia China.', 'China quiere el tren rápido hacia Laos y venderle submarinos y armas.')
+Q('Laos', 'Que no quede atrapado por la deuda china.', 'China quiere el tren Kunming-Vientián y la influencia que le da su deuda.')
+Q('Cambodia', 'Que la base de Ream no se vuelva una base naval china y que cierre los complejos de estafas.', 'China quiere Ream como su base en el golfo de Tailandia y un aliado en la ASEAN.')
+Q('Vietnam', 'Un socio frente a China: fábricas que salen de China, cooperación en el mar de China Meridional y alejarlo de las armas rusas.',
+  'China quiere controlar el mar de China Meridional, incluidas las islas que reclama Vietnam. Rusia quiere venderle armas y petróleo.')
+Q('Malaysia', 'El estrecho de Malaca, los chips y que resista los reclamos chinos frente a Borneo.', 'China quiere inversión, presencia en el mar de China Meridional y su gas.')
+Q('Singapore', 'Acceso naval para EE.UU., su plaza financiera y su papel de nodo neutral.', 'China quiere su plaza financiera y su influencia en la comunidad china.')
+Q('Indonesia', 'Los estrechos de Malaca, la Sonda y Lombok, su níquel para baterías fuera del dominio chino y su peso en la ASEAN.',
+  'China quiere su níquel, el tren rápido y su presencia en los estrechos; Rusia, venderle armas y sumarlo a los BRICS.')
+Q('Brunei', 'Que resista los reclamos chinos.', 'China reclama aguas que Brunéi considera propias.')
+Q('Philippines', 'Bases para EE.UU. frente a Taiwán y al mar de China Meridional, y que resista la presión china en los arrecifes.',
+  'China quiere imponer su control sobre los arrecifes y aguas que reclama, y alejarla de EE.UU.')
+Q('Timor-Leste', 'Que no quede bajo influencia china.', 'China quiere infraestructura e influencia.')
+
+# Asia oriental
+Q('China', 'Frenar su ascenso militar y tecnológico sin llegar a la guerra, impedir que tome Taiwán y reducir la dependencia de sus fábricas y minerales.',
+  'Es el otro centro de la alianza: ser la primera potencia mundial, recuperar Taiwán y dominar las cadenas de minerales y tecnologías.')
+Q('Hong Kong', 'Que conserve su autonomía y su plaza financiera abierta.', 'China quiere control total sin perder su función de plaza financiera internacional.')
+Q('Macao', 'No tiene intereses particulares.', 'China quiere control total.')
+Q('Taiwan', 'Que no caiga en manos de China, que siga fabricando sus chips (y en parte en EE.UU.) y que gaste más en defensa.',
+  'China quiere la reunificación, por las buenas o por la fuerza.')
+Q('Japan', 'Su rearme, las bases de Okinawa, las islas del sur y su alianza con EE.UU. frente a China y Corea del Norte.',
+  'China quiere las islas Senkaku y frenar su rearme; Rusia conservar las Kuriles.')
+Q('South Korea', 'Su alianza frente a Corea del Norte, sus chips y astilleros para EE.UU., y que coopere con Japón.',
+  'China quiere frenar su alianza con EE.UU. y el escudo THAAD.')
+Q('North Korea', 'Desnuclearizarla o contenerla.', 'Rusia quiere soldados y municiones; China su supervivencia como amortiguador.')
+
+# Oceanía
+Q('Australia', 'Su base aliada en el Indo-Pacífico: AUKUS y los submarinos nucleares, bases para EE.UU. en el norte, sus minerales críticos fuera de China y su influencia en las islas del Pacífico.',
+  'China quiere sus minerales y presionarla para que se aleje de EE.UU., y competir por las islas del Pacífico.')
+Q('New Zealand', 'Su lugar en los Cinco Ojos y su influencia en el Pacífico.', 'China quiere influencia política y comercio.')
+Q('Papua New Guinea', 'Bases para EE.UU. y Australia y un aliado en el Pacífico.', 'China quiere minería e infraestructura.')
+Q('Solomon Is.', 'Revertir la presencia china y su pacto de seguridad.', 'China quiere presencia policial y de seguridad y un puerto.')
+Q('Fiji', 'Un socio regional y una base logística.', 'China quiere cooperación policial y presencia.')
+Q('Vanuatu', 'Que no aloje presencia militar china.', 'China quiere infraestructura y su apoyo.')
+Q('Samoa', 'Que no dependa de China.', 'China quiere influencia y un puerto.')
+Q('Tonga', 'Que no dependa de la deuda china.', 'China quiere influencia por su deuda.')
+Q('Kiribati', 'Que no aloje presencia china en el Pacífico central, cerca de Hawái.', 'China quiere presencia policial y la pista de Kanton.')
+Q('Nauru', 'Su alianza con Australia.', 'China quiere su reconocimiento.')
+for k in ['Micronesia', 'Marshall Is.', 'Palau']:
+    Q(k, 'Acceso militar exclusivo de EE.UU. y negar el área a China.', 'China quiere desplazar a EE.UU.')
+for k in ['Guam', 'N. Mariana Is.']:
+    Q(k, 'Base avanzada frente a China.', 'Es un objetivo militar en caso de guerra.')
+Q('American Samoa', 'No tiene intereses particulares.', 'No tiene intereses relevantes.')
+Q('Cook Is.', 'Que no se aleje de Nueva Zelanda.', 'China quiere minerales del lecho marino.')
+Q('Niue', 'No tiene intereses particulares.', 'No tiene intereses relevantes.')
+Q('Fr. Polynesia', 'Que siga francesa.', 'No tiene intereses relevantes.')
+Q('New Caledonia', 'Que siga francesa y su níquel.', 'No tiene intereses relevantes.')
+for k in ['Wallis and Futuna Is.', 'Pitcairn Is.', 'Norfolk Island', 'Heard I. and McDonald Is.', 'Ashmore and Cartier Is.']:
+    Q(k, 'No tiene intereses particulares.', 'No tiene intereses relevantes.')
+Q('Indian Ocean Ter.', 'Vigilancia del océano Índico.', 'No tiene intereses relevantes.')
+
+# Asia oriental y Pacífico: versión más detallada
+Q('China', 'Frenar su ascenso militar y tecnológico sin llegar a la guerra: negarle los chips y las máquinas más avanzadas, sacar de su territorio las cadenas de suministro estratégicas, reducir la dependencia de sus tierras raras, impedir que tome Taiwán o domine el mar de China Meridional, y abrir su mercado a las empresas occidentales.',
+  'Es el otro centro de la alianza: llegar a ser la primera potencia mundial hacia mediados de siglo, recuperar Taiwán, expulsar a EE.UU. de la primera cadena de islas, dominar las cadenas de minerales, baterías y autos eléctricos, y armar un orden alternativo (BRICS, OCS, pagos en yuanes). Rusia le aporta energía y materias primas; Irán, petróleo barato.')
+Q('Hong Kong', 'Que conserve su autonomía, su justicia independiente y su plaza financiera abierta; sancionar a los responsables de la represión.',
+  'China quiere control político total sin perder su papel de puerta financiera de China al mundo y de plaza para emitir deuda y acciones.')
+Q('Macao', 'Que no sirva para sacar capitales chinos ni para evadir sanciones.', 'China quiere control total y que el juego siga financiando la región.')
+Q('Taiwan', 'Que no caiga en manos de China, porque es el eslabón central de la primera cadena de islas y fabrica casi todos los chips avanzados; que gaste más en defensa y que TSMC produzca también en EE.UU.',
+  'China quiere la reunificación, por las buenas o por la fuerza: romper la cadena de islas que encierra a su marina y quedarse con la industria de chips. Rusia apoya la posición china.')
+Q('Japan', 'Su rearme (contraataque de largo alcance, el doble del gasto), las bases de Okinawa y las islas del sur, la alianza con EE.UU. y Corea del Sur frente a China y Corea del Norte, y su industria de chips y astilleros.',
+  'China quiere las islas Senkaku, frenar su rearme y separarlo de EE.UU. Rusia quiere conservar las Kuriles y que no levante más sanciones.')
+Q('South Korea', 'Su alianza frente a Corea del Norte (28.000 soldados estadounidenses), sus chips, baterías y astilleros para EE.UU., y que coopere con Japón.',
+  'China quiere frenar su alianza con EE.UU. y el escudo THAAD, y que no se sume a una defensa de Taiwán. Rusia quiere que no le venda armas a Ucrania.')
+Q('North Korea', 'Desnuclearizarla o, al menos, contener sus misiles y frenar su cooperación militar con Rusia.',
+  'Rusia quiere sus soldados, municiones y misiles para Ucrania a cambio de tecnología. China quiere que sobreviva como amortiguador frente a las tropas de EE.UU.')
+Q('Papua New Guinea', 'Bases y accesos para EE.UU. y Australia (Manus, Lombrum), y que sea el ancla de seguridad del Pacífico Sur.', 'China quiere minería, puertos y cooperación policial.')
+Q('Solomon Is.', 'Revertir la presencia china y que su pacto de seguridad con Pekín no derive en una base.', 'China quiere presencia policial y de seguridad, un puerto y el voto del país en organismos internacionales.')
+Q('Fiji', 'Un socio regional y la sede de instituciones del Pacífico, con cooperación militar.', 'China quiere cooperación policial y presencia diplomática.')
+Q('Vanuatu', 'Que no aloje presencia militar china y que mantenga su tratado de seguridad con Australia.', 'China quiere infraestructura, deuda y apoyo diplomático.')
+Q('Samoa', 'Que no dependa de la deuda china.', 'China quiere influencia y un puerto.')
+Q('Tonga', 'Que no dependa de la deuda china.', 'China quiere influencia por la deuda que le debe Tonga.')
+Q('Micronesia', 'Acceso militar exclusivo de EE.UU. por el Pacto de Libre Asociación y negar el área a China, en la retaguardia de Guam.', 'China quiere desplazar a EE.UU. con ayuda y obras.')
+Q('Marshall Is.', 'La base de pruebas de misiles de Kwajalein, el acceso militar exclusivo de EE.UU. y que siga reconociendo a Taiwán.', 'China quiere que reconozca a Pekín y desplazar a EE.UU.')
+Q('Palau', 'Acceso militar exclusivo de EE.UU., el radar de largo alcance y que siga reconociendo a Taiwán.', 'China quiere que reconozca a Pekín y presiona con el turismo.')
+Q('Guam', 'La base avanzada de EE.UU. en el Pacífico occidental: bombarderos, submarinos y la defensa antimisiles frente a China y Corea del Norte.', 'Es un objetivo militar chino y norcoreano en caso de guerra; sus redes son blanco del espionaje chino.')
+Q('N. Mariana Is.', 'Pistas y campos de entrenamiento como complemento de Guam (Tinian).', 'Es un objetivo militar en caso de guerra.')
+
+# África del Norte
+Q('Morocco', 'Un aliado estable y puerta de África: socio de Israel, comprador de armas estadounidenses, sede del ejercicio African Lion y controlador de la migración hacia España. Apoya su soberanía sobre el Sahara.',
+  'China quiere fábricas de baterías y autos para entrar a Europa y EE.UU. con sus tratados comerciales, y su fosfato. Rusia, comprarle fosfatos y venderle granos.')
+Q('W. Sahara', 'Que quede bajo soberanía marroquí con autonomía y que se cierre el conflicto.', 'Rusia sostiene en la ONU al Frente Polisario, aliado de Argelia.')
+Q('Algeria', 'Su gas para Europa en reemplazo del ruso, que coopere contra el yihadismo del Sahel y que compre menos armas rusas.',
+  'Rusia quiere seguir siendo su principal proveedor de armas y un aliado en el Mediterráneo. China, obras y comercio.')
+Q('Tunisia', 'Que frene la migración hacia Italia y no se aleje de Occidente.', 'Rusia y China buscan influencia en el giro autoritario del gobierno.')
+Q('Libya', 'Su petróleo, que no se vuelva base rusa y que se reunifique bajo un gobierno aceptable.',
+  'Rusia quiere bases aéreas en el este (al-Jufra, al-Khadim) para proyectarse sobre el Sahel y el Mediterráneo, a través del Africa Corps y de Haftar.')
+Q('Mauritania', 'Un aliado estable frente al Sahel, que frene la migración hacia Canarias y su gas.', 'China quiere su pesca y su hierro.')
+
+# Sahel y África occidental
+Q('Mali', 'Frenar al yihadismo (JNIM, Estado Islámico del Sahel) y la presencia rusa, y que la junta vuelva a un gobierno civil.',
+  'Rusia quiere su oro, una base de influencia en el Sahel y desplazar a Francia, a través de Wagner y el Africa Corps. China, minas de litio y oro.')
+Q('Burkina Faso', 'Frenar al yihadismo y la presencia rusa.', 'Rusia quiere minas de oro, una refinería y presencia militar; propaganda antioccidental.')
+Q('Niger', 'Recuperar su colaboración contra el yihadismo y su uranio, perdidos tras el golpe de 2023.', 'Rusia quiere su uranio y presencia militar; China, su petróleo y el oleoducto hacia Benín.')
+Q('Chad', 'Que no se pase del todo a Rusia y que siga conteniendo al yihadismo del lago Chad.', 'Rusia quiere reemplazar a Francia como socio militar.')
+Q('Senegal', 'Un socio democrático estable, su petróleo y gas y cooperación en seguridad, aunque cerró las bases francesas.', 'China y Rusia buscan acercarse al gobierno soberanista.')
+Q('Gambia', 'Estabilidad democrática.', 'No tiene intereses relevantes.')
+Q('Guinea-Bissau', 'Cortar la ruta de la cocaína hacia Europa.', 'No tiene intereses relevantes.')
+Q('Guinea', 'Bauxita y hierro fuera del control chino y que la junta entregue el poder.', 'China quiere la bauxita y el hierro de Simandou para su acero y su aluminio.')
+Q('Sierra Leone', 'Estabilidad.', 'China quiere minería y pesca.')
+Q('Liberia', 'Su registro de buques y la estabilidad.', 'No tiene intereses relevantes.')
+Q("Côte d'Ivoire", 'Un aliado estable en el golfo de Guinea, frente al avance yihadista y ruso del Sahel.', 'No tiene intereses relevantes.')
+Q('Ghana', 'Oro, cacao, una democracia estable y su cooperación de seguridad.', 'China quiere bauxita y minería; muchos mineros ilegales chinos operan allí.')
+Q('Togo', 'Contener el yihadismo en el norte.', 'Rusia quiere un acuerdo militar y presencia.')
+Q('Benin', 'Contener el yihadismo en el norte.', 'China quiere el oleoducto que trae el petróleo de Níger.')
+Q('Nigeria', 'Su peso regional, que combata a Boko Haram y al Estado Islámico, que proteja a las minorías cristianas y que no dependa de China.',
+  'China quiere obras, refinerías y deuda; Rusia, influencia militar y propaganda.')
+Q('Cabo Verde', 'Su posición atlántica.', 'No tiene intereses relevantes.')
+
+# África central
+Q('Cameroon', 'Contener a Boko Haram y la crisis anglófona.', 'China quiere el puerto de Kribi y obras.')
+Q('Central African Rep.', 'Que no quede bajo control ruso.', 'Rusia quiere oro y diamantes a cambio de seguridad.')
+Q('Gabon', 'Estabilidad tras el golpe y su petróleo y manganeso.', 'China quiere manganeso y madera.')
+Q('Eq. Guinea', 'Que no haya base naval china en el Atlántico.', 'China quiere un puerto en el Atlántico.')
+Q('São Tomé and Principe', 'Estabilidad.', 'No tiene intereses relevantes.')
+Q('Congo', 'Su petróleo.', 'China quiere su petróleo y cobrar su deuda.')
+Q('Dem. Rep. Congo', 'Su cobalto, cobre y coltán fuera del dominio chino (acuerdo de minerales a cambio de seguridad) y la paz con Ruanda y el M23.',
+  'China controla la mayor parte de sus minas de cobalto y cobre y quiere conservarlas.')
+Q('Rwanda', 'Su eficacia, sus tropas de paz y que deje de apoyar al M23.', 'No tiene intereses relevantes.')
+Q('Burundi', 'Estabilidad.', 'China y Rusia quieren minería.')
+
+# África oriental y Cuerno
+Q('Sudan', 'Que termine la guerra, que no haya base rusa en el mar Rojo y frenar el genocidio en Darfur.',
+  'Rusia quiere una base naval en Port Sudan y su oro; Irán le vende drones al ejército.')
+Q('S. Sudan', 'Estabilidad.', 'China quiere su petróleo.')
+Q('Ethiopia', 'Estabilidad en el Cuerno de África y la gran represa sin guerra con Egipto.', 'China quiere obras y cobrar su deuda; Rusia, influencia.')
+Q('Eritrea', 'Que no se acerque a Rusia ni desestabilice a Etiopía.', 'Rusia quiere acceso al puerto de Massawa en el mar Rojo.')
+Q('Djibouti', 'La base de Camp Lemonnier, la única base permanente de EE.UU. en África, junto a Bab el-Mandeb.', 'China quiere su base naval y el puerto.')
+Q('Somalia', 'Combatir a Al Shabaab y al Estado Islámico.', 'No tiene intereses relevantes.')
+Q('Somaliland', 'Una base en Berbera y un aliado en el golfo de Adén.', 'China quiere que no sea reconocida.')
+Q('Kenya', 'Su aliado principal en África oriental: bases, la lucha contra Al Shabaab y la misión en Haití.', 'China quiere el tren Mombasa-Nairobi y cobrar la deuda.')
+Q('Uganda', 'Estabilidad.', 'China quiere el petróleo del lago Alberto.')
+Q('Tanzania', 'Estabilidad.', 'China quiere obras y puertos.')
+
+# África austral
+Q('Angola', 'El corredor de Lobito para sacar los minerales del Congo y Zambia sin China, y su petróleo.', 'China quiere su petróleo y cobrar su deuda.')
+Q('Zambia', 'El cobre y el corredor de Lobito.', 'China quiere el cobre y cobrar su deuda.')
+Q('Zimbabwe', 'Reformas democráticas.', 'China quiere su litio.')
+Q('Malawi', 'Estabilidad.', 'No tiene intereses relevantes.')
+Q('Mozambique', 'El gas de Cabo Delgado.', 'China quiere minería y obras.')
+Q('Madagascar', 'Estabilidad tras el golpe.', 'No tiene intereses relevantes.')
+Q('Namibia', 'Su uranio, su petróleo nuevo y su estabilidad democrática.', 'China quiere su uranio.')
+Q('Botswana', 'Una democracia estable.', 'No tiene intereses relevantes.')
+Q('South Africa', 'Alejarla de los BRICS y de Rusia, y que no se oponga a EE.UU. en los organismos internacionales.',
+  'Rusia y China quieren mantenerla como pilar africano de los BRICS y del «Sur global».')
+Q('Lesotho', 'Estabilidad.', 'No tiene intereses relevantes.')
+Q('eSwatini', 'Que siga reconociendo a Taiwán.', 'China quiere que reconozca a Pekín.')
+Q('Comoros', 'Estabilidad.', 'No tiene intereses relevantes.')
+Q('Mauritius', 'Diego García.', 'China quiere influencia en el Índico.')
+Q('Seychelles', 'Seguridad marítima.', 'No tiene intereses relevantes.')
+Q('Saint Helena', 'Ascensión.', 'No tiene intereses relevantes.')
+Q('Br. Indian Ocean Ter.', 'Conservar Diego García.', 'Que la base se pierda.')
+Q('Fr. S. Antarctic Lands', 'No tiene intereses particulares.', 'No tiene intereses relevantes.')
+
+# Ampliación de los que quedaron cortos
+Q('Belize', 'Cooperación antinarcóticos en su costa y su frontera con México y Guatemala, que el diferendo con Guatemala se resuelva en La Haya sin conflicto y que siga reconociendo a Taiwán.', 'China quiere que reconozca a Pekín, como hicieron casi todos sus vecinos, a cambio de obras y comercio.')
+Q('Haiti', 'Contener a las pandillas, que no se vuelva una base del narcotráfico ni una fuente de migración masiva hacia EE.UU. y la República Dominicana, y que una fuerza internacional, no de EE.UU., cargue con la seguridad.', 'No tiene intereses relevantes; China y Rusia solo pesan como votos en el Consejo de Seguridad sobre la misión internacional.')
+Q('Trinidad and Tobago', 'Usarla como aliada y plataforma frente a Venezuela (radares, acceso de buques), asegurar su gas licuado y que no siga negociando gas con Caracas sin aval de EE.UU.', 'Venezuela, cuando era aliada de la alianza, quería sus acuerdos de gas marino; China, comercio y obras.')
+Q('Suriname', 'El petróleo marino que explotan TotalEnergies y otras empresas occidentales, alejarlo de la deuda china y frenar el narcotráfico y la minería ilegal de oro.', 'China quiere infraestructura, minería de oro y cobrar su deuda.')
+Q('Luxembourg', 'Que su enorme plaza de fondos de inversión cumpla las sanciones, la transparencia fiscal y el impuesto mínimo a las multinacionales, y que aporte a la defensa europea.', 'Usar sus fondos y sociedades para mover capital; China tiene allí la sede europea de varios de sus bancos.')
+Q('Slovakia', 'Que no rompa el frente común de la UE y la OTAN sobre Ucrania, que siga alojando tropas aliadas y que deje de depender del gas y el petróleo rusos.', 'Rusia quiere un aliado que bloquee sanciones y ayuda dentro de la UE, y que siga comprando su gas y petróleo.')
+Q('Slovenia', 'Que siga integrada en la OTAN y la UE, apoye a Ucrania y que su puerto de Koper sirva a la logística aliada.', 'No tiene intereses relevantes más allá del comercio.')
+Q('Latvia', 'Que resista en la frontera con Rusia y Bielorrusia con la brigada de la OTAN liderada por Canadá, integre a su minoría rusa y corte todo vínculo energético con Rusia.', 'Rusia quiere presionarla por su gran minoría rusohablante, con propaganda e incidentes de frontera, y probar la decisión de la OTAN.')
+Q('Macedonia', 'Que siga en la OTAN, destrabe su ingreso a la UE y frene la influencia rusa en su política y sus medios.', 'Rusia quiere frenar su integración occidental; China, obras de autopistas con deuda.')
+Q('Kosovo', 'La base de Bondsteel, la KFOR, su reconocimiento internacional y un acuerdo de normalización con Serbia que estabilice los Balcanes.', 'Rusia y China quieren bloquear su reconocimiento en la ONU para no sentar precedentes (Crimea, Taiwán) y apoyan a Serbia.')
+Q('Kyrgyzstan', 'Que deje de ser la vía para reexportar a Rusia productos sancionados y que sus bancos no procesen pagos rusos; acceso a su oro y tierras raras.', 'Rusia quiere su base aérea de Kant y usarlo para importar lo sancionado; China, el ferrocarril China-Kirguistán-Uzbekistán y minería.')
+Q('Tajikistan', 'Que contenga a los grupos yihadistas de la frontera afgana y al Estado Islámico-Khorasan, que recluta tayikos.', 'Rusia quiere su base 201, la mayor fuera de su territorio; China, vigilar la frontera con Afganistán, cerca de Xinjiang, y minería.')
+Q('Turkmenistan', 'Que su gas llegue a Europa por un gasoducto bajo el Caspio, sin pasar por Rusia, y que se abra a empresas occidentales.', 'China quiere su gas, del que es casi el único comprador; Rusia, que no compita con su gas en Europa.')
+Q('Bahrain', 'La base de la Quinta Flota de EE.UU., su alianza con Israel por los Acuerdos de Abraham y el acuerdo de seguridad integral de 2023.', 'Irán quiere influir sobre su mayoría chií y desestabilizar a la monarquía suní.')
+Q('Kuwait', 'Las bases de EE.UU. (Arifjan, Ali Al Salem), su petróleo y su lugar como aliado principal no miembro de la OTAN.', 'Irán presiona por la frontera marítima y el yacimiento de gas de Dorra; China quiere su petróleo y obras.')
+Q('Nepal', 'Equilibrar a China con programas de ayuda estadounidenses y mantenerlo cerca de India.', 'China quiere tránsito hacia el sur de Asia, la Franja y la Ruta y frenar el activismo tibetano.')
+Q('Bhutan', 'Que siga ligado a India y no ceda frente a China en la frontera.', 'China quiere cerrar la frontera en su favor, incluido Doklam, cerca del corredor de Siliguri que une India con su noreste.')
+Q('Maldives', 'Seguridad marítima en el Índico, cooperación con India y que no se vuelva base china.', 'China quiere influencia, deuda y una escala en las rutas del océano Índico.')
+Q('Laos', 'Que no quede atrapado por la deuda china, que cierre las zonas de estafas y narcotráfico del Triángulo de Oro y que limpie las bombas sin explotar de la guerra.', 'China quiere el tren Kunming-Vientián como pieza del corredor hacia Singapur y la influencia que le da su deuda.')
+Q('Singapore', 'Acceso naval para EE.UU. (Changi), su plaza financiera, sus refinerías y su papel de nodo neutral en el estrecho de Malaca.', 'China quiere su plaza financiera para su capital, su tecnología y su influencia en la mayoría étnica china.')
+Q('Brunei', 'Que resista los reclamos chinos en el mar de China Meridional y coopere en seguridad.', 'China reclama aguas que Brunéi considera propias y quiere su gas y petróleo.')
+Q('Timor-Leste', 'Que no quede bajo influencia china, que coopere con Australia en seguridad y que el yacimiento de Greater Sunrise no lo explote China.', 'China quiere infraestructura, influencia y participar del gas de Greater Sunrise.')
+Q('New Zealand', 'Su lugar en los Cinco Ojos, sumarlo a AUKUS en tecnología e influencia en el Pacífico Sur a través de sus territorios asociados.', 'China quiere influencia política, comercio (es su mayor cliente) y menos alineamiento con EE.UU.')
+Q('Samoa', 'Que no dependa de la deuda china y que siga en la órbita de Nueva Zelanda y Australia.', 'China quiere influencia, deuda y un puerto.')
+Q('Tonga', 'Que no dependa de la deuda china y que se acerque a Australia en seguridad.', 'China quiere influencia por la deuda que le debe Tonga.')
+Q('Nauru', 'Su alianza con Australia, que paga su presupuesto y tiene veto sobre su seguridad.', 'China quiere su reconocimiento, ya obtenido en 2024.')
+Q('Cook Is.', 'Que no se aleje de Nueva Zelanda, que no comprometa su defensa con China y que los minerales del lecho marino los exploten empresas aliadas.', 'China quiere minerales del lecho marino y un acuerdo de cooperación.')
+Q('Tunisia', 'Que frene la migración hacia Italia, no se aleje de Occidente y no quiebre.', 'Rusia y China buscan influencia en el giro autoritario del gobierno y ofrecen créditos sin condiciones.')
+Q('Mauritania', 'Un aliado estable frente al Sahel, que frene la migración hacia Canarias, su gas compartido con Senegal y cooperación militar.', 'China quiere su pesca y su hierro.')
+Q('Burkina Faso', 'Frenar al yihadismo, que ya controla buena parte del territorio, y la presencia rusa, y que vuelva un gobierno civil.', 'Rusia quiere minas de oro, una refinería y presencia militar, y difundir propaganda antioccidental desde allí.')
+Q('Chad', 'Que no se pase del todo a Rusia tras la salida de Francia y que siga conteniendo al yihadismo del lago Chad.', 'Rusia quiere reemplazar a Francia como socio militar y cerrar el cerco del Sahel.')
+Q('Senegal', 'Un socio democrático estable, su petróleo y gas y cooperación en seguridad, aunque cerró las bases francesas.', 'China y Rusia buscan acercarse al gobierno soberanista con obras, pesca y propaganda.')
+Q('Gambia', 'Estabilidad democrática y que no sea ruta de migración ni de drogas.', 'No tiene intereses relevantes.')
+Q('Guinea-Bissau', 'Cortar la ruta de la cocaína hacia Europa y que vuelva el orden constitucional.', 'No tiene intereses relevantes.')
+Q('Sierra Leone', 'Estabilidad democrática y que no sea ruta de la cocaína.', 'China quiere minería, pesca y un puerto pesquero.')
+Q('Liberia', 'Su registro de buques, el mayor del mundo y con sede en EE.UU., y su estabilidad.', 'No tiene intereses relevantes.')
+Q("Côte d'Ivoire", 'Un aliado estable en el golfo de Guinea, frente al avance yihadista y ruso del Sahel, y su cacao.', 'No tiene intereses relevantes más allá del comercio con China.')
+Q('Togo', 'Contener el yihadismo en el norte y que no se pase a Rusia.', 'Rusia quiere un acuerdo militar y presencia en el golfo de Guinea.')
+Q('Benin', 'Contener el yihadismo en el norte y que su puerto siga abierto.', 'China quiere el oleoducto que trae el petróleo de Níger hasta su costa.')
+Q('Cabo Verde', 'Su posición atlántica y la cooperación contra el narcotráfico.', 'No tiene intereses relevantes.')
+Q('Cameroon', 'Contener a Boko Haram en el norte y la guerra en las regiones anglófonas.', 'China quiere el puerto de Kribi, represas y obras.')
+Q('Central African Rep.', 'Que no quede bajo control ruso y que se pacifique.', 'Rusia quiere oro, diamantes y madera a cambio de seguridad, y una base de influencia en el centro de África.')
+Q('Gabon', 'Estabilidad tras el golpe, su petróleo y manganeso y que no se acerque a Rusia.', 'China quiere manganeso y madera.')
+Q('Eq. Guinea', 'Que no haya base naval china en el Atlántico, frente a la costa este de EE.UU.', 'China quiere un puerto con uso militar en el Atlántico.')
+Q('Congo', 'Su petróleo y estabilidad.', 'China quiere su petróleo y cobrar su deuda; Rusia, un oleoducto.')
+Q('Rwanda', 'Su eficacia y sus tropas de paz, pero que deje de apoyar al M23 en el Congo.', 'No tiene intereses relevantes; China y Rusia evitan condenarla.')
+Q('Burundi', 'Estabilidad y que no se involucre más en la guerra del Congo.', 'China y Rusia quieren minería (níquel, tierras raras).')
+Q('S. Sudan', 'Que no vuelva a la guerra civil.', 'China quiere su petróleo.')
+Q('Ethiopia', 'Estabilidad en el Cuerno de África, que la gran represa no provoque una guerra con Egipto y que no estalle otra guerra con Eritrea.', 'China quiere obras y cobrar su deuda; Rusia, influencia política y militar.')
+Q('Somalia', 'Combatir a Al Shabaab y al Estado Islámico, y que el país no se fragmente.', 'No tiene intereses relevantes; Turquía y los Emiratos compiten allí.')
+Q('Uganda', 'Estabilidad y su aporte a misiones de paz.', 'China quiere el petróleo del lago Alberto y el oleoducto.')
+Q('Tanzania', 'Estabilidad y apertura.', 'China quiere obras, puertos (Bagamoyo) y minería.')
+Q('Zambia', 'El cobre y el corredor de Lobito, financiado por EE.UU. y la UE.', 'China quiere el cobre y cobrar su deuda.')
+Q('Zimbabwe', 'Reformas democráticas y que su litio no quede solo en manos chinas.', 'China quiere su litio, del que ya compró las principales minas.')
+Q('Malawi', 'Estabilidad democrática.', 'No tiene intereses relevantes.')
+Q('Mozambique', 'El gas de Cabo Delgado, que explotan TotalEnergies y ExxonMobil, y contener la insurgencia yihadista.', 'China quiere minería y obras; Rusia intentó con Wagner combatir la insurgencia en 2019.')
+Q('Madagascar', 'Estabilidad tras el golpe y su grafito y níquel.', 'No tiene intereses relevantes.')
+Q('Namibia', 'Su uranio, su petróleo nuevo y su estabilidad democrática.', 'China quiere su uranio, con la mina de Husab.')
+Q('Botswana', 'Una democracia estable y sus diamantes.', 'No tiene intereses relevantes.')
+Q('Lesotho', 'Estabilidad.', 'No tiene intereses relevantes.')
+Q('eSwatini', 'Que siga reconociendo a Taiwán, el último país africano que lo hace.', 'China quiere que reconozca a Pekín.')
+Q('Comoros', 'Estabilidad.', 'No tiene intereses relevantes.')
+Q('Mauritius', 'Que el traspaso de Chagos preserve la base de Diego García, clave para EE.UU. en el océano Índico.', 'China quiere influencia en el Índico y que la base pierda respaldo.')
+Q('Seychelles', 'Seguridad marítima frente a la piratería y la pesca ilegal.', 'No tiene intereses relevantes.')
+Q('Saint Helena', 'La base de Ascensión, escala aérea y de espionaje en el Atlántico Sur.', 'No tiene intereses relevantes.')
+Q('Br. Indian Ocean Ter.', 'Conservar Diego García, base de bombarderos y buques de EE.UU. en el Índico.', 'Que la base pierda respaldo internacional.')
+Q('Djibouti', 'La base de Camp Lemonnier, la única base permanente de EE.UU. en África, junto al estrecho de Bab el-Mandeb.', 'China quiere su primera base naval en el exterior y el puerto de Doraleh.')
+Q('Somaliland', 'Una base en Berbera y un aliado en el golfo de Adén.', 'China quiere que no sea reconocida, porque Somalilandia es aliada de Taiwán.')
+Q('Kenya', 'Su aliado principal en África oriental: bases, la lucha contra Al Shabaab y la misión en Haití.', 'China quiere el tren Mombasa-Nairobi y cobrar la deuda.')
+Q('Angola', 'El corredor de Lobito para sacar los minerales del Congo y Zambia sin China, y su petróleo.', 'China quiere su petróleo y cobrar su deuda.')
+Q('Eritrea', 'Que no se acerque a Rusia ni desestabilice a Etiopía.', 'Rusia quiere acceso al puerto de Massawa en el mar Rojo.')
+Q('Gabon', 'Estabilidad tras el golpe, su petróleo y manganeso y que no se acerque a Rusia.', 'China quiere manganeso y madera.')
+Q('Ghana', 'Oro, cacao, una democracia estable y su cooperación de seguridad.', 'China quiere bauxita y minería; muchos mineros ilegales chinos operan allí.')
+Q('Guinea', 'Bauxita y hierro fuera del control chino y que la junta entregue el poder.', 'China quiere la bauxita y el hierro de Simandou para su acero y su aluminio.')
+Q('Faeroe Is.', 'Que siga alineada con la OTAN en el Atlántico Norte y vigile a los submarinos rusos.', 'Rusia quiere su acuerdo de pesca y acceso a sus puertos.')

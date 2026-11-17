@@ -2,7 +2,7 @@
 
 ## 2026-11-17 (d)
 
-- Fichas de país: bloque «Los dos bloques aquí», con lo que quieren el imperio transoceánico y la alianza euroasiática en cada país y lo que hicieron ahí entre 2016 y 2026. Textos en `fuente/paises_bloques.py`.
+- Fichas de país: bloque «Los dos bloques aquí», con lo que quieren el imperio transoceánico y la alianza euroasiática en cada país y lo que hicieron ahí entre 2016 y 2026. Textos en `fuente/paises_bloques.py`. «Qué quiere» cada bloque se amplió en todos los países: alianzas buscadas (OTAN, UE, Quad, AUKUS), bases, puertos, minerales, tecnología y régimen político, y lo que busca cada potencia euroasiática por separado.
 
 - Ficha de cada actor: gráfico «Con quién se relaciona», con el actor en el centro y sus relaciones y dependencias alrededor (las 24 más fuertes si tiene más); tocar un actor abre su ficha.
 
