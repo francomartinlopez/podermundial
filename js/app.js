@@ -137,7 +137,7 @@
       <p class="side-x"><b>Sede:</b> ${esc(o.sede)}<br><b>Autonomía:</b> ${o.aut} · ${esc(M.autonomia[o.aut])}</p>
       <a class="btn" href="#o-${o.id}">Abrir la ficha</a>`;
   }
-  function frPanel(n) { const f = M.friccion.find(x => x.n === +n); return `<div class="lbl">Punto de fricción ${f.n} de ${M.friccion.length}</div><h3>${esc(f.x)}</h3><p class="side-x">${esc(f.d)}</p><p class="note">Los puntos de fricción son los frentes donde chocan los bloques.</p>`; }
+  function frPanel(n) { const f = M.friccion.find(x => x.n === +n); return `<div class="lbl">Punto de fricción ${f.n} de ${M.friccion.length}</div><h3>${esc(f.x)}</h3><p class="side-x">${esc(f.d)}</p><p class="side-x"><b>${f.actores.length} actores intervienen.</b></p><a class="btn" href="#f-${f.n}">Abrir la ficha</a><p class="note">Los puntos de fricción son los frentes donde chocan los bloques. <a href="#friccion">Ver los ${M.friccion.length}</a>.</p>`; }
   function mountMap(el, opts = {}) {
     let layer = opts.layer || "bloques", sel = null;
     const layers = opts.layers || Object.keys(LAYERS);
@@ -215,6 +215,7 @@
         <a class="card" href="#quien-manda"><span class="kick">Esquema</span><b>Quién manda</b><span>La jerarquía real: quién decide solo, quién obedece y quién aparenta.</span></a>
         <a class="card" href="#actores"><span class="kick">Fichas</span><b>Actores</b><span>Perfil de poder, dependencias y relaciones de cada uno.</span></a>
         <a class="card" href="#paises"><span class="kick">Mapa</span><b>Países</b><span>Bloques, protectorados, zonas liberadas y puntos de fricción.</span></a>
+        <a class="card" href="#friccion"><span class="kick">Frentes</span><b>Puntos de fricción</b><span>Dónde chocan los bloques, quién interviene y cómo se llegó hasta acá.</span></a>
         <a class="card" href="#marco"><span class="kick">Método</span><b>Marco</b><span>La teoría detrás del mapa y cómo se mide el poder.</span></a>
       </section></div>`;
     mountMap(document.getElementById("mapa-inicio"), { layer: "bloques" });
@@ -491,8 +492,83 @@
       </div></div>`;
   };
 
+  // ---------- puntos de fricción ----------
+  const RELSTY = t => t === "Enfrentamiento" ? 'stroke="#FF3B30" stroke-dasharray="6 4"' : t === "Ambigua" ? 'stroke="#F2A93B" stroke-dasharray="4 3"' : (t === "Puerta giratoria" || t === "Acceso a datos") ? 'stroke="#9A8F8C" stroke-dasharray="2 4"' : 'stroke="#EDE6E3"';
+  // mapa chico de la región: países del frente resaltados
+  function frMini(f, big = false) {
+    const set = new Set(f.paises);
+    const bs = FEAT.filter(F => set.has(F.properties.name)).map(F => gpath.bounds(F)).filter(([[a], [b]]) => b - a < MW / 3 && Math.abs((a + b) / 2 - proj(f.ll)[0]) < MW / 3);
+    let x0 = Math.min(...bs.map(b => b[0][0])), y0 = Math.min(...bs.map(b => b[0][1])), x1 = Math.max(...bs.map(b => b[1][0])), y1 = Math.max(...bs.map(b => b[1][1]));
+    const [px, py] = proj(f.ll); x0 = Math.min(x0, px); x1 = Math.max(x1, px); y0 = Math.min(y0, py); y1 = Math.max(y1, py);
+    const pad = Math.max(x1 - x0, y1 - y0) * .08 + 6, ar = big ? 1.9 : 1.6;
+    let w = x1 - x0 + 2 * pad, h = y1 - y0 + 2 * pad; if (w / h < ar) w = h * ar; else h = w / ar;
+    const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, vb = [cx - w / 2, cy - h / 2, w, h];
+    const cs = CPATH.map(c => `<path d="${c.d}" fill="${set.has(c.name) ? "#E10600" : "#1D1D1D"}" fill-opacity="${set.has(c.name) ? .55 : 1}" stroke="#000" stroke-width="${w / 900}"/>`).join("");
+    const r = w / 60;
+    return `<svg viewBox="${vb.join(" ")}" role="img" aria-label="Mapa de la región: ${esc(f.paises.map(p => PA[p] ? PA[p].n : p).join(", "))}" style="display:block;width:100%;height:auto;background:#0B0B0B">${cs}<circle cx="${px}" cy="${py}" r="${r}" fill="none" stroke="#FF3B30" stroke-width="${r / 4}"/><text x="${px}" y="${py}" text-anchor="middle" dominant-baseline="central" fill="#FF3B30" style="font:700 ${r * 1.1}px var(--f-mono)">${f.n}</text></svg>`;
+  }
+  // gráfico de actores del frente: círculo ordenado por bloque, tamaño por puntaje, líneas por relación
+  function frGraph(f, cur) {
+    const ids = f.actores.map(a => a.id), set = new Set(ids), VW = 900, VH = 640, cx = VW / 2, cy = VH / 2, R = 230;
+    const list = ids.map(i => byId[i]).sort((a, b) => BORDER.indexOf(a.bloque) - BORDER.indexOf(b.bloque) || b.pt - a.pt);
+    const pos = {}; list.forEach((o, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / list.length; pos[o.id] = [cx + R * Math.cos(a), cy + R * Math.sin(a), a]; });
+    const rels = REL.filter(r => set.has(r.a) && set.has(r.b));
+    const lines = rels.map(r => { const [x1, y1] = pos[r.a], [x2, y2] = pos[r.b], on = !cur || r.a === cur || r.b === cur;
+      return `<path d="M${x1},${y1} Q${(x1 + x2) / 2 * .6 + cx * .4},${(y1 + y2) / 2 * .6 + cy * .4} ${x2},${y2}" fill="none" ${RELSTY(r.t)} stroke-width="${.8 + r.i * .6}" opacity="${on ? (cur ? .95 : .55) : .06}"/>`; }).join("");
+    const linked = cur ? new Set([cur, ...rels.filter(r => r.a === cur || r.b === cur).flatMap(r => [r.a, r.b])]) : null;
+    const nodes = list.map(o => { const [x, y, a] = pos[o.id], r = 4 + 16 * Math.sqrt(o.pt / 100), lx = x + Math.cos(a) * (r + 8), ly = y + Math.sin(a) * (r + 8), anc = Math.cos(a) > .25 ? "start" : Math.cos(a) < -.25 ? "end" : "middle", nm = corto(o.n), t = nm.length > 26 ? nm.slice(0, 25) + "…" : nm;
+      return `<g class="qm-n" data-fa="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}" opacity="${linked && !linked.has(o.id) ? .2 : 1}"><circle cx="${x}" cy="${y}" r="${Math.max(r, 12)}" fill="transparent"/>${shape(o.tipo, x, y, r, bcol(o.bloque))}${cur === o.id ? `<circle cx="${x}" cy="${y}" r="${r + 6}" fill="none" stroke="#FF3B30" stroke-width="2"/>` : ""}<text x="${lx}" y="${ly + (Math.sin(a) > .5 ? 10 : Math.sin(a) < -.5 ? -2 : 4)}" style="text-anchor:${anc}"${cur === o.id ? ' class="cur"' : ""}>${esc(t)}</text></g>`; }).join("");
+    return { svg: `<svg viewBox="0 0 ${VW} ${VH}" role="img" aria-label="Relaciones entre los actores del frente" style="display:block;width:100%;height:auto;min-width:640px">${lines}${nodes}</svg>`, rels };
+  }
+  const RELLEG = `<div class="legend" style="flex-direction:row;flex-wrap:wrap;gap:8px 18px">${[["Alianza, propiedad, contrato o abastecimiento", "Alianza"], ["Enfrentamiento", "Enfrentamiento"], ["Ambigua", "Ambigua"], ["Puerta giratoria o acceso a datos", "Acceso a datos"]].map(([n, t]) => `<div><svg width="30" height="10" aria-hidden="true"><line x1="0" y1="5" x2="30" y2="5" ${RELSTY(t)} stroke-width="2"/></svg>${n}</div>`).join("")}</div>`;
+
+  V.friccion = () => {
+    app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Mapa</div><h1>Puntos de fricción</h1></div>
+      <p class="read">Los ${M.friccion.length} frentes donde chocan los bloques: dónde quedan, quién interviene en cada uno, qué hace cada actor, con quién se alía o se enfrenta y cómo se llegó hasta acá.</p></div>
+      <section class="block fr-grid">${M.friccion.map(f => `<a class="fr-card" href="#f-${f.n}">${frMini(f)}<div><span class="kick">Punto ${f.n} · ${f.actores.length} actores</span><b>${esc(f.x)}</b><span>${esc(f.d)}</span></div></a>`).join("")}</section></div>`;
+  };
+
+  V.fr = n => {
+    const f = M.friccion.find(x => x.n === +n); if (!f) return V.friccion();
+    let cur = null;
+    const prev = M.friccion.find(x => x.n === f.n - 1), next = M.friccion.find(x => x.n === f.n + 1);
+    app.innerHTML = `<div class="wrap">
+      <div class="org-head"><div class="crumb"><a href="#friccion">Puntos de fricción</a> / Punto ${f.n} de ${M.friccion.length}</div><h1>${esc(f.x)}</h1>
+        <p class="read">${esc(f.d)}</p></div>
+      <div class="org-body"><div class="org-main">
+        <div class="box" style="padding:0;overflow:hidden">${frMini(f, true)}<p class="note" style="padding:0 16px 12px;margin:0">En rojo, los países y territorios que abarca este frente.</p></div>
+        <div><h2>Qué está en juego</h2>${f.texto.map(p => `<p class="read" style="margin:0 0 14px">${esc(p)}</p>`).join("")}</div>
+        <div><h2>Quién interviene y cómo se relacionan</h2>
+          <p class="note" style="margin:0 0 10px">Color: bloque. Forma: tipo de actor. Tamaño: puntaje de poder. Tocá un actor para ver solo sus relaciones.</p>
+          <div class="box" style="padding:10px"><div class="qm-scroll" id="frg"></div>${RELLEG}</div></div>
+        <div><h2>Qué hace cada uno</h2><div id="fra"></div></div>
+        <div><h2>Relaciones</h2><div id="frr"></div></div>
+        <div><h2>Cronología</h2><div class="crono">${f.crono.map(([d, x]) => `<div><span class="mono">${esc(d)}</span><p>${esc(x)}</p></div>`).join("")}</div></div>
+        <div><h2>Fuentes</h2><ol class="fuentes">${f.fuentes.map(([t, u]) => `<li><a href="${esc(u)}" rel="noopener" target="_blank">${esc(t)}</a></li>`).join("")}</ol><p class="note">Las relaciones entre actores tienen su fuente en la ficha de cada uno.</p></div>
+      </div>
+      <aside class="org-side">
+        <div class="box"><span class="lbl">Bloques presentes</span>${["T", "E", "I", "P", "X"].map(k => [k, f.actores.filter(a => byId[a.id].bloque === k).length]).filter(([, c]) => c).map(([k, c]) => `<div class="side-x"><span class="sq" style="background:${BL[k].c};vertical-align:-2px"></span> ${esc(BL[k].n)}: ${c}</div>`).join("")}</div>
+        <div class="box" id="frside"></div>
+        <div class="box"><span class="lbl">Otros frentes</span>${M.friccion.filter(x => x !== f).map(x => `<a href="#f-${x.n}">${x.n} · ${esc(x.x)}</a>`).join("")}</div>
+        ${prev || next ? `<div style="display:flex;gap:10px;flex-wrap:wrap">${prev ? `<a class="chip" href="#f-${prev.n}">← ${prev.n}</a>` : ""}${next ? `<a class="chip" href="#f-${next.n}">${next.n} →</a>` : ""}</div>` : ""}
+      </aside></div></div>`;
+    const draw = () => {
+      const g = frGraph(f, cur), set = new Set(f.actores.map(a => a.id));
+      document.getElementById("frg").innerHTML = g.svg;
+      const rels = g.rels.filter(r => !cur || r.a === cur || r.b === cur).sort((a, b) => (a.t === "Enfrentamiento" ? 0 : 1) - (b.t === "Enfrentamiento" ? 0 : 1) || b.i - a.i);
+      document.getElementById("frr").innerHTML = (cur ? `<p class="note" style="margin:0 0 8px">Solo las de ${esc(corto(byId[cur].n))}. <a href="#" data-clr>Ver todas</a></p>` : "") + (rels.length ? rels.map(r => `<div class="rel">${lineIcon(r.t)}<div><a href="#o-${r.a}">${esc(corto(byId[r.a].n))}</a> y <a href="#o-${r.b}">${esc(corto(byId[r.b].n))}</a> · ${esc(r.t.toLowerCase())}${r.i === 3 ? " fuerte" : r.i === 1 ? " débil" : ""}<small>${esc(r.x)}</small></div></div>`).join("") : `<p class="note">Sin relaciones registradas.</p>`);
+      document.getElementById("fra").innerHTML = `<div class="tbl-wrap" style="margin:0"><table><thead><tr><th>Actor</th><th>Qué hace aquí</th><th>Puntaje</th></tr></thead><tbody>${f.actores.map(a => byId[a.id]).sort((a, b) => b.pt - a.pt).map(o => `<tr${cur === o.id ? ' class="on"' : ""}><td style="white-space:nowrap">${icon(o)} <a href="#o-${o.id}">${esc(corto(o.n))}</a></td><td>${esc(f.actores.find(a => a.id === o.id).r)}</td><td class="mono">${num(o.pt)}</td></tr>`).join("")}</tbody></table></div>`;
+      const o = cur && byId[cur];
+      document.getElementById("frside").innerHTML = o ? orgPanel(o) + `<p class="side-x">${esc(f.actores.find(a => a.id === cur).r)}</p><button type="button" class="chip" data-clr style="align-self:flex-start">Ver todos</button>` : `<span class="lbl">Cómo leerlo</span><p class="side-x">Tocá un actor del gráfico para ver qué hace en este frente y con quién se relaciona.</p>`;
+      app.querySelectorAll("[data-clr]").forEach(b => b.onclick = e => { e.preventDefault(); cur = null; draw(); });
+      activate(document.getElementById("frg"), "[data-fa]", g => { cur = cur === g.dataset.fa ? null : g.dataset.fa; draw(); });
+      bindTip(document.getElementById("frg"), "[data-fa]", g => { const o = byId[g.dataset.fa]; return `<b>${esc(o.n)}</b><span>${esc(f.actores.find(a => a.id === o.id).r)}</span>`; });
+    };
+    draw();
+  };
+
   // ---------- rutas ----------
-  const NAV = { inicio: "", "quien-manda": "quien", actores: "actores", paises: "paises", marco: "marco" };
+  const NAV = { inicio: "", "quien-manda": "quien", actores: "actores", paises: "paises", friccion: "friccion", marco: "marco" };
   function route() {
     const h = decodeURIComponent(location.hash.slice(1));
     tip.style.display = "none";
@@ -501,11 +577,14 @@
     else if (h === "quien-manda") { V.quien(); navKey = h; }
     else if (/^(actores|organizaciones)(-oculto)?$/.test(h)) { V.actores(h.endsWith("oculto") ? "oculto" : "pt"); navKey = "actores"; }
     else if (h === "paises") { V.paises(); navKey = h; }
+    else if (h === "friccion") { V.friccion(); navKey = h; }
+    else if (/^f-\d+$/.test(h)) { V.fr(h.slice(2)); navKey = "friccion"; }
     else if (h === "marco" || h === "marco-categorias") { V.marco(); navKey = "marco"; }
     else V.inicio();
     document.querySelectorAll(".mainnav a").forEach(a => a.classList.toggle("on", a.dataset.k === navKey));
-    const titles = { inicio: "", "quien-manda": "Quién manda", actores: "Actores", paises: "Países", marco: "Marco" };
-    const t = h.startsWith("o-") && byId[h.slice(2)] ? corto(byId[h.slice(2)].n) : titles[navKey];
+    const titles = { inicio: "", "quien-manda": "Quién manda", actores: "Actores", paises: "Países", friccion: "Puntos de fricción", marco: "Marco" };
+    const fx = /^f-\d+$/.test(h) && M.friccion.find(x => x.n === +h.slice(2));
+    const t = h.startsWith("o-") && byId[h.slice(2)] ? corto(byId[h.slice(2)].n) : fx ? fx.x : titles[navKey];
     document.title = (t ? t + " · " : "") + "El mapa del poder global";
     const anc = h === "marco-categorias" && document.getElementById("cat");
     if (anc) anc.scrollIntoView({ block: "start" }); else window.scrollTo({ top: 0, left: 0, behavior: "instant" });

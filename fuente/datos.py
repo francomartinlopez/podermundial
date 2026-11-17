@@ -948,6 +948,9 @@ FASE.update({n[0]: n[10] for n in _NUC3})
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _REL_NUC3 if (r[0], r[1]) not in _ya]
 ORGS = [o[:3] + (_SEDE3[o[0]],) + o[4:] if o[0] in _SEDE3 else o for o in ORGS]
+from friccion import FR_REL as _FR_REL
+_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+RELACIONES += [r for r in _FR_REL if (r[0], r[1]) not in _ya]
 # El FBI pasa a ser actor propio
 ORGS = [(o[0], "Departamento de Justicia de EE.UU.") + o[2:] if o[0] == "doj" else o for o in ORGS]
 

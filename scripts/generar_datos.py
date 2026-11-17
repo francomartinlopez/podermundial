@@ -14,6 +14,7 @@ from poder_duro import PESOS, EXT, AUTONOMIA_REAL
 from ejes_nuevos import COH, COH_AREA, APO, APO_AREA, PRI, PRI_AREA
 from alcance import VALOR as ALC_V, NOMBRE as ALC_N, GLOBAL as ALC_G, REGIONAL as ALC_R, alcance
 from cambios import CAMBIOS
+from friccion import FRICCION
 from categorias import ESTIRAR, TEORICO, PESO_FINAL, PESO_REL, MONARCAS, NOTA_MONARCA
 import math
 
@@ -119,21 +120,7 @@ meta = {"corte": CORTE, "proxima": PROXIMA, "skeleton": False, "pesos": peso, "c
         "autonomia": {str(k): v for k, v in AUTONOMIA.items()}, "certeza": CERTEZA, "fases": FASES,
         "tipos": ["Estado", "Capital", "Información", "Supranacional", "Influencia", "Sombra", "Persona"],
         "posiciones": POS, "grados": GRADO, "aspectos": ASP,
-        "friccion": [
-            {"n": 1, "x": "Mar de China Oriental y estrecho de Taiwán", "ll": [123.5, 26.0],
-             "d": "China reclama Taiwán y las islas Senkaku; Estados Unidos y Japón sostienen la primera cadena de islas que encierra a la flota china frente a su costa."},
-            {"n": 2, "x": "Islas del Pacífico Sur", "ll": [162.0, -10.0],
-             "d": "No es una ruta comercial principal: es la retaguardia de Australia y la línea por la que Estados Unidos abastece a sus fuerzas en Asia. China firmó en 2022 un pacto de seguridad con las Islas Salomón, y Australia respondió con acuerdos de defensa con Tuvalu y Nauru. Una base china en la zona cortaría ese acceso."},
-            {"n": 3, "x": "Frontera sur de Norteamérica", "ll": [-104.0, 29.5],
-             "d": "Carteles, migración y fentanilo. Estados Unidos designó a los grandes carteles mexicanos como organizaciones terroristas en 2025 y usa aranceles y amenazas de acción militar para presionar a México."},
-            {"n": 4, "x": "Litoral mediterráneo", "ll": [15.0, 35.5],
-             "d": "Libia partida en dos gobiernos, rutas migratorias hacia Europa y presencia militar rusa en el norte de África y el Sahel."},
-            {"n": 5, "x": "Mar Negro y Ucrania", "ll": [34.0, 46.0],
-             "d": "La guerra abierta entre Rusia y Ucrania desde 2022, con la OTAN como proveedora de armas e inteligencia de Kiev."},
-            {"n": 6, "x": "Levante y golfo Pérsico", "ll": [44.0, 30.0],
-             "d": "Israel frente a Irán y su red de aliados armados: Hezbolá, los hutíes y milicias iraquíes. Por el estrecho de Ormuz pasa cerca de una quinta parte del petróleo del mundo."},
-            {"n": 7, "x": "Mar de China Meridional y estrecho de Malaca", "ll": [112.0, 11.0],
-             "d": "China reclama casi todo el mar dentro de su línea de nueve trazos y choca con Filipinas en atolones como Scarborough. Por Malaca, la salida a ese mar, pasa la mayor parte del petróleo que importan China, Japón y Corea."}]}
+        "friccion": [dict(f, actores=[{"id": a, "r": r} for a, r in f["actores"]]) for f in FRICCION]}
 rel = [{"a": a, "b": b, "t": t, "x": x, "i": i} for a, b, t, x, i in RELACIONES]
 paises = {m: {"n": es, "b": b, "p": p, "z": z, "asp": a, "x": n} for m, es, b, p, z, a, n in PAISES}
 nombres = json.load(open(os.path.join(RAIZ, "data", "nombres_mapa.json"))) if os.path.exists(os.path.join(RAIZ, "data", "nombres_mapa.json")) else []
@@ -142,6 +129,9 @@ for m in nombres:
         _t = TERR_ES.get(m, (m, None))
         paises[m] = {"n": _t[0], "b": "D" if m in TERRITORIOS_D else "T", "p": "S" if m in TERRITORIOS_D else "G", "z": "", "asp": [], "x": ("Bajo control británico desde 1833 y reclamadas por la Argentina; base militar británica en Mount Pleasant." if m == "Falkland Is." else "Base militar conjunta de EE.UU. y Reino Unido en Diego García; Mauricio reclama la soberanía y en 2025 se firmó su traspaso con arriendo de la base." if m == "Br. Indian Ocean Ter." else f"Territorio dependiente de {_t[1]}." if _t[1] else "Zona en disputa entre India y Pakistán." if m == "Siachen Glacier" else "Territorio dependiente."), "terr": True}
 
+for f in FRICCION:
+    for a, _ in f["actores"]: assert a in ids, (f["n"], a)
+    for c in f["paises"]: assert c in paises, (f["n"], c)
 for m, (i, nota) in MANDA.items():
     assert m in paises, m
     assert i in ids, (m, i)

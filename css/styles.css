@@ -244,3 +244,11 @@ td.mono { white-space: nowrap; }
 .qm-stack > aside .side-x { margin: 0 0 8px; }
 .qm-mob { display: none; }
 @media (max-width: 900px) { .qm-mob { display: inline; } }
+/* Puntos de fricción */
+.fr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.fr-card { border: 1px solid var(--line); background: var(--surface); color: var(--text); text-decoration: none; display: flex; flex-direction: column; }
+.fr-card:hover { border-color: var(--red); color: var(--text); }
+.fr-card > div { padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 10px; }
+.fr-card b { font: 800 24px/1.05 var(--f-display); text-transform: uppercase; }
+.fr-card span:not(.kick) { font-size: 14px; line-height: 1.5; color: var(--muted); }
+tr.on td { background: rgba(225, 6, 0, .12); }
