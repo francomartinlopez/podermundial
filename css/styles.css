@@ -252,3 +252,13 @@ td.mono { white-space: nowrap; }
 .fr-card b { font: 800 24px/1.05 var(--f-display); text-transform: uppercase; }
 .fr-card span:not(.kick) { font-size: 14px; line-height: 1.5; color: var(--muted); }
 tr.on td { background: rgba(225, 6, 0, .12); }
+/* Imperios */
+.imp-leg { border-collapse: collapse; font-size: 12px; margin-bottom: 6px; }
+.imp-leg th, .imp-leg td { padding: 3px 4px; text-align: center; font-weight: 400; color: var(--muted); border: 0; background: none; }
+.imp-leg thead th { font: 500 9px var(--f-mono); letter-spacing: .06em; text-transform: uppercase; vertical-align: bottom; max-width: 64px; }
+.imp-leg tbody th { text-align: left; color: var(--text); white-space: nowrap; }
+.imp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 16px; }
+@media (max-width: 520px) { .imp-grid { grid-template-columns: 1fr; } }
+.imp-row { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--line-soft); }
+.imp-row .sq { width: 20px; height: 20px; margin-top: 2px; }
+.imp-paises { margin: 4px 0 0; font-size: 14px; line-height: 1.6; color: var(--soft); }

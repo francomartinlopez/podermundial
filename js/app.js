@@ -107,7 +107,27 @@
     if (layer === "actores") extra = ORGS.filter(o => o.ll).slice().sort((a, b) => b.pt - a.pt).map(o => { const [x, y] = proj(o.ll); const r = RAD(o.pt) * zs; return shape(o.tipo, x, y, r, bcol(o.bloque), `class="m-o${sel && sel.k === "o" && sel.v === o.id ? " sel" : ""}" data-o="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}"`); }).join("");
     return `<svg viewBox="${vb.join(" ")}" role="img" aria-label="Mapa mundial: ${esc(LAYERS[layer])}">${defs}<path class="m-sphere" d="${SPHERE}"/><path class="m-grat" d="${GRAT}"/>${cs}${extra}</svg>`;
   }
-  const LAYERS = { bloques: "Bloques", posicion: "Posición", zonas: "Zonas liberadas", actores: "Actores" };
+  const LAYERS = { bloques: "Bloques", posicion: "Imperios", zonas: "Zonas liberadas", actores: "Actores" };
+  // muestra de color de una posición, como la pinta el mapa
+  function swatch(b, p) {
+    if (p === "R") return `repeating-linear-gradient(45deg,${b === "D" ? "#5A5150" : bcol(b)} 0 3px,#141414 3px 6px)`;
+    if (p === "K") return `radial-gradient(circle,#141414 1.1px,${b === "D" ? "#5A5150" : bcol(b)} 1.3px) 0 0/5px 5px`;
+    const f = fillFor(Object.keys(PA).find(k => PA[k].b === b && PA[k].p === p) || "", "posicion");
+    if (f !== "#101010") return f;
+    const c = b === "D" ? (p === "IT" ? BL.T.c : p === "IE" ? BL.E.c : p === "P" ? BL.P.c : null) : bcol(b);
+    return c ? c + Math.round((POSOP[p] || 1) * 255).toString(16).padStart(2, "0") : "#232323";
+  }
+  const POSORD = ["C", "A", "G", "R", "K"];
+  function legendImperios() {
+    const cell = (b, p) => `<span class="sq" style="background:${swatch(b, p)};border:1px solid #2A1414" title="${esc(M.posiciones[p])}"></span>`;
+    return `<table class="imp-leg"><thead><tr><th></th>${POSORD.map(p => `<th title="${esc(M.posiciones[p])}">${{ C: "Centro", A: "Aliado", G: "Integrado", R: "Protect.", K: "Colonia" }[p]}</th>`).join("")}</tr></thead><tbody>${["T", "E"].map(b => `<tr><th>${esc(BL[b].n)}</th>${POSORD.map(p => `<td>${cell(b, p)}</td>`).join("")}</tr>`).join("")}</tbody></table>`
+      + `<div><span class="sq" style="background:${swatch("I", "U")}"></span>Independiente (India, Brasil)</div>`
+      + `<div class="lbl" style="margin:8px 0 0">Terreno disputado</div>`
+      + `<div><span class="sq" style="background:${swatch("D", "IT")}"></span>Inclinado al transoceánico</div>`
+      + `<div><span class="sq" style="background:${swatch("D", "IE")}"></span>Inclinado al euroasiático</div>`
+      + `<div><span class="sq" style="background:${swatch("D", "P")}"></span>Pendular: negocia con los dos bloques</div>`
+      + `<div><span class="sq" style="background:#232323;border:1px solid #2A1414"></span>Sin alinear</div>`;
+  }
   function legendFor(layer) {
     const sq = (c, t, extra = "") => `<div><span class="sq" style="background:${c};${extra}"></span>${t}</div>`;
     if (layer === "zonas") return sq(ZONA.T, "Total") + sq(ZONA.X, "Extendida") + sq(ZONA.P, "Parcial") + sq("#232323", "Sin zona liberada", "border:1px solid #2A1414");
@@ -115,7 +135,7 @@
       + `<div class="lbl" style="margin:8px 0 0">Forma: tipo de actor</div>` + M.tipos.map(t => `<div><svg width="16" height="16" aria-hidden="true">${shape(t, 8, 8, 6.4, "#EDE6E3")}</svg>${t}</div>`).join("")
       + `<div class="lbl" style="margin:8px 0 0">Tamaño: puntaje de poder</div><div style="align-items:flex-end;gap:14px">${[100, 50, 10].map(v => `<span style="display:inline-flex;flex-direction:column;align-items:center;gap:4px"><svg width="${2 * RAD(v) + 2}" height="${2 * RAD(v) + 2}" aria-hidden="true"><circle cx="${RAD(v) + 1}" cy="${RAD(v) + 1}" r="${RAD(v)}" fill="none" stroke="#EDE6E3" stroke-width="1.2"/></svg><small class="muted">${v}</small></span>`).join("")}</div>`;
     const base = sq(BL.T.c, "Imperio transoceánico") + sq(BL.E.c, "Alianza euroasiática") + sq(BL.I.c, "Independientes") + sq("#232323", "Terreno disputado", "border:1px solid #2A1414");
-    if (layer === "posicion") return base + sq("repeating-linear-gradient(45deg,#2F6BFF 0 3px,#141414 3px 6px)", "Protectorado") + sq("radial-gradient(circle,#141414 1.1px,#2F6BFF 1.3px) 0 0/5px 5px", "Colonia de hecho") + `<p class="note">Color: bloque. Intensidad del color: centro y aliados, plena; integrados, media; pendulares e inclinados, tenue. En el terreno disputado, el tinte indica hacia qué bloque se inclina.</p>`;
+    if (layer === "posicion") return legendImperios() + `<p class="note">Color: bloque. Cuanto más intenso, más depende del centro su política exterior; rayado, protectorado; punteado, colonia de hecho. <a href="#imperios">Ver la explicación completa</a>.</p>`;
     return base + `<div><span class="sq" style="border:1.6px solid #FF3B30;border-radius:50%"></span>Punto de fricción</div>`;
   }
   function countryPanel(name, layer) {
@@ -429,7 +449,7 @@
           <li><b>Colonia de hecho.</b> Figura como otro país, con bandera, asiento en la ONU y gobierno, pero la potencia ejerce el control como si fuera parte de su territorio: decide su defensa, su moneda o su presupuesto, y su gobierno no puede contradecirla. A esto se suman los territorios que son formalmente dependientes, como Puerto Rico, Guam o Groenlandia.</li>
           <li><b>Pendular, inclinado o sin alinear.</b> Países que negocian con más de un bloque, que se inclinan hacia uno sin pertenecer del todo o que se mantienen fuera de ambos.</li>
         </ul>
-        <p>Además están las <b>zonas liberadas</b>: territorios, a veces dentro de países que figuran como soberanos y estables, donde el Estado no manda y cada actor hace lo que su poder real le permite. Un cártel cobra impuestos y administra justicia en una región de México; una milicia controla una frontera; una facción criminal gobierna cárceles y barrios en Brasil; una potencia extranjera mantiene tropas que nadie invitó. Son, también, la frontera en el sentido del libro: los espacios fuera del alcance de un poder único. El mapa las marca por grado (parcial, extendida o total) y por aspecto: territorial, crimen organizado, fronteras, fiscal y económico, o presencia extranjera. Todo esto se ve en las capas «Posición» y «Zonas liberadas» del mapa de <a href="#paises">Países</a>.</p>
+        <p>Además están las <b>zonas liberadas</b>: territorios, a veces dentro de países que figuran como soberanos y estables, donde el Estado no manda y cada actor hace lo que su poder real le permite. Un cártel cobra impuestos y administra justicia en una región de México; una milicia controla una frontera; una facción criminal gobierna cárceles y barrios en Brasil; una potencia extranjera mantiene tropas que nadie invitó. Son, también, la frontera en el sentido del libro: los espacios fuera del alcance de un poder único. El mapa las marca por grado (parcial, extendida o total) y por aspecto: territorial, crimen organizado, fronteras, fiscal y económico, o presencia extranjera. Todo esto se ve en el mapa de <a href="#imperios">Imperios</a> y en la capa «Zonas liberadas» del mapa de <a href="#paises">Países</a>.</p>
         <h2>Marco teórico</h2>
         <p><b>Geopolítica y realismo</b></p>
         <ul>
@@ -495,6 +515,35 @@
       </div></div>`;
   };
 
+
+  const POSDEF = {
+    C: "Decide la estrategia del bloque y tiene la última palabra en guerra, moneda y alianzas.",
+    A: "Pertenece al bloque pero conserva criterio estratégico propio y puede decir que no.",
+    G: "Forma parte del bloque y rara vez se aparta de su línea, aunque gestione sus asuntos internos.",
+    R: "Tiene gobierno propio, pero cuando el centro da una orden la cumple: su seguridad, su economía o la supervivencia de sus gobernantes dependen de él.",
+    K: "Figura como otro país, pero la potencia decide su defensa, su moneda o su presupuesto, y su gobierno no puede contradecirla.",
+    U: "Potencia con estrategia propia, fuera de los dos bloques.",
+    IT: "No pertenece a ningún bloque, pero en lo decisivo se inclina hacia el transoceánico.",
+    IE: "No pertenece a ningún bloque, pero en lo decisivo se inclina hacia el euroasiático.",
+    P: "Negocia con los dos bloques y cambia de lado según el tema.",
+    S: "Fuera de ambos bloques, sin inclinación clara."
+  };
+  V.imperios = () => {
+    const sov = Object.entries(PA).filter(([, p]) => !p.terr);
+    const lista = (b, p) => sov.filter(([, x]) => x.b === b && x.p === p).map(([, x]) => x.n).sort((a, c) => a.localeCompare(c, "es"));
+    const terr = b => Object.values(PA).filter(x => x.terr && x.b === b).map(x => x.n).sort((a, c) => a.localeCompare(c, "es"));
+    const fila = (b, p, nota) => { const l = lista(b, p); if (!l.length) return ""; return `<div class="imp-row"><span class="sq" style="background:${swatch(b, p)};border:1px solid #2A1414"></span><div><b>${esc(M.posiciones[p])}</b> <span class="muted">(${l.length})</span><p class="side-x" style="margin:4px 0">${esc(nota || POSDEF[p])}</p><p class="imp-paises">${l.map(esc).join(" · ")}</p></div></div>`; };
+    const bloque = (b, intro) => `<div class="box imp-box"><span class="lbl" style="color:${bcol(b)}">${esc(BL[b].n)}</span><p class="side-x">${intro}</p>${POSORD.map(p => fila(b, p)).join("")}${b === "T" && terr("T").length ? `<div class="imp-row"><span class="sq" style="background:${swatch("T", "G")};border:1px solid #2A1414"></span><div><b>Territorios dependientes</b> <span class="muted">(${terr("T").length})</span><p class="imp-paises">${terr("T").map(esc).join(" · ")}</p></div></div>` : ""}</div>`;
+    app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Mapa</div><h1>Imperios</h1></div>
+      <p class="read">Debajo del mapa de los Estados soberanos, todos iguales en la ONU, está el de los imperios: un país centro y, a su alrededor, una gradación de dependencia que va del aliado con criterio propio a la colonia que solo conserva la bandera. Hoy hay dos: el imperio transoceánico, con centro en Estados Unidos, y la alianza euroasiática, con centros en China y Rusia. Fuera quedan dos potencias independientes y un terreno disputado.</p></div>
+      <section class="block" id="mapa-imperios"></section>
+      <section class="block"><div class="sec-title"><h2>Cómo se lee</h2></div>
+        <div class="imp-grid">${bloque("T", "Centro en Estados Unidos. Domina desde el otro lado de los océanos: bases, flotas, el dólar y la alianza atlántica y del Pacífico.")}${bloque("E", "Centros en China y Rusia. Una alianza de potencias continentales que comparten el rechazo al orden transoceánico más que una estrategia común.")}
+        <div class="box imp-box"><span class="lbl">Independientes</span>${fila("I", "U")}</div>
+        <div class="box imp-box"><span class="lbl">Terreno disputado</span><p class="side-x">Países que ningún bloque controla. El color indica hacia dónde se inclinan.</p>${["IT", "IE", "P", "R", "K", "S"].map(p => fila("D", p, p === "R" ? "Protectorado de una potencia regional, fuera de los dos grandes bloques." : p === "K" ? "Colonia de hecho de una potencia regional." : null)).join("")}</div></div>
+        <p class="note">La clasificación de cada país, con su nota, está en <a href="#paises">Países</a>. La teoría, en el <a href="#marco">Marco</a>. Los frentes donde chocan los bloques, en <a href="#friccion">Puntos de fricción</a>.</p></section></div>`;
+    mountMap(document.getElementById("mapa-imperios"), { layer: "posicion", layers: ["posicion", "bloques"] });
+  };
   // ---------- puntos de fricción ----------
   const RELSTY = t => t === "Enfrentamiento" ? 'stroke="#FF3B30" stroke-dasharray="6 4"' : t === "Ambigua" ? 'stroke="#F2A93B" stroke-dasharray="4 3"' : (t === "Puerta giratoria" || t === "Acceso a datos") ? 'stroke="#9A8F8C" stroke-dasharray="2 4"' : 'stroke="#EDE6E3"';
   // mapa chico de la región: países del frente resaltados
@@ -571,7 +620,7 @@
   };
 
   // ---------- rutas ----------
-  const NAV = { inicio: "", "quien-manda": "quien", actores: "actores", paises: "paises", friccion: "friccion", marco: "marco" };
+  const NAV = { inicio: "", "quien-manda": "quien", actores: "actores", paises: "paises", imperios: "imperios", friccion: "friccion", marco: "marco" };
   function route() {
     const h = decodeURIComponent(location.hash.slice(1));
     tip.style.display = "none";
@@ -581,11 +630,12 @@
     else if (/^(actores|organizaciones)(-oculto)?$/.test(h)) { V.actores(h.endsWith("oculto") ? "oculto" : "pt"); navKey = "actores"; }
     else if (h === "paises") { V.paises(); navKey = h; }
     else if (h === "friccion") { V.friccion(); navKey = h; }
+    else if (h === "imperios") { V.imperios(); navKey = h; }
     else if (/^f-\d+$/.test(h)) { V.fr(h.slice(2)); navKey = "friccion"; }
     else if (h === "marco" || h === "marco-categorias") { V.marco(); navKey = "marco"; }
     else V.inicio();
     document.querySelectorAll(".mainnav a").forEach(a => a.classList.toggle("on", a.dataset.k === navKey));
-    const titles = { inicio: "", "quien-manda": "Quién manda", actores: "Actores", paises: "Países", friccion: "Puntos de fricción", marco: "Marco" };
+    const titles = { inicio: "", "quien-manda": "Quién manda", actores: "Actores", paises: "Países", imperios: "Imperios", friccion: "Puntos de fricción", marco: "Marco" };
     const fx = /^f-\d+$/.test(h) && M.friccion.find(x => x.n === +h.slice(2));
     const t = h.startsWith("o-") && byId[h.slice(2)] ? corto(byId[h.slice(2)].n) : fx ? fx.x : titles[navKey];
     document.title = (t ? t + " · " : "") + "El mapa del poder global";
