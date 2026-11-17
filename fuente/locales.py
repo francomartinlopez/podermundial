@@ -240,6 +240,7 @@ RELACIONES = [
  ("al_sabah", "pentagono", "Contrato", "Kuwait aloja miles de soldados de EE.UU. desde la guerra del Golfo.", 2),
  ("hachemita", "casablanca", "Alianza", "Jordania es uno de los mayores receptores de ayuda de EE.UU.", 2),
  ("mswati", "casablanca", "Contrato", "Esuatini aceptó en 2025 deportados de terceros países enviados por EE.UU.", 1),
+ ("netanyahu", "mossad", "Ambigua", "Por ley el Mossad responde al primer ministro, que nombra a su director, pero en los hechos fija su propia agenda.", 2),
  ("capsat", "kremlin", "Ambigua", "El nuevo gobierno militar se acercó a Rusia tras el golpe de 2025.", 1),
 ]
 

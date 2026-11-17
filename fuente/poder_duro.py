@@ -114,4 +114,8 @@ AUT = {
  "spacex": 2, "meta": 2, "reliance": 2, "lvmh": 2, "x": 2,  # empresas con aparato propio, más que instrumentos de su dueño
  "mss": 2,       # aparato de inteligencia con agenda propia en el exterior
  "isi": 2,       # opera con margen propio dentro del ejército
+ "mossad": 1,    # responde por ley al primer ministro, pero en los hechos fija su propia agenda
 }
+
+# Dependencias formales que no reflejan el poder real ("" = no depende de nadie en el mapa)
+DEP = {"mossad": ""}
