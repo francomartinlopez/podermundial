@@ -80,6 +80,15 @@ for o in orgs: assert o["area"] in TEORICO, o["area"]
 for m in MONARCAS: assert m in ids, m
 for m in ALC_G | ALC_R: assert m in ids, m
 byid = {o["id"]: o for o in orgs}
+# Una sola relación por par de actores: si el par aparece dos veces (en cualquier sentido), se queda la primera,
+# con la mayor intensidad y la descripción más completa.
+_rel = {}
+for a, b, t, x, n in RELACIONES:
+    k = frozenset((a, b))
+    if k not in _rel: _rel[k] = [a, b, t, x, n]; continue
+    r = _rel[k]; r[4] = max(r[4], n)
+    if len(x) > len(r[3]): r[3] = x
+RELACIONES = [tuple(r) for r in _rel.values()]
 sale = {i: 0.0 for i in ids}; entra = {i: 0.0 for i in ids}; desafia = {i: 0 for i in ids}; ndep = {i: 0 for i in ids}
 for a, b, t, x, n in RELACIONES:
     w = PESO_REL.get(t)

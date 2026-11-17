@@ -448,7 +448,6 @@ FR_REL = [
  ("fdi", "cgri", "Enfrentamiento", "Guerra de doce días en junio de 2025.", 3),
  ("quds", "hutis", "Abastecimiento", "Irán provee misiles y drones a los hutíes.", 2),
  ("quds", "pmf", "Alianza", "Varias milicias iraquíes responden a la Fuerza Quds.", 2),
- ("pentagono", "hutis", "Enfrentamiento", "Bombardeos de EE.UU. en Yemen en 2024 y 2025.", 2),
  ("pentagono", "cgri", "Enfrentamiento", "EE.UU. bombardeó instalaciones nucleares iraníes en junio de 2025.", 3),
  ("althani", "hamas", "Ambigua", "Catar aloja a la dirigencia política de Hamás y media en las negociaciones.", 2),
  ("al_said", "lider_iran", "Ambigua", "Omán es el canal de negociación entre EE.UU. e Irán.", 1),

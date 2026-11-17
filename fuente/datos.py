@@ -407,7 +407,7 @@ RELACIONES += [(a, b, t, x, i) for a, b, t, i, x in [
  ("saud","casablanca","Alianza",2,"Seguridad a cambio de petróleo e inversión; acuerdo de defensa estratégica en 2025."),
  ("saud","hutis","Enfrentamiento",2,"Guerra en Yemen desde 2015, con tregua de hecho desde 2022."),
  ("fdi","hutis","Enfrentamiento",2,"Ataques cruzados desde 2023 por los misiles hutíes contra Israel."),
- ("pentagono","hutis","Enfrentamiento",2,"Campaña aérea de EE.UU. en 2025 por los ataques al tráfico en el mar Rojo."),
+ ("pentagono","hutis","Enfrentamiento",2,"Campaña aérea de EE.UU. en 2025 por los ataques al tráfico en el mar Rojo; los hutíes se sumaron a la guerra de 2026 con ataques con misiles."),
  ("althani","hamas","Financiamiento",1,"Catar albergó la oficina política de Hamás y canalizó fondos a Gaza."),
  ("althani","casablanca","Alianza",2,"Base aérea de Al Udeid, la mayor de EE.UU. en Medio Oriente."),
  ("althani","hermandad","Alianza",1,"Apoyo político y mediático de Catar a movimientos de la Hermandad Musulmana."),
@@ -532,7 +532,6 @@ RELACIONES += [
  ("casablanca", "lider_iran", "Enfrentamiento", "Guerra iniciada el 28 de febrero de 2026, en la que murió Ali Jamenei; bloqueo naval a los puertos iraníes vigente desde julio.", 3),
  ("pentagono", "cgri", "Enfrentamiento", "Operación Furia Épica desde febrero de 2026 y ataques posteriores contra objetivos de la Guardia.", 3),
  ("ejercito_pak", "casablanca", "Ambigua", "Pakistán medió y fue sede de las negociaciones entre EE.UU. e Irán en 2026.", 1),
- ("hutis", "pentagono", "Enfrentamiento", "Los hutíes se sumaron a la guerra de 2026 con ataques con misiles.", 2),
 ]
 
 # ---------- Ampliación del 2026-11-16: 50 organizaciones para cubrir regiones sin presencia ----------
