@@ -2,6 +2,8 @@
 
 ## 2026-11-17 (d)
 
+- Fichas de país: bloque «Los dos bloques aquí», con lo que quieren el imperio transoceánico y la alianza euroasiática en cada país y lo que hicieron ahí entre 2016 y 2026. Textos en `fuente/paises_bloques.py`.
+
 - Ficha de cada actor: gráfico «Con quién se relaciona», con el actor en el centro y sus relaciones y dependencias alrededor (las 24 más fuertes si tiene más); tocar un actor abre su ficha.
 
 - El menú de arriba queda fijo arriba al bajar y ya no se esconde, ni siquiera con una versión vieja del script en caché; no tapa el título de portada.
