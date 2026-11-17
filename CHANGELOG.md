@@ -1,5 +1,11 @@
 # Cambios
 
+## 2026-11-17 · Método explicado en el sitio
+
+- Marco: explica los ejes de cohesión interna, apoyo popular y privilegio legal, la corrupción dentro de «acción fuera de la ley», cómo se asigna el alcance efectivo, la división de partidos y suma una lista de cambios recientes.
+- Cada ficha muestra cómo se calcula su puntaje: los cinco componentes, su peso y su valor.
+- Nueva imagen para compartir con la cifra actual: 521 actores y 21 ejes.
+
 ## 2026-11-17 · Escala estirada
 
 - El puntaje de poder se eleva al cubo antes de llevar el mayor a 100. El orden no cambia, pero las distancias se acercan a las reales: el último actor pasa de 35 a unos 5 puntos y la mediana de 57 a 19.
