@@ -2,7 +2,7 @@
 
 ## 2026-11-17 (d)
 
-- Marco: la democracia republicana constitucional se describe como economía de libre mercado con regulación, intervención, servicios y asistencia estatal en distintos grados según la ideología, entre polos de izquierda y derecha acotados; en autocracias y criptocracias los polos pueden ser más extremos, reales o de fachada.
+- Marco: la democracia republicana constitucional se describe como economía de libre mercado con regulación, intervención, servicios y asistencia estatal en distintos grados según la ideología, entre polos de izquierda y derecha acotados; en autocracias y criptocracias los polos pueden ser más extremos, reales o de fachada. En la criptocracia, el extremismo llega también por el voto, empujado por los problemas que el sistema abandona o genera, y el resultado electoral le resulta barato al sistema porque no cambia el eje del poder; en la autocracia, la coerción facilita imponer extremos.
 - Ficha de cada país (`#p-<país>`): mapa, dónde está parado en el orden de imperios, quién define, quién manda desde afuera y sobre quién manda, actores con sede, gráfico de relaciones con los actores de afuera, lista de relaciones y puntos de fricción. Se abre con el botón «Abrir la ficha del país» al tocar un país en cualquier mapa y desde el nombre en la tabla de Países. La lista de Actores acepta un país preseleccionado (`#actores:<país>`).
 - Menú de arriba: queda fijo, se esconde al bajar y reaparece apenas se sube un poco (antes solo volvía al llegar arriba de todo).
 - Relaciones duplicadas: 9 pares que figuraban dos veces (por ejemplo, Pentágono y hutíes) quedan en una sola relación; el generador ya no admite pares repetidos.
