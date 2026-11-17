@@ -1,5 +1,10 @@
 # Cambios
 
+## 2026-11-17 · El Marco, fiel a Cryptocracy
+
+- «La tesis», «Sistemas de gobierno» y «Marco teórico» reescritos a partir del texto del libro: la tesis sobre la naturaleza humana, la criptocracia como etapa más baja de las democracias republicanas constitucionales (Estado visible y Estado operativo), la tipología de autocracias (tecnocracia de resultados, régimen nacionalista e imperial, híbrido teocrático y regímenes residuales), Kennedy como punto de inflexión según el libro y la anatomía de la decadencia.
+- Marco teórico ordenado como la bibliografía del libro: geopolítica y realismo (Mearsheimer, realismo clásico, Huntington, Kilcullen); civilización, frontera y decadencia (Quigley, Turner, Schumpeter, Veblen, Mises y Hayek, Dalio); poder, élites y democracia (Burnham, Mosca, Pareto, Michels, Dahl, la escuela de la elección pública, Hoppe, Popper); naturaleza humana (el libro y Robert Greene).
+
 ## 2026-11-17 · Marco teórico ampliado y colonias de hecho
 
 - Marco: nueva sección «La tesis», con el resumen del enfoque de *Cryptocracy* y el asesinato de Kennedy como punto de inflexión; «Sistemas de gobierno» (autocracia, criptocracia y democracia republicana constitucional, y por qué ninguna democracia actual cumple el modelo); «El orden mundial» (centros, aliados, integrados, protectorados, colonias de hecho, pendulares y zonas liberadas); y un marco teórico ampliado: Mearsheimer, el realismo clásico, la teoría de las élites, Dahl, Quigley y las fases de las civilizaciones, la teoría de la frontera de Turner y Robert Greene.
