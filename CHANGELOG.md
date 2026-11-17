@@ -2,7 +2,7 @@
 
 ## 2026-11-17 (d)
 
-- El menú de arriba queda fijo (posición fija, no «sticky») y ya no se esconde al bajar.
+- El menú de arriba queda fijo arriba al bajar y ya no se esconde, ni siquiera con una versión vieja del script en caché; no tapa el título de portada.
 
 - Fichas de país: se suman «Qué está en juego», una cronología y los datos clave (territorio, demografía, gobierno, recursos y economía) de los 240 países y territorios. Textos en `fuente/paises_juego.py`; cifras del CIA World Factbook en `fuente/paises_datos.py`, generadas con `scripts/importar_factbook.py`; salida en `data/paisfichas.js`.
 
