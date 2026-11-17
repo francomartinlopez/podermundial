@@ -1,5 +1,10 @@
 # Cambios
 
+## 2026-11-17 · Fórmula sin categoría real
+
+- El puntaje de categoría real deja de entrar en el puntaje de poder: se calculaba con la autonomía y las relaciones, que ya están en la fórmula. Se sigue publicando como dato informativo.
+- Pesos nuevos: categoría teórica 40 %, capacidad 30 %, alcance efectivo 20 %, autonomía real 5 % y red de dependientes 5 %.
+
 ## 2026-11-17 · Alcance efectivo
 
 - Nuevo componente del puntaje de poder: **alcance efectivo**, dónde puede actuar de verdad cada actor, más allá de lo que la ley le permita. Global (0,60), regional o en un grupo de países (0,25) o nacional (0,15), asignado actor por actor: 189 globales, 146 regionales y 186 nacionales (`fuente/alcance.py`).

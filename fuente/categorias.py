@@ -23,8 +23,9 @@ TEORICO = {
     "Institución mundial": 4, "Estandarización e infraestructura técnica": 4,
 }
 
-# Puntaje final: media geométrica ponderada de seis componentes, cada uno entre 0 y 1 (alcance: ver fuente/alcance.py).
-PESO_FINAL = {"ct": .40, "cr": .10, "cap": .20, "alc": .20, "aut": .05, "red": .05}
+# Puntaje final: media geométrica ponderada de cinco componentes, cada uno entre 0 y 1 (alcance: ver fuente/alcance.py).
+PESO_FINAL = {"ct": .40, "cap": .30, "alc": .20, "aut": .05, "red": .05}
+# La categoría real se sigue calculando y publicando, pero no entra en la fórmula (evita contar dos veces autonomía y relaciones).
 
 # Relevamiento del puntaje real de cada actor (se promedia por categoría y se lleva a 0-10).
 PESO_REL = {"Gobierna": 1, "Propiedad": 1, "Financiamiento": 1, "Acceso a datos": 1, "Abastecimiento": .5, "Puerta giratoria": .5}

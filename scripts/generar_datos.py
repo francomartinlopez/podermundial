@@ -83,7 +83,7 @@ hmax = max(heredado.values())
 def comp(o):
     return {"ct": TEORICO[o["area"]] / 10, "cr": REAL[o["area"]] / 10, "cap": max(o["cap"], .5) / CAPMAX, "aut": o["fr"],
             "red": .5 + .5 * math.log1p(heredado[o["id"]]) / math.log1p(hmax), "alc": ALC_V[alcance(o["id"])] / ALC_V["G"]}
-bruto = {o["id"]: math.prod(v ** PESO_FINAL[k] for k, v in comp(o).items()) for o in orgs}
+bruto = {o["id"]: math.prod(v ** PESO_FINAL[k] for k, v in comp(o).items() if k in PESO_FINAL) for o in orgs}
 bmax = max(bruto.values())
 for o in orgs: o["pt"] = round(100 * bruto[o["id"]] / bmax, 1)
 for o in orgs: o["alc"] = alcance(o["id"])
