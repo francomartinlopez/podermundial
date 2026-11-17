@@ -1,6 +1,7 @@
 # Cambios
 
 ## 2026-11-17 (d)
+- Quién manda: la leyenda explica cada tipo de línea (dependencia, alianza, enfrentamiento, ambigua, puerta giratoria o acceso a datos).
 - Marco teórico: síntesis de las seis piezas del marco; Schumpeter suma su teoría de las clases y de las élites; nueva entrada con la hipótesis de la herencia generacional (ciclos de unos ochenta años que cierran a las élites en una casta de herederos).
 - Los últimos 10 actores sin vínculo reciben una relación; cuando el hecho no está probado (Sun Yee On, UnitedHealth, Samherji) se aclara en la propia relación. La ficha de los Rothschild suma Suez (1875), el precio del oro de Londres (hasta 2004), el paso de Macron por el banco y la asesoría a Ucrania en su deuda. Ningún actor queda aislado.
 - 140 relaciones nuevas (`fuente/relaciones_extra.py`) para actores que no tenían ninguna: partidos y gobiernos con su bloque, la UE, la OTAN, el FMI o su potencia protectora; empresas con sus rivales, socios y reguladores; organizaciones e iglesias. Quedan 10 actores sin vínculo documentado con otros del mapa.
