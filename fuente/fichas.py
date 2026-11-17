@@ -957,8 +957,8 @@ FICHAS.update({
  fuentes=[("The Vanguard Group (Wikipedia)", W + "The_Vanguard_Group")]),
 
 "doj": dict(
- res=["Departamento de Justicia con el FBI: persecución penal federal, contrainteligencia y extradiciones; brazo jurídico de la ofensiva contra cárteles designados terroristas."],
- manda=["Todd Blanche, fiscal general tras el despido de Pam Bondi en 2026; Kash Patel, director del FBI."],
+ res=["Departamento de Justicia de EE.UU., del que depende el FBI: persecución penal federal y extradiciones; brazo jurídico de la ofensiva contra cárteles designados terroristas."],
+ manda=["Todd Blanche, fiscal general tras el despido de Pam Bondi en 2026."],
  dinero="Decomisos de activos, incluidos los bitcoins del Prince Group.",
  crono=[("1870-06", "Creación."), ("1908-07", "Creación del FBI."), ("2026", "Blanche reemplaza a Bondi.")],
  fuentes=[("United States Department of Justice (Wikipedia)", W + "United_States_Department_of_Justice"),
@@ -2418,3 +2418,6 @@ FICHAS.update(_FL)
 
 from nucleo import FICHAS as _FN
 FICHAS.update(_FN)
+
+from nucleo2 import FICHAS as _FN2
+FICHAS.update(_FN2)

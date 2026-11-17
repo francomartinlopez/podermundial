@@ -1,5 +1,11 @@
 # Cambios
 
+## 2026-11-17 · Inteligencia que faltaba, el FBI y más actores de las potencias (521 actores)
+
+- Inteligencia y seguridad: Organización de Inteligencia de la Guardia Revolucionaria, Oficina de Inteligencia del Estado Mayor Conjunto del EPL, Policía Armada Popular, Departamentos de Organización y de Propaganda del PCCh, SBU de Ucrania, Presidencia General de Inteligencia saudí, BfV alemana y Policía Federal de Brasil.
+- El FBI pasa a ser actor propio, dependiente del Departamento de Justicia.
+- Otros actores: Sedena (fuerzas armadas de México), Lashkar-e-Taiba, Khatam al-Anbiya; L3Harris, Huntington Ingalls, Booz Allen Hamilton, Leidos, KKR, Apollo, Chevron, Eli Lilly, UnitedHealth, Disney, Comcast, Federalist Society, Teamsters; Nornickel, Lukoil, Novatek; CNNC, Bank of China, China Rare Earth Group; Lloyd's, Barclays, The Economist Group, Wellcome Trust; AXA, Naval Group, Orano; SAP, BASF, Grupo Schwarz, Bertelsmann; Sony, Mitsui; DRDO; PL y la familia Bolsonaro, Itaú, BTG Pactual; Koç Holding y PML-N. 47 relaciones nuevas. Fuente: `fuente/nucleo2.py`.
+
 ## 2026-11-17 · Ejes 19 y 20 y corrupción dentro de «acción fuera de la ley»
 
 - Eje 19, **cohesión interna**: unidad de mando frente a facciones, pujas internas o disputas de sucesión (3 = mando único sin pujas; 0 = partido en facciones enfrentadas, como el Cártel de Sinaloa o el Partido Demócrata de EE.UU.).

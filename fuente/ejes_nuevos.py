@@ -113,3 +113,6 @@ APO = {
 
 def valor(tabla, area_tabla, i, area):
     return tabla.get(i, area_tabla[area])
+
+from nucleo2 import COH as _COH2, APO as _APO2
+COH.update(_COH2); APO.update(_APO2)

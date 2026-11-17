@@ -142,3 +142,6 @@ EXT.update({
  "walton": (1, "Walmart pagó en 2019 282 millones de dólares a EE.UU. por violar la ley anticorrupción en México, Brasil, India y China.", W_ + "Walmart"),
  "epl": (1, "Purgas oficiales por corrupción en la Fuerza de Cohetes y en la cúpula militar desde 2023.", W_ + "People%27s_Liberation_Army_Rocket_Force"),
 })
+
+from nucleo2 import EXT as _EXT_N2
+EXT.update(_EXT_N2)

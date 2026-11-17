@@ -935,6 +935,14 @@ FORMAL.update({n[0]: n[9] for n in _NUC})
 FASE.update({n[0]: n[10] for n in _NUC})
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _REL_NUC if (r[0], r[1]) not in _ya]
+from nucleo2 import NUCLEO2 as _NUC2, RELACIONES as _REL_NUC2
+ORGS += [n[:9] for n in _NUC2]
+FORMAL.update({n[0]: n[9] for n in _NUC2})
+FASE.update({n[0]: n[10] for n in _NUC2})
+_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+RELACIONES += [r for r in _REL_NUC2 if (r[0], r[1]) not in _ya]
+# El FBI pasa a ser actor propio
+ORGS = [(o[0], "Departamento de Justicia de EE.UU.") + o[2:] if o[0] == "doj" else o for o in ORGS]
 
 # Poder duro: eje 18 «Acción fuera de la ley» y revisión de autonomía (ver fuente/poder_duro.py)
 from poder_duro import EJE as _EJE, ANCLA as _ANCLA, AUT as _AUT_REAL, DEP as _DEP_REAL
