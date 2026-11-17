@@ -42,11 +42,27 @@ COORDS = {
  "Adén, Yemen": (45.03, 12.79), "Kinsasa, República Democrática del Congo": (15.27, -4.32), "Novi Sad, Serbia": (19.83, 45.27),
  "Dublín, Irlanda": (-6.26, 53.35), "Toruń, Polonia": (18.6, 53.01), "Lisboa, Portugal": (-9.14, 38.72),
  "Túnez, Túnez": (10.18, 36.81), "Ciudad Quezón, Filipinas": (121.04, 14.68), "Limasol, Chipre": (33.04, 34.68),
+ # actores sin sede fija: se ubican en el mapa en su lugar de origen o de reunión, sin asignarles país
+ "Sin sede fija (secretaría en Leiden, Países Bajos)": (4.49, 52.16), "Sin sede central (origen en Egipto)": (31.24, 30.04),
+ "Sin sede fija": (40.1, 35.3),
 }
 
 EXT = {}
 
 RELACIONES = [
+ ("goldman", "tesoro_eeuu", "Puerta giratoria", "Henry Paulson y Steven Mnuchin pasaron de Goldman Sachs a secretarios del Tesoro.", 2),
+ ("sap", "microsoft", "Alianza", "Acuerdo para llevar los sistemas de gestión de SAP a la nube de Microsoft.", 1),
+ ("doj", "glencore", "Enfrentamiento", "Glencore se declaró culpable en 2022 de sobornos y manipulación de mercados ante la justicia de EE.UU.", 2),
+ ("doj", "vitol", "Enfrentamiento", "Vitol pagó 135 millones de dólares en 2020 para cerrar causas por sobornos en Ecuador, México y Brasil.", 2),
+ ("doj", "trafigura", "Enfrentamiento", "Trafigura se declaró culpable en 2024 de sobornar a funcionarios de Petrobras.", 2),
+ ("spglobal", "moodys", "Ambigua", "Comparten con Fitch el oligopolio de las calificaciones de deuda.", 1),
+ ("comisioneu", "pfizer", "Contrato", "Contratos de vacunas contra el COVID-19 con la Unión Europea.", 2),
+ ("bae", "ffaa_reinounido", "Abastecimiento", "Principal proveedor de las fuerzas armadas británicas.", 3),
+ ("bae", "saud", "Contrato", "Contratos de aviones de combate desde el acuerdo Al Yamamah de 1985.", 2),
+ ("fed", "bpi", "Propiedad", "Los bancos centrales son los accionistas del Banco de Pagos Internacionales y forman su consejo.", 2),
+ ("bce", "bpi", "Propiedad", "Los bancos centrales son los accionistas del Banco de Pagos Internacionales y forman su consejo.", 2),
+ ("lilly", "novo_fundacion", "Enfrentamiento", "Compiten por el mercado mundial de los medicamentos contra la obesidad y la diabetes.", 2),
+ ("statestreet", "blackrock", "Ambigua", "Junto con Vanguard, los tres grandes fondos indexados que votan en casi todas las grandes empresas.", 1),
  ("pcv", "vingroup", "Ambigua", "El mayor grupo privado de Vietnam creció bajo el sistema de partido único.", 1),
  ("lukoil", "mol", "Abastecimiento", "Crudo ruso por el oleoducto Druzhba; desde 2024 MOL toma la propiedad en la frontera por las sanciones ucranianas a Lukoil.", 2),
  ("gazprom", "eph", "Contrato", "EPH controla Eustream, por donde pasó el gas ruso hacia Europa hasta que Ucrania cortó el tránsito en 2025.", 1),

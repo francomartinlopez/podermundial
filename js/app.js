@@ -65,6 +65,7 @@
   const porNombre = {}; Object.entries(PA).forEach(([k, p]) => { if (!p.terr || !porNombre[norm(p.n)]) porNombre[norm(p.n)] = k; });
   ORGS.forEach(o => {
     o.pais = null;
+    if (/^sin sede/i.test(o.sede || "")) return;
     const suf = (o.sede || "").replace(/\s*\(.*\)\s*$/, "").split(",").pop();
     const k = porNombre[norm(ALIAS[norm(suf)] || suf)];
     if (k) { o.pais = k; return; }

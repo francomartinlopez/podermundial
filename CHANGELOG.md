@@ -1,6 +1,8 @@
 # Cambios
 
 ## 2026-11-17 (d)
+- El Estado Islámico, la Hermandad Musulmana y Bilderberg, sin sede fija, aparecen en el mapa en su lugar de origen o de reunión, sin país asignado.
+- 13 relaciones documentadas para actores que no tenían ninguna (Goldman Sachs, Glencore, Vitol, Trafigura, Pfizer, BAE, BPI, Eli Lilly, Novo Nordisk, S&P, Moody's, SAP, State Street).
 - 22 actores no estatales nuevos (600 en total, `fuente/nucleo4.py`) en países que tenían uno solo, priorizados por peso real: Vingroup (Vietnam), Ayala e Iglesia ni Cristo (Filipinas), MOL (Hungría), EPH (Chequia), Nokia (Finlandia), BRAC (Bangladés), Iglesia Ortodoxa Etíope, Asociación de Bancos del Líbano, Fuerzas Democráticas Sirias, UNRWA (Palestina), Consejo de Transición del Sur (Yemen), CK Hutchison (Hong Kong), ArcelorMittal (Luxemburgo), Raiffeisen (Austria), CENCO (Congo), NIS (Serbia), Ryanair (Irlanda), Radio Maryja (Polonia), EDP (Portugal), UGTT (Túnez) y John Fredriksen (Chipre). 24 relaciones nuevas.
 
 ## 2026-11-17 (c)
