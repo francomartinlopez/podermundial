@@ -1,6 +1,7 @@
 # Cambios
 
 ## 2026-11-17 (c)
+- Puntos de fricción: pasan de 7 a 9. Latinoamérica se divide en «México, Centroamérica y el Caribe» y «Sudamérica»; se suma «África central y austral» (este del Congo, minerales críticos y corredor de Lobito, Mozambique, Sudáfrica frente a EE.UU.), y el punto del norte queda como «Norte de África, Sahel y Cuerno de África». 11 relaciones nuevas.
 - Buscador por nombre en Actores y en Países.
 - Poder oculto de 0 a 100: puntaje de poder (ya estirado) por la brecha entre poder real y formal, con el mayor llevado a 100.
 - Las listas de actores muestran el país donde cada uno tiene su base (también en Quién manda, en los paneles del mapa y en los puntos de fricción), y la página Actores suma un filtro por país.
