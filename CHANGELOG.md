@@ -1,6 +1,7 @@
 # Cambios
 
 ## 2026-11-17 (d)
+- Los últimos 10 actores sin vínculo reciben una relación; cuando el hecho no está probado (Sun Yee On, UnitedHealth, Samherji) se aclara en la propia relación. La ficha de los Rothschild suma Suez (1875), el precio del oro de Londres (hasta 2004), el paso de Macron por el banco y la asesoría a Ucrania en su deuda. Ningún actor queda aislado.
 - 140 relaciones nuevas (`fuente/relaciones_extra.py`) para actores que no tenían ninguna: partidos y gobiernos con su bloque, la UE, la OTAN, el FMI o su potencia protectora; empresas con sus rivales, socios y reguladores; organizaciones e iglesias. Quedan 10 actores sin vínculo documentado con otros del mapa.
 - El Estado Islámico, la Hermandad Musulmana y Bilderberg, sin sede fija, aparecen en el mapa en su lugar de origen o de reunión, sin país asignado.
 - 13 relaciones documentadas para actores que no tenían ninguna (Goldman Sachs, Glencore, Vitol, Trafigura, Pfizer, BAE, BPI, Eli Lilly, Novo Nordisk, S&P, Moody's, SAP, State Street).

@@ -613,7 +613,7 @@ FICHAS = {
  dinero="Minería de diamantes y uranio.", crono=[("1960", "Fundación."), ("1990", "Independencia."), ("2025-03-21", "Nandi-Ndaitwah asume.")], fuentes=[("SWAPO (Wikipedia)", W + "SWAPO")]),
 "debswana": dict(res=["Sociedad a medias entre De Beers y el Estado de Botsuana, uno de los mayores productores de diamantes del mundo por valor; sus ingresos sostienen buena parte del presupuesto del país."],
  manda=["Su directorio, compartido entre el gobierno y De Beers."], dinero="Venta de diamantes en bruto.",
- crono=[("1969", "Creación."), ("2023-06", "Nuevo acuerdo que aumenta la parte del gobierno en las ventas.")], fuentes=[("Debswana (Wikipedia)", W + "Debswana")]),
+ crono=[("1969", "Creación."), ("2023-06", "Nuevo acuerdo que aumenta la parte del gobierno en las ventas.")], fuentes=[("Debswana (Wikipedia)", W + "Debswana"), ("Botswana warns US trade policy could deepen diamond industry slump (Your Botswana)", "https://yourbotswana.com/botswana-warns-us-trade-policy-could-deepen-diamond-industry-slump/")]),
 "rfp_ls": dict(res=["Partido del empresario Sam Matekane, que gobierna Lesoto desde 2022. El país depende de Sudáfrica y vende agua a su vecino."],
  manda=["Sam Matekane, primer ministro."], dinero="La fortuna minera de Matekane y regalías del agua.",
  crono=[("2022-03", "Fundación."), ("2022-10", "Matekane primer ministro.")], fuentes=[("Revolution for Prosperity (Wikipedia)", W + "Revolution_for_Prosperity")]),

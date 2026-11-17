@@ -145,4 +145,16 @@ RELACIONES = [
  ("adf", "fast_ws", "Alianza", "Australia y Nueva Zelanda son los principales socios de Samoa.", 1),
  ("ryanair", "comisioneu", "Enfrentamiento", "Impugnó ante la justicia europea las ayudas estatales aprobadas para otras aerolíneas durante la pandemia.", 1),
  ("casablanca", "up_lr", "Alianza", "Liberia mantiene una relación estrecha con EE.UU. desde su fundación.", 1),
+ # Los diez que faltaban
+ ("rothschild", "zelenski", "Contrato", "Rothschild & Co fue el asesor financiero de Ucrania en la reestructuración de su deuda de 2022 a 2024.", 2),
+ ("rothschild", "city_londres", "Alianza", "N M Rothschild fue durante dos siglos un pilar de la City; en sus oficinas se fijó el precio del oro de Londres hasta 2004. Las teorías que le atribuyen el control de gobiernos o bancos centrales no están demostradas.", 1),
+ ("mps_china", "sunyeeon", "Ambigua", "En 1993 el ministro de Seguridad Pública de China, Tao Siju, calificó de «patrióticas» a algunas tríadas de Hong Kong; no está demostrado un vínculo orgánico con Sun Yee On.", 1),
+ ("tesoro_eeuu", "yamaguchi", "Enfrentamiento", "EE.UU. designó a la yakuza organización criminal transnacional en 2011 y sancionó a los jefes del Yamaguchi-gumi en 2012.", 1),
+ ("inditex", "pcch", "Abastecimiento", "China es uno de sus principales países proveedores; no hay un vínculo político documentado.", 1),
+ ("doj", "bertelsmann", "Enfrentamiento", "Un tribunal de EE.UU. bloqueó en 2022, a pedido del Departamento de Justicia, la compra de Simon & Schuster por Penguin Random House.", 2),
+ ("doj", "unitedhealth", "Ambigua", "Investigación penal y civil sobre su facturación a Medicare, informada por la propia empresa en 2025; no hay acusación ni sentencia.", 1),
+ ("samherji", "swapo", "Ambigua", "Caso Fishrot: la justicia de Namibia juzga a exministros acusados de recibir sobornos por cuotas de pesca vinculados a Samherji; la empresa niega haber cometido delitos y no hay sentencia.", 1),
+ ("casablanca", "debswana", "Enfrentamiento", "Los aranceles de EE.UU. de 2025 a Botsuana y a la India, donde se pule la mayoría de los diamantes, agravaron la caída de sus ventas.", 1),
+ ("casablanca", "cacif", "Alianza", "Como EE.UU., exigió en 2023 respetar el triunfo electoral de Bernardo Arévalo frente a los intentos de anularlo.", 1),
+ ("casablanca", "fuerza_popular", "Alianza", "El Departamento de Estado felicitó a Keiko Fujimori como presidenta electa en julio de 2026.", 1),
 ]

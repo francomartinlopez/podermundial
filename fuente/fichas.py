@@ -1397,8 +1397,8 @@ FICHAS.update({
  res=["Familia de banqueros europeos cuyo banco, Rothschild & Co, es uno de los principales asesores en fusiones y reestructuraciones de deuda soberana del mundo."],
  manda=["Alexandre de Rothschild, presidente ejecutivo de Rothschild & Co."],
  dinero="La familia retiró al banco de la bolsa en 2023 para controlarlo por completo.",
- crono=[("1760s", "Mayer Amschel Rothschild inicia el negocio en Fráncfort."), ("1815", "Financiamiento británico en las guerras napoleónicas."), ("2023", "Retiro de la bolsa de París.")],
- fuentes=[("Rothschild family (Wikipedia)", W + "Rothschild_family"), ("Rothschild & Co (Wikipedia)", W + "Rothschild_%26_Co")]),
+ crono=[("1760s", "Mayer Amschel Rothschild inicia el negocio en Fráncfort."), ("1815", "Financiamiento británico en las guerras napoleónicas."), ("1875", "Lionel de Rothschild presta al gobierno británico el dinero para comprar las acciones del canal de Suez."), ("2004", "Deja de fijarse en sus oficinas el precio del oro de Londres."), ("2008", "Emmanuel Macron entra como banquero en Rothschild & Cie, donde trabaja hasta 2012."), ("2023", "Retiro de la bolsa de París."), ("2024-08", "Como asesor de Ucrania, cierra la reestructuración de 20.500 millones de dólares de bonos.")],
+ fuentes=[("Rothschild family (Wikipedia)", W + "Rothschild_family"), ("Rothschild & Co (Wikipedia)", W + "Rothschild_%26_Co"), ("How Ukraine clinched a wartime debt restructuring (Reuters, en The Star)", "https://www.thestar.com.my/news/world/2024/09/03/conflict-creditors-and-a-car-crash-how-ukraine-clinched-a-wartime-debt-restructuring")]),
 
 "ugle": dict(
  res=["La gran logia más antigua del mundo y referencia de la masonería regular en los países anglosajones."],
