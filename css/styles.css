@@ -262,3 +262,5 @@ tr.on td { background: rgba(225, 6, 0, .12); }
 .imp-row { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--line-soft); }
 .imp-row .sq { width: 20px; height: 20px; margin-top: 2px; }
 .imp-paises { margin: 4px 0 0; font-size: 14px; line-height: 1.6; color: var(--soft); }
+/* Inicio: las tarjetas de secciones en una sola fila en escritorio */
+@media (min-width: 980px) { .cards { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); } .card b { font-size: 24px; } }
