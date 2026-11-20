@@ -493,7 +493,7 @@
         </ul>
         <p>Además están las <b>zonas liberadas</b>: territorios, a veces dentro de países que figuran como soberanos y estables, donde el Estado no manda y cada actor hace lo que su poder real le permite. Un cártel cobra impuestos y administra justicia en una región de México; una milicia controla una frontera; una facción criminal gobierna cárceles y barrios en Brasil; una potencia extranjera mantiene tropas que nadie invitó. Son, también, la frontera en el sentido del libro: los espacios fuera del alcance de un poder único. El mapa las marca por grado (parcial, extendida o total) y por aspecto: territorial, crimen organizado, fronteras, fiscal y económico, o presencia extranjera. Todo esto se ve en el mapa de <a href="#imperios">Imperios</a> y en la capa «Zonas liberadas» del mapa de <a href="#paises">Países</a>.</p>
         <h2>Marco teórico</h2>
-        <p class="note" style="border-left:2px solid #E10600;padding-left:12px">Cómo las distintas teorías ubican el presente en sus ciclos —generaciones, deuda, imperios, élites, crédito—, en un mismo gráfico: <a href="#ciclos">Ciclos</a>.</p>
+        <details class="cy-drop" id="cyDrop"><summary><span class="kick">Ciclos</span><b>Los ciclos del poder</b><span>Generaciones, deuda, imperios, élites y crédito: cómo cada teoría ubica el presente en su ciclo, en un mismo gráfico. Tocá para desplegar.</span></summary><div id="cyBody"></div><p class="note"><a href="#ciclos">Abrir los ciclos en su propia página</a>.</p></details>
         <p><b>La síntesis del sitio.</b> El marco combina seis piezas. La <b>teoría de la frontera</b> explica dónde nace el poder nuevo: en el borde, donde no hay instituciones que lo frenen. <b>Schumpeter y Veblen</b> explican cómo una clase sube cumpliendo una función y cómo, cuando la pierde, conserva el lugar y lo exhibe en ostentación. <b>Quigley</b> describe cómo los instrumentos de expansión se vuelven instituciones que se defienden a sí mismas. <b>Dalio</b> agrega los ciclos de deuda y de riqueza que acompañan el ascenso y la caída de los imperios. La <b>escuela de la elección pública</b> muestra por qué funcionarios, organismos y grupos de interés terminan trabajando para sí mismos. Y la hipótesis de la <b>herencia generacional</b> le pone tiempo al proceso: cada unos ochenta años, la herencia social, genética y económica —dinero, pero también contactos y puestos— cierra a las élites en una casta que ya no generó lo que controla. De la suma sale la criptocracia: un poder real que se reproduce por herencia y por captura, detrás de instituciones que conservan la forma pero perdieron la función.</p>
         <p><b>Geopolítica y realismo</b></p>
         <ul>
@@ -558,6 +558,7 @@
           <li>El sitio se actualiza cada tres meses. Corte actual: ${fecha(M.corte)}. Próxima revisión: ${fecha(M.proxima)}.</li>
         </ul>
       </div></div>`;
+    const cyD = document.getElementById("cyDrop"); if (cyD) cyD.addEventListener("toggle", () => { const b = document.getElementById("cyBody"); if (cyD.open && !b.innerHTML) V.ciclos(b); });
   };
 
 
@@ -780,7 +781,7 @@
   };
 
   // ---------- ciclos ----------
-  V.ciclos = () => {
+  V.ciclos = (el) => {
     const CY = M.ciclos, FC = { e: "#1D6B55", m: "#3A3636", c: "#E10600", g1: "#2B2440", g2: "#3C3489" };
     const W = 960, L = 8, R = 952, Y0 = 1900, Y1 = 2060, X = y => L + (y - Y0) * (R - L) / (Y1 - Y0), RH = 46, T = 40;
     const H = T + CY.franjas.length * RH + 30, NAR = window.innerWidth < 700, LX = NAR ? X(1966) : L;
@@ -802,13 +803,14 @@
     d += `</svg>`;
     const leg = `<div class="legend row" style="margin:10px 0 0">${[["#1D6B55", "Expansión"], ["#3A3636", "Madurez o conservación"], ["#E10600", "Crisis"], ["#FF3B30", "Evento o pico"]].map(([c, t]) => `<section><span class="sq" style="background:${c}"></span>${t}</section>`).join("")}</div>`;
     const card = t => `<div class="box ciclo-card"><span class="lbl">${esc(t.q)}</span><h3>${esc(t.n)}</h3><p class="side-x">${esc(t.m)}</p><dl class="pf-dl">${[["Duración", t.d], ["Señal de crisis", t.s], ["Hoy", t.h], ["En el sitio", t.e], ["Crítica", t.c]].filter(([, v]) => v && v !== "—").map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl><ol class="fuentes">${t.f.map(([a, u]) => `<li><a href="${esc(u)}" rel="noopener" target="_blank">${esc(a)}</a></li>`).join("")}</ol></div>`;
-    app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="crumb"><a href="#marco">Marco</a> / Ciclos</div><h1>Ciclos</h1></div>
-      <p class="read">¿Tiene ritmo el poder? Varias teorías sostienen que sí: generaciones, deuda, imperios, élites y tecnologías que suben y caen con cierta regularidad. Otras, como la escuela austríaca o la teoría de la frontera, no dan fechas sino mecanismos. Esta página las pone en la misma línea de tiempo para ver dónde coinciden. Ninguna es una ley: son lecturas, cada una con su crítica.</p></div>
-      <section class="block"><h2>El reloj de las teorías</h2><p class="note" style="margin:0 0 10px">Una franja por teoría, pintada según la fase que su autor o su lectura más difundida le asigna a cada período. Entre 2020 y 2035 casi todas coinciden en crisis o fin de ciclo.</p><div class="box" style="padding:12px"><div class="qm-scroll cy" id="cyR">${g}</div>${leg}</div>
+    const head = `<div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="crumb"><a href="#marco">Marco</a> / Ciclos</div><h1>Ciclos</h1></div>
+      <p class="read">¿Tiene ritmo el poder? Varias teorías sostienen que sí: generaciones, deuda, imperios, élites y tecnologías que suben y caen con cierta regularidad. Otras, como la escuela austríaca o la teoría de la frontera, no dan fechas sino mecanismos. Esta página las pone en la misma línea de tiempo para ver dónde coinciden. Ninguna es una ley: son lecturas, cada una con su crítica.</p></div>`;
+    const body = `<section class="block"><h2>El reloj de las teorías</h2><p class="note" style="margin:0 0 10px">Una franja por teoría, pintada según la fase que su autor o su lectura más difundida le asigna a cada período. Entre 2020 y 2035 casi todas coinciden en crisis o fin de ciclo.</p><div class="box" style="padding:12px"><div class="qm-scroll cy" id="cyR">${g}</div>${leg}</div>
         <p class="note">Generaciones según el Pew Research Center y McCrindle. La herencia generacional es una estimación propia, anclada en el orden de 1945. Las franjas de Quigley y de la transición de poder son lecturas del sitio. En la franja austríaca, cada marca es un shock de crédito y la barra que le sigue, el tiempo de reconversión. En el celular, deslizá el gráfico hacia los costados.</p></section>
       <section class="block"><h2>Cuánto dura cada ciclo</h2><div class="box" style="padding:12px"><div class="qm-scroll cy">${d}</div></div><p class="note">Años, en escala logarítmica. La escuela austríaca y la teoría de la frontera no tienen período fijo y no figuran.</p></section>
       <section class="block"><h2>Las teorías, una por una</h2><div class="ciclo-grid">${CY.teorias.map(card).join("")}</div></section>
-      <section class="block" style="padding-bottom:56px"><h2>Mecanismos que no dan fechas</h2><p class="note" style="margin:0 0 10px">Explican por qué los ciclos se cierran o se abren, aunque no digan cuándo.</p><ul class="mlist">${CY.mec.map(([n, x]) => `<li><b>${esc(n)}.</b> ${esc(x)}</li>`).join("")}</ul><p class="note">El marco completo, con la bibliografía, está en el <a href="#marco">Marco</a>.</p></section></div>`;
+      <section class="block" style="padding-bottom:56px"><h2>Mecanismos que no dan fechas</h2><p class="note" style="margin:0 0 10px">Explican por qué los ciclos se cierran o se abren, aunque no digan cuándo.</p><ul class="mlist">${CY.mec.map(([n, x]) => `<li><b>${esc(n)}.</b> ${esc(x)}</li>`).join("")}</ul><p class="note">El marco completo, con la bibliografía, está en el <a href="#marco">Marco</a>.</p></section>`;
+    if (el) el.innerHTML = body; else app.innerHTML = `<div class="wrap">${head}${body}</div>`;
     const sc = document.getElementById("cyR"); if (sc && NAR && sc.scrollWidth > sc.clientWidth) sc.scrollLeft = (X(1964) / W) * sc.scrollWidth;
   };
 

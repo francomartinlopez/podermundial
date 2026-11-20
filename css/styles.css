@@ -312,3 +312,12 @@ table.cmp td, table.cmp th { overflow-wrap: anywhere; white-space: normal; }
 .legend.row { flex-direction: row; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; }
 .legend section { display: flex; align-items: center; gap: 8px; }
 .qm-scroll.cy svg { min-width: 680px; }
+.cy-drop { border: 1px solid #E10600; background: var(--surface, #0B0B0B); margin: 0 0 24px; }
+.cy-drop > summary { cursor: pointer; list-style: none; padding: 18px 20px 18px 56px; display: flex; flex-direction: column; gap: 6px; position: relative; min-height: 44px; }
+.cy-drop > summary::-webkit-details-marker { display: none; }
+.cy-drop > summary::before { content: "+"; position: absolute; left: 18px; top: 16px; width: 26px; height: 26px; border: 1px solid #E10600; color: #FF3B30; font: 600 20px/24px "JetBrains Mono", monospace; text-align: center; }
+.cy-drop[open] > summary::before { content: "−"; }
+.cy-drop > summary b { font: 800 26px/1 "Big Shoulders Display", sans-serif; text-transform: uppercase; letter-spacing: .02em; }
+.cy-drop > summary span:last-child { color: #9A8F8C; font-size: 15px; }
+.cy-drop > summary:hover { background: #160808; }
+.cy-drop > #cyBody, .cy-drop > p { padding: 0 20px; }
