@@ -265,7 +265,8 @@ FRICCION = [
   "texto": [
    "Es el único frente donde los bloques ya están en guerra, aunque por intermedio de otro. Rusia considera a Ucrania parte de su esfera y la expansión de la OTAN hacia el este una amenaza existencial; anexó Crimea en 2014 y lanzó la invasión total en 2022. Ucrania resiste con armas, dinero e inteligencia de EE.UU. y Europa, y golpea dentro de Rusia con drones.",
    "La guerra se libra también en el mar Negro, por donde sale el grano ucraniano y donde Turquía controla el paso de los estrechos, y en los países vecinos: Bielorrusia presta su territorio a Rusia; Moldavia y Georgia están partidas entre Europa y Moscú; Polonia y Rumania son la retaguardia de la OTAN. Los activos rusos congelados en Euroclear son el centro de la pelea por quién paga la reconstrucción.",
-   "Desde 2025, Washington presiona por un acuerdo de paz negociado directamente con Moscú, mientras Europa se rearma por su cuenta."],
+   "Desde 2025, Washington presiona por un acuerdo de paz negociado directamente con Moscú, mientras Europa se rearma por su cuenta.",
+   "La ruptura tuvo un antes. En 2000 Putin dijo a la BBC que no descartaba entrar en la OTAN si se trataba a Rusia como socio igual, y en 2001 apoyó a EE.UU. tras el 11 de septiembre con inteligencia, sobrevuelos y la aceptación de bases estadounidenses en Asia Central, mientras ofrecía a Europa una asociación en un discurso en el Bundestag. Las expectativas no se cumplieron: EE.UU. dejó el tratado antimisiles, invadió Irak y la OTAN sumó a los bálticos. En Múnich, en 2007, Putin denunció el mundo unipolar y la ampliación de la alianza. En Bucarest, en 2008, Bush impulsó el plan de ingreso de Ucrania y Georgia; Merkel y Francia lo frenaron, y la cumbre prometió la membresía sin fecha. Merkel escribió en sus memorias que Putin iba a leer esa promesa como una declaración de guerra. En julio de 2021 Putin publicó un largo ensayo según el cual rusos y ucranianos son un solo pueblo y la Ucrania actual se hizo con territorios históricos rusos. La lectura realista ve en la ampliación de la OTAN la causa de la guerra; la opuesta ve en ese ensayo un objetivo imperial que no depende de la OTAN."],
   "paises": ["Ukraine", "Russia", "Belarus", "Moldova", "Romania", "Poland", "Georgia", "Turkey", "Bulgaria"],
   "actores": [
    ("kremlin", "Decide la guerra y negocia directamente con Washington."),
@@ -301,8 +302,19 @@ FRICCION = [
             ("2023-07", "Rusia abandona el acuerdo de exportación de granos."),
             ("2024-08", "Ofensiva ucraniana en Kursk."),
             ("2025-06", "Ucrania destruye bombarderos rusos con drones en la Operación Telaraña."),
-            ("2025-08", "Cumbre entre Trump y Putin en Alaska.")],
-  "fuentes": [("Russo-Ukrainian war (Wikipedia)", W + "Russo-Ukrainian_war"), ("Russian invasion of Ukraine (Wikipedia)", W + "Russian_invasion_of_Ukraine"), ("Bucharest Summit Declaration (Wikipedia)", W + "2008_Bucharest_summit")]},
+            ("2025-08", "Cumbre entre Trump y Putin en Alaska."),
+            ("2000-03", "Putin dice a la BBC que no descarta que Rusia entre en la OTAN como socio igual."),
+            ("2001-09-25", "Tras apoyar a EE.UU. por el 11 de septiembre, Putin ofrece a Europa una asociación en el Bundestag."),
+            ("2007-02-10", "Discurso de Putin en Múnich contra el mundo unipolar y la ampliación de la OTAN."),
+            ("2021-07-12", "Putin publica «Sobre la unidad histórica de rusos y ucranianos»."),
+            ("2022-12", "Merkel dice a Die Zeit que Minsk fue un intento de darle tiempo a Ucrania.")],
+  "fuentes": [("Russo-Ukrainian war (Wikipedia)", W + "Russo-Ukrainian_war"), ("Russian invasion of Ukraine (Wikipedia)", W + "Russian_invasion_of_Ukraine"), ("Bucharest Summit Declaration (Wikipedia)", W + "2008_Bucharest_summit"),
+              ("Discurso de Putin en el Bundestag (2001)", "https://www.bundestag.de/parlament/geschichte/gastredner/PUTIN/PUTIN_wort-244966"),
+              ("Putin en la BBC: «¿Por qué no?» (The Moscow Times, 2000)", "https://www.themoscowtimes.com/archive/putin-on-joining-nato-if-as-equals-why-not"),
+              ("Texto del discurso de Múnich (Air & Space Forces)", "https://www.airandspaceforces.com/article/0407keeperfile/"),
+              ("Las memorias de Merkel sobre Bucarest (Euronews, 2024)", "https://www.euronews.com/2024/11/21/angela-merkel-delayed-ukraines-nato-bid-over-russia-fears-memoir-reveals"),
+              ("On the Historical Unity of Russians and Ukrainians (Wikipedia)", "https://en.wikipedia.org/wiki/On_the_Historical_Unity_of_Russians_and_Ukrainians"),
+              ("Análisis del ensayo de Putin (OSW)", "https://osw.waw.pl/en/publikacje/analyses/2021-07-13/putins-article-historical-unity-russians-and-ukrainians")]},
 
  {"n": 8, "x": "Medio Oriente", "ll": [46.0, 29.0],
   "d": "Del estrecho de Ormuz a Yemen, Israel, Irán, Irak, Siria y Afganistán: Israel frente a Irán y su red de aliados armados, las monarquías del Golfo y el petróleo que pasa por Ormuz.",
@@ -489,7 +501,8 @@ FRICCION += [
   "texto": [
    "El Reino Unido ocupa las Malvinas desde 1833 y mantiene en Mount Pleasant una guarnición que, junto con Ascensión y las Georgias del Sur, le da una cadena de puntos de apoyo en el Atlántico Sur. La Argentina reclama las islas y su reclamo cuenta con el respaldo de la mayoría de los gobiernos latinoamericanos.",
    "El paso de Drake y el estrecho de Magallanes son la única ruta oceánica entre el Atlántico y el Pacífico fuera del canal de Panamá. Frente a la costa patagónica, cientos de pesqueros, en su mayoría chinos, pescan calamar al borde de la zona económica argentina. China opera desde 2017 una estación espacial en Neuquén, a cargo de un organismo de su ejército.",
-   "La Antártida está congelada en lo político por el Tratado de 1959, que suspende los reclamos de soberanía, entre ellos los superpuestos de la Argentina, Chile y el Reino Unido. China y Rusia multiplican sus bases científicas. El gobierno de Milei acordó con EE.UU. en 2024 una base naval integrada en Ushuaia, puerta de entrada a la Antártida."],
+   "La Antártida está congelada en lo político por el Tratado de 1959, que suspende los reclamos de soberanía, entre ellos los superpuestos de la Argentina, Chile y el Reino Unido. China y Rusia multiplican sus bases científicas. El gobierno de Milei acordó con EE.UU. en 2024 una base naval integrada en Ushuaia, puerta de entrada a la Antártida.",
+   "Para el analista argentino Fabián Calle, el valor de esta zona crece porque casi todo el comercio y las comunicaciones del mundo viajan por mar y los mares se controlan desde los estrechos: Magallanes y el Drake entran en la misma lógica que Ormuz o Bab el-Mandeb. En la nueva bipolaridad, sostiene, EE.UU. vuelve a ordenar su hemisferio frente a China, y la posición argentina sobre Malvinas mejora o empeora según cómo se acomode a ese orden."],
   "paises": ["Argentina", "Chile", "Uruguay", "Brazil", "Falkland Is.", "S. Geo. and the Is.", "Saint Helena", "South Africa"],
   "actores": [("ffaa_reinounido", "Guarnición de Mount Pleasant y control de Malvinas, Georgias del Sur y Ascensión."),
               ("milei", "Mantiene el reclamo de soberanía y se alineó con EE.UU. en la base de Ushuaia."),
@@ -500,7 +513,9 @@ FRICCION += [
   "crono": [("1833-01", "El Reino Unido ocupa las Malvinas."), ("1959-12", "Firma del Tratado Antártico."), ("1982", "Guerra de Malvinas."),
             ("2017", "Comienza a operar la estación espacial china de Neuquén."), ("2024-04", "Milei anuncia una base naval integrada con EE.UU. en Ushuaia.")],
   "fuentes": [("Falkland Islands sovereignty dispute (Wikipedia)", _W + "Falkland_Islands_sovereignty_dispute"), ("Antarctic Treaty System (Wikipedia)", _W + "Antarctic_Treaty_System"),
-              ("Espacio Lejano Station (Wikipedia)", _W + "Espacio_Lejano_Station")]},
+              ("Espacio Lejano Station (Wikipedia)", _W + "Espacio_Lejano_Station"),
+              ("Calle en El Observador: el valor estratégico del Atlántico Sur (2026)", "https://www.elobservador.com.uy/estados-unidos/politica/balance-la-conferencia-seguridad-la-fiu-segun-fabian-calle-china-como-ataque-estatal-y-el-valor-estrategico-del-atlantico-sur-n6043480"),
+              ("Calle en La Capital: Malvinas y el alineamiento con EE.UU. (2026)", "https://www.lacapitalmdp.com/calle-hay-que-salir-del-todo-o-nada-que-tuvimos-los-ultimos-20-anos/")]},
 ]
 FR_REL += [
  ("rosatom", "kremlin", "Gobierna", "Rosatom administra la Ruta Marítima del Norte por ley desde 2019.", 2),
@@ -615,15 +630,28 @@ FRICCION += [
   "texto": [
    "Europa dependía del gas ruso hasta 2022; la guerra en Ucrania, la voladura del Nord Stream y las sanciones la obligaron a reemplazarlo con gas licuado de EE.UU. y Catar. Occidente fijó un tope al precio del crudo ruso, que Rusia esquiva con su flota en la sombra y ventas a China y la India.",
    "La OPEP+ coordina la producción entre Arabia Saudita y Rusia, pero perdió a Emiratos en mayo de 2026. Ese año, la guerra con Irán cerró el estrecho de Ormuz, por donde pasa una quinta parte del petróleo del mundo.",
-   "Se ubica en Ras Laffan, en Catar, mayor centro exportador de gas licuado del Golfo, pero el frente incluye Siberia, el golfo de México y los gasoductos de Europa."],
+   "Se ubica en Ras Laffan, en Catar, mayor centro exportador de gas licuado del Golfo, pero el frente incluye Siberia, el golfo de México y los gasoductos de Europa.",
+   "La dependencia europea fue una decisión. Alemania resolvió en 2000 abandonar la energía nuclear y aceleró el cierre tras Fukushima, en 2011, el mismo año en que se inauguró Nord Stream 1; los Países Bajos cerraron Groningen, la mayor fuente propia de gas de Europa occidental. Nord Stream 2 se construyó entre 2018 y 2021 pese a la oposición de EE.UU., Polonia, los bálticos y Ucrania, y en 2021 Rusia cubría cerca del 55 % del gas alemán. La idea era que el comercio moderaría a Rusia; Europa entró en el conflicto con su energía en manos del adversario. En septiembre de 2022 explosiones submarinas dañaron tres de las cuatro líneas de Nord Stream. Suecia y Dinamarca cerraron sus investigaciones sin acusar a nadie; la fiscalía alemana acusa a un exoficial ucraniano de coordinar el sabotaje por cuenta de entidades estatales ucranianas, lo que él niega, y Polonia se negó a extraditar a otro sospechoso."],
   "paises": ["Saudi Arabia", "Qatar", "Russia", "United States of America", "Iran", "United Arab Emirates", "Norway", "Germany"],
   "actores": [("aramco", "La mayor petrolera del mundo."), ("opep", "Coordina la producción entre Arabia Saudita y Rusia."),
               ("gazprom", "Perdió el mercado europeo de gas por gasoducto."), ("qatarenergy", "Uno de los mayores exportadores de gas licuado."),
               ("cheniere", "El mayor exportador de gas licuado de EE.UU."), ("rosneft", "La mayor petrolera rusa, sancionada."),
               ("sovcomflot", "Su flota mueve el crudo ruso pese al tope de precio."), ("comisioneu", "Coordina el abandono del gas ruso.")],
   "crono": [("2022-09", "Voladura del Nord Stream."), ("2022-12", "Tope de precio al crudo ruso."), ("2023", "EE.UU. se convierte en el mayor exportador de gas licuado."),
-            ("2026-02-28", "Irán cierra el estrecho de Ormuz."), ("2026-05-01", "Emiratos deja la OPEP.")],
-  "fuentes": [("2022 Russia–European Union gas dispute (Wikipedia)", _W + "2022_Russia%E2%80%93European_Union_gas_dispute"), ("2026 Strait of Hormuz crisis (Wikipedia)", _W + "2026_Strait_of_Hormuz_crisis")]},
+            ("2026-02-28", "Irán cierra el estrecho de Ormuz."), ("2026-05-01", "Emiratos deja la OPEP."),
+            ("2011-03", "Tras Fukushima, Alemania acelera el abandono de la energía nuclear."),
+            ("2011-11", "Se inaugura Nord Stream 1."),
+            ("2022-02-22", "Alemania suspende la certificación de Nord Stream 2."),
+            ("2023-04-15", "Alemania cierra sus tres últimos reactores nucleares."),
+            ("2024-02", "Suecia y Dinamarca cierran sus investigaciones sobre Nord Stream sin acusar a nadie."),
+            ("2025-10-17", "Un tribunal polaco rechaza extraditar a Alemania a un sospechoso ucraniano del sabotaje."),
+            ("2025-11-27", "Italia entrega a Alemania a un exoficial ucraniano acusado de coordinar el sabotaje."),
+            ("2026-07", "La fiscalía alemana lo acusa de actuar por cuenta de entidades estatales ucranianas; él lo niega.")],
+  "fuentes": [("2022 Russia–European Union gas dispute (Wikipedia)", _W + "2022_Russia%E2%80%93European_Union_gas_dispute"), ("2026 Strait of Hormuz crisis (Wikipedia)", _W + "2026_Strait_of_Hormuz_crisis"),
+              ("Cómo Europa rompe su dependencia del gas ruso (Wood Mackenzie)", "https://www.woodmac.com/ja/blogs/the-edge/how-europe-breaks-its-dependence-on-russia/"),
+              ("Segundo detenido por Nord Stream (Al Jazeera, 2026)", "https://www.aljazeera.com/news/2026/8/19/second-ukrainian-national-arrested-over-2022-nord-stream-pipeline-blast"),
+              ("Extradición a Alemania (DOI.dk, 2025)", "https://www.doi.dk/en/havenergi/artikel/ukrainer-mistaenkt-for-nord-stream-sabotage-er-udleveret-til-tyskland"),
+              ("El tribunal polaco rechaza la extradición (DOI.dk, 2025)", "https://www.doi.dk/en/havenergi/artikel/domstol-vil-ikke-udlevere-ukrainer-mistaenkt-for-nord-stream-sabotage")]},
  {"n": 18, "x": "Información e inteligencia artificial", "ll": [-122.1, 37.4], "global": True,
   "d": "Quién controla los modelos de IA, los centros de datos, las plataformas y las reglas: EE.UU. contra China, Washington contra Bruselas y el gobierno contra sus propias empresas.",
   "texto": [
@@ -665,3 +693,7 @@ FR_REL += [
 from correcciones import FR_CRONO as _FRC
 for _f in FRICCION:
     _f["crono"] = sorted(_f["crono"] + _FRC.get(_f["n"], []), key=lambda c: c[0])
+
+# Cronologías en orden de fecha.
+for _f in FRICCION:
+    _f["crono"].sort(key=lambda c: str(c[0]))

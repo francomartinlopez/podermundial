@@ -2,6 +2,9 @@
 
 ## 2026-11-20
 
+- Marco: Fabián Calle y el realismo desde la Argentina (polaridad, los tres errores del momento unipolar, gran estrategia de palos y zanahorias, líneas rojas, esferas de influencia y control de los estrechos), con lo que le discuten otras escuelas. En Ciclos, franja y tarjeta nuevas con su periodización de la polaridad.
+- Antecedentes de la ruptura entre Rusia y Occidente en el punto de fricción 7 y en las fichas de Rusia, Ucrania y Alemania: Putin y la OTAN en 2000, el apoyo a EE.UU. en 2001 y el discurso en el Bundestag, Múnich 2007, Bucarest 2008 y las memorias de Merkel, Minsk según Merkel y el ensayo de Putin de 2021.
+- Punto de fricción 17 (energía): cómo Europa llegó a depender del gas ruso (abandono nuclear, Groningen, Nord Stream) y el estado de la investigación del sabotaje. Punto de fricción 11: la lectura de Calle sobre los estrechos y Malvinas. Las cronologías de los puntos de fricción quedan ordenadas por fecha.
 - Marco: David Kilcullen, *The Dragons and the Snakes* (2020), con ítem propio separado de Huntington: dragones y serpientes, la adaptación de los rivales desde 1991, la guerra liminal rusa, el envolvimiento conceptual chino y los tres caminos ante el declive (redoblar, replegarse o volverse bizantinos), con las críticas de sus reseñistas. Se suma a la síntesis del Marco y como tarjeta en Ciclos.
 - Marco: Robert Dahl, *Polyarchy: Participation and Opposition* (1971), ampliado: las dos dimensiones (debate público y participación), los cuatro regímenes con un gráfico, las ocho garantías, la regla de costos de tolerar y reprimir, las condiciones que favorecen la poliarquía y cómo la criptocracia invierte esa regla.
 - En el Marco, los ciclos aparecen como un desplegable destacado al comienzo del «Marco teórico»: al tocarlo se abre ahí mismo el contenido completo de la página Ciclos.

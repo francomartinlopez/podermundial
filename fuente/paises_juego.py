@@ -333,7 +333,7 @@ P('France', 'París', 'República semipresidencialista; el presidente concentra 
 P('Germany', 'Berlín', 'República parlamentaria federal.', 'Alemán. Católicos, protestantes, musulmanes y muchos sin religión.',
   'Carbón, lignito, potasa, sal, tierras agrícolas.', 'Industria (automotriz, química, maquinaria), exportaciones; en estancamiento desde 2023.',
   'Su rearme tras perder el gas ruso, el futuro de su industria frente a China y EE.UU., y el ascenso de la ultraderecha.',
-  [(1871, 'Unificación.'), (1945, 'Derrota y división.'), (1990, 'Reunificación.'), (2022, 'Fin del gas ruso y fondo de rearme.'), (2025, 'Reforma constitucional para financiar la defensa.')])
+  [(1871, 'Unificación.'), (1945, 'Derrota y división.'), (1990, 'Reunificación.'), (2008, 'Merkel frena en Bucarest el plan de ingreso de Ucrania y Georgia a la OTAN.'), (2011, 'Tras Fukushima acelera el abandono nuclear; se inaugura Nord Stream 1.'), (2022, 'Fin del gas ruso, del que dependía en más de la mitad; voladura de Nord Stream y fondo de rearme.'), (2023, 'Cierra sus últimos reactores nucleares.'), (2025, 'Reforma constitucional para financiar la defensa.')])
 
 P('Italy', 'Roma', 'República parlamentaria.', 'Italiano. Mayoría católica.', 'Gas, mármol, tierras agrícolas, pesca.',
   'Industria del norte, lujo, turismo; deuda pública muy alta.',
@@ -495,12 +495,12 @@ P('Russia', 'Moscú', 'República federal semipresidencialista en la forma; rég
   'Ruso y lenguas regionales. Ortodoxos y musulmanes.', 'Gas, petróleo, carbón, níquel, paladio, diamantes, oro, madera, trigo, uranio.',
   'Hidrocarburos y minería, con una economía de guerra desde 2022 y comercio reorientado hacia China e India.',
   'El resultado de la guerra en Ucrania, su dependencia creciente de China y la sucesión de un régimen personal.',
-  [(1917, 'Revolución bolchevique.'), (1991, 'Disolución de la URSS.'), (1999, 'Putin llega al poder.'), (2008, 'Guerra con Georgia.'),
-   (2014, 'Anexión de Crimea.'), (2022, 'Invasión a gran escala de Ucrania.'), (2023, 'Motín de Wagner.')])
+  [(1917, 'Revolución bolchevique.'), (1991, 'Disolución de la URSS.'), (1999, 'Putin llega al poder.'), (2001, 'Apoya a EE.UU. tras el 11 de septiembre y ofrece a Europa una asociación en el Bundestag.'), (2007, 'Discurso de Múnich contra el mundo unipolar y la ampliación de la OTAN.'), (2008, 'Guerra con Georgia.'),
+   (2014, 'Anexión de Crimea.'), (2021, 'Putin publica «Sobre la unidad histórica de rusos y ucranianos».'), (2022, 'Invasión a gran escala de Ucrania.'), (2023, 'Motín de Wagner.')])
 P('Ukraine', 'Kiev', 'República semipresidencialista bajo ley marcial desde 2022; depende del apoyo occidental.', 'Ucraniano; ruso extendido. Ortodoxos y grecocatólicos.',
   'Tierras negras, hierro, carbón, manganeso, titanio, litio, gas.', 'Agroexportación, metalurgia e industria de defensa; economía de guerra sostenida por ayuda externa.',
   'Su supervivencia como Estado, el territorio ocupado, los términos de un alto el fuego y el acuerdo de minerales con EE.UU.',
-  [(1991, 'Independencia.'), (2004, 'Revolución Naranja.'), (2014, 'Euromaidán, anexión de Crimea y guerra en el Donbás.'), (2022, 'Invasión rusa a gran escala.'), (2025, 'Acuerdo de minerales con EE.UU.')])
+  [(1991, 'Independencia.'), (2004, 'Revolución Naranja.'), (2008, 'La OTAN promete en Bucarest que algún día será miembro, sin plan de ingreso: Alemania y Francia frenan el que impulsaba EE.UU.'), (2014, 'Euromaidán, anexión de Crimea y guerra en el Donbás.'), (2021, 'Putin publica un ensayo que la presenta como parte de un solo pueblo con Rusia.'), (2022, 'Invasión rusa a gran escala.'), (2025, 'Acuerdo de minerales con EE.UU.')])
 P('Belarus', 'Minsk', 'República presidencialista en la forma; dictadura personal desde 1994, integrada militarmente a Rusia.', 'Bielorruso y ruso. Ortodoxos.',
   'Potasa, madera, turba.', 'Industria estatal, potasa y refinación de petróleo ruso.', 'La sucesión y su absorción por Rusia, que despliega allí armas nucleares.',
   [(1991, 'Independencia.'), (1994, 'Lukashenko llega al poder.'), (2020, 'Fraude y represión de las protestas.'), (2023, 'Rusia despliega armas nucleares tácticas.')])
