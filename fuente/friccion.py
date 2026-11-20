@@ -510,6 +510,72 @@ FR_REL += [
  ("ffaa_reinounido", "milei", "Ambigua", "La Argentina reclama las Malvinas, donde el Reino Unido mantiene la guarnición de Mount Pleasant.", 1),
 ]
 
+FRICCION += [
+ {"n": 12, "x": "Himalaya y océano Índico", "ll": [80.0, 12.0],
+  "d": "La frontera chino-india, Cachemira entre dos potencias nucleares y la competencia por los puertos del Índico, de Sri Lanka a las Maldivas y Diego García.",
+  "texto": [
+   "India y China comparten más de 3.000 kilómetros de frontera sin demarcar en el Himalaya. En 2020 el choque del valle de Galwan dejó los primeros muertos en décadas; un acuerdo de patrullaje de 2024 bajó la tensión, pero ambos ejércitos siguen desplegados.",
+   "Cachemira enfrenta a India y Pakistán, las dos con armas nucleares. India atribuye los atentados a grupos con base en Pakistán y respondió con ataques en 2019 y en mayo de 2025, el choque más grave en medio siglo, que terminó en un alto el fuego a los cuatro días.",
+   "En el Índico, China construyó o financió puertos en Sri Lanka, Pakistán y Myanmar y negocia acceso en las islas; India y EE.UU. responden con bases, acuerdos navales y crédito. La base de Diego García, en el archipiélago de Chagos, sigue en manos de EE.UU. y el Reino Unido mientras no entre en vigor el tratado de cesión a Mauricio."],
+  "paises": ["India", "China", "Pakistan", "Nepal", "Bhutan", "Bangladesh", "Sri Lanka", "Maldives", "Mauritius", "Br. Indian Ocean Ter.", "Siachen Glacier", "Myanmar"],
+  "actores": [("ffaa_india", "Despliega tropas frente a China en el Himalaya y frente a Pakistán en Cachemira."),
+              ("epl", "Mantiene sus fuerzas sobre la frontera en disputa en Ladakh y Arunachal Pradesh."),
+              ("ejercito_pak", "Controla la política de defensa pakistaní y la línea de control en Cachemira."),
+              ("isi", "India la acusa de sostener a los grupos armados que atacan en Cachemira."),
+              ("let", "Grupo armado designado como terrorista por la ONU, autor de los atentados de Bombay de 2008."),
+              ("cmport", "Opera desde 2017 el puerto de Hambantota, en Sri Lanka, con un arriendo por 99 años."),
+              ("pentagono", "Opera la base de Diego García."),
+              ("ffaa_reinounido", "Conserva la soberanía de Chagos mientras no entre en vigor el tratado con Mauricio.")],
+  "crono": [("2017-06", "Choque en la meseta de Doklam."), ("2017-12", "Sri Lanka arrienda Hambantota a China Merchants por 99 años."), ("2019-02", "Atentado de Pulwama y ataque aéreo indio en Balakot."),
+            ("2020-06", "Choque del valle de Galwan: primeros muertos en la frontera desde 1975."), ("2024-10", "Acuerdo de patrullaje entre India y China."),
+            ("2025-05", "Cuatro días de ataques entre India y Pakistán tras el atentado de Pahalgam; alto el fuego el 10 de mayo."), ("2025-05-22", "El Reino Unido firma el tratado de cesión de Chagos a Mauricio.")],
+  "fuentes": [("China–India border dispute (Wikipedia)", _W + "Sino-Indian_border_dispute"), ("2025 India–Pakistan conflict (Wikipedia)", _W + "2025_India%E2%80%93Pakistan_conflict"),
+              ("Hambantota International Port (Wikipedia)", _W + "Hambantota_International_Port")]},
+ {"n": 13, "x": "Báltico", "ll": [20.0, 57.0],
+  "d": "Un mar rodeado por la OTAN salvo Kaliningrado y San Petersburgo: cables y gasoductos cortados, la flota en la sombra del petróleo ruso y el corredor de Suwałki.",
+  "texto": [
+   "Con Suecia y Finlandia en la OTAN, el Báltico quedó rodeado por la alianza salvo dos salidas rusas: San Petersburgo y el enclave de Kaliningrado, armado con misiles. Entre Kaliningrado y Bielorrusia, el corredor de Suwałki, de unos 65 kilómetros, es el punto donde la OTAN teme un corte por tierra de los países bálticos.",
+   "Desde la voladura de los gasoductos Nord Stream en 2022 se sucedieron daños a cables y gasoductos submarinos, varios causados por anclas de barcos que salían de puertos rusos. La OTAN respondió en 2025 con la misión Baltic Sentry, y los países ribereños inspeccionan a los petroleros de la flota en la sombra que exporta crudo ruso.",
+   "Estonia, Letonia y Lituania se desconectaron de la red eléctrica rusa en febrero de 2025 y se sumaron a la europea."],
+  "paises": ["Estonia", "Latvia", "Lithuania", "Poland", "Germany", "Denmark", "Sweden", "Finland", "Russia", "Belarus"],
+  "actores": [("otan", "Lanzó la misión Baltic Sentry en 2025 para vigilar la infraestructura submarina."),
+              ("ffaa_rusia", "Mantiene en Kaliningrado la Flota del Báltico y misiles Iskander."),
+              ("ffaa_polonia", "Refuerza la frontera con Bielorrusia y Kaliningrado."),
+              ("ffaa_finlandia", "Retuvo en 2024 al Eagle S, acusado de cortar el cable Estlink 2."),
+              ("bundeswehr", "Despliega desde 2025 una brigada permanente en Lituania."),
+              ("sovcomflot", "Su flota y la flota en la sombra cruzan el Báltico con crudo ruso.")],
+  "crono": [("2022-09", "Voladura de los gasoductos Nord Stream."), ("2023-10", "El ancla de un barco chino daña el gasoducto Balticconnector."), ("2024-03", "Suecia ingresa a la OTAN."),
+            ("2024-12", "Finlandia retiene al Eagle S tras el corte del cable Estlink 2."), ("2025-01", "La OTAN lanza Baltic Sentry."), ("2025-02", "Los países bálticos dejan la red eléctrica rusa.")],
+  "fuentes": [("Baltic Sentry (Wikipedia)", _W + "Baltic_Sentry"), ("Suwałki Gap (Wikipedia)", _W + "Suwa%C5%82ki_Gap"), ("Nord Stream pipelines sabotage (Wikipedia)", _W + "2022_Nord_Stream_pipeline_sabotage")]},
+ {"n": 14, "x": "Cáucaso y Asia central", "ll": [58.0, 42.0],
+  "d": "Rusia pierde peso en su antigua periferia: Azerbaiyán tomó Karabaj, Armenia se aleja de Moscú, EE.UU. negocia un corredor y China gana Asia central con comercio y gasoductos.",
+  "texto": [
+   "Azerbaiyán, con armas turcas e israelíes, recuperó en 2020 buena parte de Karabaj y en 2023 tomó el resto; casi toda la población armenia huyó. Rusia, que tenía allí tropas de paz, no intervino, y Armenia congeló su participación en la alianza militar que encabeza Moscú.",
+   "En agosto de 2025, Aliyev y el primer ministro armenio firmaron en la Casa Blanca una declaración de paz que incluye una ruta de tránsito por el sur de Armenia con participación de EE.UU. Georgia, en cambio, giró hacia Moscú bajo Sueño Georgiano, que congeló el camino a la UE.",
+   "En Asia central, Rusia conserva bases y el peso de la migración laboral, pero China es el primer socio comercial y compra el gas turcomano por gasoducto. Kazajistán y Uzbekistán reciben además a EE.UU., Europa, Turquía y los países del Golfo, que buscan uranio, minerales y rutas que eviten Rusia."],
+  "paises": ["Azerbaijan", "Armenia", "Georgia", "Kazakhstan", "Uzbekistan", "Turkmenistan", "Kyrgyzstan", "Tajikistan"],
+  "actores": [("aliyev", "Recuperó Karabaj y negocia la paz y el corredor con Armenia."),
+              ("erdogan", "Principal aliado militar de Azerbaiyán."),
+              ("kremlin", "Pierde influencia en el Cáucaso pero conserva bases en Armenia, Tayikistán y Kirguistán."),
+              ("casablanca", "Patrocinó la declaración de paz de 2025 y la ruta de tránsito por Armenia."),
+              ("pcch", "Primer socio comercial de Asia central; compra su gas y financia infraestructura."),
+              ("tokayev", "Equilibra entre Rusia, China y Occidente."),
+              ("sueno_georgiano", "Gobierna Georgia y frenó el ingreso a la UE."),
+              ("kazatomprom", "Primer productor mundial de uranio.")],
+  "crono": [("2020-09", "Guerra de los 44 días en Karabaj."), ("2022-09", "Choques fronterizos entre Kirguistán y Tayikistán."), ("2023-05", "Primera cumbre China-Asia Central, en Xi'an."),
+            ("2023-09", "Azerbaiyán toma Karabaj; éxodo de la población armenia."), ("2024-02", "Armenia congela su participación en la OTSC."),
+            ("2024-11", "Georgia suspende las negociaciones de ingreso a la UE; protestas masivas."), ("2025-03", "Kirguistán y Tayikistán firman su tratado de fronteras."),
+            ("2025-08-08", "Declaración de paz entre Azerbaiyán y Armenia en la Casa Blanca.")],
+  "fuentes": [("Nagorno-Karabakh conflict (Wikipedia)", _W + "Nagorno-Karabakh_conflict"), ("2025 Armenia–Azerbaijan peace agreement (Wikipedia)", _W + "Armenia%E2%80%93Azerbaijan_peace_process"),
+              ("China–Central Asia Summit (Wikipedia)", _W + "China%E2%80%93Central_Asia_Summit")]},
+]
+FR_REL += [
+ ("cmport", "npp_lk", "Contrato", "Opera el puerto de Hambantota con un arriendo de 99 años firmado en 2017.", 2),
+ ("ffaa_india", "ejercito_pak", "Enfrentamiento", "Cuatro días de ataques en mayo de 2025, el choque más grave en medio siglo.", 3),
+ ("otan", "sovcomflot", "Enfrentamiento", "Los países ribereños del Báltico inspeccionan a los petroleros de la flota en la sombra.", 1),
+ ("aliyev", "casablanca", "Alianza", "Firmó en la Casa Blanca, en agosto de 2025, la declaración de paz con Armenia.", 2),
+]
+
 # Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py)
 from correcciones import FR_CRONO as _FRC
 for _f in FRICCION:
