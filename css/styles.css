@@ -305,3 +305,10 @@ table.cmp { width: 100%; table-layout: fixed; }
 table.cmp th:first-child, table.cmp td:first-child { width: 34%; }
 table.cmp td, table.cmp th { overflow-wrap: anywhere; white-space: normal; }
 .m-fr g.glob circle { stroke-dasharray: 3 2; }
+.ciclo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+.ciclo-card h3 { margin: 6px 0 8px; }
+.ciclo-card dl div { margin: 6px 0; }
+.ciclo-card .pf-dl { grid-template-columns: 1fr; }
+.legend.row { flex-direction: row; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; }
+.legend section { display: flex; align-items: center; gap: 8px; }
+.qm-scroll.cy svg { min-width: 680px; }

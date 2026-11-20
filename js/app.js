@@ -353,7 +353,7 @@
           <div class="side-x"><b>Depende de:</b> ${deps.length ? deps.map(d => `<a href="#o-${d.id}">${esc(corto(d.n))}</a>`).join(", ") : "nadie en el mapa"}</div>
           <div class="side-x"><b>Dependen de ella:</b> ${subs.length ? subs.map(d => `<a href="#o-${d.id}">${esc(corto(d.n))}</a>`).join(", ") : "ninguna del mapa"}</div></div>
         <div class="box"><span class="lbl">Aliados y enemigos</span>${relHtml}</div>
-        <div class="box"><span class="lbl">Fase de Quigley</span><div class="phase">${["E", "C", "D"].map(f => `<span class="${o.fase === f ? "on" : ""}">${M.fases[f]}</span>`).join("")}</div></div>
+        <div class="box"><span class="lbl">Fase de Quigley</span><div class="phase">${["E", "C", "D"].map(f => `<span class="${o.fase === f ? "on" : ""}">${M.fases[f]}</span>`).join("")}</div><p class="note" style="margin:8px 0 0"><a href="#ciclos">Ver los ciclos</a></p></div>
       </aside></div></div>`;
     // gráfico de relaciones: el actor en el centro y sus vínculos (relaciones y dependencias), los más fuertes si son muchos
     const peso = {};
@@ -493,6 +493,7 @@
         </ul>
         <p>Además están las <b>zonas liberadas</b>: territorios, a veces dentro de países que figuran como soberanos y estables, donde el Estado no manda y cada actor hace lo que su poder real le permite. Un cártel cobra impuestos y administra justicia en una región de México; una milicia controla una frontera; una facción criminal gobierna cárceles y barrios en Brasil; una potencia extranjera mantiene tropas que nadie invitó. Son, también, la frontera en el sentido del libro: los espacios fuera del alcance de un poder único. El mapa las marca por grado (parcial, extendida o total) y por aspecto: territorial, crimen organizado, fronteras, fiscal y económico, o presencia extranjera. Todo esto se ve en el mapa de <a href="#imperios">Imperios</a> y en la capa «Zonas liberadas» del mapa de <a href="#paises">Países</a>.</p>
         <h2>Marco teórico</h2>
+        <p class="note" style="border-left:2px solid #E10600;padding-left:12px">Cómo las distintas teorías ubican el presente en sus ciclos —generaciones, deuda, imperios, élites, crédito—, en un mismo gráfico: <a href="#ciclos">Ciclos</a>.</p>
         <p><b>La síntesis del sitio.</b> El marco combina seis piezas. La <b>teoría de la frontera</b> explica dónde nace el poder nuevo: en el borde, donde no hay instituciones que lo frenen. <b>Schumpeter y Veblen</b> explican cómo una clase sube cumpliendo una función y cómo, cuando la pierde, conserva el lugar y lo exhibe en ostentación. <b>Quigley</b> describe cómo los instrumentos de expansión se vuelven instituciones que se defienden a sí mismas. <b>Dalio</b> agrega los ciclos de deuda y de riqueza que acompañan el ascenso y la caída de los imperios. La <b>escuela de la elección pública</b> muestra por qué funcionarios, organismos y grupos de interés terminan trabajando para sí mismos. Y la hipótesis de la <b>herencia generacional</b> le pone tiempo al proceso: cada unos ochenta años, la herencia social, genética y económica —dinero, pero también contactos y puestos— cierra a las élites en una casta que ya no generó lo que controla. De la suma sale la criptocracia: un poder real que se reproduce por herencia y por captura, detrás de instituciones que conservan la forma pero perdieron la función.</p>
         <p><b>Geopolítica y realismo</b></p>
         <ul>
@@ -778,6 +779,39 @@
     draw();
   };
 
+  // ---------- ciclos ----------
+  V.ciclos = () => {
+    const CY = M.ciclos, FC = { e: "#1D6B55", m: "#3A3636", c: "#E10600", g1: "#2B2440", g2: "#3C3489" };
+    const W = 960, L = 8, R = 952, Y0 = 1900, Y1 = 2060, X = y => L + (y - Y0) * (R - L) / (Y1 - Y0), RH = 46, T = 40;
+    const H = T + CY.franjas.length * RH + 30, NAR = window.innerWidth < 700, LX = NAR ? X(1966) : L;
+    let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="El reloj de las teorías: una franja por teoría de 1900 a 2060, coloreada por fase, con la convergencia de crisis entre 2020 y 2035">`;
+    g += `<rect x="${X(2020)}" y="${T - 10}" width="${X(2035) - X(2020)}" height="${H - T - 10}" fill="#E10600" opacity=".16"/>`;
+    for (let y = 1900; y <= 2060; y += 20) g += `<line x1="${X(y)}" x2="${X(y)}" y1="${T - 10}" y2="${H - 20}" stroke="#2A1414"/><text x="${X(y)}" y="${H - 4}" text-anchor="${y === 1900 ? "start" : y === 2060 ? "end" : "middle"}" fill="#9A8F8C" style="font:12px var(--f-mono)">${y}</text>`;
+    CY.franjas.forEach((f, i) => {
+      const y = T + i * RH;
+      g += `<text x="${LX}" y="${y + 6}" fill="#EDE6E3" style="font:500 13px var(--f-ui)">${esc(f.n)}</text>`;
+      f.s.forEach(([a, b, p, t]) => { const w = X(b) - X(a); g += `<rect x="${X(a) + 1}" y="${y + 13}" width="${Math.max(w - 2, 1)}" height="20" fill="${FC[p]}"/>`; if (t && w > t.length * 6.6) g += `<text x="${X(a) + w / 2}" y="${y + 27}" text-anchor="middle" fill="#fff" style="font:11.5px var(--f-ui)">${esc(t)}</text>`; });
+      f.k.forEach(k => { g += `<rect x="${X(k) - 1.5}" y="${y + 9}" width="3" height="28" fill="#FF3B30"/>`; });
+    });
+    g += `<line x1="${X(2026)}" x2="${X(2026)}" y1="${T - 18}" y2="${H - 20}" stroke="#FF3B30" stroke-width="2"/><text x="${X(2026) - 5}" y="${T - 20}" text-anchor="end" fill="#FF3B30" style="font:12px var(--f-mono)">hoy</text><text x="${X(2035) + 6}" y="${T - 20}" fill="#9A8F8C" style="font:12px var(--f-mono)">convergencia 2020–2035</text></svg>`;
+    // duración, escala logarítmica
+    const DL = 300, DR = 940, lg = v => DL + (Math.log10(v) - Math.log10(2)) / (Math.log10(400) - Math.log10(2)) * (DR - DL), DH = 26 * CY.dur.length + 40;
+    let d = `<svg viewBox="0 0 ${W} ${DH}" role="img" aria-label="Cuánto dura cada ciclo, en años, en escala logarítmica">`;
+    [2, 5, 10, 25, 50, 100, 250].forEach(v => { d += `<line x1="${lg(v)}" x2="${lg(v)}" y1="4" y2="${DH - 24}" stroke="#2A1414"/><text x="${lg(v)}" y="${DH - 6}" text-anchor="middle" fill="#9A8F8C" style="font:12px var(--f-mono)">${v} años</text>`; });
+    CY.dur.forEach(([n, a, b], i) => { const y = 8 + i * 26, prop = /estimación propia/.test(n); d += `<text x="${DL - 10}" y="${y + 13}" text-anchor="end" fill="${prop ? "#FF3B30" : "#EDE6E3"}" style="font:13px var(--f-ui)">${esc(n)}</text><rect x="${lg(a)}" y="${y + 2}" width="${Math.max(lg(b) - lg(a), 4)}" height="16" fill="${prop ? "#E10600" : "#9E1B32"}"/>`; });
+    d += `</svg>`;
+    const leg = `<div class="legend row" style="margin:10px 0 0">${[["#1D6B55", "Expansión"], ["#3A3636", "Madurez o conservación"], ["#E10600", "Crisis"], ["#FF3B30", "Evento o pico"]].map(([c, t]) => `<section><span class="sq" style="background:${c}"></span>${t}</section>`).join("")}</div>`;
+    const card = t => `<div class="box ciclo-card"><span class="lbl">${esc(t.q)}</span><h3>${esc(t.n)}</h3><p class="side-x">${esc(t.m)}</p><dl class="pf-dl">${[["Duración", t.d], ["Señal de crisis", t.s], ["Hoy", t.h], ["En el sitio", t.e], ["Crítica", t.c]].filter(([, v]) => v && v !== "—").map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl><ol class="fuentes">${t.f.map(([a, u]) => `<li><a href="${esc(u)}" rel="noopener" target="_blank">${esc(a)}</a></li>`).join("")}</ol></div>`;
+    app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="crumb"><a href="#marco">Marco</a> / Ciclos</div><h1>Ciclos</h1></div>
+      <p class="read">¿Tiene ritmo el poder? Varias teorías sostienen que sí: generaciones, deuda, imperios, élites y tecnologías que suben y caen con cierta regularidad. Otras, como la escuela austríaca o la teoría de la frontera, no dan fechas sino mecanismos. Esta página las pone en la misma línea de tiempo para ver dónde coinciden. Ninguna es una ley: son lecturas, cada una con su crítica.</p></div>
+      <section class="block"><h2>El reloj de las teorías</h2><p class="note" style="margin:0 0 10px">Una franja por teoría, pintada según la fase que su autor o su lectura más difundida le asigna a cada período. Entre 2020 y 2035 casi todas coinciden en crisis o fin de ciclo.</p><div class="box" style="padding:12px"><div class="qm-scroll cy" id="cyR">${g}</div>${leg}</div>
+        <p class="note">Generaciones según el Pew Research Center y McCrindle. La herencia generacional es una estimación propia, anclada en el orden de 1945. Las franjas de Quigley y de la transición de poder son lecturas del sitio. En la franja austríaca, cada marca es un shock de crédito y la barra que le sigue, el tiempo de reconversión. En el celular, deslizá el gráfico hacia los costados.</p></section>
+      <section class="block"><h2>Cuánto dura cada ciclo</h2><div class="box" style="padding:12px"><div class="qm-scroll cy">${d}</div></div><p class="note">Años, en escala logarítmica. La escuela austríaca y la teoría de la frontera no tienen período fijo y no figuran.</p></section>
+      <section class="block"><h2>Las teorías, una por una</h2><div class="ciclo-grid">${CY.teorias.map(card).join("")}</div></section>
+      <section class="block" style="padding-bottom:56px"><h2>Mecanismos que no dan fechas</h2><p class="note" style="margin:0 0 10px">Explican por qué los ciclos se cierran o se abren, aunque no digan cuándo.</p><ul class="mlist">${CY.mec.map(([n, x]) => `<li><b>${esc(n)}.</b> ${esc(x)}</li>`).join("")}</ul><p class="note">El marco completo, con la bibliografía, está en el <a href="#marco">Marco</a>.</p></section></div>`;
+    const sc = document.getElementById("cyR"); if (sc && NAR && sc.scrollWidth > sc.clientWidth) sc.scrollLeft = (X(1964) / W) * sc.scrollWidth;
+  };
+
   // ---------- búsqueda, cronología y comparador ----------
   const crumbHead = (kick, t, read) => `<div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">${kick}</div><h1>${t}</h1></div><p class="read">${read}</p></div>`;
   const snip = (txt, q) => { const n = nrm(txt), i = n.indexOf(q); if (i < 0) return ""; const a = Math.max(0, i - 70), b = Math.min(txt.length, i + q.length + 90); return (a ? "…" : "") + esc(txt.slice(a, i)) + "<mark>" + esc(txt.slice(i, i + q.length)) + "</mark>" + esc(txt.slice(i + q.length, b)) + (b < txt.length ? "…" : ""); };
@@ -872,12 +906,13 @@
     else if (h === "buscar" || h.startsWith("buscar:")) { V.buscar(h.slice(7)); navKey = "buscar"; }
     else if (h === "cronologia") { V.cronologia(); navKey = "cronologia"; }
     else if (h === "comparar" || h.startsWith("comparar:")) { V.comparar(h.slice(9)); navKey = "actores"; }
+    else if (h === "ciclos") { V.ciclos(); navKey = "marco"; }
     else if (h === "marco" || h === "marco-categorias") { V.marco(); navKey = "marco"; }
     else V.inicio();
     document.querySelectorAll(".mainnav a").forEach(a => a.classList.toggle("on", a.dataset.k === navKey));
     const titles = { inicio: "", "quien-manda": "Quién manda", actores: "Actores", paises: "Países", imperios: "Imperios", friccion: "Puntos de fricción", marco: "Marco", buscar: "Buscar", cronologia: "Cronología" };
     const fx = /^f-\d+$/.test(h) && M.friccion.find(x => x.n === +h.slice(2));
-    const t = h.startsWith("o-") && (byId[h.slice(2)] || BAJ[h.slice(2)]) ? corto((byId[h.slice(2)] || BAJ[h.slice(2)]).n) : fx ? fx.x : h.startsWith("p-") && PA[h.slice(2)] ? PA[h.slice(2)].n : (h.startsWith("comparar") ? "Comparar actores" : titles[navKey]);
+    const t = h.startsWith("o-") && (byId[h.slice(2)] || BAJ[h.slice(2)]) ? corto((byId[h.slice(2)] || BAJ[h.slice(2)]).n) : fx ? fx.x : h.startsWith("p-") && PA[h.slice(2)] ? PA[h.slice(2)].n : (h.startsWith("comparar") ? "Comparar actores" : h === "ciclos" ? "Ciclos" : titles[navKey]);
     document.title = (t ? t + " · " : "") + "El mapa del poder global";
     const anc = h === "marco-categorias" && document.getElementById("cat");
     if (anc) anc.scrollIntoView({ block: "start" }); else window.scrollTo({ top: 0, left: 0, behavior: "instant" });
