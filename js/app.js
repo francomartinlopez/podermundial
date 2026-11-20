@@ -243,6 +243,8 @@
         <a class="card" href="#actores"><span class="kick">Fichas</span><b>Actores</b><span>Perfil de poder, dependencias y relaciones de cada uno.</span></a>
         <a class="card" href="#paises"><span class="kick">Mapa</span><b>Países</b><span>Bloques, protectorados, zonas liberadas y puntos de fricción.</span></a>
         <a class="card" href="#friccion"><span class="kick">Frentes</span><b>Puntos de fricción</b><span>Dónde chocan los bloques, quién interviene y cómo se llegó hasta acá.</span></a>
+        <a class="card" href="#cronologia"><span class="kick">Historia</span><b>Cronología</b><span>Todos los hitos del mapa en una sola línea de tiempo.</span></a>
+        <a class="card" href="#comparar"><span class="kick">Herramienta</span><b>Comparar</b><span>Dos actores lado a lado: puntajes, ejes y vínculos.</span></a>
         <a class="card" href="#marco"><span class="kick">Método</span><b>Marco</b><span>La teoría detrás del mapa y cómo se mide el poder.</span></a>
       </section></div>`;
     mountMap(document.getElementById("mapa-inicio"), { layer: "bloques" });
@@ -323,7 +325,7 @@
     app.innerHTML = `<div class="wrap">
       <div class="org-head"><div class="crumb"><a href="#actores">Actores</a> / ${esc(o.area)}</div>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px">${icon(o, 44)}<h1>${esc(o.n)}</h1></div>
-        <div class="pills"><span style="border-color:${bcol(o.bloque)}">${esc(BL[o.bloque].n)}</span><span>Autonomía ${o.aut} · ${esc(M.autonomia[o.aut])} · factor real ${num(o.fr, 2)}</span><span>Alcance: ${esc(M.alcance[o.alc].n).toLowerCase()}</span><span>Fase: ${esc(M.fases[o.fase]).toLowerCase()}</span><span>Certeza: ${esc(M.certeza[o.cert]).toLowerCase()}</span><span>${esc(o.tipo)}</span><span>Sede: ${esc(o.sede)}</span><span style="border-color:transparent;color:#9A8F8C">Puesto ${rank} de ${ORGS.length}</span></div></div>
+        <div class="pills"><span style="border-color:${bcol(o.bloque)}">${esc(BL[o.bloque].n)}</span><span>Autonomía ${o.aut} · ${esc(M.autonomia[o.aut])} · factor real ${num(o.fr, 2)}</span><span>Alcance: ${esc(M.alcance[o.alc].n).toLowerCase()}</span><span>Fase: ${esc(M.fases[o.fase]).toLowerCase()}</span><span>Certeza: ${esc(M.certeza[o.cert]).toLowerCase()}</span><span>${esc(o.tipo)}</span><span>Sede: ${esc(o.sede)}</span><span style="border-color:transparent;color:#9A8F8C">Puesto ${rank} de ${ORGS.length}</span><a class="chip" href="#comparar:${o.id},${sortBy("pt")[0].id === o.id ? sortBy("pt")[1].id : sortBy("pt")[0].id}">Comparar</a></div></div>
       <div class="nums" style="margin-top:22px"><div><small>Puntaje de poder</small><b>${num(o.pt)}<span class="muted" style="font-size:15px"> /100</span></b></div><div><small>Capacidad</small><b>${num(o.cap)}<span class="muted" style="font-size:15px"> /${M.capmax}</span></b></div><div><small>Poder efectivo</small><b>${num(o.pe)}</b></div><div><small>Poder en red</small><b>${num(o.red)}</b></div><div><small>Brecha</small><b>${pct(o.brecha)}</b></div><div class="o"><small>Poder oculto</small><b>${num(o.oculto)}</b></div></div>
       <div class="org-body"><div class="org-main">
         ${M.monarcas.includes(o.id) ? `<p class="note" style="margin:0;border-left:2px solid #E10600;padding-left:12px">${esc(M.nota_monarca)}</p>` : ""}
@@ -682,6 +684,15 @@
   const fPob = v => v >= 1e9 ? nf(v / 1e9, 2) + " mil millones" : v >= 1e6 ? nf(v / 1e6, 1) + " millones" : nf(v, 0);
   const fUsd = v => v >= 1e12 ? "US$ " + nf(v / 1e12, 1) + " billones" : v >= 1e9 ? "US$ " + nf(v / 1e9, v >= 1e10 ? 0 : 1) + " mil millones" : "US$ " + nf(v / 1e6, 0) + " millones";
   const pfRow = (l, v) => v ? `<div><dt>${l}</dt><dd>${v}</dd></div>` : "";
+  const PKEY = Object.fromEntries(Object.entries(PA).map(([k, p]) => [p.n, k]));
+  const SOC_ALIAS = { "RD del Congo": "Dem. Rep. Congo", "Guadalupe": "France", "Martinica": "France" };
+  const blocShare = l => {
+    if (!l || !l.length) return "";
+    const t = {}; let tot = 0;
+    l.forEach(([n, x]) => { const k = PKEY[n] || SOC_ALIAS[n], b = k && PA[k] ? PA[k].b : "D"; t[b] = (t[b] || 0) + (x || 0); tot += x || 0; });
+    if (!tot) return "";
+    return `<span class="bshare">${Object.entries(t).sort((a, b) => b[1] - a[1]).map(([b, x]) => `<i style="background:${bcol(b)};width:${x}%" title="${esc((BL[b] || BL.D).n)} ${x} %"></i>`).join("")}</span>` + Object.entries(t).sort((a, b) => b[1] - a[1]).map(([b, x]) => `${esc((BL[b] || BL.D).n)} ${x} %`).join(" · ");
+  };
   const socios = l => l && l.length ? l.map(([n, x]) => esc(n) + (x ? ` ${x} %` : "")).join(", ") : "";
   function pfDatos(f) {
     const d = f.d || {}, pob = d.pob && d.pob[0];
@@ -696,7 +707,7 @@
         ${pfRow("PBI", d.pib ? fUsd(d.pib[0]) + yr(d.pib) : "")}${pfRow("PBI por habitante (PPA)", d.pibpc ? "US$ " + nf(d.pibpc[0], 0) + yr(d.pibpc) : "")}
         ${pfRow("Crecimiento del PBI", d.crecpib ? nf(d.crecpib[0]) + " %" + yr(d.crecpib) : "")}${pfRow("Inflación", d.infl ? nf(d.infl[0]) + " %" + yr(d.infl) : "")}
         ${pfRow("Desempleo", d.desoc ? nf(d.desoc[0]) + " %" + yr(d.desoc) : "")}${pfRow("Deuda pública", d.deuda ? nf(d.deuda[0]) + " % del PBI" + yr(d.deuda) : "")}
-        ${pfRow("Gasto militar", d.mil ? nf(d.mil[0]) + " % del PBI" + yr(d.mil) : "")}${pfRow("Exporta a", socios(d.expo))}${pfRow("Importa de", socios(d.impo))}</dl></div>
+        ${pfRow("Gasto militar", d.mil ? nf(d.mil[0]) + " % del PBI" + yr(d.mil) : "")}${pfRow("Exporta a", socios(d.expo))}${pfRow("Importa de", socios(d.impo))}${pfRow("Exportaciones por bloque", blocShare(d.expo))}${pfRow("Importaciones por bloque", blocShare(d.impo))}</dl><p class="note" style="margin:6px 0 0">Comercio por bloque: suma de la parte de los cinco principales socios según el bloque de cada uno; el resto va a socios menores.</p></div>
     </div><p class="note">Cifras: CIA World Factbook (ediciones 2024 y 2025; el año de cada dato va entre paréntesis; se omiten las anteriores a 2020 y, en inflación, crecimiento y desempleo, las anteriores a 2023). Textos: redacción del sitio.</p>`;
   }
 
@@ -745,6 +756,7 @@
           <p class="note" style="margin:0 0 10px">${locales.length > 12 ? "Los 12 actores más poderosos del país" : "Los actores del país"} y los de afuera con los que tienen los vínculos más fuertes. Color: bloque. Forma: tipo de actor. Tamaño: puntaje de poder. Tocá un actor para ver solo sus relaciones.</p>
           <div class="box" style="padding:10px"><div class="qm-scroll" id="pg"></div>${RELLEG}</div></div>
         <div><h2>Relaciones</h2><div id="pr"></div></div>
+        <div><h2>Fuentes</h2><ol class="fuentes"><li><a href="https://es.wikipedia.org/wiki/${encodeURIComponent(p.n.replace(/ /g, "_"))}" rel="noopener" target="_blank">${esc(p.n)} (Wikipedia en español)</a></li><li><a href="https://www.cia.gov/the-world-factbook/" rel="noopener" target="_blank">CIA World Factbook: cifras de población, economía y comercio</a></li>${frentes.filter(f => f.paises.includes(key)).flatMap(f => f.fuentes).slice(0, 6).map(([t, u]) => `<li><a href="${esc(u)}" rel="noopener" target="_blank">${esc(t)}</a></li>`).join("")}</ol><p class="note">Clasificación y textos: redacción del sitio, con las fuentes de cada actor y punto de fricción.</p></div>
         ${frentes.length ? `<div><h2>Puntos de fricción</h2><p class="note" style="margin:0 0 10px">Los frentes que pasan por su territorio o en los que intervienen sus actores.</p><div class="fr-grid">${frentes.map(f => `<a class="fr-card" href="#f-${f.n}"><div><span class="kick">Punto ${f.n} · ${f.paises.includes(key) ? "en su territorio" : (n => n + (n === 1 ? " actor propio interviene" : " actores propios intervienen"))(f.actores.filter(a => ids.has(a.id)).length)}</span><b>${esc(f.x)}</b><span>${esc(f.d)}</span></div></a>`).join("")}</div></div>` : ""}
       </div>
       <aside class="org-side">
@@ -766,6 +778,82 @@
     draw();
   };
 
+  // ---------- búsqueda, cronología y comparador ----------
+  const crumbHead = (kick, t, read) => `<div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">${kick}</div><h1>${t}</h1></div><p class="read">${read}</p></div>`;
+  const snip = (txt, q) => { const n = nrm(txt), i = n.indexOf(q); if (i < 0) return ""; const a = Math.max(0, i - 70), b = Math.min(txt.length, i + q.length + 90); return (a ? "…" : "") + esc(txt.slice(a, i)) + "<mark>" + esc(txt.slice(i, i + q.length)) + "</mark>" + esc(txt.slice(i + q.length, b)) + (b < txt.length ? "…" : ""); };
+  V.buscar = q0 => {
+    app.innerHTML = `<div class="wrap">${crumbHead("Todo el sitio", "Buscar", `Actores, países, puntos de fricción y el texto de las ${Object.keys(FI).length} fichas.`)}
+      <div class="filters"><label class="f-search" style="flex:1">Buscar<input id="sQ" type="search" placeholder="Nombre, país, tema: Ormuz, litio, Wagner…" autocomplete="off" value="${esc(q0 || "")}"></label></div><div id="sR" style="padding-bottom:56px"></div></div>`;
+    const inp = document.getElementById("sQ"), out = document.getElementById("sR");
+    const run = () => {
+      const raw = inp.value.trim(), q = nrm(raw);
+      history.replaceState(null, "", "#buscar" + (raw ? ":" + encodeURIComponent(raw) : ""));
+      if (q.length < 2) { out.innerHTML = `<p class="note">Escribí al menos dos letras.</p>`; return; }
+      const act = ORGS.filter(o => nrm(o.n).includes(q) || nrm(o.area).includes(q) || nrm(o.sede).includes(q)).sort((a, b) => b.pt - a.pt);
+      const actSet = new Set(act.map(o => o.id));
+      const txt = ORGS.filter(o => !actSet.has(o.id) && FI[o.id]).map(o => { const F = FI[o.id], all = [...F.res, ...F.manda, ...F.crono.map(c => c[1])]; const hit = all.find(t => nrm(t).includes(q)); return hit ? [o, snip(hit, q)] : null; }).filter(Boolean).sort((a, b) => b[0].pt - a[0].pt);
+      const pai = Object.entries(PA).filter(([k, p]) => nrm(p.n).includes(q) || nrm(k).includes(q)).sort((a, b) => a[1].n.localeCompare(b[1].n, "es"));
+      const pTxt = f => [f.juego, f.gob, f.eco, f.rec, f.soc, f.ti, f.ei, ...[...f.crono, ...f.ta, ...f.ea].map(c => c[1])];
+      const paiTxt = Object.entries(PF).filter(([k]) => PA[k] && !pai.some(([kk]) => kk === k)).map(([k, f]) => { const h = pTxt(f).find(t => t && nrm(t).includes(q)); return h ? [k, snip(h, q)] : null; }).filter(Boolean);
+      const fr = M.friccion.filter(f => nrm(f.x + " " + f.d + " " + f.texto.join(" ")).includes(q));
+      const n = act.length + txt.length + pai.length + paiTxt.length + fr.length;
+      out.innerHTML = !n ? `<p class="note">Sin resultados para «${esc(raw)}».</p>` : `<p class="note">${n} resultado${n === 1 ? "" : "s"}.</p>
+        ${act.length ? `<h2>Actores</h2>${rankRows(act.slice(0, 60), "pt", 100)}${act.length > 60 ? `<p class="note">Se muestran 60 de ${act.length}.</p>` : ""}` : ""}
+        ${pai.length ? `<h2 style="margin-top:28px">Países y territorios</h2><div class="srch-list">${pai.map(([k, p]) => `<a href="${pHref(k)}">${esc(p.n)}</a>`).join("")}</div>` : ""}
+        ${fr.length ? `<h2 style="margin-top:28px">Puntos de fricción</h2><div class="fr-grid">${fr.map(f => `<a class="fr-card" href="#f-${f.n}"><div><span class="kick">Punto ${f.n}</span><b>${esc(f.x)}</b><span>${esc(f.d)}</span></div></a>`).join("")}</div>` : ""}
+        ${txt.length ? `<h2 style="margin-top:28px">Mencionado en fichas de actores</h2>${txt.slice(0, 80).map(([o, sn]) => `<div class="rel">${icon(o)}<div><a href="#o-${o.id}">${esc(corto(o.n))}</a><small>${sn}</small></div></div>`).join("")}${txt.length > 80 ? `<p class="note">Se muestran 80 de ${txt.length}.</p>` : ""}` : ""}
+        ${paiTxt.length ? `<h2 style="margin-top:28px">Mencionado en fichas de países</h2>${paiTxt.slice(0, 60).map(([k, sn]) => `<div class="rel"><div><a href="${pHref(k)}">${esc(PA[k].n)}</a><small>${sn}</small></div></div>`).join("")}` : ""}`;
+    };
+    let t; inp.oninput = () => { clearTimeout(t); t = setTimeout(run, 180); }; run(); inp.focus();
+  };
+
+  let EVENTOS = null;
+  const eventos = () => EVENTOS || (EVENTOS = [
+    ...ORGS.filter(o => FI[o.id]).flatMap(o => FI[o.id].crono.map(([d, x]) => ({ d, x, k: "a", h: "#o-" + o.id, n: corto(o.n) }))),
+    ...Object.entries(PF).filter(([k]) => PA[k]).flatMap(([k, f]) => [...f.crono.map(c => [c, ""]), ...f.ta.map(c => [c, " · imperio transoceánico"]), ...f.ea.map(c => [c, " · alianza euroasiática"])].map(([[d, x], s]) => ({ d, x, k: "p", h: pHref(k), n: PA[k].n + s }))),
+    ...M.friccion.flatMap(f => f.crono.map(([d, x]) => ({ d, x, k: "f", h: "#f-" + f.n, n: f.x })))
+  ].map(e => ({ ...e, y: +((String(e.d).match(/\d{4}/) || [0])[0]) })).filter(e => e.y).sort((a, b) => String(b.d).localeCompare(String(a.d))));
+  V.cronologia = () => {
+    const E = eventos(), years = [...new Set(E.map(e => e.y))].sort((a, b) => b - a);
+    app.innerHTML = `<div class="wrap">${crumbHead("Todo el sitio", "Cronología", `Los ${E.length.toLocaleString("es-AR")} hitos de las fichas de actores, países y puntos de fricción en una sola línea de tiempo, del más reciente al más antiguo.`)}
+      <div class="filters"><label>Año<select id="cY"><option value="">Todos</option>${years.map(y => `<option${y === years[0] ? " selected" : ""}>${y}</option>`).join("")}</select></label>
+      <label>Origen<select id="cK"><option value="">Todo</option><option value="a">Actores</option><option value="p">Países</option><option value="f">Puntos de fricción</option></select></label>
+      <label class="f-search">Filtrar<input id="cQ" type="search" placeholder="Palabra o nombre" autocomplete="off"></label></div><div id="cR" style="padding-bottom:56px"></div></div>`;
+    const g = id => document.getElementById(id);
+    const fill = () => {
+      const y = +g("cY").value, k = g("cK").value, q = nrm(g("cQ").value.trim());
+      const l = E.filter(e => (!y || e.y === y) && (!k || e.k === k) && (!q || nrm(e.x + " " + e.n).includes(q)));
+      g("cR").innerHTML = `<p class="note">${l.length.toLocaleString("es-AR")} hitos${l.length > 500 ? "; se muestran los 500 más recientes" : ""}.</p><div class="crono">${l.slice(0, 500).map(e => `<div><span class="mono">${esc(e.d)}</span><p><a href="${e.h}">${esc(e.n)}</a> · ${esc(e.x)}</p></div>`).join("")}</div>`;
+    };
+    ["cY", "cK"].forEach(id => g(id).onchange = fill); g("cQ").oninput = fill; fill();
+  };
+
+  V.comparar = arg => {
+    const top = sortBy("pt");
+    let [a, b] = (arg || "").split(",");
+    if (!byId[a]) a = top[0].id; if (!byId[b] || b === a) b = top[a === top[1].id ? 0 : 1].id;
+    const opts = sel => top.map(o => `<option value="${o.id}"${o.id === sel ? " selected" : ""}>${esc(corto(o.n))}</option>`).join("");
+    const A = byId[a], B = byId[b], rk = o => top.indexOf(o) + 1;
+    const rows = [["Puesto", o => rk(o), true], ["Puntaje de poder", o => num(o.pt)], ["Capacidad", o => num(o.cap)], ["Poder efectivo", o => num(o.pe)], ["Poder en red", o => num(o.red)], ["Brecha", o => pct(o.brecha)], ["Poder oculto", o => num(o.oculto)], ["Bloque", o => esc(BL[o.bloque].n)], ["Categoría", o => esc(o.area)], ["Alcance", o => esc(M.alcance[o.alc].n)], ["Autonomía", o => esc(M.autonomia[o.aut])], ["Sede", o => esc(paisDe(o))], ["Relaciones cargadas", o => relsOf(o.id).length]];
+    const segs = v => `<span class="segs" role="img" aria-label="${v} de 3">${[0, 1, 2].map(i => `<i class="${i < v ? "on" : ""}"></i>`).join("")}</span>`;
+    const direct = REL.filter(r => (r.a === a && r.b === b) || (r.a === b && r.b === a));
+    const partners = id => new Map(relsOf(id).map(r => [r.a === id ? r.b : r.a, r]));
+    const pA = partners(a), pB = partners(b), comunes = [...pA.keys()].filter(k => pB.has(k) && k !== a && k !== b).sort((x, y) => byId[y].pt - byId[x].pt);
+    const depAB = A.dep.includes(b) ? `${esc(corto(A.n))} depende de ${esc(corto(B.n))}.` : B.dep.includes(a) ? `${esc(corto(B.n))} depende de ${esc(corto(A.n))}.` : "";
+    app.innerHTML = `<div class="wrap">${crumbHead("Fichas", "Comparar actores", "Dos actores lado a lado: puntajes, perfil por eje, el vínculo entre ellos y con quién se relacionan los dos.")}
+      <div class="filters"><label>Primero<select id="cA">${opts(a)}</select></label><label>Segundo<select id="cB">${opts(b)}</select></label></div>
+      <div class="tbl-wrap"><table class="cmp"><thead><tr><th></th><th>${icon(A)} <a href="#o-${a}">${esc(corto(A.n))}</a></th><th>${icon(B)} <a href="#o-${b}">${esc(corto(B.n))}</a></th></tr></thead><tbody>
+        ${rows.map(([t, f]) => `<tr><td>${t}</td><td class="mono">${f(A)}</td><td class="mono">${f(B)}</td></tr>`).join("")}
+        <tr><td colspan="3" class="lbl" style="padding-top:18px">Perfil por eje (0 a 3)</td></tr>
+        ${M.ejes.map((e, i) => `<tr><td>${esc(e.n)}</td><td>${segs(A.sc[i])}</td><td>${segs(B.sc[i])}</td></tr>`).join("")}
+      </tbody></table></div>
+      <div style="display:flex;flex-direction:column;gap:26px;padding:10px 0 56px">
+        <div><h2>Entre ellos</h2>${depAB ? `<p class="read">${depAB}</p>` : ""}${direct.length ? direct.map(r => `<div class="rel">${lineIcon(r.t)}<div>${esc(r.t)}${r.i === 3 ? " fuerte" : r.i === 1 ? " débil" : ""}<small>${esc(r.x)}</small></div></div>`).join("") : depAB ? "" : `<p class="side-x">Sin relación directa cargada.</p>`}</div>
+        <div><h2>Con quién se relacionan los dos</h2>${comunes.length ? comunes.slice(0, 30).map(k => `<div class="rel">${icon(byId[k])}<div><a href="#o-${k}">${esc(corto(byId[k].n))}</a><small>${esc(corto(A.n))}: ${esc(pA.get(k).t.toLowerCase())} · ${esc(corto(B.n))}: ${esc(pB.get(k).t.toLowerCase())}</small></div></div>`).join("") : `<p class="side-x">Ningún actor en común.</p>`}</div></div></div>`;
+    const go = () => { location.hash = "comparar:" + document.getElementById("cA").value + "," + document.getElementById("cB").value; };
+    document.getElementById("cA").onchange = go; document.getElementById("cB").onchange = go;
+  };
+
   // ---------- rutas ----------
   const NAV = { inicio: "", "quien-manda": "quien", actores: "actores", paises: "paises", imperios: "imperios", friccion: "friccion", marco: "marco" };
   function route() {
@@ -781,12 +869,15 @@
     else if (h === "imperios") { V.imperios(); navKey = h; }
     else if (/^f-\d+$/.test(h)) { V.fr(h.slice(2)); navKey = "friccion"; }
     else if (h.startsWith("p-") && PA[h.slice(2)]) { V.pais(h.slice(2)); navKey = "paises"; }
+    else if (h === "buscar" || h.startsWith("buscar:")) { V.buscar(h.slice(7)); navKey = "buscar"; }
+    else if (h === "cronologia") { V.cronologia(); navKey = "cronologia"; }
+    else if (h === "comparar" || h.startsWith("comparar:")) { V.comparar(h.slice(9)); navKey = "actores"; }
     else if (h === "marco" || h === "marco-categorias") { V.marco(); navKey = "marco"; }
     else V.inicio();
     document.querySelectorAll(".mainnav a").forEach(a => a.classList.toggle("on", a.dataset.k === navKey));
-    const titles = { inicio: "", "quien-manda": "Quién manda", actores: "Actores", paises: "Países", imperios: "Imperios", friccion: "Puntos de fricción", marco: "Marco" };
+    const titles = { inicio: "", "quien-manda": "Quién manda", actores: "Actores", paises: "Países", imperios: "Imperios", friccion: "Puntos de fricción", marco: "Marco", buscar: "Buscar", cronologia: "Cronología" };
     const fx = /^f-\d+$/.test(h) && M.friccion.find(x => x.n === +h.slice(2));
-    const t = h.startsWith("o-") && (byId[h.slice(2)] || BAJ[h.slice(2)]) ? corto((byId[h.slice(2)] || BAJ[h.slice(2)]).n) : fx ? fx.x : h.startsWith("p-") && PA[h.slice(2)] ? PA[h.slice(2)].n : titles[navKey];
+    const t = h.startsWith("o-") && (byId[h.slice(2)] || BAJ[h.slice(2)]) ? corto((byId[h.slice(2)] || BAJ[h.slice(2)]).n) : fx ? fx.x : h.startsWith("p-") && PA[h.slice(2)] ? PA[h.slice(2)].n : (h.startsWith("comparar") ? "Comparar actores" : titles[navKey]);
     document.title = (t ? t + " · " : "") + "El mapa del poder global";
     const anc = h === "marco-categorias" && document.getElementById("cat");
     if (anc) anc.scrollIntoView({ block: "start" }); else window.scrollTo({ top: 0, left: 0, behavior: "instant" });

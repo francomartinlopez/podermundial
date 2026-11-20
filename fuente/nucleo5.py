@@ -159,7 +159,7 @@ FICHAS = {
                  "Gobierna sin mayoría: la oposición del Kuomintang y el Partido Popular de Taiwán controlan el Parlamento."],
     manda=["Lai Ching-te, presidente y líder del Partido Democrático Progresista."],
     dinero="El presupuesto de Taiwán, sostenido por la exportación de semiconductores.",
-    crono=[("2024-05-20", "Asume la presidencia."), ("2024-05", "Maniobras chinas «Espada Conjunta»."), ("2026-11-28", "Elecciones locales.")],
+    crono=[("2024-05-20", "Asume la presidencia."), ("2024-05", "Maniobras chinas «Espada Conjunta»."), ("2026-11-28", "Elecciones locales, previstas para esta fecha.")],
     fuentes=[("Lai Ching-te (Wikipedia)", W + "Lai_Ching-te")]),
 "kmt": dict(res=["Partido nacionalista que gobernó China hasta 1949 y Taiwán hasta 2000 y de nuevo entre 2008 y 2016; hoy principal fuerza de oposición, aliado del Partido Popular de Taiwán en el Parlamento.",
                  "Su presidenta, Cheng Li-wun, propone aceptar el «Consenso de 1992» con Pekín y en abril de 2026 se reunió con Xi Jinping, la primera visita de un líder del partido a China en una década."],

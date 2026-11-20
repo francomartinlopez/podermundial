@@ -2,6 +2,8 @@
 
 ## 2026-11-20
 
+- Páginas nuevas: **Buscar** (actores, países, puntos de fricción y el texto de todas las fichas), **Cronología** (los 3.364 hitos del sitio en una sola línea de tiempo, filtrable por año, origen y palabra) y **Comparar** (dos actores lado a lado: puntajes, ejes, vínculo directo y relaciones en común). Botón «Comparar» en cada ficha de actor.
+- Fichas de país: comercio por bloque (exportaciones e importaciones de los cinco principales socios, agrupadas por el bloque de cada socio) y sección de fuentes (Wikipedia, CIA World Factbook y las de los puntos de fricción del territorio).
 - Capa nueva del mapa, «Bases y pasos»: 29 bases militares en el exterior y 12 pasos marítimos estratégicos, con quién los controla (`fuente/bases.py`).
 - Dos puntos de fricción nuevos: 10, Ártico y Atlántico Norte, y 11, Atlántico Sur y Antártida, con actores, cronología, fuentes y relaciones.
 - Correcciones de hechos de 2026 (`fuente/correcciones.py`), con fuente: disolución de las FDS (agosto) y del CTS de Yemen (enero, disputada); salida de Emiratos de la OPEP; Min Aung Hlaing presidente de Myanmar; fin de las sanciones a Cartes; el tratado de Chagos no entró en vigor; renuncia de bin Sulayem en DP World; nuevo director de Disney; Panamá anula la concesión de CK Hutchison; purga de Zhang Youxia y Liu Zhenli; IX Congreso norcoreano; guerra abierta entre Pakistán y los talibanes; ofensiva del JNIM y el FLA en Malí; sanciones de EE.UU. al ejército y al Ministerio de Defensa de Ruanda; fallo de apelación en el juicio por YPF; venta de NIS a MOL; acuerdo de seguridad por Groenlandia; Sudán en 2026; atribución europea de la muerte de Navalni; elecciones de Israel y de medio término en EE.UU.; Haití sin consejo de transición; Israel reconoce a Somalilandia.
