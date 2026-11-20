@@ -56,4 +56,4 @@ C.update(_CN3)
 from nucleo4 import COORDS as _CN4
 C.update(_CN4)
 import importlib as _il
-for _t in ["nucleo5", "nucleo6", "nucleo7", "nucleo8"]: C.update(_il.import_module(_t).COORDS)
+for _t in ["nucleo5", "nucleo6", "nucleo7", "nucleo8", "nucleo9", "nucleo10"]: C.update(_il.import_module(_t).COORDS)

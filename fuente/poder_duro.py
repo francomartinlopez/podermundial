@@ -150,4 +150,4 @@ EXT.update(_EXT_N3)
 from nucleo4 import EXT as _EXT_N4
 EXT.update(_EXT_N4)
 import importlib as _il
-for _t in ["nucleo5", "nucleo6", "nucleo7", "nucleo8"]: EXT.update(_il.import_module(_t).EXT)
+for _t in ["nucleo5", "nucleo6", "nucleo7", "nucleo8", "nucleo9", "nucleo10"]: EXT.update(_il.import_module(_t).EXT)

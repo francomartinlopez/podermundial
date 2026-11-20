@@ -992,7 +992,7 @@ for _e in _EJN:
 
 # Quinta tanda (20 de noviembre de 2026): jefes de gobierno y partidos (ver fuente/nucleo5.py)
 import importlib as _il
-TANDAS = ["nucleo5", "nucleo6", "nucleo7", "nucleo8"]  # tandas de actores del 20 de noviembre de 2026
+TANDAS = ["nucleo5", "nucleo6", "nucleo7", "nucleo8", "nucleo9", "nucleo10"]  # tandas de actores del 20 de noviembre de 2026
 for _t in TANDAS:
     _m = _il.import_module(_t)
     ORGS += [n[:9] for n in _m.ACTORES]

@@ -304,3 +304,4 @@ table.cmp td:first-child { color: #9A8F8C; }
 table.cmp { width: 100%; table-layout: fixed; }
 table.cmp th:first-child, table.cmp td:first-child { width: 34%; }
 table.cmp td, table.cmp th { overflow-wrap: anywhere; white-space: normal; }
+.m-fr g.glob circle { stroke-dasharray: 3 2; }

@@ -106,7 +106,7 @@
     const defs = `<defs>${["T", "E", "I", "D"].map(b => `<pattern id="hatch-${b}" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#141414"/><rect width="3" height="6" fill="${b === "D" ? "#5A5150" : bcol(b)}"/></pattern><pattern id="col-${b}" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="${b === "D" ? "#5A5150" : bcol(b)}"/><circle cx="2.5" cy="2.5" r="1.1" fill="#141414"/></pattern>`).join("")}</defs>`;
     const cs = CPATH.map(c => `<path class="m-c${sel && sel.k === "c" && sel.v === c.name ? " sel" : ""}" data-c="${esc(c.name)}" d="${c.d}" fill="${fillFor(c.name, layer)}"/>`).join("");
     let extra = "";
-    if (layer === "bloques" || layer === "posicion") extra = `<g class="m-fr">${M.friccion.map(f => { const [x, y] = proj(f.ll); return `<g data-fr="${f.n}" tabindex="0" role="button" aria-label="Punto de fricción ${f.n}: ${esc(f.x)}"><circle cx="${x}" cy="${y}" r="${9 * zs}"/><text x="${x}" y="${y}" style="font-size:${10 * zs}px">${f.n}</text></g>`; }).join("")}</g>`;
+    if (layer === "bloques" || layer === "posicion") extra = `<g class="m-fr">${M.friccion.map(f => { const [x, y] = proj(f.ll); return `<g data-fr="${f.n}"${f.global ? ' class="glob"' : ""} tabindex="0" role="button" aria-label="${f.global ? "Frente sin territorio" : "Punto de fricción"} ${f.n}: ${esc(f.x)}"><circle cx="${x}" cy="${y}" r="${9 * zs}"/><text x="${x}" y="${y}" style="font-size:${10 * zs}px">${f.n}</text></g>`; }).join("")}</g>`;
     if (layer === "bases") extra = `<g class="m-bases">${(M.pasos || []).map(q => { const [x, y] = proj(q.ll), r = 6 * zs; return `<g><title>${esc(q.n)}: ${esc(q.x)}</title><path d="M${x} ${y - r}L${x + r} ${y}L${x} ${y + r}L${x - r} ${y}Z" fill="#000" stroke="#FF3B30" stroke-width="${1.6 * zs}"/></g>`; }).join("")}${(M.bases || []).map(q => { const [x, y] = proj(q.ll), r = 5 * zs; return `<g><title>${esc(q.n)} (${esc(q.h)}), de ${esc(q.op)}: ${esc(q.x)}</title><path d="M${x} ${y - r}L${x + r} ${y + r * .8}L${x - r} ${y + r * .8}Z" fill="${bcol(q.b)}" stroke="#000" stroke-width="${.8 * zs}"/></g>`; }).join("")}</g>`;
     if (layer === "actores") extra = ORGS.filter(o => o.ll).slice().sort((a, b) => b.pt - a.pt).map(o => { const [x, y] = proj(o.ll); const r = RAD(o.pt) * zs; return shape(o.tipo, x, y, r, bcol(o.bloque), `class="m-o${sel && sel.k === "o" && sel.v === o.id ? " sel" : ""}" data-o="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}"`); }).join("");
     return `<svg viewBox="${vb.join(" ")}" role="img" aria-label="Mapa mundial: ${esc(LAYERS[layer])}">${defs}<path class="m-sphere" d="${SPHERE}"/><path class="m-grat" d="${GRAT}"/>${cs}${extra}</svg>`;
@@ -141,7 +141,7 @@
       + `<div class="lbl" style="margin:8px 0 0">Tamaño: puntaje de poder</div><div style="align-items:flex-end;gap:14px">${[100, 50, 10].map(v => `<span style="display:inline-flex;flex-direction:column;align-items:center;gap:4px"><svg width="${2 * RAD(v) + 2}" height="${2 * RAD(v) + 2}" aria-hidden="true"><circle cx="${RAD(v) + 1}" cy="${RAD(v) + 1}" r="${RAD(v)}" fill="none" stroke="#EDE6E3" stroke-width="1.2"/></svg><small class="muted">${v}</small></span>`).join("")}</div>`;
     const base = sq(BL.T.c, "Imperio transoceánico") + sq(BL.E.c, "Alianza euroasiática") + sq(BL.I.c, "Independientes") + sq("#232323", "Terreno disputado", "border:1px solid #2A1414");
     if (layer === "posicion") return legendImperios() + `<p class="note">Color: bloque. Cuanto más intenso, más depende del centro su política exterior; rayado, protectorado; punteado, colonia de hecho. <a href="#imperios">Ver la explicación completa</a>.</p>`;
-    return base + `<div><span class="sq" style="border:1.6px solid #FF3B30;border-radius:50%"></span>Punto de fricción</div>`;
+    return base + `<div><span class="sq" style="border:1.6px solid #FF3B30;border-radius:50%"></span>Punto de fricción</div><div><span class="sq" style="border:1.6px dashed #FF3B30;border-radius:50%"></span>Frente sin territorio</div>`;
   }
   function countryPanel(name, layer) {
     const p = PA[name]; if (!p) return "";
@@ -595,7 +595,7 @@
     const set = new Set(f.paises);
     // cada polígono por separado, para que islas lejanas o territorios del otro lado del mapa no agranden el recuadro
     const partes = F => F.geometry.type === "MultiPolygon" ? F.geometry.coordinates.map(c => ({ type: "Feature", geometry: { type: "Polygon", coordinates: c } })) : [F];
-    const bs = FEAT.filter(F => set.has(F.properties.name)).flatMap(partes).map(F => gpath.bounds(F)).filter(([[a], [b]]) => b - a < MW / 3 && Math.abs((a + b) / 2 - proj(f.ll)[0]) < MW / 3);
+    const bs = f.global ? [[[0, MH * .04], [MW, MH * .86]]] : FEAT.filter(F => set.has(F.properties.name)).flatMap(partes).map(F => gpath.bounds(F)).filter(([[a], [b]]) => b - a < MW / 3 && Math.abs((a + b) / 2 - proj(f.ll)[0]) < MW / 3);
     let x0 = Math.min(...bs.map(b => b[0][0])), y0 = Math.min(...bs.map(b => b[0][1])), x1 = Math.max(...bs.map(b => b[1][0])), y1 = Math.max(...bs.map(b => b[1][1]));
     const [px, py] = proj(f.ll); x0 = Math.min(x0, px); x1 = Math.max(x1, px); y0 = Math.min(y0, py); y1 = Math.max(y1, py);
     const pad = Math.max(x1 - x0, y1 - y0) * .08 + 6, ar = big ? 1.9 : 1.6;
@@ -632,8 +632,8 @@
 
   V.friccion = () => {
     app.innerHTML = `<div class="wrap"><div class="page-head"><div style="display:flex;flex-direction:column;gap:12px"><div class="kick">Mapa</div><h1>Puntos de fricción</h1></div>
-      <p class="read">Los ${M.friccion.length} frentes donde chocan los bloques: dónde quedan, quién interviene en cada uno, qué hace cada actor, con quién se alía o se enfrenta y cómo se llegó hasta acá.</p></div>
-      <section class="block fr-grid">${M.friccion.map(f => `<a class="fr-card" href="#f-${f.n}">${frMini(f)}<div><span class="kick">Punto ${f.n} · ${f.actores.length} actores</span><b>${esc(f.x)}</b><span>${esc(f.d)}</span></div></a>`).join("")}</section></div>`;
+      <p class="read">Los ${M.friccion.length} frentes donde chocan los bloques: dónde quedan, quién interviene en cada uno, qué hace cada actor, con quién se alía o se enfrenta y cómo se llegó hasta acá. ${M.friccion.filter(f => f.global).length} de ellos no tienen territorio propio (chips, dinero, energía, información, espacio): se marcan con círculo punteado donde más se materializan.</p></div>
+      <section class="block fr-grid">${M.friccion.map(f => `<a class="fr-card" href="#f-${f.n}">${frMini(f)}<div><span class="kick">${f.global ? "Frente sin territorio" : "Punto"} ${f.n} · ${f.actores.length} actores</span><b>${esc(f.x)}</b><span>${esc(f.d)}</span></div></a>`).join("")}</section></div>`;
   };
 
   V.fr = n => {
@@ -644,7 +644,7 @@
       <div class="org-head"><div class="crumb"><a href="#friccion">Puntos de fricción</a> / Punto ${f.n} de ${M.friccion.length}</div><h1>${esc(f.x)}</h1>
         <p class="read">${esc(f.d)}</p></div>
       <div class="org-body"><div class="org-main">
-        <div class="box" style="padding:0;overflow:hidden">${frMini(f, true)}<p class="note" style="padding:0 16px 12px;margin:0">En rojo, los países y territorios que abarca este frente.</p></div>
+        <div class="box" style="padding:0;overflow:hidden">${frMini(f, true)}<p class="note" style="padding:0 16px 12px;margin:0">${f.global ? "Frente sin territorio propio: en rojo, los países donde más se materializa; el círculo marca dónde se ubica en el mapa." : "En rojo, los países y territorios que abarca este frente."}</p></div>
         <div><h2>Qué está en juego</h2>${f.texto.map(p => `<p class="read" style="margin:0 0 14px">${esc(p)}</p>`).join("")}</div>
         <div><h2>Quién interviene y cómo se relacionan</h2>
           <p class="note" style="margin:0 0 10px">Color: bloque. Forma: tipo de actor. Tamaño: puntaje de poder. Tocá un actor para ver solo sus relaciones.</p>
