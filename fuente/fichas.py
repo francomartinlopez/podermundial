@@ -2438,3 +2438,10 @@ for _k, _p in _PAR.items():
     if "manda" in _p: _f["manda"] = list(_p["manda"])
     _f["crono"] = sorted(_f["crono"] + _p.get("crono_mas", []), key=lambda c: str(c[0]))
     _f["fuentes"] = _f["fuentes"] + [x for x in _p.get("fuentes_mas", []) if x not in _f["fuentes"]]
+
+# Calidad de datos del 20 de noviembre de 2026 (ver fuente/calidad_2026.py)
+from calidad_2026 import CRONO as _CQ, FUENTES as _FQ
+for _k, _c in _CQ.items():
+    FICHAS[_k]["crono"] = sorted(FICHAS[_k]["crono"] + [c for c in _c if c not in FICHAS[_k]["crono"]], key=lambda c: str(c[0]))
+for _k, _l in _FQ.items():
+    FICHAS[_k]["fuentes"] = FICHAS[_k]["fuentes"] + [x for x in _l if x not in FICHAS[_k]["fuentes"]]
