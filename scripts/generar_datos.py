@@ -5,7 +5,7 @@ Uso: python3 scripts/generar_datos.py"""
 import json, os, sys
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RAIZ, "fuente"))
-from datos import ORGS, EJES, ORDEN_ENTRADA, AREA_TIPO, BLOQUES, AUTONOMIA, CERTEZA, RELACIONES, FORMAL, FASE, FASES, ANCLAS
+from datos import BAJAS, BAJAS_ORGS, BAJAS_REL, ORGS, EJES, ORDEN_ENTRADA, AREA_TIPO, BLOQUES, AUTONOMIA, CERTEZA, RELACIONES, FORMAL, FASE, FASES, ANCLAS
 from paises import PAISES, BLOQ, POS, GRADO, ASP
 from coords import C
 from fichas import FICHAS
@@ -46,6 +46,8 @@ def js(nombre, valor, comentario):
 fac = {1: 1, 2: .75, 3: .5, 4: .25}
 ids = {o[0] for o in ORGS}
 for k in EXT: assert k in ids, k
+for _d in (COH, APO, PRI, EXT):
+    for _k in BAJAS: _d.pop(_k, None)
 for k in list(COH) + list(APO) + list(PRI): assert k in ids, k
 masters = {o[0]: [d for d in o[8].split(",") if d] for o in ORGS}
 ejes = [e[0] for e in EJES]
@@ -144,6 +146,8 @@ for m in nombres:
         _t = TERR_ES.get(m, (m, None))
         paises[m] = {"n": _t[0], "b": "D" if m in TERRITORIOS_D else "T", "p": "S" if m in TERRITORIOS_D else "G", "z": "", "asp": [], "x": ("Bajo control británico desde 1833 y reclamadas por la Argentina; base militar británica en Mount Pleasant." if m == "Falkland Is." else "Base militar conjunta de EE.UU. y Reino Unido en Diego García; Mauricio reclama la soberanía y en 2025 se firmó su traspaso con arriendo de la base." if m == "Br. Indian Ocean Ter." else f"Territorio dependiente de {_t[1]}." if _t[1] else "Zona en disputa entre India y Pakistán." if m == "Siachen Glacier" else "Territorio dependiente."), "terr": True}
 
+from correcciones import PAIS_X
+for m, x in PAIS_X.items(): paises[m]["x"] = x
 for f in FRICCION:
     for a, _ in f["actores"]: assert a in ids, (f["n"], a)
     for c in f["paises"]: assert c in paises, (f["n"], c)
@@ -161,6 +165,13 @@ out = os.path.join(RAIZ, "data")
 open(os.path.join(out, "meta.js"), "w").write(js("META", meta, "Metadatos: corte, ejes, anclas, bloques, tipos y escalas."))
 open(os.path.join(out, "organizaciones.js"), "w").write(js("ORGS", orgs, "Las organizaciones con puntajes y métricas, ordenadas por poder en red."))
 open(os.path.join(out, "relaciones.js"), "w").write(js("RELACIONES", rel, "Vínculos entre organizaciones: tipo, intensidad (1 a 3) y explicación."))
+# actores dados de baja: ficha histórica aparte (no entran en el mapa, los rankings ni las relaciones)
+_nom = {o[0]: o[1] for o in ORGS}
+bajas = {o[0]: {"id": o[0], "n": o[1], "area": o[2], "sede": o[3], "bloque": o[4], "fecha": BAJAS[o[0]][0], "motivo": BAJAS[o[0]][1],
+                "rel": [{"o": (b if a == o[0] else a), "on": _nom.get(b if a == o[0] else a, ""), "t": t, "x": x} for a, b, t, x, i in BAJAS_REL if o[0] in (a, b)],
+                "ficha": {k: FICHAS[o[0]][k] for k in ("res", "manda", "dinero", "crono", "fuentes")}} for o in BAJAS_ORGS}
+for k in bajas: FICHAS.pop(k)
+open(os.path.join(out, "bajas.js"), "w").write(js("BAJAS", bajas, "Actores dados de baja (disueltos): ficha histórica, fuera del mapa y de los rankings."))
 for k in FICHAS: assert k in ids, k
 fichas = {k: {"res": v["res"], "manda": v["manda"], "dinero": v["dinero"], "crono": v["crono"], "fuentes": v["fuentes"], "rev": CORTE} for k, v in FICHAS.items()}
 open(os.path.join(out, "fichas.js"), "w").write(js("FICHAS", fichas, "Contenido de las fichas cargadas: resumen, quién manda, dinero, cronología y fuentes."))

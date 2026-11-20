@@ -988,3 +988,15 @@ assert {o[0] for o in ORGS if o[2] == "Partido único o hegemónico"} == _HEG
 from ejes_nuevos import EJES as _EJN, DESPUES as _DESP
 for _e in _EJN:
     EJES.insert([e[0] for e in EJES].index(_DESP[_e[0]]) + 1, _e[:4]); ANCLAS[_e[0]] = _e[4]
+
+# Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py): puntajes, bajas y relaciones
+from correcciones import ORG_SC as _OSC, BAJAS, REL_MAS as _RMAS, REL_TEXTO as _RTXT
+ORGS = [o[:6] + (_OSC[o[0]],) + o[7:] if o[0] in _OSC else o for o in ORGS]
+_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+RELACIONES += [r for r in _RMAS if (r[0], r[1]) not in _ya]
+_rt = {**_RTXT, **{(b, a): v for (a, b), v in _RTXT.items()}}
+RELACIONES = [(r[0], r[1]) + _rt[(r[0], r[1])] if (r[0], r[1]) in _rt else r for r in RELACIONES]
+BAJAS_ORGS = [o for o in ORGS if o[0] in BAJAS]
+BAJAS_REL = [r for r in RELACIONES if r[0] in BAJAS or r[1] in BAJAS]
+ORGS = [o for o in ORGS if o[0] not in BAJAS]
+RELACIONES = [r for r in RELACIONES if r[0] not in BAJAS and r[1] not in BAJAS]

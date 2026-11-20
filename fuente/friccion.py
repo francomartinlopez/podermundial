@@ -459,3 +459,8 @@ FR_REL = [
  ("cnpc", "tatmadaw", "Contrato", "Oleoducto y gasoducto entre la costa de Myanmar y China.", 2),
  ("jsdf", "ffaa_filipinas", "Alianza", "Acuerdo de acceso recíproco entre Japón y Filipinas de 2024.", 2),
 ]
+
+# Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py)
+from correcciones import FR_CRONO as _FRC
+for _f in FRICCION:
+    _f["crono"] = sorted(_f["crono"] + _FRC.get(_f["n"], []), key=lambda c: c[0])

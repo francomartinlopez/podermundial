@@ -1,7 +1,7 @@
 // El mapa del poder global · interfaz
 (function () {
   "use strict";
-  const M = window.META, ORGS = window.ORGS, REL = window.RELACIONES, PA = window.PAISES, WORLD = window.WORLD, FI = window.FICHAS || {};
+  const M = window.META, ORGS = window.ORGS, REL = window.RELACIONES, PA = window.PAISES, WORLD = window.WORLD, FI = window.FICHAS || {}, BAJ = window.BAJAS || {};
   const byId = Object.fromEntries(ORGS.map(o => [o.id, o]));
   const app = document.getElementById("app");
   const tip = document.getElementById("tip");
@@ -274,7 +274,7 @@
         <label>País<select id="fC"><option value="">Todos</option>${[...new Set(ORGS.map(paisDe))].sort((a, b) => a.localeCompare(b, "es")).map(c => `<option>${esc(c)}</option>`).join("")}</select></label>
         <label>Alcance<select id="fL"><option value="">Todos</option>${Object.entries(M.alcance).map(([k, a]) => `<option value="${k}">${esc(a.n)}</option>`).join("")}</select></label>
         <label>Bloque<select id="fB"><option value="">Todos</option>${["T", "E", "I", "P", "X"].map(k => `<option value="${k}">${esc(BL[k].n)}</option>`).join("")}</select></label>
-      </div><p class="note" style="margin:-6px 0 14px">Qué agrupa cada categoría y cuánto pesa: <a href="#marco-categorias">tabla de tipos y categorías</a>.</p><div id="lst" style="padding-bottom:56px"></div></div>`;
+      </div><p class="note" style="margin:-6px 0 14px">Qué agrupa cada categoría y cuánto pesa: <a href="#marco-categorias">tabla de tipos y categorías</a>.</p><div id="lst" style="padding-bottom:28px"></div>${Object.keys(BAJ).length ? `<div style="padding-bottom:56px"><h2>Dados de baja</h2><p class="note">Actores que dejaron de existir como tales; su ficha queda como registro histórico y ya no cuentan en el mapa ni en los rankings.</p>${Object.values(BAJ).map(b => `<div class="rel"><div><a href="#o-${b.id}">${esc(b.n)}</a> · ${esc(b.motivo)} (${fecha(b.fecha)})</div></div>`).join("")}</div>` : ""}</div>`;
     const g = id => document.getElementById(id);
     const fill = () => {
       const k = g("fM").value, q = nrm(g("fQ").value.trim());
@@ -296,7 +296,20 @@
       <g font-family="JetBrains Mono, monospace" font-size="10" fill="#9A8F8C" text-anchor="middle">${M.familias.map((F, i) => { const [x, y] = pt(i, 1.2); return `<text x="${x}" y="${y + 3}">${F.n.toUpperCase()}</text>`; }).join("")}</g></svg>`;
   }
 
+  V.baja = (b) => {
+    const F = b.ficha;
+    app.innerHTML = `<div class="wrap"><div class="org-head"><div class="crumb"><a href="#actores">Actores</a> / Dados de baja</div>
+      <h1>${esc(b.n)}</h1><div class="pills"><span style="border-color:#E10600">Dado de baja el ${fecha(b.fecha)}</span><span>${esc(b.area)}</span><span>${esc(b.sede)}</span></div>
+      <p class="read" style="margin-top:16px"><b>${esc(b.motivo)}</b> Ya no figura en el mapa, en los rankings ni en las relaciones; esta ficha queda como registro.</p></div>
+      <div style="display:flex;flex-direction:column;gap:26px;margin-top:26px;padding-bottom:56px">
+        <div><h2>Resumen</h2>${F.res.map(p => `<p class="read" style="margin:0 0 14px">${esc(p)}</p>`).join("")}</div>
+        <div><h2>Quién mandaba</h2><ul class="mlist">${F.manda.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>
+        ${b.rel.length ? `<div><h2>Relaciones que tenía</h2>${b.rel.map(r => `<div class="rel">${lineIcon(r.t)}<div>${byId[r.o] ? `<a href="#o-${r.o}">${esc(corto(r.on))}</a>` : esc(r.on)} · ${esc(r.t.toLowerCase())}<br><span class="muted">${esc(r.x)}</span></div></div>`).join("")}</div>` : ""}
+        <div><h2>Cronología</h2><div class="crono">${F.crono.map(([d, x]) => `<div><span class="mono">${esc(d)}</span><p>${esc(x)}</p></div>`).join("")}</div></div>
+        <div><h2>Fuentes</h2><ol class="fuentes">${F.fuentes.map(([t, u]) => `<li><a href="${esc(u)}" rel="noopener" target="_blank">${esc(t)}</a></li>`).join("")}</ol></div></div></div>`;
+  };
   V.org = (id) => {
+    if (!byId[id] && BAJ[id]) return V.baja(BAJ[id]);
     const o = byId[id]; if (!o) return V.actores();
     const deps = o.dep.map(d => byId[d]), subs = dependents(id), rels = relsOf(id), F = FI[id];
     const rank = sortBy("pt").indexOf(o) + 1;
@@ -769,7 +782,7 @@
     document.querySelectorAll(".mainnav a").forEach(a => a.classList.toggle("on", a.dataset.k === navKey));
     const titles = { inicio: "", "quien-manda": "Quién manda", actores: "Actores", paises: "Países", imperios: "Imperios", friccion: "Puntos de fricción", marco: "Marco" };
     const fx = /^f-\d+$/.test(h) && M.friccion.find(x => x.n === +h.slice(2));
-    const t = h.startsWith("o-") && byId[h.slice(2)] ? corto(byId[h.slice(2)].n) : fx ? fx.x : h.startsWith("p-") && PA[h.slice(2)] ? PA[h.slice(2)].n : titles[navKey];
+    const t = h.startsWith("o-") && (byId[h.slice(2)] || BAJ[h.slice(2)]) ? corto((byId[h.slice(2)] || BAJ[h.slice(2)]).n) : fx ? fx.x : h.startsWith("p-") && PA[h.slice(2)] ? PA[h.slice(2)].n : titles[navKey];
     document.title = (t ? t + " · " : "") + "El mapa del poder global";
     const anc = h === "marco-categorias" && document.getElementById("cat");
     if (anc) anc.scrollIntoView({ block: "start" }); else window.scrollTo({ top: 0, left: 0, behavior: "instant" });

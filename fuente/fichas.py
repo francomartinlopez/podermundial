@@ -2425,3 +2425,13 @@ from nucleo3 import FICHAS as _FN3
 FICHAS.update(_FN3)
 from nucleo4 import FICHAS as _FN4
 FICHAS.update(_FN4)
+
+# Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py)
+from correcciones import PARCHES as _PAR
+for _k, _p in _PAR.items():
+    _f = FICHAS[_k]
+    if "res" in _p: _f["res"] = list(_p["res"])
+    _f["res"] = _f["res"] + _p.get("res_mas", [])
+    if "manda" in _p: _f["manda"] = list(_p["manda"])
+    _f["crono"] = sorted(_f["crono"] + _p.get("crono_mas", []), key=lambda c: str(c[0]))
+    _f["fuentes"] = _f["fuentes"] + [x for x in _p.get("fuentes_mas", []) if x not in _f["fuentes"]]

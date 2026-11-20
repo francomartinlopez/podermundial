@@ -1,5 +1,12 @@
 # Cambios
 
+## 2026-11-20
+
+- Correcciones de hechos de 2026 (`fuente/correcciones.py`), con fuente: disolución de las FDS (agosto) y del CTS de Yemen (enero, disputada); salida de Emiratos de la OPEP; Min Aung Hlaing presidente de Myanmar; fin de las sanciones a Cartes; el tratado de Chagos no entró en vigor; renuncia de bin Sulayem en DP World; nuevo director de Disney; Panamá anula la concesión de CK Hutchison; purga de Zhang Youxia y Liu Zhenli; IX Congreso norcoreano; guerra abierta entre Pakistán y los talibanes; ofensiva del JNIM y el FLA en Malí; sanciones de EE.UU. al ejército y al Ministerio de Defensa de Ruanda; fallo de apelación en el juicio por YPF; venta de NIS a MOL; acuerdo de seguridad por Groenlandia; Sudán en 2026; atribución europea de la muerte de Navalni; elecciones de Israel y de medio término en EE.UU.; Haití sin consejo de transición; Israel reconoce a Somalilandia.
+- Actores dados de baja: estado nuevo para los actores disueltos (por ahora, las FDS). Salen del mapa, de los rankings y de las relaciones; su ficha queda como registro histórico y se listan al pie de Actores. Datos en `data/bajas.js`.
+- Fichas de país: cronologías actualizadas a 2026 en 25 países y errores corregidos (Noruega, Malí, Burkina Faso, Nigeria, Afganistán, Kirguistán, Bulgaria, Colombia, Armenia, Estonia, Letonia, Chipre del Norte, Somalilandia).
+- Puntos de fricción: cronologías con los hechos de 2026.
+
 ## 2026-11-17 (d)
 
 - Fichas de país: bloque «Los dos bloques aquí», con lo que quieren el imperio transoceánico y la alianza euroasiática en cada país y lo que hicieron ahí entre 2016 y 2026. Textos en `fuente/paises_bloques.py`. «Qué quiere» cada bloque se amplió en todos los países: alianzas buscadas (OTAN, UE, Quad, AUKUS), bases, puertos, minerales, tecnología y régimen político, y lo que busca cada potencia euroasiática por separado.

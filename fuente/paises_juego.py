@@ -906,3 +906,22 @@ P('Br. Indian Ocean Ter.', 'Diego García', 'Territorio británico con base mili
   'Sin economía civil: base militar.', 'El futuro de Diego García, base clave de EE.UU. en el Índico.', [(1965, 'Separación de Mauricio.'), (1971, 'Expulsión de los chagosianos.'), (2025, 'Tratado de traspaso a Mauricio.')])
 P('Fr. S. Antarctic Lands', 'Saint-Pierre (Reunión)', 'Territorio francés de ultramar sin población permanente.', 'Francés.', 'Pesca.',
   'Licencias de pesca de austromerluza.', 'La enorme zona marítima que da a Francia.', [(1955, 'Creación del territorio.')])
+
+
+def _corregir(lista, cambios, pais):
+    """Agrega (año, hecho) o reemplaza/quita por texto: (texto viejo, (año, texto) | None)."""
+    lista = list(lista)
+    for c in cambios:
+        if isinstance(c[0], str):
+            i = [x for _, x in lista].index(c[0])  # falla si el texto viejo no está
+            if c[1] is None: lista.pop(i)
+            else: lista[i] = c[1]
+        else:
+            lista.append(c)
+    return sorted(lista, key=lambda r: int(str(r[0])[:4]))
+
+
+# Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py)
+from correcciones import PAIS_SET as _PS, PAIS_CRONO as _PC
+for _k, _v in _PS.items(): PJ[_k].update(_v)
+for _k, _v in _PC.items(): PJ[_k]['crono'] = _corregir(PJ[_k]['crono'], _v, _k)

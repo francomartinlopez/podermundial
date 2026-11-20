@@ -869,3 +869,22 @@ Q('Gabon', 'Estabilidad tras el golpe, su petróleo y manganeso y que no se acer
 Q('Ghana', 'Oro, cacao, una democracia estable y su cooperación de seguridad.', 'China quiere bauxita y minería; muchos mineros ilegales chinos operan allí.')
 Q('Guinea', 'Bauxita y hierro fuera del control chino y que la junta entregue el poder.', 'China quiere la bauxita y el hierro de Simandou para su acero y su aluminio.')
 Q('Faeroe Is.', 'Que siga alineada con la OTAN en el Atlántico Norte y vigile a los submarinos rusos.', 'Rusia quiere su acuerdo de pesca y acceso a sus puertos.')
+
+
+def _corregir(lista, cambios, pais):
+    """Agrega (año, hecho) o reemplaza/quita por texto: (texto viejo, (año, texto) | None)."""
+    lista = list(lista)
+    for c in cambios:
+        if isinstance(c[0], str):
+            i = [x for _, x in lista].index(c[0])  # falla si el texto viejo no está
+            if c[1] is None: lista.pop(i)
+            else: lista[i] = c[1]
+        else:
+            lista.append(c)
+    return sorted(lista, key=lambda r: int(str(r[0])[:4]))
+
+
+# Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py)
+from correcciones import PB_TA as _TA, PB_EA as _EA
+for _k, _v in _TA.items(): PB[_k]['ta'] = _corregir(PB[_k]['ta'], _v, _k)
+for _k, _v in _EA.items(): PB[_k]['ea'] = _corregir(PB[_k]['ea'], _v, _k)

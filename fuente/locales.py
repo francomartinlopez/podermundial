@@ -633,3 +633,7 @@ FICHAS = {
 
 assert all(len(t[6]) == 17 for t in LOCALES), [t[0] for t in LOCALES if len(t[6]) != 17]
 assert {t[0] for t in LOCALES} == set(FICHAS), {t[0] for t in LOCALES} ^ set(FICHAS)
+
+# Correcciones del 20 de noviembre de 2026: notas de «quién define aquí»
+from correcciones import MANDA_NOTA as _MN
+for _m, _n in _MN.items(): MANDA[_m] = (MANDA[_m][0], _n)
