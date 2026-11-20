@@ -42,7 +42,7 @@ for col in ("E", "F", "G", "J"):
 for c in ws["I"][1:]: c.number_format = "0%"
 r = wb.create_sheet("Relaciones"); r.append(["Origen", "Destino", "Tipo", "Intensidad", "Descripción", "Fuente"])
 for x in sorted(REL, key=lambda x: (x["t"], -x["i"], name[x["a"]])):
-    r.append([name[x["a"]], name[x["b"]], x["t"], x["i"], x["x"], old_src.get(name[x["a"]] + "|" + name[x["b"]])])
+    r.append([name[x["a"]], name[x["b"]], x["t"], x["i"], x["x"], old_src.get(name[x["a"]] + "|" + name[x["b"]]) or old_src.get(name[x["b"]] + "|" + name[x["a"]])])
 for c in r[1]: c.font = Font(bold=True)
 r.freeze_panes = "A2"
 p = wb.create_sheet("Países"); p.append(["País", "Bloque", "Posición", "Zona liberada", "Aspectos", "Nota", "Nombre en el mapa"])

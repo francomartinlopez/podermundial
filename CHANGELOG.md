@@ -2,6 +2,7 @@
 
 ## 2026-11-20
 
+- Hoja de puntuación al día: 830 actores, 1.197 relaciones sin pares repetidos y la fórmula del poder oculto hasta la última fila; conteos por categoría actualizados en «Ejes y escala». El exportador ahora toma la fuente de una relación también con el par invertido.
 - Calidad de datos: hitos de 2024 a 2026 en 50 fichas del top 150 que terminaban antes de 2024 (`fuente/calidad_2026.py`), entre ellas PCCh, SOCOM, GRU, SVR, Unidad 8200, Meta, BlackRock, TSMC, Samsung, Comisión Europea, Al Thani y PIF. Quedan 33 fichas del top 150 sin hitos recientes.
 - Anthropic entra como actor (empresa de IA que desarrolla Claude, el sistema que redacta el sitio: la ficha lo aclara como posible conflicto de interés y su puntaje replica el perfil de OpenAI). Ficha con la designación del Pentágono como riesgo para la cadena de suministro (marzo de 2026) y el fallo que la anuló (agosto).
 - Cinco frentes sin territorio propio, como puntos de fricción 15 a 19, ubicados donde más se materializan y marcados con círculo punteado: chips y tierras raras, dólar y sistemas de pago, energía, información e inteligencia artificial, y espacio y cables submarinos.
