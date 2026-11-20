@@ -2,6 +2,7 @@
 
 ## 2026-11-20
 
+- Marco: David Kilcullen, *The Dragons and the Snakes* (2020), con ítem propio separado de Huntington: dragones y serpientes, la adaptación de los rivales desde 1991, la guerra liminal rusa, el envolvimiento conceptual chino y los tres caminos ante el declive (redoblar, replegarse o volverse bizantinos), con las críticas de sus reseñistas. Se suma a la síntesis del Marco y como tarjeta en Ciclos.
 - Marco: Robert Dahl, *Polyarchy: Participation and Opposition* (1971), ampliado: las dos dimensiones (debate público y participación), los cuatro regímenes con un gráfico, las ocho garantías, la regla de costos de tolerar y reprimir, las condiciones que favorecen la poliarquía y cómo la criptocracia invierte esa regla.
 - En el Marco, los ciclos aparecen como un desplegable destacado al comienzo del «Marco teórico»: al tocarlo se abre ahí mismo el contenido completo de la página Ciclos.
 - En el Marco, la herencia generacional pasa a presentarse como «estimación propia del sitio».
