@@ -72,6 +72,8 @@ from nucleo3 import ALC_G as _G3, ALC_R as _R3
 GLOBAL |= _G3; REGIONAL |= _R3 - _G3
 from nucleo4 import ALC_G as _G4, ALC_R as _R4
 GLOBAL |= _G4; REGIONAL |= _R4 - _G4
+from nucleo5 import ALC_G as _G5, ALC_R as _R5
+GLOBAL |= _G5; REGIONAL |= _R5 - _G5
 from revision import A_GLOBAL as _AG, A_NACIONAL as _AN
 REGIONAL -= _AG | _AN
 GLOBAL = (GLOBAL | _AG) - _AN

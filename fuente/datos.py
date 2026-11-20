@@ -767,11 +767,12 @@ assert all(len(n[6]) == 17 for n in _REAL) and len(_REAL) == 73
 _MAPA = {"pm_israel": "netanyahu", "turquia": "erdogan", "planalto": "lula", "gob_indonesia": "prabowo", "ucrania": "zelenski",
          "gob_siria": "sharaa", "miraflores": "delcy", "gob_ruanda": "kagame", "casarosada": "milei", "gob_bangladesh": "bnp",
          "gob_hungria": "tisza", "gob_etiopia": "prosperidad", "kantei": "jsdf", "kanzleramt": "bundeswehr", "eliseo": "ffaa_francia",
-         "downing": "ffaa_reinounido", "taiwan": "ffaa_taiwan", "gob_filipinas": "ffaa_filipinas", "gob_corea": "ffaa_corea",
+         "downing": "burnham", "taiwan": "ffaa_taiwan", "gob_filipinas": "ffaa_filipinas", "gob_corea": "ffaa_corea",
          "gob_australia": "adf", "gob_polonia": "ffaa_polonia", "gob_colombia": "ffmm_colombia", "gob_irak": "marco_coord",
-         "gob_nigeria": "nnpc", "chigi": "eni"}
+         "gob_nigeria": "nnpc", "chigi": "eni",
+         "gob_chile": "kast", "gob_ecuador": "daniel_noboa", "gob_sudafrica": "anc", "moncloa": "sanchez", "gob_canada": "carney"}
 _SIN_PAR = {("telegram", "eliseo"), ("totalenergies", "eliseo"), ("gob_nigeria", "isis"), ("casablanca", "gob_nigeria"),
-            ("dangote", "gob_nigeria"), ("casablanca", "gob_sudafrica"), ("gob_sudafrica", "brics"), ("chigi", "casablanca"),
+            ("dangote", "gob_nigeria"), ("chigi", "casablanca"),
             ("casablanca", "kanzleramt"), ("pt_br", "planalto")}
 _TEXTO = {("gob_colombia", "casablanca"): "Principal socio militar de EE.UU. en Sudamérica; cooperación antinarcóticos desde el Plan Colombia.",
           ("gob_irak", "pmf"): "La alianza chiita que designa al primer ministro tiene sus propias milicias dentro de las Fuerzas de Movilización Popular.",
@@ -988,6 +989,14 @@ assert {o[0] for o in ORGS if o[2] == "Partido único o hegemónico"} == _HEG
 from ejes_nuevos import EJES as _EJN, DESPUES as _DESP
 for _e in _EJN:
     EJES.insert([e[0] for e in EJES].index(_DESP[_e[0]]) + 1, _e[:4]); ANCLAS[_e[0]] = _e[4]
+
+# Quinta tanda (20 de noviembre de 2026): jefes de gobierno y partidos (ver fuente/nucleo5.py)
+from nucleo5 import NUCLEO5 as _NUC5, RELACIONES as _REL_NUC5
+ORGS += [n[:9] for n in _NUC5]
+FORMAL.update({n[0]: n[9] for n in _NUC5})
+FASE.update({n[0]: n[10] for n in _NUC5})
+_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+RELACIONES += [r for r in _REL_NUC5 if (r[0], r[1]) not in _ya]
 
 # Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py): puntajes, bajas y relaciones
 from correcciones import ORG_SC as _OSC, BAJAS, REL_MAS as _RMAS, REL_TEXTO as _RTXT

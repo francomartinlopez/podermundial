@@ -2426,6 +2426,9 @@ FICHAS.update(_FN3)
 from nucleo4 import FICHAS as _FN4
 FICHAS.update(_FN4)
 
+from nucleo5 import FICHAS as _FN5
+FICHAS.update(_FN5)
+
 # Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py)
 from correcciones import PARCHES as _PAR
 for _k, _p in _PAR.items():

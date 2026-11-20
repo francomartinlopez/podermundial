@@ -634,6 +634,14 @@ FICHAS = {
 assert all(len(t[6]) == 17 for t in LOCALES), [t[0] for t in LOCALES if len(t[6]) != 17]
 assert {t[0] for t in LOCALES} == set(FICHAS), {t[0] for t in LOCALES} ^ set(FICHAS)
 
-# Correcciones del 20 de noviembre de 2026: notas de «quién define aquí»
+# Quinta tanda y correcciones del 20 de noviembre de 2026: «quién define aquí»
+from nucleo5 import MANDA as _M5
+MANDA.update(_M5)
+MANDA.update({"India": ("gob_india", ""), "Brazil": ("lula", ""), "Venezuela": ("delcy", "Protectorado de EE.UU. en transición desde la captura de Maduro en enero de 2026."),
+              "Japan": ("ldp", "Sanae Takaichi, primera ministra; el partido gobernó Japón casi sin interrupciones desde 1955."), "Cambodia": ("cpp_kh", ""), "Singapore": ("pap_sg", ""),
+              "Myanmar": ("tatmadaw", "Su exjefe, Min Aung Hlaing, es presidente desde abril de 2026."), "Mali": ("junta_mali", ""), "Ukraine": ("zelenski", ""),
+              "Israel": ("netanyahu", "Primer ministro en funciones tras las elecciones de octubre de 2026, en las que ningún bloque logró mayoría."),
+              "North Korea": ("ptk", ""), "Russia": ("kremlin", ""), "Morocco": ("majzen", ""), "Hungary": ("tisza", "Gobierno de Péter Magyar desde su victoria de abril de 2026 sobre Orbán."),
+              "United States of America": ("casablanca", ""), "Somalia": ("gob_somalia", "Al Shabaab controla buena parte del sur y el centro rural; el gobierno federal depende de tropas de la Unión Africana, Turquía y EE.UU."), "Iraq": ("marco_coord", "La alianza chiita que designa al primer ministro; Washington vetó a Nuri al-Maliki y respaldó en 2026 a Ali al-Zaidi.")})
 from correcciones import MANDA_NOTA as _MN
 for _m, _n in _MN.items(): MANDA[_m] = (MANDA[_m][0], _n)

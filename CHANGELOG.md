@@ -6,6 +6,9 @@
 - Actores dados de baja: estado nuevo para los actores disueltos (por ahora, las FDS). Salen del mapa, de los rankings y de las relaciones; su ficha queda como registro histórico y se listan al pie de Actores. Datos en `data/bajas.js`.
 - Fichas de país: cronologías actualizadas a 2026 en 25 países y errores corregidos (Noruega, Malí, Burkina Faso, Nigeria, Afganistán, Kirguistán, Bulgaria, Colombia, Armenia, Estonia, Letonia, Chipre del Norte, Somalilandia).
 - Puntos de fricción: cronologías con los hechos de 2026.
+- 24 actores nuevos (`fuente/nucleo5.py`): jefes de gobierno y partidos de los países donde «quién define» mostraba un cartel, una empresa o un ejército (Meloni, Merz, AfD, Macron, Agrupación Nacional, Burnham, Reform UK, Sánchez, Partido Popular, Carney, Albanese, Lee Jae-myung, Lai Ching-te, Kuomintang, De la Espriella, Kast, Sheinbaum, Tinubu, Ruto, Tshisekedi, Tusk, PiS, Yashar de Eisenkot y Daniel Noboa), con fichas, fuentes y relaciones.
+- «Quién define aquí» fijado a mano en 36 países más (India, Brasil, Venezuela, Japón, Rusia, EE.UU., Israel, Ucrania, Corea del Norte, Somalia, Irak, entre otros). La ficha del país muestra además el «mayor poder real con sede aquí» cuando es otro actor (por ejemplo, el Cártel de Sinaloa en México) y avisa cuando no hay gobernante cargado.
+- Las relaciones de los gobiernos quitados el 16/11 que se perdían o colgaban de un ejército pasan a sus jefes de gobierno cuando corresponde (Reino Unido, Canadá, España, Chile, Ecuador, Sudáfrica).
 
 ## 2026-11-17 (d)
 

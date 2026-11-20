@@ -149,3 +149,5 @@ from nucleo3 import EXT as _EXT_N3
 EXT.update(_EXT_N3)
 from nucleo4 import EXT as _EXT_N4
 EXT.update(_EXT_N4)
+from nucleo5 import EXT as _EXT_N5
+EXT.update(_EXT_N5)
