@@ -163,8 +163,9 @@ from nucleo3 import COH as _COH3, APO as _APO3, PRI as _PRI3
 COH.update(_COH3); APO.update(_APO3); PRI.update(_PRI3)
 from nucleo4 import COH as _COH4, APO as _APO4, PRI as _PRI4
 COH.update(_COH4); APO.update(_APO4); PRI.update(_PRI4)
-from nucleo5 import COH as _COH5, APO as _APO5, PRI as _PRI5
-COH.update(_COH5); APO.update(_APO5); PRI.update(_PRI5)
+import importlib as _il
+for _t in ["nucleo5", "nucleo6", "nucleo7"]:
+    _m = _il.import_module(_t); COH.update(_m.COH); APO.update(_m.APO); PRI.update(_m.PRI)
 
 from revision import COH as _COH_R, APO as _APO_R, PRI as _PRI_R
 COH.update(_COH_R); APO.update(_APO_R); PRI.update(_PRI_R)

@@ -149,5 +149,5 @@ from nucleo3 import EXT as _EXT_N3
 EXT.update(_EXT_N3)
 from nucleo4 import EXT as _EXT_N4
 EXT.update(_EXT_N4)
-from nucleo5 import EXT as _EXT_N5
-EXT.update(_EXT_N5)
+import importlib as _il
+for _t in ["nucleo5", "nucleo6", "nucleo7"]: EXT.update(_il.import_module(_t).EXT)

@@ -991,12 +991,15 @@ for _e in _EJN:
     EJES.insert([e[0] for e in EJES].index(_DESP[_e[0]]) + 1, _e[:4]); ANCLAS[_e[0]] = _e[4]
 
 # Quinta tanda (20 de noviembre de 2026): jefes de gobierno y partidos (ver fuente/nucleo5.py)
-from nucleo5 import NUCLEO5 as _NUC5, RELACIONES as _REL_NUC5
-ORGS += [n[:9] for n in _NUC5]
-FORMAL.update({n[0]: n[9] for n in _NUC5})
-FASE.update({n[0]: n[10] for n in _NUC5})
-_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
-RELACIONES += [r for r in _REL_NUC5 if (r[0], r[1]) not in _ya]
+import importlib as _il
+TANDAS = ["nucleo5", "nucleo6", "nucleo7"]  # tandas de actores del 20 de noviembre de 2026
+for _t in TANDAS:
+    _m = _il.import_module(_t)
+    ORGS += [n[:9] for n in _m.ACTORES]
+    FORMAL.update({n[0]: n[9] for n in _m.ACTORES})
+    FASE.update({n[0]: n[10] for n in _m.ACTORES})
+    _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+    RELACIONES += [r for r in _m.RELACIONES if (r[0], r[1]) not in _ya]
 from relaciones_2026 import RELACIONES as _REL_2026
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _REL_2026 if (r[0], r[1]) not in _ya]

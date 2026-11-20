@@ -1,13 +1,13 @@
 # Quinta tanda (20 de noviembre de 2026): quién gobierna en los países donde «quién define» mostraba
 # un cartel, una empresa o un ejército porque faltaba el actor político. Con el criterio del 16 de noviembre
 # (menos Estados formales, más poder real) se suman jefes de gobierno y partidos, no gobiernos.
-# NUCLEO5: id, nombre, área, sede, bloque, autonomía, 17 puntajes (orden de entrada), certeza, depende de, poder formal, fase.
+# ACTORES: id, nombre, área, sede, bloque, autonomía, 17 puntajes (orden de entrada), certeza, depende de, poder formal, fase.
 W = "https://en.wikipedia.org/wiki/"
 G_ = "01111110021021211"   # jefe de gobierno de una potencia del G7 o similar
 M_ = "01111110021011111"   # jefe de gobierno de un país mediano
 O_ = "00111010020001101"   # partido grande de oposición o en ascenso
 
-NUCLEO5 = [
+ACTORES = [
  ("meloni", "Giorgia Meloni (Fratelli d'Italia)", "Líder político", "Roma, Italia", "T", 2, G_, "D", "", 3, "C"),
  ("merz", "Friedrich Merz (CDU/CSU)", "Líder político", "Berlín, Alemania", "T", 2, G_, "D", "", 3, "C"),
  ("afd", "AfD (Alternativa para Alemania)", "Partido en sistema competitivo", "Berlín, Alemania", "T", 2, O_, "D", "", 2, "E"),
@@ -33,7 +33,7 @@ NUCLEO5 = [
  ("yashar", "Yashar (Gadi Eisenkot)", "Partido en sistema competitivo", "Tel Aviv, Israel", "T", 2, O_, "D", "", 2, "E"),
  ("daniel_noboa", "Daniel Noboa", "Líder político", "Quito, Ecuador", "T", 2, M_, "D", "", 3, "C"),
 ]
-assert all(len(n[6]) == 17 for n in NUCLEO5), [n[0] for n in NUCLEO5 if len(n[6]) != 17]
+assert all(len(n[6]) == 17 for n in ACTORES), [n[0] for n in ACTORES if len(n[6]) != 17]
 
 ALC_G = set()
 ALC_R = {"meloni", "merz", "macron", "burnham", "carney"}

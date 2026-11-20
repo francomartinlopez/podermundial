@@ -72,8 +72,9 @@ from nucleo3 import ALC_G as _G3, ALC_R as _R3
 GLOBAL |= _G3; REGIONAL |= _R3 - _G3
 from nucleo4 import ALC_G as _G4, ALC_R as _R4
 GLOBAL |= _G4; REGIONAL |= _R4 - _G4
-from nucleo5 import ALC_G as _G5, ALC_R as _R5
-GLOBAL |= _G5; REGIONAL |= _R5 - _G5
+import importlib as _il
+for _t in ["nucleo5", "nucleo6", "nucleo7"]:
+    _m = _il.import_module(_t); GLOBAL |= _m.ALC_G; REGIONAL |= _m.ALC_R - _m.ALC_G
 from revision import A_GLOBAL as _AG, A_NACIONAL as _AN
 REGIONAL -= _AG | _AN
 GLOBAL = (GLOBAL | _AG) - _AN
@@ -82,3 +83,11 @@ assert not GLOBAL & REGIONAL, GLOBAL & REGIONAL
 
 def alcance(i):
     return "G" if i in GLOBAL else "R" if i in REGIONAL else "N"
+
+
+# Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py)
+from correcciones import ALC_FIX as _AF
+for _i, _a in _AF.items():
+    GLOBAL.discard(_i); REGIONAL.discard(_i)
+    if _a == "G": GLOBAL.add(_i)
+    elif _a == "R": REGIONAL.add(_i)

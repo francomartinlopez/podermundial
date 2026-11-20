@@ -11,7 +11,18 @@ BAJAS = {
 
 # ───────── Puntajes corregidos (17 ejes en el orden de entrada de datos.py)
 ORG_SC = {
+    "sap": "01220012223002202",  # adquisición de información 3 -> 2: el 3 queda para dominio a escala mundial
     "stc": "10201110110011010",  # perdió Adén y su conducción está dividida tras la disolución anunciada en Riad
+}
+
+# ───────── Alcance efectivo corregido (revisión de puntajes que chocaban con la intuición)
+ALC_FIX = {
+    "comisioneu": "G",  # sus reglas de comercio, competencia y datos se aplican fuera de Europa
+    "rgb": "R",         # sus operaciones cibernéticas son globales, pero su poder no supera al del partido del que depende
+    "scotus": "R",      # sus fallos sobre aranceles y poderes presidenciales pesan fuera de EE.UU.
+    "infosys": "R",     # servicios informáticos globales, pero sin poder propio fuera de sus clientes
+    "nokia": "R",
+    "kwajalein": "N",   # campo de pruebas; el poder es del Pentágono, del que depende
 }
 
 # ───────── Fichas de actores: res (reemplaza), res_mas (agrega), manda (reemplaza), crono_mas, fuentes_mas

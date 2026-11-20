@@ -635,8 +635,8 @@ assert all(len(t[6]) == 17 for t in LOCALES), [t[0] for t in LOCALES if len(t[6]
 assert {t[0] for t in LOCALES} == set(FICHAS), {t[0] for t in LOCALES} ^ set(FICHAS)
 
 # Quinta tanda y correcciones del 20 de noviembre de 2026: «quién define aquí»
-from nucleo5 import MANDA as _M5
-MANDA.update(_M5)
+import importlib as _il
+for _t in ["nucleo5", "nucleo6", "nucleo7"]: MANDA.update(_il.import_module(_t).MANDA)
 MANDA.update({"India": ("gob_india", ""), "Brazil": ("lula", ""), "Venezuela": ("delcy", "Protectorado de EE.UU. en transición desde la captura de Maduro en enero de 2026."),
               "Japan": ("ldp", "Sanae Takaichi, primera ministra; el partido gobernó Japón casi sin interrupciones desde 1955."), "Cambodia": ("cpp_kh", ""), "Singapore": ("pap_sg", ""),
               "Myanmar": ("tatmadaw", "Su exjefe, Min Aung Hlaing, es presidente desde abril de 2026."), "Mali": ("junta_mali", ""), "Ukraine": ("zelenski", ""),
