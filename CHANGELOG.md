@@ -2,6 +2,7 @@
 
 ## 2026-11-20
 
+- Marco: Robert Dahl, *Polyarchy: Participation and Opposition* (1971), ampliado: las dos dimensiones (debate público y participación), los cuatro regímenes con un gráfico, las ocho garantías, la regla de costos de tolerar y reprimir, las condiciones que favorecen la poliarquía y cómo la criptocracia invierte esa regla.
 - En el Marco, los ciclos aparecen como un desplegable destacado al comienzo del «Marco teórico»: al tocarlo se abre ahí mismo el contenido completo de la página Ciclos.
 - En el Marco, la herencia generacional pasa a presentarse como «estimación propia del sitio».
 - Página nueva «Ciclos» (`#ciclos`, datos en `fuente/ciclos.py`), enlazada desde el Marco y desde la fase de Quigley de cada ficha: «el reloj de las teorías» (doce franjas de 1900 a 2060 con la convergencia de crisis entre 2020 y 2035), la duración de cada ciclo en escala logarítmica, una tarjeta por teoría (mecanismo, duración, señal de crisis, hoy, dónde se ve en el sitio, crítica y fuentes) y los mecanismos sin fechas (Veblen, Schumpeter, Olson, Pareto, Ibn Jaldún, Polibio, realismo, criptocracia). La tarjeta austríaca incorpora el ensayo «Transformar sin tiempo ni cambios es destruir».

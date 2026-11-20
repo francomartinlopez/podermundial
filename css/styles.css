@@ -321,3 +321,5 @@ table.cmp td, table.cmp th { overflow-wrap: anywhere; white-space: normal; }
 .cy-drop > summary span:last-child { color: #9A8F8C; font-size: 15px; }
 .cy-drop > summary:hover { background: #160808; }
 .cy-drop > #cyBody, .cy-drop > p { padding: 0 20px; }
+.dahl { margin: 16px 0 4px; max-width: 520px; }
+.dahl svg { width: 100%; height: auto; display: block; background: #0B0B0B; border: 1px solid #2A1414; }
