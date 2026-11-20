@@ -460,6 +460,56 @@ FR_REL = [
  ("jsdf", "ffaa_filipinas", "Alianza", "Acuerdo de acceso recíproco entre Japón y Filipinas de 2024.", 2),
 ]
 
+# Puntos de fricción nuevos (20 de noviembre de 2026)
+_W = "https://en.wikipedia.org/wiki/"
+FRICCION += [
+ {"n": 10, "x": "Ártico y Atlántico Norte", "ll": [-30.0, 72.0],
+  "d": "Groenlandia, el paso entre Groenlandia, Islandia y el Reino Unido y la Ruta Marítima del Norte: el deshielo abre rutas y minerales, y EE.UU., Rusia y China compiten por bases y recursos.",
+  "texto": [
+   "El Ártico se calienta más rápido que el resto del planeta y el hielo que se retira abre dos rutas entre Asia y Europa: la Ruta Marítima del Norte, sobre la costa rusa, que Moscú administra a través de Rosatom, y el paso del Noroeste, por aguas que Canadá considera propias. Debajo hay gas, petróleo, tierras raras y uranio.",
+   "Rusia tiene allí su Flota del Norte, con los submarinos nucleares que son la base de su disuasión, y sale al Atlántico por el paso entre Groenlandia, Islandia y el Reino Unido, que la OTAN vigila. La entrada de Finlandia y Suecia en la alianza, en 2023 y 2024, dejó a Rusia como el único país ártico fuera de ella.",
+   "Trump reclamó Groenlandia desde 2019 y en enero de 2026 amenazó con tomarla, lo que desató la mayor crisis interna de la OTAN. Terminó con un acuerdo firmado en septiembre: más presencia militar de EE.UU., con dos bases nuevas, y veto a bases e inversiones sensibles de Rusia y China, sin cesión de soberanía. China, que se define como «Estado cercano al Ártico», busca minerales y rutas, pero quedó fuera de los proyectos groenlandeses."],
+  "paises": ["Greenland", "Iceland", "Norway", "Denmark", "Finland", "Sweden", "Russia", "Canada", "United States of America", "Faeroe Is."],
+  "actores": [("pentagono", "Opera la base espacial de Pituffik y suma dos bases nuevas por el acuerdo de 2026."),
+              ("gob_groenlandia", "Gobierno autónomo que negoció el acuerdo junto con Dinamarca."),
+              ("frederiksen", "Resistió la presión de Trump y firmó el acuerdo de seguridad."),
+              ("ffaa_rusia", "Su Flota del Norte, con base en Murmansk, guarda los submarinos nucleares rusos."),
+              ("rosatom", "Administra la Ruta Marítima del Norte y la flota de rompehielos nucleares."),
+              ("novatek", "Exporta gas licuado desde Yamal; EE.UU. sancionó su proyecto Arctic LNG 2."),
+              ("otan", "Vigila el paso entre Groenlandia, Islandia y el Reino Unido."),
+              ("carney", "Defiende la soberanía canadiense sobre el paso del Noroeste."),
+              ("ffaa_finlandia", "Su ingreso a la OTAN en 2023 cerró el flanco nórdico.")],
+  "crono": [("2007-08", "Rusia planta su bandera en el fondo del mar bajo el Polo Norte."), ("2019-08", "Trump propone comprar Groenlandia."),
+            ("2023-04", "Finlandia ingresa a la OTAN."), ("2023-11", "EE.UU. sanciona el proyecto Arctic LNG 2."), ("2024-03", "Suecia ingresa a la OTAN."),
+            ("2026-01", "Trump amenaza con tomar Groenlandia; marco de acuerdo en Davos."), ("2026-09-22", "Acuerdo de seguridad entre EE.UU., Dinamarca y Groenlandia.")],
+  "fuentes": [("Arctic policy of Russia (Wikipedia)", _W + "Arctic_policy_of_Russia"), ("Northern Sea Route (Wikipedia)", _W + "Northern_Sea_Route"),
+              ("Trump signs US-Denmark-Greenland agreement (AP)", "https://www.valleynewslive.com/2026/09/23/trump-signs-us-denmark-greenland-agreement-bolster-arctic-security-after-prolonged-tensions/")]},
+ {"n": 11, "x": "Atlántico Sur y Antártida", "ll": [-45.0, -55.0],
+  "d": "Malvinas, el paso de Drake, la pesca en la milla 201 y los reclamos antárticos: el Reino Unido conserva Mount Pleasant, China gana presencia y la Argentina se alinea con EE.UU.",
+  "texto": [
+   "El Reino Unido ocupa las Malvinas desde 1833 y mantiene en Mount Pleasant una guarnición que, junto con Ascensión y las Georgias del Sur, le da una cadena de puntos de apoyo en el Atlántico Sur. La Argentina reclama las islas y su reclamo cuenta con el respaldo de la mayoría de los gobiernos latinoamericanos.",
+   "El paso de Drake y el estrecho de Magallanes son la única ruta oceánica entre el Atlántico y el Pacífico fuera del canal de Panamá. Frente a la costa patagónica, cientos de pesqueros, en su mayoría chinos, pescan calamar al borde de la zona económica argentina. China opera desde 2017 una estación espacial en Neuquén, a cargo de un organismo de su ejército.",
+   "La Antártida está congelada en lo político por el Tratado de 1959, que suspende los reclamos de soberanía, entre ellos los superpuestos de la Argentina, Chile y el Reino Unido. China y Rusia multiplican sus bases científicas. El gobierno de Milei acordó con EE.UU. en 2024 una base naval integrada en Ushuaia, puerta de entrada a la Antártida."],
+  "paises": ["Argentina", "Chile", "Uruguay", "Brazil", "Falkland Is.", "S. Geo. and the Is.", "Saint Helena", "South Africa"],
+  "actores": [("ffaa_reinounido", "Guarnición de Mount Pleasant y control de Malvinas, Georgias del Sur y Ascensión."),
+              ("milei", "Mantiene el reclamo de soberanía y se alineó con EE.UU. en la base de Ushuaia."),
+              ("pentagono", "Acordó en 2024 con la Argentina una base naval integrada en Ushuaia."),
+              ("epl", "Un organismo del ejército chino opera la estación espacial de Neuquén."),
+              ("pcch", "Su flota pesquera opera al borde de la zona económica argentina y sus bases antárticas se multiplican."),
+              ("kast", "Chile reclama un sector antártico superpuesto con el argentino y el británico.")],
+  "crono": [("1833-01", "El Reino Unido ocupa las Malvinas."), ("1959-12", "Firma del Tratado Antártico."), ("1982", "Guerra de Malvinas."),
+            ("2017", "Comienza a operar la estación espacial china de Neuquén."), ("2024-04", "Milei anuncia una base naval integrada con EE.UU. en Ushuaia.")],
+  "fuentes": [("Falkland Islands sovereignty dispute (Wikipedia)", _W + "Falkland_Islands_sovereignty_dispute"), ("Antarctic Treaty System (Wikipedia)", _W + "Antarctic_Treaty_System"),
+              ("Espacio Lejano Station (Wikipedia)", _W + "Espacio_Lejano_Station")]},
+]
+FR_REL += [
+ ("rosatom", "kremlin", "Gobierna", "Rosatom administra la Ruta Marítima del Norte por ley desde 2019.", 2),
+ ("novatek", "tesoro_eeuu", "Enfrentamiento", "EE.UU. sancionó en 2023 su proyecto Arctic LNG 2.", 1),
+ ("epl", "milei", "Ambigua", "Un organismo del ejército chino opera desde 2017 la estación espacial de Neuquén.", 1),
+ ("pentagono", "milei", "Alianza", "Acordaron en 2024 una base naval integrada en Ushuaia.", 1),
+ ("ffaa_reinounido", "milei", "Ambigua", "La Argentina reclama las Malvinas, donde el Reino Unido mantiene la guarnición de Mount Pleasant.", 1),
+]
+
 # Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py)
 from correcciones import FR_CRONO as _FRC
 for _f in FRICCION:

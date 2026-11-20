@@ -76,6 +76,7 @@
   function fillFor(name, layer) {
     const p = PA[name]; if (!p) return "#101010";
     if (layer === "zonas") return p.z ? ZONA[p.z] : "#232323";
+    if (layer === "bases") return p.b === "D" ? "#1A1A1A" : bcol(p.b) + "30";
     if (layer === "actores") return p.b === "D" ? "#1D1D1D" : bcol(p.b) + "40";
     if (layer === "posicion") {
       if (p.p === "R") return `url(#hatch-${p.b})`;
@@ -106,10 +107,11 @@
     const cs = CPATH.map(c => `<path class="m-c${sel && sel.k === "c" && sel.v === c.name ? " sel" : ""}" data-c="${esc(c.name)}" d="${c.d}" fill="${fillFor(c.name, layer)}"/>`).join("");
     let extra = "";
     if (layer === "bloques" || layer === "posicion") extra = `<g class="m-fr">${M.friccion.map(f => { const [x, y] = proj(f.ll); return `<g data-fr="${f.n}" tabindex="0" role="button" aria-label="Punto de fricción ${f.n}: ${esc(f.x)}"><circle cx="${x}" cy="${y}" r="${9 * zs}"/><text x="${x}" y="${y}" style="font-size:${10 * zs}px">${f.n}</text></g>`; }).join("")}</g>`;
+    if (layer === "bases") extra = `<g class="m-bases">${(M.pasos || []).map(q => { const [x, y] = proj(q.ll), r = 6 * zs; return `<g><title>${esc(q.n)}: ${esc(q.x)}</title><path d="M${x} ${y - r}L${x + r} ${y}L${x} ${y + r}L${x - r} ${y}Z" fill="#000" stroke="#FF3B30" stroke-width="${1.6 * zs}"/></g>`; }).join("")}${(M.bases || []).map(q => { const [x, y] = proj(q.ll), r = 5 * zs; return `<g><title>${esc(q.n)} (${esc(q.h)}), de ${esc(q.op)}: ${esc(q.x)}</title><path d="M${x} ${y - r}L${x + r} ${y + r * .8}L${x - r} ${y + r * .8}Z" fill="${bcol(q.b)}" stroke="#000" stroke-width="${.8 * zs}"/></g>`; }).join("")}</g>`;
     if (layer === "actores") extra = ORGS.filter(o => o.ll).slice().sort((a, b) => b.pt - a.pt).map(o => { const [x, y] = proj(o.ll); const r = RAD(o.pt) * zs; return shape(o.tipo, x, y, r, bcol(o.bloque), `class="m-o${sel && sel.k === "o" && sel.v === o.id ? " sel" : ""}" data-o="${o.id}" tabindex="0" role="button" aria-label="${esc(o.n)}"`); }).join("");
     return `<svg viewBox="${vb.join(" ")}" role="img" aria-label="Mapa mundial: ${esc(LAYERS[layer])}">${defs}<path class="m-sphere" d="${SPHERE}"/><path class="m-grat" d="${GRAT}"/>${cs}${extra}</svg>`;
   }
-  const LAYERS = { bloques: "Bloques", posicion: "Imperios", zonas: "Zonas liberadas", actores: "Actores" };
+  const LAYERS = { bloques: "Bloques", posicion: "Imperios", zonas: "Zonas liberadas", actores: "Actores", bases: "Bases y pasos" };
   // muestra de color de una posición, como la pinta el mapa
   function swatch(b, p) {
     if (p === "R") return `repeating-linear-gradient(45deg,${b === "D" ? "#5A5150" : bcol(b)} 0 3px,#141414 3px 6px)`;
@@ -132,6 +134,7 @@
   }
   function legendFor(layer) {
     const sq = (c, t, extra = "") => `<div><span class="sq" style="background:${c};${extra}"></span>${t}</div>`;
+    if (layer === "bases") return `<div class="lbl" style="margin:0">Triángulo: base militar en el exterior, del color del bloque que la opera</div>` + ["T", "E", "P"].map(k => sq(BL[k].c, esc(BL[k].n))).join("") + `<div class="lbl" style="margin:8px 0 0">Rombo: paso marítimo estratégico</div><p class="note">Pasá el cursor o tocá un símbolo para ver qué es. Lista completa:</p><section style="flex-basis:100%;width:100%;max-height:260px;overflow:auto">${(M.pasos || []).map(q => `<p class="side-x" style="margin:0 0 6px"><b>◆ ${esc(q.n)}.</b> ${esc(q.x)}</p>`).join("")}${(M.bases || []).map(q => `<p class="side-x" style="margin:0 0 6px"><b>▲ ${esc(q.n)}</b> (${esc(q.h)}, ${esc(q.op)}). ${esc(q.x)}</p>`).join("")}</section>`;
     if (layer === "zonas") return sq(ZONA.T, "Total") + sq(ZONA.X, "Extendida") + sq(ZONA.P, "Parcial") + sq("#232323", "Sin zona liberada", "border:1px solid #2A1414");
     if (layer === "actores") return `<div class="lbl" style="margin:0">Color: bloque</div>` + ["T", "E", "I", "P", "X"].map(k => sq(BL[k].c, esc(BL[k].n))).join("")
       + `<div class="lbl" style="margin:8px 0 0">Forma: tipo de actor</div>` + M.tipos.map(t => `<div><svg width="16" height="16" aria-hidden="true">${shape(t, 8, 8, 6.4, "#EDE6E3")}</svg>${t}</div>`).join("")

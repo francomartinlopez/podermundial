@@ -15,6 +15,7 @@ from ejes_nuevos import COH, COH_AREA, APO, APO_AREA, PRI, PRI_AREA
 from alcance import VALOR as ALC_V, NOMBRE as ALC_N, GLOBAL as ALC_G, REGIONAL as ALC_R, alcance
 from cambios import CAMBIOS
 from friccion import FRICCION
+from bases import BASES, PASOS
 from paises_juego import PJ, EXTRA
 from paises_bloques import PB as PBLOQ
 from paises_datos import DATOS as PDATOS
@@ -137,7 +138,8 @@ meta = {"corte": CORTE, "proxima": PROXIMA, "skeleton": False, "pesos": peso, "c
         "autonomia": {str(k): v for k, v in AUTONOMIA.items()}, "certeza": CERTEZA, "fases": FASES,
         "tipos": ["Estado", "Capital", "Información", "Supranacional", "Influencia", "Sombra", "Persona"],
         "posiciones": POS, "grados": GRADO, "aspectos": ASP,
-        "friccion": [dict(f, actores=[{"id": a, "r": r} for a, r in f["actores"]]) for f in FRICCION]}
+        "friccion": [dict(f, actores=[{"id": a, "r": r} for a, r in f["actores"]]) for f in FRICCION],
+        "bases": [dict(n=n, h=h, b=b, op=op, ll=[lo, la], x=x) for n, h, b, op, lo, la, x in BASES], "pasos": [dict(n=n, ll=[lo, la], x=x) for n, lo, la, x in PASOS]}
 rel = [{"a": a, "b": b, "t": t, "x": x, "i": i} for a, b, t, x, i in RELACIONES]
 paises = {m: {"n": es, "b": b, "p": p, "z": z, "asp": a, "x": n} for m, es, b, p, z, a, n in PAISES}
 nombres = json.load(open(os.path.join(RAIZ, "data", "nombres_mapa.json"))) if os.path.exists(os.path.join(RAIZ, "data", "nombres_mapa.json")) else []
