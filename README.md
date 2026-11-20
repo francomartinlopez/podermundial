@@ -1,6 +1,6 @@
 # El mapa del poder global
 
-**El mundo real, sin máscaras.** Quién tiene el poder real en el mundo y quién solo lo aparenta: 722 actores con nombre propio (organizaciones y personas) medidos en 21 ejes, su jerarquía, sus dependencias y cuánto de su poder escapa al control público.
+**El mundo real, sin máscaras.** Quién tiene el poder real en el mundo y quién solo lo aparenta: 767 actores con nombre propio (organizaciones y personas) medidos en 21 ejes, su jerarquía, sus dependencias y cuánto de su poder escapa al control público.
 
 Sitio estático (HTML, CSS y JavaScript, sin dependencias salvo d3-geo y topojson para el mapa). Se publica con GitHub Pages desde la rama `main`.
 

@@ -2,6 +2,7 @@
 
 ## 2026-11-20
 
+- Octava tanda de actores (45): organismos técnicos y financieros (UIT, OMI, OMPI, OCI, Consejo Europeo, BEI, IATA, ISDA, MSCI, DTCC, LBMA, Fitch), auditoras y consultoras (PwC, EY, KPMG, BCG, Accenture), EE.UU. (NGA, Fidelity, Coinbase, Broadcom, GE Aerospace, ADM, Elliott, Wikimedia, Verisign), Rusia (Alrosa, Rusal, FSO, VK), China (Chinalco, Tsingshan, COFCO, Syngenta, Three Gorges, UnionPay, DJI), Japón, Corea, Australia y Canadá (Nomura, Soka Gakkai, Servicio Nacional de Pensiones de Corea, Macquarie, CPP Investments, Cameco, Nutrien, RBC), con 48 relaciones. Total: 767 actores.
 - Páginas nuevas: **Buscar** (actores, países, puntos de fricción y el texto de todas las fichas), **Cronología** (los 3.364 hitos del sitio en una sola línea de tiempo, filtrable por año, origen y palabra) y **Comparar** (dos actores lado a lado: puntajes, ejes, vínculo directo y relaciones en común). Botón «Comparar» en cada ficha de actor.
 - Fichas de país: comercio por bloque (exportaciones e importaciones de los cinco principales socios, agrupadas por el bloque de cada socio) y sección de fuentes (Wikipedia, CIA World Factbook y las de los puntos de fricción del territorio).
 - Capa nueva del mapa, «Bases y pasos»: 29 bases militares en el exterior y 12 pasos marítimos estratégicos, con quién los controla (`fuente/bases.py`).

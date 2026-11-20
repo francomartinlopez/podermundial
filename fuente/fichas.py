@@ -2427,7 +2427,7 @@ from nucleo4 import FICHAS as _FN4
 FICHAS.update(_FN4)
 
 import importlib as _il
-for _t in ["nucleo5", "nucleo6", "nucleo7"]: FICHAS.update(_il.import_module(_t).FICHAS)
+for _t in ["nucleo5", "nucleo6", "nucleo7", "nucleo8"]: FICHAS.update(_il.import_module(_t).FICHAS)
 
 # Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py)
 from correcciones import PARCHES as _PAR

@@ -73,7 +73,7 @@ GLOBAL |= _G3; REGIONAL |= _R3 - _G3
 from nucleo4 import ALC_G as _G4, ALC_R as _R4
 GLOBAL |= _G4; REGIONAL |= _R4 - _G4
 import importlib as _il
-for _t in ["nucleo5", "nucleo6", "nucleo7"]:
+for _t in ["nucleo5", "nucleo6", "nucleo7", "nucleo8"]:
     _m = _il.import_module(_t); GLOBAL |= _m.ALC_G; REGIONAL |= _m.ALC_R - _m.ALC_G
 from revision import A_GLOBAL as _AG, A_NACIONAL as _AN
 REGIONAL -= _AG | _AN
