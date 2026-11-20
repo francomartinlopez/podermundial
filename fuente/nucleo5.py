@@ -52,6 +52,15 @@ COORDS = {
 }
 
 EXT = {
+ "maktoum": (2, "El Tribunal Superior de Inglaterra concluyó en 2019 y 2020 que el gobernante de Dubái ordenó el secuestro de dos de sus hijas y el espionaje con Pegasus del teléfono de su exesposa y sus abogados.", W + "Mohammed_bin_Rashid_Al_Maktoum"),
+ "rtx": (1, "Acordó en 2024 con la justicia de EE.UU. pagar unos 950 millones de dólares por sobornos en Catar y exportaciones ilegales de armas.", W + "RTX_Corporation"),
+ "spglobal": (1, "Pagó en 2015 unos 1.375 millones de dólares para cerrar las demandas del gobierno de EE.UU. y de los estados por inflar calificaciones de hipotecas antes de 2008.", W + "S%26P_Global_Ratings"),
+ "moodys": (1, "Pagó en 2017 unos 864 millones de dólares para cerrar las investigaciones de EE.UU. por sus calificaciones de hipotecas antes de 2008.", W + "Moody%27s_Ratings"),
+ "allianz": (1, "Su filial de inversiones en EE.UU. se declaró culpable de fraude en 2022 por los fondos Structured Alpha.", W + "Allianz_Global_Investors"),
+ "mufg": (1, "Pagó en 2013 y 2014 multas en Nueva York por ocultar pagos de Irán, Sudán y Myanmar y presionar a un auditor.", W + "MUFG_Bank"),
+ "totalenergies": (1, "Pagó en 2013 unos 398 millones de dólares a la justicia de EE.UU. por sobornos a un funcionario iraní.", W + "TotalEnergies"),
+ "santasede": (1, "Un tribunal vaticano condenó en 2023 al cardenal Angelo Becciu por malversación en la compra de un edificio en Londres.", W + "Angelo_Becciu"),
+ "cnpc": (1, "Su expresidente Jiang Jiemin fue condenado en 2015 por corrupción, en la causa contra la red de Zhou Yongkang.", W + "Jiang_Jiemin"),
  "rn": (1, "Un tribunal de París condenó en 2025 a Marine Le Pen, a dirigentes y al partido por desviar fondos del Parlamento Europeo para pagar a personal del partido; en julio de 2026 la Cámara de Apelaciones confirmó la condena de Le Pen y redujo su inhabilitación.",
         W + "Trial_of_National_Rally_leaders"),
 }

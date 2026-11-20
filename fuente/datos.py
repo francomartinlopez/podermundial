@@ -997,6 +997,9 @@ FORMAL.update({n[0]: n[9] for n in _NUC5})
 FASE.update({n[0]: n[10] for n in _NUC5})
 _ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
 RELACIONES += [r for r in _REL_NUC5 if (r[0], r[1]) not in _ya]
+from relaciones_2026 import RELACIONES as _REL_2026
+_ya = {(r[0], r[1]) for r in RELACIONES} | {(r[1], r[0]) for r in RELACIONES}
+RELACIONES += [r for r in _REL_2026 if (r[0], r[1]) not in _ya]
 
 # Correcciones del 20 de noviembre de 2026 (ver fuente/correcciones.py): puntajes, bajas y relaciones
 from correcciones import ORG_SC as _OSC, BAJAS, REL_MAS as _RMAS, REL_TEXTO as _RTXT

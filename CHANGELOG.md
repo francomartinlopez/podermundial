@@ -8,6 +8,8 @@
 - Puntos de fricción: cronologías con los hechos de 2026.
 - 24 actores nuevos (`fuente/nucleo5.py`): jefes de gobierno y partidos de los países donde «quién define» mostraba un cartel, una empresa o un ejército (Meloni, Merz, AfD, Macron, Agrupación Nacional, Burnham, Reform UK, Sánchez, Partido Popular, Carney, Albanese, Lee Jae-myung, Lai Ching-te, Kuomintang, De la Espriella, Kast, Sheinbaum, Tinubu, Ruto, Tshisekedi, Tusk, PiS, Yashar de Eisenkot y Daniel Noboa), con fichas, fuentes y relaciones.
 - «Quién define aquí» fijado a mano en 36 países más (India, Brasil, Venezuela, Japón, Rusia, EE.UU., Israel, Ucrania, Corea del Norte, Somalia, Irak, entre otros). La ficha del país muestra además el «mayor poder real con sede aquí» cuando es otro actor (por ejemplo, el Cártel de Sinaloa en México) y avisa cuando no hay gobernante cargado.
+- 168 relaciones nuevas (`fuente/relaciones_2026.py`) para actores de peso con una relación o ninguna: inteligencia (GRU, SVR, RGB, Unidad 8200, SOCOM), finanzas (puerta giratoria de Goldman Sachs, Central Huijin, SWIFT, Euroclear), tecnología, defensa, energía, logística, crimen con atribución oficial o judicial, religión, partidos y medios. Ninguno de los 120 actores de mayor puntaje queda con menos de dos vínculos.
+- «Acción fuera de la ley» se puntúa en nueve actores más, con fallo judicial o acuerdo oficial: familia Al Maktoum, RTX, S&P, Moody's, Allianz, MUFG, TotalEnergies, Santa Sede y CNPC.
 - Las relaciones de los gobiernos quitados el 16/11 que se perdían o colgaban de un ejército pasan a sus jefes de gobierno cuando corresponde (Reino Unido, Canadá, España, Chile, Ecuador, Sudáfrica).
 
 ## 2026-11-17 (d)
