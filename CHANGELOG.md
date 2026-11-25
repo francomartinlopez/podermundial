@@ -1,5 +1,9 @@
 # Cambios
 
+## 2026-11-25
+
+- Ficha de país de la Argentina: nueva sección «Exposición internacional» con los socios comerciales por bloque (enero-julio de 2026, Cancillería e INDEC), alineamientos, puntos de fricción que la tocan, sanciones y designaciones, deuda y financiamiento (FMI, deuda pública, swaps con EE.UU. y China, Banco Mundial y BID) y organismos internacionales. Datos en `fuente/exposicion.py`; la tarea trimestral la revisa en cada corte.
+
 ## 2026-11-20
 
 - Marco: Fabián Calle y el realismo desde la Argentina (polaridad, los tres errores del momento unipolar, gran estrategia de palos y zanahorias, líneas rojas, esferas de influencia y control de los estrechos), con lo que le discuten otras escuelas. En Ciclos, franja y tarjeta nuevas con su periodización de la polaridad.

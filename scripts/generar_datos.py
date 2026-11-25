@@ -20,6 +20,7 @@ from ciclos import FRANJAS, DURACION, TEORIAS, MECANISMOS
 from paises_juego import PJ, EXTRA
 from paises_bloques import PB as PBLOQ
 from paises_datos import DATOS as PDATOS
+from exposicion import EXPO
 from categorias import ESTIRAR, TEORICO, PESO_FINAL, PESO_REL, MONARCAS, NOTA_MONARCA
 import math
 
@@ -189,5 +190,8 @@ for m, v in PJ.items():
     assert m in PBLOQ, ("falta en paises_bloques.py", m)
     bq = PBLOQ[m]
     pfichas[m] = dict(v, ti=bq["ti"], ei=bq["ei"], ta=sorted([[str(a), x] for a, x in bq["ta"]], key=lambda r: r[0]), ea=sorted([[str(a), x] for a, x in bq["ea"]], key=lambda r: r[0]), crono=[[str(a), x] for a, x in v["crono"]], d={k: (list(x) if isinstance(x, tuple) else [list(y) for y in x] if isinstance(x, list) else x) for k, x in d.items()})
+for m, e in EXPO.items():
+    assert m in pfichas, ("exposicion.py: país desconocido", m)
+    pfichas[m]["expo"] = e
 open(os.path.join(out, "paisfichas.js"), "w").write(js("PFICHAS", pfichas, "Ficha de cada país: qué está en juego, cronología, gobierno, sociedad, recursos, economía y cifras (CIA World Factbook)."))
 print(f"{len(FICHAS)} fichas, {len(orgs)} organizaciones, {len(rel)} relaciones, {len(paises)} países y territorios")

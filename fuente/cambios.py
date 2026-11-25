@@ -1,5 +1,6 @@
 # Cambios de método y de datos que el Marco muestra al lector (los más recientes primero).
 CAMBIOS = [
+ ("2026-11-25", "La ficha de la Argentina suma una sección de exposición internacional: socios comerciales por bloque, alineamientos, puntos de fricción, sanciones y designaciones, deuda y financiamiento, y organismos internacionales."),
  ("2026-11-20", "El Marco suma a Fabián Calle y el realismo desde la Argentina, con una franja de polaridad en Ciclos. Los puntos de fricción de Ucrania, energía y Atlántico Sur y las fichas de Rusia, Ucrania y Alemania suman los antecedentes de la ruptura con Occidente desde 2000, la dependencia europea del gas ruso y la investigación de Nord Stream."),
  ("2026-11-20", "El Marco suma a David Kilcullen (The Dragons and the Snakes, 2020) con ítem propio: la adaptación de los rivales, la guerra liminal rusa, el envolvimiento conceptual chino y la salida bizantina ante el declive de EE.UU. También tiene tarjeta en Ciclos."),
  ("2026-11-20", "Nueva página «Ciclos», enlazada desde el Marco: el reloj de las teorías (generaciones, herencia generacional, Strauss y Howe, Dalio, Turchin, Kondratiev, Quigley, Glubb, transición de poder, escuela austríaca y la frontera) en una misma línea de tiempo de 1900 a 2060, la duración de cada ciclo y una ficha por teoría con su crítica y sus fuentes."),

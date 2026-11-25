@@ -703,6 +703,28 @@
     return `<span class="bshare">${Object.entries(t).sort((a, b) => b[1] - a[1]).map(([b, x]) => `<i style="background:${bcol(b)};width:${x}%" title="${esc((BL[b] || BL.D).n)} ${x} %"></i>`).join("")}</span>` + Object.entries(t).sort((a, b) => b[1] - a[1]).map(([b, x]) => `${esc((BL[b] || BL.D).n)} ${x} %`).join(" · ");
   };
   const socios = l => l && l.length ? l.map(([n, x]) => esc(n) + (x ? ` ${x} %` : "")).join(", ") : "";
+  // ficha de exposición internacional (hoy, solo la Argentina): socios por bloque, alineamientos, fricción, sanciones, deuda y organismos
+  function pfExpo(e, key, frentes, ids) {
+    const lnk = (u, t) => `<a href="${esc(u)}" rel="noopener" target="_blank">${esc(t)}</a>`;
+    const bl = k => k === "UE" ? "T" : (PA[k] ? PA[k].b : "I");
+    const filas = e.socios.filas, pc = x => x.toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " %";
+    const porB = {}; filas.forEach(([k, , x, m]) => { const b = bl(k); porB[b] = porB[b] || [0, 0]; porB[b][0] += x; porB[b][1] += m; });
+    const fila = (sq, n, x, m, cls) => `<tr${cls ? ` class="${cls}"` : ""}><td><span class="sq" style="background:${sq};display:inline-block;width:10px;height:10px;margin-right:8px;border:1px solid #2A1414"></span>${n}</td><td class="mono">${pc(x)}</td><td class="mono">${pc(m)}</td></tr>`;
+    const crono = a => `<div class="crono">${a.map(([d, x, u]) => `<div><span class="mono">${esc(d)}</span><p>${esc(x)} ${u ? `<a class="muted" href="${esc(u)}" rel="noopener" target="_blank" style="font-size:13px">Fuente</a>` : ""}</p></div>`).join("")}</div>`;
+    const fr = frentes.map(f => `<div class="rel">${lineIcon("Enfrentamiento")}<div><a href="#f-${f.n}">Punto ${f.n}: ${esc(f.x)}</a> <span class="muted">· ${f.paises.includes(key) ? "en su territorio" : "por sus actores"}</span>${f.actores.filter(a => ids.has(a.id)).map(a => `<p class="side-x" style="margin:4px 0 0">${esc(corto(byId[a.id].n))}: ${esc(a.p || a.r || "")}</p>`).join("")}</div></div>`).join("");
+    return `<div><h2>Exposición internacional</h2><p class="note" style="margin:0 0 12px">Revisada el ${esc(e.rev)}; se actualiza en cada corte trimestral.</p>
+      <div class="box"><span class="lbl">Socios comerciales por bloque · ${esc(e.socios.periodo)}</span>
+        <div class="tbl-wrap" style="margin:8px 0 0"><table><thead><tr><th>Socio</th><th>Export.</th><th>Import.</th></tr></thead><tbody>
+        ${filas.map(([k, n, x, m]) => fila(BL[bl(k)].c, esc(n) + ` <span class="muted">(${esc(BL[bl(k)].n)})</span>`, x, m)).join("")}
+        ${Object.entries(porB).sort((a, b) => b[1][0] - a[1][0]).map(([b, [x, m]]) => fila(BL[b].c, `<b>Bloque ${esc(BL[b].n.toLowerCase())}</b>`, x, m)).join("")}
+        </tbody></table></div><p class="side-x" style="margin:10px 0 0">${esc(e.socios.nota)}</p>
+        <p class="note" style="margin:6px 0 0">${e.socios.fuentes.map(([t, u]) => lnk(u, t)).join(" · ")}. La Unión Europea se cuenta en el bloque transoceánico.</p></div>
+      <h3 style="margin:22px 0 8px">Alineamientos</h3><p class="side-x" style="margin:0 0 10px">En el mapa: ${esc(BL[PA[key].b].n)} · ${esc(M.posiciones[PA[key].p] || "")}.</p>${crono([...e.alineamientos].sort((a, b) => a[0] < b[0] ? 1 : -1))}
+      ${frentes.length ? `<h3 style="margin:22px 0 8px">Puntos de fricción que la tocan</h3>${fr}` : ""}
+      <h3 style="margin:22px 0 8px">Sanciones y designaciones</h3>${crono(e.sanciones)}
+      <h3 style="margin:22px 0 8px">Deuda y financiamiento</h3>${e.deuda.map(([t, x, u]) => `<div class="rel">${lineIcon("Dependencia")}<div><b>${esc(t)}${t.endsWith(".") ? "" : "."}</b> ${esc(x)} ${lnk(u, "Fuente")}</div></div>`).join("")}
+      <h3 style="margin:22px 0 8px">Organismos internacionales</h3><p class="side-x">Miembro de ${esc(e.organismos.miembro)}</p>${crono(e.organismos.cambios)}</div>`;
+  }
   function pfDatos(f) {
     const d = f.d || {}, pob = d.pob && d.pob[0];
     const dens = pob && d.area >= 1 ? nf(pob / d.area, 0) + " hab./km²" : "";
@@ -753,6 +775,7 @@
           <div class="imp-row" style="border-top:0"><span class="sq" style="background:${swatch(p.b, p.p)};border:1px solid #2A1414"></span><div><b>${esc(BL[p.b].n)} · ${esc(M.posiciones[p.p] || "")}</b><p class="side-x" style="margin:4px 0">${esc(POSDEF[p.p] || "")}</p></div></div>
           ${p.z ? `<div class="imp-row"><span class="sq" style="background:#FF3B30"></span><div><b>Zona liberada: ${esc(M.grados[p.z])}</b><p class="side-x" style="margin:4px 0">Partes del territorio o de la vida del país donde el Estado no manda: ${esc(p.asp.map(a => M.aspectos[a]).join(", "))}.</p></div></div>` : ""}
           <p class="note"><a href="#imperios">Cómo se lee el mapa de imperios</a>.</p></div>
+        ${pf && pf.expo ? pfExpo(pf.expo, key, frentes, ids) : ""}
         ${pf ? `<div><h2>Los dos bloques aquí</h2><div class="bq-grid">${[["T", pf.ti, pf.ta], ["E", pf.ei, pf.ea]].map(([k, i, a]) => `<div class="box bq-card" style="border-top:3px solid ${BL[k].c}"><span class="lbl" style="color:${k === "T" ? "#6E9BFF" : "#FF3B30"}">${k === "T" ? "Imperio transoceánico" : "Alianza euroasiática"}</span><p class="bq-sub">Qué quiere</p><p class="side-x">${esc(i)}</p><p class="bq-sub">Qué hizo (2016 a 2026)</p>${a.length ? `<div class="crono">${a.map(([d, x]) => `<div><span class="mono">${esc(d)}</span><p>${esc(x)}</p></div>`).join("")}</div>` : `<p class="side-x muted">Sin acciones relevantes en el período.</p>`}</div>`).join("")}</div></div>` : ""}
         ${def ? `<div><h2>Quién define aquí</h2><div class="define"><a href="#o-${def.id}">${icon(def, 22)}<span><b>${esc(corto(def.n))}</b><small>${esc(def.area)} · ${esc(paisDe(def))} · puntaje ${num(def.pt)}</small></span></a></div>${p.m && p.m[1] ? `<p class="side-x">${esc(p.m[1])}</p>` : ""}${!p.m ? `<p class="note">Sin un gobernante cargado en el mapa: se muestra el actor con sede aquí de mayor puntaje.</p>` : ""}
           ${locales[0] && locales[0] !== def && locales[0].pt > def.pt ? `<p class="lbl" style="margin-top:14px">Mayor poder real con sede aquí</p><div class="define"><a href="#o-${locales[0].id}">${icon(locales[0], 22)}<span><b>${esc(corto(locales[0].n))}</b><small>${esc(locales[0].area)} · puntaje ${num(locales[0].pt)}</small></span></a></div><p class="note">Quien define gobierna o manda en el país; el mayor poder real puede ser una empresa, un ejército o un grupo armado que pesa más fuera o por debajo del Estado.</p>` : ""}</div>` : ""}
