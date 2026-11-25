@@ -1,5 +1,5 @@
 # Datos para la web de informes de Plexum (archivo datos-informe.json en la raíz del sitio).
-# Especificación: «Datos que cada web publica», versión 1.2 (25/11/2026), apartado 11:
+# Especificación: «Datos que cada web publica», versión 1.3 (25/11/2026), apartado 11:
 # novedades de cambios de gobierno y de acuerdos comerciales o de inversión que involucren
 # a la Argentina o a sus principales socios (Brasil, EE.UU., China y la Unión Europea, según
 # la ficha de exposición de la Argentina), más la agenda de los próximos 60 días.
@@ -12,7 +12,7 @@
 # Valores de eje, tipo, alcance.nivel, rubros y exposicion: listas cerradas de la especificación.
 
 WEB = "Mapa del Poder Global"
-VERSION = "1.0"
+VERSION = "1.3"
 SITIO = "https://francomartinlopez.github.io/podermundial/"
 
 NOVEDADES = [
