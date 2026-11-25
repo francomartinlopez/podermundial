@@ -1,0 +1,112 @@
+{
+ "web": "Mapa del Poder Global",
+ "version": "1.0",
+ "generado": "2026-11-25T10:54:20-03:00",
+ "indicadores": [],
+ "novedades": [
+  {
+   "id": "2026-11-18-apec-tregua-eeuu-china",
+   "fecha_dato": "2026-11-18",
+   "titulo": "Trump y Xi se reúnen en la cumbre de la APEC; la tregua comercial vence el 10 de enero",
+   "resumen": "En la cumbre de la APEC en Shenzhen se reunieron los presidentes de EE.UU. y China, dos de los cuatro grandes socios comerciales de la Argentina. La tregua comercial entre ambos países vence el 10 de enero de 2027.",
+   "tipo": "medida comercial",
+   "eje": "Política internacional",
+   "alcance": {
+    "nivel": "mundo",
+    "provincia": "",
+    "localidad": "",
+    "pais": ""
+   },
+   "rubros": [],
+   "subrubros": [],
+   "exposicion": [
+    "Exporta",
+    "Importa insumos"
+   ],
+   "url": "https://francomartinlopez.github.io/podermundial/#f-1"
+  },
+  {
+   "id": "2026-11-03-eeuu-elecciones-medio-termino",
+   "fecha_dato": "2026-11-03",
+   "titulo": "EE.UU. renueva la Cámara de Representantes y un tercio del Senado",
+   "resumen": "Elecciones de medio término en Estados Unidos, segundo destino de las exportaciones argentinas: se renovaron la Cámara de Representantes y un tercio del Senado.",
+   "tipo": "elección",
+   "eje": "Política internacional",
+   "alcance": {
+    "nivel": "país",
+    "provincia": "",
+    "localidad": "",
+    "pais": "Estados Unidos"
+   },
+   "rubros": [],
+   "subrubros": [],
+   "exposicion": [],
+   "url": "https://francomartinlopez.github.io/podermundial/#o-congreso_eeuu"
+  },
+  {
+   "id": "2026-10-29-bce-renuncia-lagarde",
+   "fecha_dato": "2026-10-29",
+   "titulo": "Christine Lagarde anuncia que dejará antes de tiempo la presidencia del Banco Central Europeo",
+   "resumen": "La presidenta del Banco Central Europeo anunció su renuncia anticipada. El banco fija la política monetaria de la zona del euro; la Unión Europea es el cuarto destino de las exportaciones argentinas y el tercer origen de sus importaciones.",
+   "tipo": "otro",
+   "eje": "Política internacional",
+   "alcance": {
+    "nivel": "país",
+    "provincia": "",
+    "localidad": "",
+    "pais": "Unión Europea"
+   },
+   "rubros": [],
+   "subrubros": [],
+   "exposicion": [],
+   "url": "https://francomartinlopez.github.io/podermundial/#o-bce"
+  },
+  {
+   "id": "2026-10-25-brasil-reeleccion-lula",
+   "fecha_dato": "2026-10-25",
+   "titulo": "Lula es reelecto presidente de Brasil",
+   "resumen": "Luiz Inácio Lula da Silva ganó el balotaje y seguirá al frente del gobierno de Brasil, primer destino de las exportaciones argentinas y segundo origen de sus importaciones.",
+   "tipo": "elección",
+   "eje": "Política internacional",
+   "alcance": {
+    "nivel": "país",
+    "provincia": "",
+    "localidad": "",
+    "pais": "Brasil"
+   },
+   "rubros": [],
+   "subrubros": [],
+   "exposicion": [],
+   "url": "https://francomartinlopez.github.io/podermundial/#o-lula"
+  }
+ ],
+ "agenda": [
+  {
+   "fecha": "2026-11-29",
+   "evento": "Elecciones generales en España (Unión Europea)",
+   "eje": "Política internacional",
+   "alcance": {
+    "nivel": "país",
+    "provincia": "",
+    "localidad": "",
+    "pais": "España"
+   },
+   "rubros": [],
+   "url": "https://francomartinlopez.github.io/podermundial/#o-sanchez"
+  },
+  {
+   "fecha": "2027-01-10",
+   "evento": "Vence la tregua comercial entre EE.UU. y China",
+   "eje": "Política internacional",
+   "alcance": {
+    "nivel": "mundo",
+    "provincia": "",
+    "localidad": "",
+    "pais": ""
+   },
+   "rubros": [],
+   "url": "https://francomartinlopez.github.io/podermundial/#f-1"
+  }
+ ],
+ "faltantes": []
+}

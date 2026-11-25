@@ -2,6 +2,7 @@
 
 ## 2026-11-25
 
+- Nuevo archivo `datos-informe.json` en la raíz para la web de informes de Plexum (sin cambios visibles): novedades de gobierno y comercio de los grandes socios de la Argentina y agenda de los próximos 60 días, generados desde `fuente/informe.py`.
 - Ficha de país de la Argentina: nueva sección «Exposición internacional» con los socios comerciales por bloque (enero-julio de 2026, Cancillería e INDEC), alineamientos, puntos de fricción que la tocan, sanciones y designaciones, deuda y financiamiento (FMI, deuda pública, swaps con EE.UU. y China, Banco Mundial y BID) y organismos internacionales. Datos en `fuente/exposicion.py`; la tarea trimestral la revisa en cada corte.
 
 ## 2026-11-20

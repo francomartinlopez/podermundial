@@ -21,6 +21,7 @@ from paises_juego import PJ, EXTRA
 from paises_bloques import PB as PBLOQ
 from paises_datos import DATOS as PDATOS
 from exposicion import EXPO
+import informe
 from categorias import ESTIRAR, TEORICO, PESO_FINAL, PESO_REL, MONARCAS, NOTA_MONARCA
 import math
 
@@ -194,4 +195,43 @@ for m, e in EXPO.items():
     assert m in pfichas, ("exposicion.py: país desconocido", m)
     pfichas[m]["expo"] = e
 open(os.path.join(out, "paisfichas.js"), "w").write(js("PFICHAS", pfichas, "Ficha de cada país: qué está en juego, cronología, gobierno, sociedad, recursos, economía y cifras (CIA World Factbook)."))
+# archivo de datos para la web de informes de Plexum (datos-informe.json, en la raíz del sitio)
+def _informe():
+    import datetime as _dt
+    ahora = _dt.datetime.now(_dt.timezone(_dt.timedelta(hours=-3))).replace(microsecond=0)
+    hoy = ahora.date()
+    def hito(ref):
+        k, x, d = ref
+        cr = fichas[x]["crono"] if k == "a" else next(f["crono"] for f in FRICCION if f["n"] == x)
+        assert any(str(c[0]) == d for c in cr), ("informe.py: el hito no está en el sitio", ref)
+        return f"{informe.SITIO}#o-{x}" if k == "a" else f"{informe.SITIO}#f-{x}"
+    EJES = {"Economía nacional", "Política nacional", "Economía internacional", "Política internacional", "Clima y riesgo productivo", "Región y rubro"}
+    TIPOS = {"norma", "inversión", "empresa en crisis", "licitación", "conflicto", "elección", "encuesta", "medida comercial", "clima", "otro"}
+    RUB = {"Industria", "Agro", "Minería", "Energía", "Construcción", "Comercio y servicios"}
+    EXP = {"Exporta", "Importa insumos", "Deuda en dólares", "Energía intensiva", "Mano de obra intensiva", "Vende al Estado", "Vende a minería y energía"}
+    NIV = {"mundo", "país", "nacional", "provincia", "localidad"}
+    nov, ag = [], []
+    for n in informe.NOVEDADES:
+        d = _dt.date.fromisoformat(n["ref"][2])
+        assert n["tipo"] in TIPOS and n["alcance"]["nivel"] in NIV and set(n["rubros"]) <= RUB and set(n["exposicion"]) <= EXP, n["id"]
+        assert len(n["resumen"].split()) <= 60, ("resumen de más de 60 palabras", n["id"])
+        url = hito(n["ref"])
+        if 0 <= (hoy - d).days <= 90:
+            nov.append({"id": n["id"], "fecha_dato": d.isoformat(), "titulo": n["titulo"], "resumen": n["resumen"], "tipo": n["tipo"],
+                        "eje": "Política internacional", "alcance": n["alcance"], "rubros": n["rubros"], "subrubros": n["subrubros"],
+                        "exposicion": n["exposicion"], "url": url})
+    for a in informe.AGENDA:
+        d = _dt.date.fromisoformat(a["fecha"]); url = hito(a["ref"])
+        assert a["alcance"]["nivel"] in NIV and set(a["rubros"]) <= RUB
+        if 0 <= (d - hoy).days <= 60:
+            ag.append({"fecha": d.isoformat(), "evento": a["evento"], "eje": "Política internacional", "alcance": a["alcance"], "rubros": a["rubros"], "url": url})
+    doc = {"web": informe.WEB, "version": informe.VERSION, "generado": ahora.isoformat(),
+           "indicadores": informe.INDICADORES, "novedades": sorted(nov, key=lambda r: r["fecha_dato"], reverse=True),
+           "agenda": sorted(ag, key=lambda r: r["fecha"]), "faltantes": []}
+    with open(os.path.join(os.path.dirname(out), "datos-informe.json"), "w", encoding="utf-8") as fh:
+        json.dump(doc, fh, ensure_ascii=False, indent=1)
+        fh.write("\n")
+    return len(nov), len(ag)
+_n, _a = _informe()
+print(f"datos-informe.json: {_n} novedades, {_a} eventos en agenda")
 print(f"{len(FICHAS)} fichas, {len(orgs)} organizaciones, {len(rel)} relaciones, {len(paises)} países y territorios")
