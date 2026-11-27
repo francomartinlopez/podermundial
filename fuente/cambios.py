@@ -1,5 +1,6 @@
 # Cambios de método y de datos que el Marco muestra al lector (los más recientes primero).
 CAMBIOS = [
+ ("2026-11-27", "El Marco suma a Kenneth Waltz con ítem propio: el realismo estructural, la anarquía, la polaridad y el equilibrio de poder."),
  ("2026-11-25", "La ficha de la Argentina suma una sección de exposición internacional: socios comerciales por bloque, alineamientos, puntos de fricción, sanciones y designaciones, deuda y financiamiento, y organismos internacionales."),
  ("2026-11-20", "El Marco suma a Fabián Calle y el realismo desde la Argentina, con una franja de polaridad en Ciclos. Los puntos de fricción de Ucrania, energía y Atlántico Sur y las fichas de Rusia, Ucrania y Alemania suman los antecedentes de la ruptura con Occidente desde 2000, la dependencia europea del gas ruso y la investigación de Nord Stream."),
  ("2026-11-20", "El Marco suma a David Kilcullen (The Dragons and the Snakes, 2020) con ítem propio: la adaptación de los rivales, la guerra liminal rusa, el envolvimiento conceptual chino y la salida bizantina ante el declive de EE.UU. También tiene tarjeta en Ciclos."),

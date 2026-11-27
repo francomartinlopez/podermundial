@@ -1,5 +1,9 @@
 # Cambios
 
+## 2026-11-27
+
+- Marco: Kenneth Waltz con ítem propio en «Geopolítica y realismo», antes de Mearsheimer (realismo estructural: anarquía, autoayuda, distribución de capacidades, polaridad, equilibrio, realismo defensivo y críticas). Sale de la lista del realismo clásico.
+
 ## 2026-11-25
 
 - `datos-informe.json` pasa a la versión 1.3 de la especificación (misma dirección; este sitio no publica indicadores, así que no lleva series ni grupos).
